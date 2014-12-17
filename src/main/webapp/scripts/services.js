@@ -2,7 +2,7 @@
 
 /* Services */
 
-rennsApp.factory('LanguageService', function ($http, $translate, LANGUAGES) {
+bootstrapApp.factory('LanguageService', function ($http, $translate, LANGUAGES) {
         return {
             getBy: function(language) {
                 if (language == undefined) {
@@ -20,34 +20,34 @@ rennsApp.factory('LanguageService', function ($http, $translate, LANGUAGES) {
         };
     });
 
-rennsApp.factory('Register', function ($resource) {
+bootstrapApp.factory('Register', function ($resource) {
         return $resource('app/rest/register', {}, {
         });
     });
 
-rennsApp.factory('Activate', function ($resource) {
+bootstrapApp.factory('Activate', function ($resource) {
         return $resource('app/rest/activate', {}, {
             'get': { method: 'GET', params: {}, isArray: false}
         });
     });
 
-rennsApp.factory('Account', function ($resource) {
+bootstrapApp.factory('Account', function ($resource) {
         return $resource('app/rest/account', {}, {
         });
     });
 
-rennsApp.factory('Password', function ($resource) {
+bootstrapApp.factory('Password', function ($resource) {
         return $resource('app/rest/account/change_password', {}, {
         });
     });
 
-rennsApp.factory('Sessions', function ($resource) {
+bootstrapApp.factory('Sessions', function ($resource) {
         return $resource('app/rest/account/sessions/:series', {}, {
             'get': { method: 'GET', isArray: true}
         });
     });
 
-rennsApp.factory('MetricsService',function ($http) {
+bootstrapApp.factory('MetricsService',function ($http) {
     		return {
             get: function() {
                 var promise = $http.get('metrics/metrics').then(function(response){
@@ -58,7 +58,7 @@ rennsApp.factory('MetricsService',function ($http) {
         };
     });
 
-rennsApp.factory('ThreadDumpService', function ($http) {
+bootstrapApp.factory('ThreadDumpService', function ($http) {
         return {
             dump: function() {
                 var promise = $http.get('dump').then(function(response){
@@ -69,7 +69,7 @@ rennsApp.factory('ThreadDumpService', function ($http) {
         };
     });
 
-rennsApp.factory('HealthCheckService', function ($rootScope, $http) {
+bootstrapApp.factory('HealthCheckService', function ($rootScope, $http) {
         return {
             check: function() {
                 var promise = $http.get('health').then(function(response){
@@ -80,7 +80,7 @@ rennsApp.factory('HealthCheckService', function ($rootScope, $http) {
         };
     });
 
-rennsApp.factory('ConfigurationService', function ($rootScope, $filter, $http) {
+bootstrapApp.factory('ConfigurationService', function ($rootScope, $filter, $http) {
     return {
         get: function() {
             var promise = $http.get('configprops').then(function(response){
@@ -96,14 +96,14 @@ rennsApp.factory('ConfigurationService', function ($rootScope, $filter, $http) {
     };
 });
 
-rennsApp.factory('LogsService', function ($resource) {
+bootstrapApp.factory('LogsService', function ($resource) {
         return $resource('app/rest/logs', {}, {
             'findAll': { method: 'GET', isArray: true},
             'changeLevel':  { method: 'PUT'}
         });
     });
 
-rennsApp.factory('AuditsService', function ($http) {
+bootstrapApp.factory('AuditsService', function ($http) {
         return {
             findAll: function() {
                 var promise = $http.get('app/rest/audits/all').then(function (response) {
@@ -120,7 +120,7 @@ rennsApp.factory('AuditsService', function ($http) {
         }
     });
 
-rennsApp.factory('Session', function () {
+bootstrapApp.factory('Session', function () {
         this.create = function (login, firstName, lastName, email, userRoles) {
             this.login = login;
             this.firstName = firstName;
@@ -138,7 +138,7 @@ rennsApp.factory('Session', function () {
         return this;
     });
 
-rennsApp.factory('AuthenticationSharedService', function ($rootScope, $http, authService, Session, Account) {
+bootstrapApp.factory('AuthenticationSharedService', function ($rootScope, $http, authService, Session, Account) {
         return {
             login: function (param) {
                 var data ="j_username=" + encodeURIComponent(param.username) +"&j_password=" + encodeURIComponent(param.password) +"&_spring_security_remember_me=" + param.rememberMe +"&submit=Login";

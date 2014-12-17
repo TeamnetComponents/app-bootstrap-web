@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('rennsApp')
+angular.module('bootstrapApp')
     .directive('activeMenu', function($translate, $locale, tmhDynamicLocale) {
         return {
             restrict: 'A',

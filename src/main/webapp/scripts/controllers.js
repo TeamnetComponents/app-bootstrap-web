@@ -2,13 +2,13 @@
 
 /* Controllers */
 
-rennsApp.controller('MainController', function ($scope) {
+bootstrapApp.controller('MainController', function ($scope) {
     });
 
-rennsApp.controller('AdminController', function ($scope) {
+bootstrapApp.controller('AdminController', function ($scope) {
     });
 
-rennsApp.controller('LanguageController', function ($scope, $translate, LanguageService) {
+bootstrapApp.controller('LanguageController', function ($scope, $translate, LanguageService) {
         $scope.changeLanguage = function (languageKey) {
             $translate.use(languageKey);
 
@@ -22,10 +22,10 @@ rennsApp.controller('LanguageController', function ($scope, $translate, Language
         });
     });
 
-rennsApp.controller('MenuController', function ($scope) {
+bootstrapApp.controller('MenuController', function ($scope) {
     });
 
-rennsApp.controller('LoginController', function ($scope, $location, AuthenticationSharedService) {
+bootstrapApp.controller('LoginController', function ($scope, $location, AuthenticationSharedService) {
         $scope.rememberMe = true;
         $scope.login = function () {
             AuthenticationSharedService.login({
@@ -36,11 +36,11 @@ rennsApp.controller('LoginController', function ($scope, $location, Authenticati
         }
     });
 
-rennsApp.controller('LogoutController', function ($location, AuthenticationSharedService) {
+bootstrapApp.controller('LogoutController', function ($location, AuthenticationSharedService) {
         AuthenticationSharedService.logout();
     });
 
-rennsApp.controller('SettingsController', function ($scope, Account) {
+bootstrapApp.controller('SettingsController', function ($scope, Account) {
         $scope.success = null;
         $scope.error = null;
         $scope.settingsAccount = Account.get();
@@ -65,7 +65,7 @@ rennsApp.controller('SettingsController', function ($scope, Account) {
         };
     });
 
-rennsApp.controller('RegisterController', function ($scope, $translate, Register) {
+bootstrapApp.controller('RegisterController', function ($scope, $translate, Register) {
         $scope.success = null;
         $scope.error = null;
         $scope.doNotMatch = null;
@@ -99,7 +99,7 @@ rennsApp.controller('RegisterController', function ($scope, $translate, Register
         }
     });
 
-rennsApp.controller('ActivationController', function ($scope, $routeParams, Activate) {
+bootstrapApp.controller('ActivationController', function ($scope, $routeParams, Activate) {
         Activate.get({key: $routeParams.key},
             function (value, responseHeaders) {
                 $scope.error = null;
@@ -111,7 +111,7 @@ rennsApp.controller('ActivationController', function ($scope, $routeParams, Acti
             });
     });
 
-rennsApp.controller('PasswordController', function ($scope, Password) {
+bootstrapApp.controller('PasswordController', function ($scope, Password) {
         $scope.success = null;
         $scope.error = null;
         $scope.doNotMatch = null;
@@ -133,7 +133,7 @@ rennsApp.controller('PasswordController', function ($scope, Password) {
         };
     });
 
-rennsApp.controller('SessionsController', function ($scope, resolvedSessions, Sessions) {
+bootstrapApp.controller('SessionsController', function ($scope, resolvedSessions, Sessions) {
         $scope.success = null;
         $scope.error = null;
         $scope.sessions = resolvedSessions;
@@ -151,7 +151,7 @@ rennsApp.controller('SessionsController', function ($scope, resolvedSessions, Se
         };
     });
 
- rennsApp.controller('TrackerController', function ($scope) {
+ bootstrapApp.controller('TrackerController', function ($scope) {
         // This controller uses the Atmosphere framework to keep a Websocket connection opened, and receive
         // user activities in real-time.
 
@@ -196,7 +196,7 @@ rennsApp.controller('SessionsController', function ($scope, resolvedSessions, Se
         $scope.trackerSubSocket = $scope.trackerSocket.subscribe($scope.trackerRequest);
     });
 
-rennsApp.controller('HealthController', function ($scope, HealthCheckService) {
+bootstrapApp.controller('HealthController', function ($scope, HealthCheckService) {
      $scope.updatingHealth = true;
 
      $scope.refresh = function() {
@@ -221,11 +221,11 @@ rennsApp.controller('HealthController', function ($scope, HealthCheckService) {
      }
  });
 
-rennsApp.controller('ConfigurationController', function ($scope, resolvedConfiguration) {
+bootstrapApp.controller('ConfigurationController', function ($scope, resolvedConfiguration) {
     $scope.configuration = resolvedConfiguration;
 });
 
-rennsApp.controller('MetricsController', function ($scope, MetricsService, HealthCheckService, ThreadDumpService) {
+bootstrapApp.controller('MetricsController', function ($scope, MetricsService, HealthCheckService, ThreadDumpService) {
         $scope.metrics = {};
 		$scope.updatingMetrics = true;
 
@@ -305,7 +305,7 @@ rennsApp.controller('MetricsController', function ($scope, MetricsService, Healt
         };
     });
 
-rennsApp.controller('LogsController', function ($scope, resolvedLogs, LogsService) {
+bootstrapApp.controller('LogsController', function ($scope, resolvedLogs, LogsService) {
         $scope.loggers = resolvedLogs;
 
         $scope.changeLevel = function (name, level) {
@@ -315,7 +315,7 @@ rennsApp.controller('LogsController', function ($scope, resolvedLogs, LogsServic
         }
     });
 
-rennsApp.controller('AuditsController', function ($scope, $translate, $filter, AuditsService) {
+bootstrapApp.controller('AuditsController', function ($scope, $translate, $filter, AuditsService) {
         $scope.onChangeDate = function() {
             AuditsService.findByDates($scope.fromDate, $scope.toDate).then(function(data){
                 $scope.audits = data;

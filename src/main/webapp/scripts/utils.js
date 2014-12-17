@@ -1,4 +1,4 @@
-angular.module('rennsAppUtils', [])
+angular.module('bootstrapAppUtils', [])
     .service('Base64Service', function () {
         var keyStr = "ABCDEFGHIJKLMNOP" +
             "QRSTUVWXYZabcdef" +

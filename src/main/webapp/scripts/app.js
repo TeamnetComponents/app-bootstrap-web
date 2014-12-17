@@ -2,10 +2,10 @@
 
 /* App Module */
 
-var rennsApp = angular.module('rennsApp', ['http-auth-interceptor', 'tmh.dynamicLocale',
-    'ngResource', 'ngRoute', 'ngCookies', 'rennsAppUtils', 'pascalprecht.translate', 'truncate', 'ngCacheBuster']);
+var bootstrapApp = angular.module('bootstrapApp', ['http-auth-interceptor', 'tmh.dynamicLocale',
+    'ngResource', 'ngRoute', 'ngCookies', 'bootstrapAppUtils', 'pascalprecht.translate', 'truncate', 'ngCacheBuster']);
 
-rennsApp
+bootstrapApp
     .config(function ($routeProvider, $httpProvider, $translateProvider, tmhDynamicLocaleProvider, httpRequestInterceptorCacheBusterProvider, USER_ROLES) {
 
             //Cache everything except rest api requests
