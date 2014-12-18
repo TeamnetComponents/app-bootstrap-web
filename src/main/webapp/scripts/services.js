@@ -121,12 +121,13 @@ bootstrapApp.factory('AuditsService', function ($http) {
     });
 
 bootstrapApp.factory('Session', function () {
-        this.create = function (login, firstName, lastName, email, userRoles) {
+        this.create = function (login, firstName, lastName, email, userRoles,gender) {
             this.login = login;
             this.firstName = firstName;
             this.lastName = lastName;
             this.email = email;
             this.userRoles = userRoles;
+            this.gender=gender;
         };
         this.invalidate = function () {
             this.login = null;
@@ -134,6 +135,7 @@ bootstrapApp.factory('Session', function () {
             this.lastName = null;
             this.email = null;
             this.userRoles = null;
+            this.gender=null;
         };
         return this;
     });
@@ -149,7 +151,7 @@ bootstrapApp.factory('AuthenticationSharedService', function ($rootScope, $http,
                     ignoreAuthModule: 'ignoreAuthModule'
                 }).success(function (data, status, headers, config) {
                     Account.get(function(data) {
-                        Session.create(data.login, data.firstName, data.lastName, data.email, data.roles);
+                        Session.create(data.login, data.firstName, data.lastName, data.email, data.roles,data.gender);
                         $rootScope.account = Session;
                         authService.loginConfirmed(data);
                     });
@@ -165,7 +167,7 @@ bootstrapApp.factory('AuthenticationSharedService', function ($rootScope, $http,
                 }).success(function (data, status, headers, config) {
                     if (!Session.login) {
                         Account.get(function(data) {
-                            Session.create(data.login, data.firstName, data.lastName, data.email, data.roles);
+                            Session.create(data.login, data.firstName, data.lastName, data.email, data.roles,data.gender);
                             $rootScope.account = Session;
                             if (!$rootScope.isAuthorized(authorizedRoles)) {
                                 // user is not allowed

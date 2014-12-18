@@ -8,10 +8,14 @@
             <p class="lead" translate="main.subtitle">This is your homepage</p>
 
             <div ng-switch="authenticated">
-                {{account}}
+
                 <div class="alert alert-success" ng-switch-when="true"
                      translate="main.logged.message" translate-values="{username: '{{account.login}}'}">
                     You are logged in as user "Admin".
+                </div>
+                <div>
+                    <button onclick="changeTheme('devoops_v1')">Devoops V1</button>
+                    <button onclick="changeTheme('devoops_v2')">Devoops V2</button>
                 </div>
 
                 <div class="alert alert-warning" ng-switch-when="false" translate="global.messages.info.authenticated">
