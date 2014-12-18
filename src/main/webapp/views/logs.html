@@ -5,14 +5,14 @@
 
     {{'logs.filter' | translate}} <input type="text" ng-model="filter" class="form-control">
 
-    <table class="table table-condensed table-striped table-bordered table-responsive">
+    <table class="table table-condensed table-striped table-bordered table-responsive beauty-table table-hover">
         <thead>
         <tr title="click to order">
             <th ng-click="predicate = 'name'; reverse=!reverse" >{{'logs.table.name' | translate}}</th>
             <th ng-click="predicate = 'level'; reverse=!reverse">{{'logs.table.level' | translate}}</th>
         </tr>
         </thead>
-
+        <tbody>
         <tr ng-repeat="logger in loggers | filter:filter | orderBy:predicate:reverse">
             <td><small>{{logger.name | characters:140}}</small></td>
             <td>
@@ -23,5 +23,6 @@
                 <button ng-click="changeLevel(logger.name, 'ERROR')" ng-class="(logger.level=='ERROR') ? 'btn-primary' : 'btn-default'" class="btn btn-default btn-xs">ERROR</button>
             </td>
         </tr>
+        </tbody>
     </table>
 </div>
