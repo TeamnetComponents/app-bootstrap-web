@@ -126,12 +126,6 @@
                                             <span>Profile</span>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="ajax/page_messages.html" class="ajax-link">
-                                            <i class="fa fa-envelope"></i>
-                                            <span>Messages</span>
-                                        </a>
-                                    </li>
                                     <li ng-switch-when="true">
                                         <a href="#/sessions">
                                             <i class="fa fa-picture-o"></i>
@@ -162,7 +156,18 @@
                                             <span translate="global.menu.account.register">Register</span>
                                         </a>
                                     </li>
-
+                                    <li ng-switch-when="true">
+                                        <a href="#/logs" class="ajax-link">
+                                            <i class="fa fa-tasks"></i>
+                                            <span translate="global.menu.account.logs">Logs</span>
+                                        </a>
+                                    </li>
+                                    <li ng-switch-when="true">
+                                        <a href="#/audits" class="ajax-link">
+                                            <i class="fa fa-tasks"></i>
+                                            <span translate="global.menu.account.audits">Audits</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
