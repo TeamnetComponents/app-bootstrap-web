@@ -91,6 +91,27 @@
                                     <span class="badge">7</span>
                                 </a>
                             </li>
+                            <li class="dropdown">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-cogs"></i>
+                                    <span class="about" translate="global.menu.themes">Themes</span>
+                                    <i class="fa fa-angle-down pull-right"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#" onclick="changeTheme('devoops_v1')">
+                                            <i class="fa fa-picture-o"></i>
+                                            <span>Devoops V1</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="changeTheme('devoops_v2')">
+                                            <i class="fa fa-picture-o"></i>
+                                            <span>Devoops V2</span></a>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
                             <li class="dropdown"  ng-switch="authenticated">
                                 <a href="" class="dropdown-toggle account" data-toggle="dropdown"  ng-switch-when="true">
                                     <div class="avatar"  ng-if="account.gender=='FEMALE'" ng-switch-when="true">
