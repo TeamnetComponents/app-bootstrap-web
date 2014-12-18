@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  ng-app="bootstrapApp" ng-controller="MainController">
 <head>
     <meta charset="utf-8">
     <title>Teamnet bootstrap</title>
@@ -23,12 +23,17 @@
     <link href="/bower_components/select2/select2.css" rel="stylesheet">
     <link href="/bower_components/justified-gallery/dist/css/justifiedGallery.css" rel="stylesheet">
     <link href="/styles/main.css" rel="stylesheet">
+
+
     <link href="/bower_components/chartist/dist/chartist.min.css" rel="stylesheet">
+
+
+    <link href="/styles/themes/devoops_v2.css" rel="stylesheet" class="theme">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <![endif]-->
 </head>
-<body ng-app="bootstrapApp" ng-controller="MainController">
+<body>
 <!--Start Header-->
 <div id="screensaver">
     <canvas id="canvas"></canvas>
@@ -67,8 +72,6 @@
                         </div>
                     </div>
                     <div class="col-xs-4 col-sm-8 top-panel-right">
-                        <a href="#" class="about">about</a>
-                        <a href="index_v1.html" class="style1"></a>
                         <ul class="nav navbar-nav pull-right panel-menu">
                             <li class="hidden-xs">
                                 <a href="index.html" class="modal-link">
@@ -88,18 +91,34 @@
                                     <span class="badge">7</span>
                                 </a>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle account" data-toggle="dropdown">
-                                    <div class="avatar">
-                                        <img src="images/avatar_f.jpg" class="img-circle" alt="avatar" ng-if="account.sex=='FEMALE'" />
-                                        <img src="images/avatar_b.jpg" class="img-circle" alt="avatar" ng-if="account.sex!='FEMALE'" />
+                            <li class="dropdown"  ng-switch="authenticated">
+                                <a href="" class="dropdown-toggle account" data-toggle="dropdown"  ng-switch-when="true">
+                                    <div class="avatar"  ng-if="account.gender=='FEMALE'" ng-switch-when="true">
+                                        <img src="images/avatar_f.jpg"  alt="avatar"/>
                                     </div>
+                                    <div class="avatar" ng-if="account.gender!='FEMALE'" ng-switch-when="true">
+                                        <img src="images/avatar_b.jpg"  alt="avatar" />
+                                    </div>
+
                                     <i class="fa fa-angle-down pull-right"></i>
-                                    <div class="user-mini pull-right">
-                                        <span class="welcome">Welcome,</span>
+                                    <div class="user-mini pull-right" ng-switch-when="true">
+                                        <span class="welcome" translate="global.menu.welcome">Welcome,</span>
                                         <span>{{account.firstName}} {{account.lastName}}</span>
                                     </div>
+
+
+
                                 </a>
+                                <a href="" class="dropdown-toggle account" data-toggle="dropdown"  ng-switch-when="false">
+                                    <div class="avatar" ng-switch-when="false">
+                                        <img src="images/no_user.jpg"  alt="avatar" />
+                                    </div>
+                                    <i class="fa fa-angle-down pull-right"></i>
+                                    <div class="user-mini pull-right" ng-switch-when="false">
+                                        <span class="welcome" translate="global.menu.menu">Menu </span>
+                                    </div>
+                                </a>
+
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a href="#">
@@ -113,30 +132,37 @@
                                             <span>Messages</span>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="ajax/gallery_simple.html" class="ajax-link">
+                                    <li ng-switch-when="true">
+                                        <a href="#/sessions">
                                             <i class="fa fa-picture-o"></i>
-                                            <span>Albums</span>
+                                            <span translate="global.menu.account.sessions">Sessions</span></a>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="ajax/calendar.html" class="ajax-link">
+                                    <li  ng-switch-when="false">
+                                        <a href="#/login">
                                             <i class="fa fa-tasks"></i>
-                                            <span>Tasks</span>
+                                            <span translate="global.menu.account.login">Authenticate</span></a>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="#">
+                                    <li  ng-switch-when="true">
+                                        <a href="#/settings">
                                             <i class="fa fa-cog"></i>
-                                            <span>Settings</span>
+                                            <span translate="global.menu.account.settings">Settings</span></a>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="#">
+                                    <li  ng-switch-when="true">
+                                        <a href="#/logout">
                                             <i class="fa fa-power-off"></i>
-                                            <span>Logout</span>
+                                            <span translate="global.menu.account.logout">Log out</span>
                                         </a>
                                     </li>
+                                    <li  ng-switch-when="false">
+                                        <a href="#/register">
+                                            <i class="fa fa-user"></i>
+                                            <span translate="global.menu.account.register">Register</span>
+                                        </a>
+                                    </li>
+
                                 </ul>
                             </li>
                         </ul>
@@ -375,6 +401,7 @@
 <script src="/bower_components/justified-gallery/dist/js/jquery.justifiedGallery.min.js"></script>
 <script src="/bower_components/tinymce/tinymce.min.js"></script>
 <script src="/bower_components/tinymce/tinymce.jquery.min.js"></script>
+
 
 
 <!-- All functions for this theme + document.ready processing -->
