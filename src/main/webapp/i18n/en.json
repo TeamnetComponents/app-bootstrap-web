@@ -26,7 +26,8 @@
                 "register": "Register"
             },
             "admin": "Administration",
-            "language": "Language"
+            "language": "Language",
+            "themes": "Themes"
         },
         "form": {
             "username": "Login",
