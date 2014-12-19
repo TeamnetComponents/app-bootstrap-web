@@ -1,0 +1,1 @@
+var bootstrapDirectives=angular.module('bootstrapDirectives',[]);
