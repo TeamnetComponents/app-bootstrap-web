@@ -157,6 +157,12 @@ bootstrapApp
                     authorizedRoles: [USER_ROLES.admin]
                 }
             })
+            .when('/ajax/:templateName', {
+                templateUrl: function(params) { return 'ajax/'+params.templateName; },
+                access: {
+                    authorizedRoles: [USER_ROLES.admin]
+                }
+            })
             .otherwise({
                 templateUrl: 'views/main.html',
                 controller: 'MainController',
