@@ -163,6 +163,13 @@ bootstrapApp
                     authorizedRoles: [USER_ROLES.admin]
                 }
             })
+            .when('/messages', {
+                templateUrl: 'views/messages.html',
+                controller: 'MessagesController',
+                access: {
+                    authorizedRoles: [USER_ROLES.user]
+                }
+            })
             .otherwise({
                 templateUrl: 'views/main.html',
                 controller: 'MainController',

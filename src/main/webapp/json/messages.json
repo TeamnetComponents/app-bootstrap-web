@@ -1,0 +1,162 @@
+[
+  {
+    "subject": "Test msg",
+    "body": "This is only a test, don't take it seriously!\n\tTesting 1234 4321...\nTest, test, test.\nTest message, testing test tst msg.",
+    "contact": {
+      "firstName": "John",
+      "lastName": "Doe"
+    },
+    "date": "12/12/12",
+    "labels":["inbox", "important"]
+  },
+  {
+    "subject": "Happy New Year",
+    "body": "Dear friend! It's subject of this message I send Dear friend! It's subject of this message I send Dear friend! It's subject of this message I send",
+    "contact": {
+      "firstName": "Yana",
+      "lastName": "Zed"
+    },
+    "date": "12/31/13",
+    "labels": ["inbox"]
+  },
+  {
+    "subject": "Announce new release",
+    "body": "Hi. 3.11.xx is released!",
+    "contact": {
+      "firstName": "Linus",
+      "lastName": "Torvalds"
+    },
+    "date": "12/31/13",
+    "labels": ["inbox","starred"]
+  },
+  {
+    "subject": "All books is buyed",
+    "body": "Very nice. I receive you invoice and pay.",
+    "contact": {
+      "firstName": "Barry",
+      "lastName": "Oscar"
+    },
+    "date": "12/31/13",
+    "labels": ["inbox"]
+  },
+  {
+    "subject": "Great news!",
+    "body": "Implemented a workaround for some interrupt buggy printers",
+    "contact": {
+      "firstName": "Daniel",
+      "lastName": "Daniels"
+    },
+    "date": "02/12/14",
+    "labels": []
+  },
+  {
+    "subject": "New movie downloaded",
+    "body": "Some new sysctl entries for the parport driver.",
+    "contact": {
+      "firstName": "John",
+      "lastName": "Adams"
+    },
+    "date": "12/31/13",
+    "labels": ["inbox"]
+  },
+  {
+    "subject": "Specialisation:",
+    "body": "tweaking, ensuring portability, tweaking, cleaning, tweaking and occasionally debugging :-)",
+    "contact": {
+      "firstName": "Stephen",
+      "lastName": "Reds"
+    },
+    "date": "12/31/13",
+    "labels": ["starred"]
+  },
+  {
+    "subject": "Congratulation!",
+    "body": "You win 1000000$",
+    "contact": {
+      "firstName": "Zach",
+      "lastName": "Blues"
+    },
+    "date": "12/31/13",
+    "labels": ["trash"]
+  },
+  {
+    "subject": "I lost you phone number",
+    "body": "Please send it to my email!",
+    "contact": {
+      "firstName": "Larry",
+      "lastName": "King"
+    },
+    "date": "12/31/13",
+    "labels": ["draft"]
+  },
+  {
+    "subject": "You lost password",
+    "body": "I may recover this for you.",
+    "contact": {
+      "firstName": "Kevin",
+      "lastName": "Marrow"
+    },
+    "date": "12/31/13",
+    "labels": ["draft"]
+  },
+  {
+    "subject": "Time is over.",
+    "body": "You need goes to Hollywood.",
+    "contact": {
+      "firstName": "Peter",
+      "lastName": "Niven"
+    },
+    "date": "12/31/13",
+    "labels": ["starred"]
+  },
+  {
+    "subject": "Mail from me",
+    "body": "Read them carefully, as they tell you what this is all about",
+    "contact": {
+      "firstName": "Alex",
+      "lastName": "Love"
+    },
+    "date": "12/31/13",
+    "labels": ["inbox"]
+  },
+  {
+    "subject": "Warning",
+    "body": "To find out where to send an emailed bug report, find your subsystem",
+    "contact": {
+      "firstName": "Dave",
+      "lastName": "More"
+    },
+    "date": "02/11/14",
+    "labels": ["important"]
+  },
+  {
+    "subject": "Info for you",
+    "body": " Use that information to fill in all fields of the bug report form",
+    "contact": {
+      "firstName": "Alex",
+      "lastName": "Kens"
+    },
+    "date": "12/31/13",
+    "labels": ["important"]
+  },
+  {
+    "subject": "Good news.",
+    "body": "Fix escaped markup in folder comparisons",
+    "contact": {
+      "firstName": "Kai",
+      "lastName": "Wave"
+    },
+    "date": "12/31/13",
+    "labels": ["sent"]
+  },
+  {
+    "subject": "New work for you.",
+    "body": "Required translations for English, Dutch, Spanish, French, Slovak",
+    "contact": {
+      "firstName": "Steve",
+      "lastName": "Oliver"
+    },
+    "date": "02/15/14",
+    "labels": ["sent"]
+  }
+]
