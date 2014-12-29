@@ -1,7 +1,7 @@
 <div>
     <h2 translate="logs.title">{{'logs.title' | translate}}</h2>
 
-    <p translate="logs.nbloggers" translate-values="{total: '{{ loggers.length }}'}">There are {{ loggers.length }} loggers.</p>
+    <p translate="logs.nbloggers" translate-values="{total: '{{ loggers.length }}'}">{{'logs.nbloggers' | translate}}</p>
 
     {{'logs.filter' | translate}} <input type="text" ng-model="filter" class="form-control">
 
