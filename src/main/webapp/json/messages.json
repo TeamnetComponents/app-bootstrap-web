@@ -7,7 +7,7 @@
       "lastName": "Doe"
     },
     "date": "12/12/12",
-    "labels":["inbox", "important"]
+    "folders":["inbox", "important"]
   },
   {
     "subject": "Happy New Year",
@@ -17,7 +17,7 @@
       "lastName": "Zed"
     },
     "date": "12/31/13",
-    "labels": ["inbox"]
+    "folders": ["inbox"]
   },
   {
     "subject": "Announce new release",
@@ -27,7 +27,7 @@
       "lastName": "Torvalds"
     },
     "date": "12/31/13",
-    "labels": ["inbox","starred"]
+    "folders": ["inbox","starred"]
   },
   {
     "subject": "All books is buyed",
@@ -37,7 +37,7 @@
       "lastName": "Oscar"
     },
     "date": "12/31/13",
-    "labels": ["inbox"]
+    "folders": ["inbox"]
   },
   {
     "subject": "Great news!",
@@ -47,7 +47,7 @@
       "lastName": "Daniels"
     },
     "date": "02/12/14",
-    "labels": []
+    "folders": []
   },
   {
     "subject": "New movie downloaded",
@@ -57,7 +57,7 @@
       "lastName": "Adams"
     },
     "date": "12/31/13",
-    "labels": ["inbox"]
+    "folders": ["inbox"]
   },
   {
     "subject": "Specialisation:",
@@ -67,7 +67,7 @@
       "lastName": "Reds"
     },
     "date": "12/31/13",
-    "labels": ["starred"]
+    "folders": ["starred"]
   },
   {
     "subject": "Congratulation!",
@@ -77,7 +77,7 @@
       "lastName": "Blues"
     },
     "date": "12/31/13",
-    "labels": ["trash"]
+    "folders": ["trash"]
   },
   {
     "subject": "I lost you phone number",
@@ -87,7 +87,7 @@
       "lastName": "King"
     },
     "date": "12/31/13",
-    "labels": ["draft"]
+    "folders": ["draft"]
   },
   {
     "subject": "You lost password",
@@ -97,7 +97,7 @@
       "lastName": "Marrow"
     },
     "date": "12/31/13",
-    "labels": ["draft"]
+    "folders": ["draft"]
   },
   {
     "subject": "Time is over.",
@@ -107,7 +107,7 @@
       "lastName": "Niven"
     },
     "date": "12/31/13",
-    "labels": ["starred"]
+    "folders": ["starred"]
   },
   {
     "subject": "Mail from me",
@@ -117,7 +117,7 @@
       "lastName": "Love"
     },
     "date": "12/31/13",
-    "labels": ["inbox"]
+    "folders": ["inbox"]
   },
   {
     "subject": "Warning",
@@ -127,7 +127,7 @@
       "lastName": "More"
     },
     "date": "02/11/14",
-    "labels": ["important"]
+    "folders": ["important"]
   },
   {
     "subject": "Info for you",
@@ -137,7 +137,7 @@
       "lastName": "Kens"
     },
     "date": "12/31/13",
-    "labels": ["important"]
+    "folders": ["important"]
   },
   {
     "subject": "Good news.",
@@ -147,7 +147,7 @@
       "lastName": "Wave"
     },
     "date": "12/31/13",
-    "labels": ["sent"]
+    "folders": ["sent"]
   },
   {
     "subject": "New work for you.",
@@ -157,6 +157,6 @@
       "lastName": "Oliver"
     },
     "date": "02/15/14",
-    "labels": ["sent"]
+    "folders": ["sent"]
   }
 ]

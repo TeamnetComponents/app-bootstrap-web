@@ -355,5 +355,16 @@
         "title": "Error page!",
         "403": "You are not authorized to access the page."
     },
-    "footer": "This is your footer"
+    "footer": "This is your footer",
+    "message": {
+        "title": "Messages",
+        "folders": {
+            "inbox": "Inbox",
+            "starred": "Starred",
+            "important": "Important",
+            "sent": "Sent Mail",
+            "draft": "Drafts",
+            "trash": "Bin"
+        }
+    }
 }
