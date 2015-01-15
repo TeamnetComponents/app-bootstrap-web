@@ -30,7 +30,8 @@ loadThemeFromStorage();
 
 var bootstrapApp = angular.module('bootstrapApp', ['http-auth-interceptor', 'tmh.dynamicLocale',
     'ngResource', 'ngRoute', 'ngCookies', 'bootstrapAppUtils', 'pascalprecht.translate',
-    'truncate', 'ngCacheBuster','bootstrapControllers','bootstrapServices','bootstrapDirectives','bootstrapConstants']);
+    'truncate', 'ngCacheBuster','bootstrapControllers','bootstrapServices','bootstrapDirectives','bootstrapConstants',
+    'angular-components.appGrid']);
 
 angular.element(document).ready(function () {
 
@@ -168,6 +169,13 @@ bootstrapApp
                 templateUrl: function(params) { return 'ajax/'+params.templateName; },
                 access: {
                     authorizedRoles: [USER_ROLES.admin]
+                }
+            })
+            .when('/messages', {
+                templateUrl: 'views/messages.html',
+                controller: 'MessagesController',
+                access: {
+                    authorizedRoles: [USER_ROLES.user]
                 }
             })
             .otherwise({

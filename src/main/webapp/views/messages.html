@@ -1,0 +1,66 @@
+<div id="messages" class="container-fluid">
+    <div class="row">
+        <div id="breadcrumb" class="col-xs-12">
+            <a href="#" class="show-sidebar">
+                <i class="fa fa-bars"></i>
+            </a>
+            <ol class="breadcrumb pull-left">
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="#">Pages</a></li>
+                <li><a href="#">Messages</a></li>
+            </ol>
+            <div id="social" class="pull-right">
+                <a href="#"><i class="fa fa-google-plus"></i></a>
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="test">
+        <div class="col-xs-12">
+            <div class="row">
+                <ul id="messages-menu" class="nav msg-menu">
+
+                    <li ng-repeat="folder in folders">
+                        <a href="index.html" class="" id="msg-{{folder.name}}">
+                            <i class="fa {{folder.icon}}"></i>
+                            <span class="hidden-xs">{{'message.folders.' + folder.name | translate}} ({{msgCount[folder.name]}})</span>
+                        </a>
+                    </li>
+                </ul>
+                <div id="messages-list" class="col-xs-10 col-xs-offset-2">
+                    <div ng-repeat="msg in msgs" class="row one-list-message{{getMessageClass(msg)}}" >
+                        <div class="col-xs-1 checkbox">
+                            <label>
+                                <input type="checkbox"> {{msg.contact.firstName}} {{msg.contact.lastName.substring(0,1)}}.
+                                <i class="fa fa-square-o small"></i>
+                            </label>
+                        </div>
+                        <div class="col-xs-9 message-title"><b>{{msg.subject}}</b> {{msg.body.substring(0, 100)}}...</div>
+                        <div class="col-xs-2 message-date">{{msg.date}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    // Add listener for redraw menu when windows resized
+    window.onresize = MessagesMenuWidth;
+    $(document).ready(function() {
+        // Add class for correctly view of messages page
+        $('#content').addClass('full-content');
+        // Run script for change menu width
+        MessagesMenuWidth();
+        $('#content').on('click','[id^=msg-]', function(e){
+            e.preventDefault();
+            $('[id^=msg-]').removeClass('active');
+            $(this).addClass('active');
+            $('.one-list-message').slideUp('fast');
+            $('.'+$(this).attr('id')+'-item').slideDown('fast');
+        });
+        $('html').animate({scrollTop: 0},'slow');
+    });
+</script>
