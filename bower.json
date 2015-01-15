@@ -28,7 +28,8 @@
     "justified-gallery":"3.4.0",
     "chartist":"0.5.0",
     "fontawesome":"4.2.0",
-    "tinymce":"4.1.7"
+    "tinymce":"4.1.7",
+    "headjs":"1.0.3"
 
 
   },

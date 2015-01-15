@@ -1,1 +1,1 @@
-var bootstrapControllers=angular.module('bootstrapControllers',['dictionaryControllers']);
+var bootstrapControllers=angular.module('bootstrapControllers',[]);
