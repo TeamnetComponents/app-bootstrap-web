@@ -1,0 +1,27 @@
+<div class="box ui-draggable ui-droppable">
+    <div class="box-header">
+        <div class="box-name">
+            <i class="fa fa-list-alt"></i>
+            <span>{{title}}</span>
+        </div>
+        <div class="box-icons">
+            <toolbar-icon class="xls" ng-click="excelExport()" title-key="excel.download">
+            </toolbar-icon>
+            <a class="collapse-link">
+                <i class="fa fa-chevron-up"></i>
+            </a>
+            <a class="expand-link">
+                <i class="fa fa-expand"></i>
+            </a>
+            <a class="close-link">
+                <i class="fa fa-times"></i>
+            </a>
+        </div>
+
+
+        <div class="no-move"></div>
+    </div>
+    <div class="box-content">
+        <div class="gridStyle" ng-grid="options" ng-style="gridStyle"></div>
+    </div>
+</div>

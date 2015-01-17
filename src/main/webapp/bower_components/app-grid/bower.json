@@ -1,0 +1,36 @@
+{
+  "name": "app-grid",
+  "version": "0.0.1",
+  "description": "",
+  "keywords": [
+    "angular"
+  ],
+  "homepage": "https://github.com/angular-components/app-grid",
+  "bugs": "https://github.com/angular-components/app-grid/issues",
+  "author": {
+    "name": "",
+    "email": "",
+    "url": "https://github.com/angular-components"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/angular-components/app-grid.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
+  "dependencies": {
+      "angular": "latest",
+      "angular-mocks": "latest",
+      "angular-translate": "latest",
+      "angular-translate-storage-cookie": "latest",
+      "angular-translate-loader-static-files": "latest",
+      "angular-dynamic-locale": "latest",
+      "angular-i18n": "latest",
+      "jquery": "latest",
+      "angular-loading-bar": "latest",
+      "ng-grid": "~2.0.11"
+  }
+}

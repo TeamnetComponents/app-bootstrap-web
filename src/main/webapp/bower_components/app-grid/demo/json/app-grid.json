@@ -1,0 +1,119 @@
+{"data": {
+    "content": [
+        {
+            "Item": "Bottle",
+            "Pcode": 50,
+            "OHQ": 333,
+            "AQ": 33,
+            "Details": "CLICK"
+        },
+        {
+            "Item": "Bottle",
+            "Pcode": 43,
+            "OHQ": 2350,
+            "AQ": 1250,
+            "Details": "CLICK"
+        },
+        {
+            "Item": "Bottle",
+            "Pcode": 27,
+            "OHQ": 4000,
+            "AQ": 3000,
+            "Details": "CLICK"
+        },
+        {
+            "Item": "Bottle",
+            "Pcode": 29,
+            "OHQ": 55,
+            "AQ": 10,
+            "Details": "CLICK"
+        },
+        {
+            "Item": "Bottle",
+            "Pcode": 34,
+            "OHQ": 27,
+            "AQ": 2,
+            "Details": "CLICK"
+        },
+        {
+            "Item": "Bottle",
+            "Pcode": 50,
+            "OHQ": 111,
+            "AQ": 33,
+            "Details": "CLICK"
+        },
+        {
+            "Item": "Bottle",
+            "Pcode": 43,
+            "OHQ": 123,
+            "AQ": 1250,
+            "Details": "CLICK"
+        },
+        {
+            "Item": "Bottle",
+            "Pcode": 27,
+            "OHQ": 1234,
+            "AQ": 3000,
+            "Details": "CLICK"
+        },
+        {
+            "Item": "Bottle",
+            "Pcode": 29,
+            "OHQ": 5678,
+            "AQ": 10,
+            "Details": "CLICK"
+        },
+        {
+            "Item": "Bottle",
+            "Pcode": 34,
+            "OHQ": 0,
+            "AQ": 2,
+            "Details": "CLICK"
+        }
+    ]
+},
+    "meta": {
+        "properties": [
+            {
+                "displayName": "Item",
+                "field": "Item",
+                "fieldFilterType": null,
+                "fieldType": "java.lang.String",
+                "resizable": true
+            },
+            {
+                "displayName": "Pcode",
+                "field": "Pcode",
+                "fieldFilterType": null,
+                "fieldType": "java.lang.Number",
+                "resizable": true
+            },
+            {
+                "displayName": "Ohq",
+                "field": "OHQ",
+                "fieldFilterType": null,
+                "fieldType": "java.lang.Number",
+                "resizable": true
+            },
+            {
+                "displayName": "Aq",
+                "field": "AQ",
+                "fieldFilterType": null,
+                "fieldType": "java.lang.Number",
+                "resizable": true
+            },
+            {
+                "displayName": "Details",
+                "field": "Details",
+                "fieldFilterType": null,
+                "fieldType": "java.lang.String",
+                "resizable": true
+            }
+        ],
+        "title":"Demo",
+        "primaryKey": {
+            "columnName": "SIRUES_CODE",
+            "visible": true
+        }
+    }
+}

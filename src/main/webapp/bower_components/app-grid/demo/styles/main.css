@@ -1,0 +1,18 @@
+#content {
+    position: relative;
+    z-index: 10;
+
+
+    padding-bottom: 3000px !important;
+    margin-bottom: -2980px !important;
+    overflow: hidden;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -o-transition: 0.2s;
+    transition: 0.2s;
+}
+#main {
+    margin-top: 50px;
+    min-height: 800px;
+    overflow: hidden;
+}

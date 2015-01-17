@@ -77,9 +77,11 @@ var angularCustomLoader = {
             //if there are modules specified in application configuration then there must be loaded
             if (appDataCfg.data.modules != undefined && appDataCfg.data.modules != null) {
                 angular.forEach(appDataCfg.data.modules, function (module) {
-                    var modulePromise = internal.$http.get(module.path);
-                    modulePromise.then(internal.mConfigSuccess, internal.mConfigMisses);
-                    internal.mPromises.push(modulePromise);
+                    if(module.path!=undefined){
+                        var modulePromise = internal.$http.get(module.path);
+                        modulePromise.then(internal.mConfigSuccess, internal.mConfigMisses);
+                        internal.mPromises.push(modulePromise);
+                    }
                 });
                 return internal.$q.all(internal.mPromises);
             } else {
