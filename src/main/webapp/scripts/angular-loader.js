@@ -32,7 +32,8 @@ var angularCustomLoader = {
             },
 
             appName:null,
-            commands:[]
+            commands:[],
+            loadedModules:0
         };
 
 
@@ -106,9 +107,14 @@ var angularCustomLoader = {
 
 
             }
+            internal.loadedModules++;
+            internal.modulesLoaded = internal.loadedModules==internal.mPromises.length;
+            internal.resolveScripts();
         };
 
         internal.mConfigMisses = function (reason) {
+            internal.loadedModules++;
+            internal.modulesLoaded = internal.loadedModules==internal.mPromises.length;
             console.warn('Module with path "' + reason.config.url + '" not loaded. Please check your "cfg/app.json", or ' +
                 ' check if the file ' + reason.config.url + ' exists in your webapp files paths.');
 
@@ -119,11 +125,7 @@ var angularCustomLoader = {
         internal.modulePromises= internal.appPromises.then(internal.appConfigSuccess, internal.appConfigMisses);
 
 
-        //handle all modules loading finalisation
-        internal.modulePromises.finally(function () {
-            internal.modulesLoaded = true;
-            internal.resolveScripts();
-        });
+
 
 
 
