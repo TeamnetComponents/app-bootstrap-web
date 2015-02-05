@@ -31,7 +31,7 @@ loadThemeFromStorage();
 var bootstrapApp = angular.module('bootstrapApp', ['http-auth-interceptor', 'tmh.dynamicLocale',
     'ngResource', 'ngRoute', 'ngCookies', 'bootstrapAppUtils', 'pascalprecht.translate',
     'truncate', 'ngCacheBuster','bootstrapControllers','bootstrapServices','bootstrapDirectives','bootstrapConstants',
-    'angular-components.appGrid']);
+    'angular-components.appGrid', 'angular-components.app-menu']);
 
 angular.element(document).ready(function () {
 
@@ -196,7 +196,7 @@ bootstrapApp
 
         $translateProvider.useCookieStorage();
 
-        tmhDynamicLocaleProvider.localeLocationPattern('bower_components/angular-i18n/angular-locale_{{locale}}.js')
+        tmhDynamicLocaleProvider.localeLocationPattern('bower_components/angular-i18n/angular-locale_{{locale}}.js');
         tmhDynamicLocaleProvider.useCookieStorage('NG_TRANSLATE_LANG_KEY');
     })
     .run(function ($rootScope, $location, $http, AuthenticationSharedService, Session, USER_ROLES) {
@@ -287,7 +287,7 @@ bootstrapApp
                     );
                 }
             }
-        }
+        };
 
         $rootScope.websocketSubSocket = $rootScope.websocketSocket.subscribe($rootScope.websocketRequest);
 

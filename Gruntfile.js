@@ -45,6 +45,13 @@ module.exports = function (grunt) {
         connect: {
             proxies: [
                 {
+                    context: '/data',
+                    host: 'localhost',
+                    port: 8080,
+                    https: false,
+                    changeOrigin: false
+                },
+                {
                     context: '/app',
                     host: 'localhost',
                     port: 8080,
@@ -429,7 +436,7 @@ module.exports = function (grunt) {
     grunt.registerTask('buildHeroku', [
         'test',
         'build',
-        'copy:generateHerokuDirectory',
+        'copy:generateHerokuDirectory'
     ]);
 
     grunt.registerTask('deployHeroku', [
@@ -442,7 +449,7 @@ module.exports = function (grunt) {
     grunt.registerTask('buildOpenshift', [
         'test',
         'build',
-        'copy:generateOpenshiftDirectory',
+        'copy:generateOpenshiftDirectory'
     ]);
 
     grunt.registerTask('deployOpenshift', [

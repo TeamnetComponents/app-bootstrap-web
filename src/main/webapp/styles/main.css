@@ -126,3 +126,15 @@ ul#strength {
     width:20px;
 }
 /* end Password strength bar style */
+
+#sidebar-left>div>.main-menu {
+    margin: 0 -30px;
+}
+
+.main-menu .dropdown-menu {
+    padding-left: 15px !important;
+}
+
+.main-menu a:hover {
+    text-decoration: none !important;
+}

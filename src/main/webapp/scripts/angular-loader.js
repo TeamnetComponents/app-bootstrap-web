@@ -125,7 +125,12 @@ var angularCustomLoader = {
         internal.modulePromises= internal.appPromises.then(internal.appConfigSuccess, internal.appConfigMisses);
 
 
-
+        // TODO - check if this is needed
+        //handle all modules loading finalisation
+        internal.modulePromises.finally(function () {
+            internal.modulesLoaded = true;
+            internal.resolveScripts();
+        });
 
 
 
