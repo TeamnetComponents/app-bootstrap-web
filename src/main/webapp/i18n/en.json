@@ -23,6 +23,7 @@
                 "login": "Authenticate",
                 "logout": "Log out",
                 "apidocs": "API",
+                "menus": "Menus",
                 "register": "Register"
             },
             "admin": "Administration",

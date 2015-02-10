@@ -1,0 +1,141 @@
+<div ng-controller="MenuController"  style="padding:15px 0">
+    <div class="row">
+        <div class="col-sm-5">
+            <h3 class="underlined">
+                <i class="fa fa-th-list"></i>
+                Application menus
+                <button type="button" class="btn btn-default btn-xs" style="float: right" ng-click="collapseAll()">
+                    <i class="fa fa-arrow-circle-up"></i>
+                    Collapse All
+                </button>
+                <button type="button" class="btn btn-default btn-xs" style="float: right; margin-right: 5px;" ng-click="expandAll()">
+                    <i class="fa fa-arrow-circle-down"></i>
+                    Expand All
+                </button>
+                <button type="button" class="btn btn-success btn-xs" style="float: right; margin-right: 5px;" ng-click="addRoot()">
+                    <i class="fa fa-plus-circle" style="margin-top: -2px;"></i>
+                    Add ROOT
+                </button>
+            </h3>
+            <script type="text/ng-template" id="nodes_renderer.html">
+                <div ui-tree-handle>
+                    <a ng-if="node.items.length > 0" class="btn btn-success btn-xs" data-nodrag ng-click="toggleMenu(this)">
+                        <span class="glyphicon" ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"></span>
+                    </a>
+                    {{node.name}}
+                    <div data-nodrag class="pull-right show-on-hover">
+                        <a class="btn btn-primary btn-xs" ng-click="viewMenu(this)">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                        <a class="btn btn-success btn-xs" ng-click="newSubItem(this)" style="margin-right: 8px;">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </a>
+                        <a class="btn btn-danger btn-xs" ng-click="removeMenu(this)">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                    </div>
+                </div>
+                <ol ui-tree-nodes="treeOptions" ng-model="node.items"  ng-class="{hidden: collapsed}" >
+                    <li ng-repeat="node in node.items" ui-tree-node ng-include="'nodes_renderer.html'" collapsed="true"></li>
+                </ol>
+            </script>
+            <div ui-tree="treeOptions">
+                <ol ui-tree-nodes="options" ng-model="menus" id="tree-root" ng-class="{hidden: collapsed}">
+                    <li ng-repeat="node in menus" ui-tree-node ng-include="'nodes_renderer.html'" class="root-menu" collapsed="true"></li>
+                </ol>
+            </div>
+        </div>
+        <div ng-if="selectedMenu" id="selectedMenuDetails" class="col-sm-7" style="display: block">
+            <h3 class="underlined">
+                <i class="fa fa-wrench"></i>
+                <i>{{selectedMenu.name}}</i> menu settings
+            </h3>
+            <ng-form name="menuForm">
+                <div class="form-group">
+                    <div class="col-sm-4">
+                        <label class="control-label col-sm-6" for="id">Menu ID</label>
+                        <div class="col-sm-6">
+                            <input type="text" name="id" id="id" ng-model="selectedMenu.id" class="form-control" ng-readonly="true">
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <label class="control-label col-sm-3" for="name">Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="name" id="name" ng-model="selectedMenu.name" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4">
+                        <label class="control-label col-sm-6" for="parent_id">Menu parent ID</label>
+                        <div class="col-sm-6">
+                            <input type="text" name="parent_id" id="parent_id" ng-model="selectedMenu.parentId" class="form-control" ng-readonly="true">
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <label class="control-label col-sm-3" for="route">Route</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="route" id="route" ng-model="selectedMenu.route" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4">
+                        <label class="control-label col-sm-6" for="sort_no">Sort number</label>
+                        <div class="col-sm-6">
+                            <input type="text" name="sort_no" id="sort_no" ng-model="selectedMenu.sortNo" class="form-control" ng-readonly="true">
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <label class="control-label col-sm-3" for="css_class">CSS Class</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="css_class" id="css_class" ng-model="selectedMenu.cssClass" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4">
+                        <label class="control-label col-sm-6" for="active">Active</label>
+                        <div class="col-sm-6">
+                            <input type="checkbox" ng-checked="selectedMenu.active == 1" name="active" ng-model="selectedMenu.active"  id="active" >
+                        </div>
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+                <div class="box" style="margin: 0 30px;">
+                    <div class="box-header">
+                        <div class="box-name">
+                            <span>
+                                <i class="fa fa-unlock"></i>
+                                Menu roles
+                            </span>
+                        </div>
+                        <div class="box-icons">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                        <div class="no-move"></div>
+                    </div>
+                    <div class="box-content">
+                        <div class="col-sm-3" ng-repeat="role in roles">
+                            {{role.name}}
+                            <input type="checkbox" name="roles"
+                                   ng-checked="hasRole(selectedMenu, role)"
+                                   ng-click="updateRole($event, selectedMenu, role, this)"
+                                   style="margin-right: 5px" >
+                        </div>
+                        <br/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <button type="submit" class="btn btn-primary" style="margin: 15px;" ng-click="updateSelectedMenuItem(this)">
+                            <span><i class="fa fa-save"></i></span> Save updates
+                        </button>
+                    </div>
+                </div>
+            </ng-form>
+        </div>
+    </div>
+</div>

@@ -31,7 +31,7 @@ loadThemeFromStorage();
 var bootstrapApp = angular.module('bootstrapApp', ['http-auth-interceptor', 'tmh.dynamicLocale',
     'ngResource', 'ngRoute', 'ngCookies', 'bootstrapAppUtils', 'pascalprecht.translate',
     'truncate', 'ngCacheBuster','bootstrapControllers','bootstrapServices','bootstrapDirectives','bootstrapConstants',
-    'angular-components.appGrid', 'angular-components.app-menu']);
+    'angular-components.appGrid', 'angular-components.app-menu', 'ui.tree']);
 
 angular.element(document).ready(function () {
 
@@ -161,6 +161,12 @@ bootstrapApp
             })
             .when('/docs', {
                 templateUrl: 'views/docs.html',
+                access: {
+                    authorizedRoles: [USER_ROLES.admin]
+                }
+            })
+            .when('/menus', {
+                templateUrl: 'views/menus.html',
                 access: {
                     authorizedRoles: [USER_ROLES.admin]
                 }

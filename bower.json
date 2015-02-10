@@ -32,7 +32,8 @@
     "headjs":"1.0.3",
 
     "app-grid":"0.0.1",
-    "app-menu":"latest"
+    "app-menu":"latest",
+    "angular-ui-tree": "2.1.5"
   },
   "devDependencies": {
     "angular-mocks": "1.2.26",

@@ -127,6 +127,7 @@ ul#strength {
 }
 /* end Password strength bar style */
 
+/* app-menu style */
 #sidebar-left>div>.main-menu {
     margin: 0 -30px;
 }
@@ -138,3 +139,114 @@ ul#strength {
 .main-menu a:hover {
     text-decoration: none !important;
 }
+
+.top > ul > li > .dropdown-menu {
+    top: 50px;
+}
+
+.top .dropdown-menu {
+    background-color: gray !important;
+}
+/* end of app-menu style */
+
+/** menu administration page styles */
+.btn {
+    margin-right: 8px;
+}
+
+.angular-ui-tree-handle {
+    background: #f8faff;
+    border: 1px solid #dae2ea;
+    color: #7c9eb2;
+    padding: 10px 10px;
+}
+
+.angular-ui-tree-handle:hover {
+    color: #438eb9;
+    background: #f4f6f7;
+    border-color: #dce2e8;
+}
+
+.angular-ui-tree-placeholder {
+    background: #f0f9ff;
+    border: 2px dashed #bed2db;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.group-title {
+    background-color: #687074 !important;
+    color: #FFF !important;
+}
+
+.angular-ui-tree .btn {
+    margin: 0 3px 0 0 !important;
+    line-height: 14px !important;
+    padding: 1px 3px !important;
+}
+
+.angular-ui-tree .show-on-hover {
+    visibility:hidden;
+    opacity:0;
+    transition:visibility 0s linear 0.3s,opacity 0.3s linear;
+}
+
+.angular-ui-tree-handle:hover > .show-on-hover,  .selected-admin-menu  > .show-on-hover {
+    visibility:visible;
+    opacity:1;
+    transition-delay:0s;
+}
+
+h3.underlined {
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    border-bottom: 5px solid #eee;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+.clear-both {
+    clear: both;
+}
+
+.admin-menu-holder {
+    padding:15px 0;
+}
+
+.has-right-el {
+    float: right;
+    margin-right: 5px !important;
+}
+
+.trim-margin-2 {
+    margin-top: -2px;
+}
+
+.mr8 {
+    margin-right: 8px;
+}
+
+.mr5 {
+    margin-right: 5px
+}
+
+.mt3 {
+    margin-top: 3px;
+}
+
+.mrl15 {
+    margin: 0 15px;
+}
+
+.m15 {
+    margin: 15px;
+}
+
+.selected-admin-menu {
+    border: 1px solid red !important;
+}
+
+/** END OF menu administration page styles */
