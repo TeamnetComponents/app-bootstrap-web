@@ -33,7 +33,8 @@
 
     "app-grid":"0.0.1",
     "app-menu":"latest",
-    "angular-ui-tree": "2.1.5"
+    "angular-ui-tree": "2.1.5",
+    "app-menu-admin":"latest"
   },
   "devDependencies": {
     "angular-mocks": "1.2.26",
