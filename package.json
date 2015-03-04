@@ -1,7 +1,7 @@
 {
-  "name": "renns",
+  "name": "bootstrap",
   "version": "0.0.0",
-  "description": "Description for renns",
+  "description": "Web module for app-bootstrap",
   "dependencies": {
   },
   "devDependencies": {
