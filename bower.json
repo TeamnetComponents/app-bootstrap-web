@@ -6,17 +6,17 @@
     "jquery-atmosphere": "2.2.5",
     "modernizr": "2.7.1",
     "jquery": "2.1.1",
-    "angular": "1.2.26",
+    "angular": "1.3.6",
     "json3": "3.3.2",
-    "angular-route": "1.2.26",
-    "angular-resource": "1.2.26",
-    "angular-cookies": "1.2.26",
-    "angular-sanitize": "1.2.26",
+    "angular-route": "1.3.6",
+    "angular-resource": "1.3.6",
+    "angular-cookies": "1.3.6",
+    "angular-sanitize": "1.3.6",
     "angular-translate": "2.4.2",
     "angular-translate-storage-cookie": "2.4.2",
     "angular-translate-loader-static-files": "2.4.2",
     "angular-dynamic-locale": "0.1.21",
-    "angular-i18n": "1.2.26",
+    "angular-i18n": "1.3.6",
     "swagger-ui": "2.0.18",
     "angular-cache-buster": "0.4.3",
     "bootstrap":"3.3.1",
@@ -34,10 +34,20 @@
     "app-grid":"0.0.1",
     "app-menu":"latest",
     "angular-ui-tree": "2.1.5",
-    "app-menu-admin":"latest"
+    "app-menu-admin":"latest",
+
+      "underscore": "^1.7.0",
+      "hammerjs": "2.0.x",
+      "angular-animate": "1.3.x",
+      "angular-aria": "1.3.x",
+      "angular-material": "0.7.0",
+      "angular-messages": "~1.3.8",
+      "angular-ui-grid" : "3.0.0-RC.18"
+
+
   },
   "devDependencies": {
-    "angular-mocks": "1.2.26",
-    "angular-scenario": "1.2.26"
+    "angular-mocks": "1.3.6",
+    "angular-scenario": "1.3.6"
   }
 }
