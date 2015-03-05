@@ -66,6 +66,13 @@ module.exports = function (grunt) {
                     changeOrigin: false
                 },
                 {
+                    context: '/dictionary',
+                    host: 'localhost',
+                    port: 8080,
+                    https: false,
+                    changeOrigin: false
+                },
+                {
                     context: '/dump',
                     host: 'localhost',
                     port: 8080,
