@@ -12,7 +12,7 @@ bootstrapServices.factory('AuthenticationSharedService',['$rootScope', '$http', 
                 ignoreAuthModule: 'ignoreAuthModule'
             }).success(function (data, status, headers, config) {
                 Account.get(function(data) {
-                    Session.create(data.login, data.firstName, data.lastName, data.email, data.roles,data.gender);
+                    Session.create(data.login, data.firstName, data.lastName, data.email, data.roles,data.gender, data.moduleRights);
                     $rootScope.account = Session;
                     authService.loginConfirmed(data);
                 });
@@ -28,7 +28,7 @@ bootstrapServices.factory('AuthenticationSharedService',['$rootScope', '$http', 
             }).success(function (data, status, headers, config) {
                 if (!Session.login) {
                     Account.get(function(data) {
-                        Session.create(data.login, data.firstName, data.lastName, data.email, data.roles,data.gender);
+                        Session.create(data.login, data.firstName, data.lastName, data.email, data.roles,data.gender, data.moduleRights);
                         $rootScope.account = Session;
                         if (!$rootScope.isAuthorized(authorizedRoles)) {
                             // user is not allowed
