@@ -32,7 +32,7 @@
     "headjs": "1.0.3",
     "app-menu": "latest",
     "angular-ui-tree": "2.1.5",
-    "app-menu-admin": "latest",
+    "app-menu-admin": "0.0.2",
     "underscore": "^1.7.0",
     "hammerjs": "2.0.x",
     "angular-animate": "1.3.x",
