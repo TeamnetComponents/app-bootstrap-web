@@ -61,10 +61,15 @@ bootstrapServices.factory('AuthenticationSharedService',['$rootScope', '$http', 
             }
 
             var isAuthorized = false;
-            angular.forEach(authorizedRoles, function(authorizedRole) {
-                var authorized = (!!Session.login &&
-                    Session.userRoles.indexOf(authorizedRole) !== -1);
-
+            angular.forEach(authorizedRoles, function (authorizedRole) {
+                var authorized = false;
+                if (!!Session.login) {
+                    angular.forEach(Session.userRoles, function (role) {
+                        if (angular.equals(role.code, authorizedRole)) {
+                            authorized = true;
+                        }
+                    });
+                }
                 if (authorized || authorizedRole == '*') {
                     isAuthorized = true;
                 }
