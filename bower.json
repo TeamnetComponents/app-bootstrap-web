@@ -30,7 +30,7 @@
     "fontawesome": "4.2.0",
     "tinymce": "4.1.7",
     "headjs": "1.0.3",
-    "app-menu": "latest",
+    "app-menu": "0.0.2",
     "angular-ui-tree": "2.1.5",
     "app-menu-admin": "0.0.2",
     "underscore": "^1.7.0",
