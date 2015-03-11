@@ -2250,3 +2250,23 @@ ul.DTTT_dropdown.dropdown-menu > li:hover > a {
         display: none;
     }
 }
+
+.md-toolbar-tools, .md-toast-fixed, md-toast.md-default-theme {
+    background-color: #353535;
+    color: #f0f0f0;
+}
+
+.md-button.md-default-theme.md-primary.md-raised {
+    background-color: #496A84 !important;
+    color: #f8f8f8 !important;
+    border-color: #315D80 !important;;
+}
+
+.md-button.md-default-theme.md-primary, md-tabs.md-default-theme md-tab.active {
+    color: #496A84 !important;;
+}
+
+md-tabs.md-default-theme md-tabs-ink-bar, md-checkbox.md-default-theme.md-checked .md-icon {
+    background-color: #496A84 !important;
+    color: #f8f8f8 !important;
+}
