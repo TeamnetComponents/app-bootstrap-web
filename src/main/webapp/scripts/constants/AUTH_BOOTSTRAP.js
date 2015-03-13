@@ -12,5 +12,6 @@ bootstrapConstants.constant('AUTH_BOOTSTRAP', {
     'docs' : 'DOCS',
     'menus' : 'MENUS',
     'ajax' : 'AJAX',
-    'messages' : 'MESSAGES'
+    'messages' : 'MESSAGES',
+    'administration' : 'ADMINISTRATION'
 });
