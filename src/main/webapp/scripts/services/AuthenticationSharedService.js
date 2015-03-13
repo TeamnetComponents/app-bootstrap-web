@@ -21,7 +21,7 @@ bootstrapServices.factory('AuthenticationSharedService',['$rootScope', '$http', 
                 Session.invalidate();
             });
         },
-        valid: function (authorizedRoles) {
+        valid: function (authorizationData) {
 
             $http.get('protected/authentication_check.gif', {
                 ignoreAuthModule: 'ignoreAuthModule'
@@ -30,7 +30,7 @@ bootstrapServices.factory('AuthenticationSharedService',['$rootScope', '$http', 
                     Account.get(function(data) {
                         Session.create(data.login, data.firstName, data.lastName, data.email, data.roles,data.gender, data.moduleRights);
                         $rootScope.account = Session;
-                        if (!$rootScope.isAuthorized(authorizedRoles)) {
+                        if (!$rootScope.isAuthorized(authorizationData)) {
                             // user is not allowed
                             $rootScope.$broadcast("event:auth-notAuthorized");
                         } else {
@@ -38,7 +38,7 @@ bootstrapServices.factory('AuthenticationSharedService',['$rootScope', '$http', 
                         }
                     });
                 }else{
-                    if (!$rootScope.isAuthorized(authorizedRoles)) {
+                    if (!$rootScope.isAuthorized(authorizationData)) {
                         // user is not allowed
                         $rootScope.$broadcast("event:auth-notAuthorized");
                     } else {
@@ -46,31 +46,32 @@ bootstrapServices.factory('AuthenticationSharedService',['$rootScope', '$http', 
                     }
                 }
             }).error(function (data, status, headers, config) {
-                if (!$rootScope.isAuthorized(authorizedRoles)) {
+                if (!$rootScope.isAuthorized(authorizationData)) {
                     $rootScope.$broadcast('event:auth-loginRequired', data);
                 }
             });
         },
-        isAuthorized: function (authorizedRoles) {
-            if (!angular.isArray(authorizedRoles)) {
-                if (authorizedRoles == '*') {
+        isAuthorized: function (authorizationData) {
+           //check Module access
+            if (!angular.isArray(authorizationData)) {
+                if (authorizationData == '*') {
                     return true;
                 }
 
-                authorizedRoles = [authorizedRoles];
+                authorizationData = [authorizationData];
             }
 
             var isAuthorized = false;
-            angular.forEach(authorizedRoles, function (authorizedRole) {
+            angular.forEach(authorizationData, function (authorizedModule) {
                 var authorized = false;
                 if (!!Session.login) {
-                    angular.forEach(Session.userRoles, function (role) {
-                        if (angular.equals(role.code, authorizedRole)) {
+                    angular.forEach(Session.moduleRights, function (moduleRights) {
+                        if (angular.equals(moduleRights.module.code, authorizedModule)) {
                             authorized = true;
                         }
                     });
                 }
-                if (authorized || authorizedRole == '*') {
+                if (authorized || authorizedModule == '*') {
                     isAuthorized = true;
                 }
             });
