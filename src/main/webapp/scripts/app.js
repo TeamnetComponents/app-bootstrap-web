@@ -41,7 +41,7 @@ angular.element(document).ready(function () {
 });
 
 bootstrapApp
-    .config(function ($routeProvider, $httpProvider, $translateProvider, tmhDynamicLocaleProvider, httpRequestInterceptorCacheBusterProvider, USER_ROLES) {
+    .config(function ($routeProvider, $httpProvider, $translateProvider, tmhDynamicLocaleProvider, httpRequestInterceptorCacheBusterProvider, AUTH_BOOTSTRAP) {
 
         //Cache everything except rest api requests
         httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*rest.*/], true);
@@ -51,41 +51,41 @@ bootstrapApp
                 templateUrl: 'views/register.html',
                 controller: 'RegisterController',
                 access: {
-                    authorizedRoles: [USER_ROLES.all]
+                    authorizedModules: [AUTH_BOOTSTRAP.all]
                 }
             })
             .when('/activate', {
                 templateUrl: 'views/activate.html',
                 controller: 'ActivationController',
                 access: {
-                    authorizedRoles: [USER_ROLES.all]
+                    authorizedModules: [AUTH_BOOTSTRAP.all]
                 }
             })
             .when('/login', {
                 templateUrl: 'views/login.html',
                 controller: 'LoginController',
                 access: {
-                    authorizedRoles: [USER_ROLES.all]
+                    authorizedModules: [AUTH_BOOTSTRAP.all]
                 }
             })
             .when('/error', {
                 templateUrl: 'views/error.html',
                 access: {
-                    authorizedRoles: [USER_ROLES.all]
+                    authorizedModules: [AUTH_BOOTSTRAP.all]
                 }
             })
             .when('/settings', {
                 templateUrl: 'views/settings.html',
                 controller: 'SettingsController',
                 access: {
-                    authorizedRoles: [USER_ROLES.user]
+                    authorizedModules: [AUTH_BOOTSTRAP.settings]
                 }
             })
             .when('/password', {
                 templateUrl: 'views/password.html',
                 controller: 'PasswordController',
                 access: {
-                    authorizedRoles: [USER_ROLES.user]
+                    authorizedModules: [AUTH_BOOTSTRAP.password]
                 }
             })
             .when('/sessions', {
@@ -97,28 +97,28 @@ bootstrapApp
                     }]
                 },
                 access: {
-                    authorizedRoles: [USER_ROLES.user]
+                    authorizedModules: [AUTH_BOOTSTRAP.sessions]
                 }
             })
             .when('/tracker', {
                 templateUrl: 'views/tracker.html',
                 controller: 'TrackerController',
                 access: {
-                    authorizedRoles: [USER_ROLES.admin]
+                    authorizedModules: [AUTH_BOOTSTRAP.tracker]
                 }
             })
             .when('/metrics', {
                 templateUrl: 'views/metrics.html',
                 controller: 'MetricsController',
                 access: {
-                    authorizedRoles: [USER_ROLES.admin]
+                    authorizedModules: [AUTH_BOOTSTRAP.metrics]
                 }
             })
             .when('/health', {
                 templateUrl: 'views/health.html',
                 controller: 'HealthController',
                 access: {
-                    authorizedRoles: [USER_ROLES.admin]
+                    authorizedModules: [AUTH_BOOTSTRAP.health]
                 }
             })
             .when('/configuration', {
@@ -130,7 +130,7 @@ bootstrapApp
                     }]
                 },
                 access: {
-                    authorizedRoles: [USER_ROLES.admin]
+                    authorizedModules: [AUTH_BOOTSTRAP.configuration]
                 }
             })
             .when('/logs', {
@@ -142,53 +142,53 @@ bootstrapApp
                     }]
                 },
                 access: {
-                    authorizedRoles: [USER_ROLES.admin]
+                    authorizedModules: [AUTH_BOOTSTRAP.logs]
                 }
             })
             .when('/audits', {
                 templateUrl: 'views/audits.html',
                 controller: 'AuditsController',
                 access: {
-                    authorizedRoles: [USER_ROLES.admin]
+                    authorizedModules: [AUTH_BOOTSTRAP.audits]
                 }
             })
             .when('/logout', {
                 templateUrl: 'views/main.html',
                 controller: 'LogoutController',
                 access: {
-                    authorizedRoles: [USER_ROLES.all]
+                    authorizedModules: [AUTH_BOOTSTRAP.all]
                 }
             })
             .when('/docs', {
                 templateUrl: 'views/docs.html',
                 access: {
-                    authorizedRoles: [USER_ROLES.admin]
+                    authorizedModules: [AUTH_BOOTSTRAP.docs]
                 }
             })
             .when('/menus', {
                 templateUrl: 'views/menus.html',
                 access: {
-                    authorizedRoles: [USER_ROLES.admin]
+                    authorizedModules: [AUTH_BOOTSTRAP.menus]
                 }
             })
             .when('/ajax/:templateName', {
                 templateUrl: function(params) { return 'ajax/'+params.templateName; },
                 access: {
-                    authorizedRoles: [USER_ROLES.admin]
+                    authorizedModules: [AUTH_BOOTSTRAP.ajax]
                 }
             })
             .when('/messages', {
                 templateUrl: 'views/messages.html',
                 controller: 'MessagesController',
                 access: {
-                    authorizedRoles: [USER_ROLES.user]
+                    authorizedModules: [AUTH_BOOTSTRAP.messages]
                 }
             })
             .otherwise({
                 templateUrl: 'views/main.html',
                 controller: 'MainController',
                 access: {
-                    authorizedRoles: [USER_ROLES.all]
+                    authorizedModules: [AUTH_BOOTSTRAP.all]
                 }
             });
 
@@ -205,13 +205,13 @@ bootstrapApp
         tmhDynamicLocaleProvider.localeLocationPattern('bower_components/angular-i18n/angular-locale_{{locale}}.js');
         tmhDynamicLocaleProvider.useCookieStorage('NG_TRANSLATE_LANG_KEY');
     })
-    .run(function ($rootScope, $location, $http, AuthenticationSharedService, Session, USER_ROLES) {
+    .run(function ($rootScope, $location, $http, AuthenticationSharedService, Session, AUTH_BOOTSTRAP) {
         $rootScope.authenticated = false;
 
         $rootScope.$on('$routeChangeStart', function (event, next) {
             $rootScope.isAuthorized = AuthenticationSharedService.isAuthorized;
-            $rootScope.userRoles = USER_ROLES;
-            AuthenticationSharedService.valid(next.access.authorizedRoles);
+            $rootScope.userModules = AUTH_BOOTSTRAP;
+            AuthenticationSharedService.valid(next.access.authorizedModules);
         });
 
         // Call when the the client is confirmed
