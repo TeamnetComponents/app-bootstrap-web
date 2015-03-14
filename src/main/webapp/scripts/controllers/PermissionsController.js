@@ -17,7 +17,7 @@ bootstrapControllers
 
 
         //todo resource
-        $http.get('module/rest/modulesWithModuleRights').then(function (res){
+        $http.get('app/rest/module/rights').then(function (res){
             $scope.modules = angular.copy(res.data);
             if(!_.isEmpty($scope.modules)){
                 $scope.moduleSelect($scope.modules[0]);
@@ -25,7 +25,7 @@ bootstrapControllers
         });
 
         //todo resource
-        $http.get('moduleright/rest/modulerightscodes').then(function (res){
+        $http.get('app/rest/modulerights/codes').then(function (res){
             $scope.allModuleRights = angular.copy(res.data);
         });
 
