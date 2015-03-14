@@ -93,35 +93,35 @@ bootstrapApp
                 templateUrl: 'views/recoverPassword.html',
                 controller: 'PasswordController',
                 access: {
-                    authorizedRoles: [AUTH_BOOTSTRAP.all]
+                    authorizedModules: [AUTH_BOOTSTRAP.all]
                 }
             })
             .when('/resetPassword', {
                 templateUrl: 'views/resetPassword.html',
                 controller: 'PasswordController',
                 access: {
-                    authorizedRoles: [AUTH_BOOTSTRAP.all]
+                    authorizedModules: [AUTH_BOOTSTRAP.all]
                 }
             })
             .when('/roles', {
                 templateUrl: 'views/roles/role.html',
                 controller: 'RolesController',
                 access: {
-                    authorizedRoles: [AUTH_BOOTSTRAP.all]
+                    authorizedModules: [AUTH_BOOTSTRAP.all]
                 }
             })
             .when('/permissions', {
                 templateUrl: 'views/permissions/permission.html',
                 controller: 'PermissionsController',
                 access: {
-                    authorizedRoles: [AUTH_BOOTSTRAP.all]
+                    authorizedModules: [AUTH_BOOTSTRAP.all]
                 }
             })
             .when('/test', {
                 templateUrl: 'views/test.html',
                 controller: 'TestController',
                 access: {
-                    authorizedRoles: [AUTH_BOOTSTRAP.all]
+                    authorizedModules: [AUTH_BOOTSTRAP.all]
                 }
             })
             .when('/sessions', {
