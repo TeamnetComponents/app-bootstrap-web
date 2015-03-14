@@ -1,0 +1,97 @@
+<div class="container-fluid">
+    <div class="row">
+        <div>
+            <div class="text-center">
+                <h3 class="page-header">Roles</h3>
+            </div>
+            <div class="col-md-2" style="margin-right: 0; padding-right: 0;">
+                <div ng-show="view != 'create'"
+                     class="list-group" style="max-height: 250px; overflow: auto">
+                    <div class="list-group-item"
+                         style="cursor: pointer; border-top-right-radius: 0px; border-bottom-right-radius: 0px;"
+                         ng-repeat="role in roles"
+                         ng-click="roleSelect(role)"
+                         ng-class="{active:role.isSelected}">
+                        {{role.description}}
+                    </div>
+                </div>
+            </div>
+            <table class="col-md-9" style="background-color: rgba(232, 232, 223, 0.38);margin: 0; padding: 0">
+                <tr>
+                    <td>
+                        <md-input-container  flex>
+                            <label>Role Code</label>
+                            <input ng-model="selectedRole.code">
+                        </md-input-container>
+                    </td>
+                    <td>
+                        <md-input-container  flex>
+                            <label>Role Description</label>
+                            <input ng-model="selectedRole.description">
+                        </md-input-container>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <md-input-container  flex>
+                            <label>Valid from</label>
+                            <input  ng-model="selectedRole.validFrom">
+                        </md-input-container>
+                    </td>
+                    <td>
+                        <md-input-container  flex>
+                            <label>Valid to</label>
+                            <input  ng-model="selectedRole.validTo">
+                        </md-input-container>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <md-input-container  flex>
+                            <label>Version</label>
+                            <input ng-model="selectedRole.version">
+                        </md-input-container>
+                    </td>
+                    <td>
+                        Active:
+                        <md-switch class="md-primary" ng-model="selectedRole.active" aria-label="Active">
+                        </md-switch>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Click set:
+                        <md-switch class="md-primary" ng-model="clickBool" aria-label="Click set">
+                        </md-switch>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="margin: 0; padding: 0;" valign="top">
+                        <p style="color: #858581">Module rights:</p>
+                        <div ng-include="permissionTpl"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="center" style="padding-top: 10px">
+                        <md-button class="md-raised"
+                                ng-click="createRole()">
+                            Create role
+                        </md-button>
+                        <md-button class="md-raised"
+                                ng-click="editRole()">
+                            Edit
+                        </md-button>
+                        <md-button class="md-raised"
+                                       ng-click="saveRole()">
+                            Save
+                        </md-button>
+                        <md-button class="md-raised"
+                                ng-click="deleteRole()">
+                            Delete
+                        </md-button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

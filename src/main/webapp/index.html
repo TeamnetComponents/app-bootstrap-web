@@ -197,9 +197,30 @@
                                         </a>
                                     </li>
                                     <li ng-switch-when="true">
+                                        <a href="#/roles">
+                                            <i class="fa fa-cog"></i>
+                                            <!--todo: Translate-->
+                                            <span>Roles</span>
+                                        </a>
+                                    </li>
+                                    <li ng-switch-when="true">
+                                        <a href="#/permissions">
+                                            <i class="fa fa-cog"></i>
+                                            <!--todo: Translate-->
+                                            <span>Permissions</span>
+                                        </a>
+                                    </li>
+                                    <li ng-switch-when="true">
                                         <a href="#/settings">
                                             <i class="fa fa-cog"></i>
                                             <span translate="global.menu.account.settings">Settings</span></a>
+                                        </a>
+                                    </li>
+                                    <li ng-switch-when="true">
+                                        <a href="#/resetPassword">
+                                            <i class="fa fa-cog"></i>
+                                            <!--todo: Translate-->
+                                            <span>Reset password</span>
                                         </a>
                                     </li>
                                     <li ng-switch-when="true">
@@ -309,6 +330,9 @@
 <script src="scripts/controllers/SettingsController.js"></script>
 <script src="scripts/controllers/TrackerController.js"></script>
 <script src="scripts/controllers/MessagesController.js"></script>
+<script src="scripts/controllers/RolesController.js"></script>
+<script src="scripts/controllers/PermissionsController.js"></script>
+<script src="scripts/controllers/TestController.js"></script>
 
 <script src="scripts/services/bootstrapServices.js"></script>
 <script src="scripts/services/Account.js"></script>
@@ -326,6 +350,8 @@
 <script src="scripts/services/Sessions.js"></script>
 <script src="scripts/services/ThreadDumpService.js"></script>
 <script src="scripts/services/MessagesService.js"></script>
+<script src="scripts/services/Role.js"></script>
+<script src="scripts/services/Module.js"></script>
 
 
 

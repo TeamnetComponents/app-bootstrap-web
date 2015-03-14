@@ -1,0 +1,185 @@
+<!--<div class="my-col-md-8 {{permissionClass}}">
+    <div  class="thumbnail"
+          style=" max-height: 500px; min-height: 200px;min-width: 100px;"
+          data-drop="true"
+          ng-model='selectedPermissions'
+          data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=selectedPermissions])'}"
+          jqyoui-droppable="{multiple:true}"
+            >
+        <input type="text" ng-model="searchText" style="width: 100%" placeholder="Filter">
+        <div  class="list-group">
+            <div ng-repeat="selectedPermission in selectedPermissions | filter: {moduleRightCode: searchText}">
+                <div class="list-group-item btn-draggable"
+                     data-drag="!clickBool"
+                     ng-model='selectedPermissions'
+                     ng-show='selectedPermission.id !== undefined'
+                     ng-click="addElement(selectedPermission, 'remove')"
+                     drag-list="true"
+                     data-jqyoui-options="{revert: 'invalid'}"
+                     jqyoui-draggable="{index: {{$index}}, deepCopy:true}">
+                    {{selectedPermission.moduleRightCode}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-show="addView || view == 'create'" style=" margin: 0; padding: 0" valign="top"
+     class="col-md-6 animate-show">
+    <div  class="thumbnail"
+          style=" max-height: 500px; min-height: 200px;min-width: 100px;"
+          data-drop="true"
+          ng-model='permissions'
+          data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=permissions])'}"
+          jqyoui-droppable="{multiple:true}"
+            >
+        <input type="text" ng-model="searchText" style="width: 100%" placeholder="Filter">
+        <div  class="list-group">
+            <div ng-repeat="permission in permissions | filter: {moduleRightCode: searchText}">
+                <div class="list-group-item btn-draggable"
+                     data-drag="!clickBool"
+                     ng-model='permissions'
+                     ng-show='permission.id !== undefined'
+                     ng-click="addElement(permission, 'add')"
+                     drag-list="true"
+                     data-jqyoui-options="{revert: 'invalid'}"
+                     jqyoui-draggable="{index: {{$index}}, deepCopy:true}">
+                    {{permission.moduleRightCode}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+<!--============================================== New Template =====================================================-->
+<div class="panel panel-default">
+    <div class="panel-body" ng-show="addView || view == 'create'" style=" margin: 0; max-height: 500px; padding: 0;"
+         valign="top">
+        <div class="row" id="row1">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div data-drop="true"
+                                     id="cont1"
+                                     style="min-height: 500px; max-height: 500px;  overflow: auto"
+                                     ng-model='selectedModules'
+                                     data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=selectedModules])'}"
+                                     jqyoui-droppable="{multiple:true}"
+                                     add-func='addFunction'>
+                                     <input type="text" ng-model="selectedSearch" placeholder="Filter" style="width: 100%">
+
+                                    <div ng-repeat="selectedModule in selectedModules | filter: {code: selectedSearch}">
+                                        <div class="list-group"
+                                             data-drag="!clickBool"
+                                             ng-model='selectedModuleRights[selectedModule.code]'
+                                             ng-show='selectedModuleRights[selectedModule.code].length !== 0'
+                                             drag-list="true"
+                                             data-jqyoui-options="{revert: 'invalid',
+                                                                   helper: 'clone',
+                                                                   appendTo: 'body',
+                                                                   containment: 'window',
+                                                                   scroll: false}"
+                                             jqyoui-draggable="{index: {{$index}},
+                                                                deepCopy : true,
+                                                                onStart: 'startFnc',
+                                                                onStop: 'stopFnc'}">
+                                            <div>
+                                                <div class="list-group-item  btn-draggable"
+                                                     style="width: 200px; border-bottom-right-radius: 0; border-bottom-left-radius: 0;"
+                                                     ng-click="addPermission(selectedModules[selectedModuleRight.code], 'delete')">
+                                                    {{selectedModule.description}}
+                                                </div>
+                                                <div class="list-group-item btn-draggable"
+                                                     style="width:200px; border-radius: 0px;"
+                                                     ng-repeat="selectedModuleRight in selectedModuleRights[selectedModule.code]"
+                                                     ng-show="selectedModuleRight.moduleRightCode"
+                                                     ng-click="addPermission(selectedModuleRight, 'delete')"
+                                                     data-drag="!clickBool"
+                                                     ng-model='selectedModuleRights[selectedModule.code]'
+                                                     data-jqyoui-options="{revert: 'invalid',
+                                                                           helper: 'clone',
+                                                                           appendTo: 'body',
+                                                                           containment: 'window',
+                                                                           scroll: false}"
+                                                     jqyoui-draggable="{index: {{$index}},
+                                                                        deepCopy : true,
+                                                                        onStart: 'startFnc',
+                                                                        onStop: 'stopFnc'}">
+                                                    {{selectedModuleRight.moduleRightCode}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div data-drop="true"
+                                     ng-model='modules'
+                                     id="cont2"
+                                     style="max-height: 500px; overflow: auto"
+                                     data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=modules])'}"
+                                     jqyoui-droppable="{multiple:true}"
+                                     add-func='addFunction'
+                                        >
+                                    <input type="text" ng-model="search" placeholder="Filter" style="width: 100%">
+                                    <div class="list-group" ng-repeat="module in modules | filter: {code: search}">
+                                        <div class=" btn-draggable"
+                                             data-drag="!clickBool"
+                                             ng-model='moduleRights[module.code]'
+                                             ng-show='moduleRights[module.code].length !== 0'
+                                             drag-list="true"
+                                             data-jqyoui-options="{revert: 'invalid',
+                                                                   helper: 'clone',
+                                                                   appendTo: 'body',
+                                                                   containment: 'window',
+                                                                   scroll: false}"
+                                             jqyoui-draggable="{index: {{$index}},
+                                                                deepCopy : true,
+                                                                onStart: 'startFnc',
+                                                                onStop: 'stopFnc'}">
+                                            <div>
+                                                <div class="list-group-item btn-draggable"
+                                                     style="width: 200px; border-bottom-right-radius: 0; border-bottom-left-radius: 0;"
+                                                     ng-click="addPermission(moduleRights[module.code], 'add')">
+                                                    {{module.description}}
+                                                </div>
+                                                <div class="list-group-item btn-draggable"
+                                                     ng-repeat="moduleRight in moduleRights[module.code]"
+                                                     ng-show="moduleRight.moduleRightCode"
+                                                     ng-click="addPermission(moduleRight, 'add')"
+                                                     data-drag="!clickBool"
+                                                     ng-model='moduleRights[module.code]'
+                                                     data-jqyoui-options="{revert: 'invalid',
+                                                                           helper: 'clone',
+                                                                           appendTo: 'body',
+                                                                           containment: 'window',
+                                                                           scroll: false}"
+                                                     jqyoui-draggable="{index: {{$index}},
+                                                                        deepCopy : true,
+                                                                        onStart: 'startFnc',
+                                                                        onStop: 'stopFnc'}">
+                                                    {{moduleRight.moduleRightCode}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

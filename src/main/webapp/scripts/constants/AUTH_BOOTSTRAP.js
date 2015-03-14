@@ -13,5 +13,7 @@ bootstrapConstants.constant('AUTH_BOOTSTRAP', {
     'menus' : 'MENUS',
     'ajax' : 'AJAX',
     'messages' : 'MESSAGES',
+    'roles' : 'ROLES',
+    'permissions' : 'PERMISSIONS',
     'administration' : 'ADMINISTRATION'
 });

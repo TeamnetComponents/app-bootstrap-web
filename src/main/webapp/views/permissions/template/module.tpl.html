@@ -1,0 +1,79 @@
+<div class="col-md-3" style="margin-right: 0; padding-right: 0;">
+    <div ng-show="view != 'create'"
+         class="list-group" style="max-height: 500px; overflow: auto">
+        <div class="list-group-item"
+             style="cursor: pointer; border-top-right-radius: 0px; border-bottom-right-radius: 0px;"
+             ng-repeat="module in modules"
+             ng-click="moduleSelect(module)"
+             ng-class="{active:module.isSelected}">
+            {{module.description}}
+        </div>
+    </div>
+</div>
+<table class="col-md-8" style="background-color: rgba(232, 232, 223, 0.38);margin: 0; padding: 0">
+    <tr>
+        <td>
+            <md-input-container  flex>
+                <label>Permission Code</label>
+                <input ng-model="selectedModule.code">
+            </md-input-container>
+        </td>
+        <td>
+            <md-input-container  flex>
+                <label>Permission Description</label>
+                <input ng-model="selectedModule.description">
+            </md-input-container>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p style="color: #858581">Module code:</p>
+            <select ng-model="selectedModule.type">
+                <option value="1">MENU</option>
+                <option value="2">ENTITY</option>
+                <option value="3">FIELD</option>
+                <option value="4">OTHER</option>
+            </select>
+        </td>
+        <td>
+            <md-input-container  flex>
+                <label>Version</label>
+                <input ng-model="selectedModule.version">
+            </md-input-container>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p style="color: #858581">Parent module: </p>
+            <select ng-model="selectedModule.parentModule"
+                    ng-options="parentModule.description for parentModule in modules track by parentModule.id">
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <p style="color: #858581">Module rights:</p>
+            <div ng-include="permissionTpl"></div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" align="center" style="padding-top: 10px; padding-bottom: 10px;">
+            <md-button class="md-raised"
+                       ng-click="createModule()">
+                Create
+            </md-button>
+            <md-button class="md-raised"
+                       ng-click="editModule()">
+                Edit
+            </md-button>
+            <md-button class="md-raised"
+                       ng-click="saveModule()">
+                Save
+            </md-button>
+            <md-button class="md-raised"
+                       ng-click="deleteModule()">
+                Delete
+            </md-button>
+        </td>
+    </tr>
+</table>
