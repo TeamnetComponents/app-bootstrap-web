@@ -107,14 +107,14 @@ bootstrapApp
                 templateUrl: 'views/roles/role.html',
                 controller: 'RolesController',
                 access: {
-                    authorizedRoles: [AUTH_BOOTSTRAP.roles]
+                    authorizedRoles: [AUTH_BOOTSTRAP.all]
                 }
             })
             .when('/permissions', {
                 templateUrl: 'views/permissions/permission.html',
                 controller: 'PermissionsController',
                 access: {
-                    authorizedRoles: [AUTH_BOOTSTRAP.permissions]
+                    authorizedRoles: [AUTH_BOOTSTRAP.all]
                 }
             })
             .when('/test', {
