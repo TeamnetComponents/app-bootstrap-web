@@ -1,49 +1,51 @@
-<div class="my-col-md-8 {{permissionClass}}">
-    <div  class="thumbnail"
-          style=" max-height: 500px; min-height: 200px;min-width: 100px;"
-          data-drop="true"
-          ng-model='selectedModule.moduleRights'
-          data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=selectedModule.moduleRights])'}"
-          jqyoui-droppable="{multiple:true}"
-            >
-        <input type="text" ng-model="searchText" style="width: 100%" placeholder="Filter">
-        <div  class="list-group">
-            <div ng-repeat="selectedModuleRight in selectedModule.moduleRights | filter: {moduleRightCode: searchText}">
-                <div class="list-group-item btn-draggable"
-                     data-drag="!clickBool"
-                     ng-model='selectedModule.moduleRights'
-                     ng-show='selectedModuleRight.moduleRightCode !== undefined'
-                     ng-click="addElement(selectedModule.moduleRights, 'remove')"
-                     data-jqyoui-options="{revert: 'invalid'}"
-                     jqyoui-draggable="{index: {{$index}}, deepCopy:true}">
-                    {{selectedModuleRight.moduleRightCode}}
+<div class="row">
+    <div class="col-md-6 {{permissionClass}}">
+        <div  class="thumbnail"
+              style=" max-height: 500px;min-width: 100px;"
+              data-drop="true"
+              ng-model='selectedModule.moduleRights'
+              data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=selectedModule.moduleRights])'}"
+              jqyoui-droppable="{multiple:true}">
+
+            <div  class="list-group">
+                <div ng-repeat="selectedModuleRight in selectedModule.moduleRights | filter: {moduleRightCode: searchText}">
+                    <div class="md-whiteframe-z1 list-group-item btn-draggable"
+                         data-drag="!clickBool"
+                         ng-model='selectedModule.moduleRights'
+                         ng-show='selectedModuleRight.moduleRightCode !== undefined'
+                         ng-click="addElement(selectedModule.moduleRights, 'remove')"
+                         data-jqyoui-options="{revert: 'invalid'}"
+                         jqyoui-draggable="{index: {{$index}}, deepCopy:true}">
+                        {{selectedModuleRight.moduleRightCode}}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div ng-show="addView || view == 'create'" style=" margin: 0; padding: 0" valign="top"
-     class="col-md-4 animate-show">
-    <div  class="thumbnail"
-          style=" max-height: 500px; min-height: 200px;min-width: 100px;"
-          data-drop="true"
-          ng-model='moduleRights'
-          data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=moduleRights])'}"
-          jqyoui-droppable="{multiple:true}"
-            >
-        <input type="text" ng-model="searchText" style="width: 100%" placeholder="Filter">
-        <div  class="list-group">
-            <div ng-repeat="moduleRight in moduleRights | filter: {moduleRightCode: searchText}">
-                <div class="list-group-item btn-draggable"
-                     data-drag="!clickBool"
-                     ng-model='moduleRights'
-                     ng-show='moduleRight.moduleRightCode !== undefined'
-                     ng-click="addElement(moduleRight, 'add')"
-                     data-jqyoui-options="{revert: 'invalid'}"
-                     jqyoui-draggable="{index: {{$index}}, deepCopy:true}">
-                    {{moduleRight.moduleRightCode}}
+    <div ng-show="addView || view == 'create'" style=" margin: 0; padding: 0" valign="top"
+         class="col-md-6 animate-show">
+        <div  class="thumbnail"
+              style=" max-height: 500px; min-height: 200px;min-width: 100px;"
+              data-drop="true"
+              ng-model='moduleRights'
+              data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=moduleRights])'}"
+              jqyoui-droppable="{multiple:true}"
+                >
+
+            <div  class="list-group">
+                <div ng-repeat="moduleRight in moduleRights | filter: {moduleRightCode: searchText}">
+                    <div class="md-whiteframe-z1 list-group-item btn-draggable"
+                         data-drag="!clickBool"
+                         ng-model='moduleRights'
+                         ng-show='moduleRight.moduleRightCode !== undefined'
+                         ng-click="addElement(moduleRight, 'add')"
+                         data-jqyoui-options="{revert: 'invalid'}"
+                         jqyoui-draggable="{index: {{$index}}, deepCopy:true}">
+                        {{moduleRight.moduleRightCode}}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
