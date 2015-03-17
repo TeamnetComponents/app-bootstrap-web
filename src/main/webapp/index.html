@@ -38,7 +38,11 @@
     <link href="bower_components/app-grid/dist/styles/main.css" rel="stylesheet">
 
     <link href="/styles/main.css" rel="stylesheet">
-    <link href="/styles/themes/devoops_v2.css" rel="stylesheet" class="theme">
+
+    <script>
+        var theme = window.localStorage.getItem('theme') ? window.localStorage.getItem('theme') : 'devoops_v2';
+        document.write("<link href='styles/themes/" + theme + ".css' rel='stylesheet' class='theme' />");
+    </script>
 </head>
 <body>
 <header class="navbar">

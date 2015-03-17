@@ -2,6 +2,7 @@
 body {
     color:#525252;
     background:#436E90;
+    overflow: hidden;
 }
 .body-expanded, .modal-open {
     overflow-y:hidden;
@@ -2246,6 +2247,10 @@ ul.DTTT_dropdown.dropdown-menu > li:hover > a {
     #dashboard_links .nav-pills > li.active > a:before {
         display: none;
     }
+}
+
+.md-primary {
+    background-color: #436E90;
 }
 
 .md-toolbar-tools, .md-toast-fixed, md-toast.md-default-theme {

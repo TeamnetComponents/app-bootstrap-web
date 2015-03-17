@@ -3349,7 +3349,7 @@ function DrawFullCalendar(){
 //////////////////////////////////////////////////////
 //////////////////////////////////////////////////////
 $(document).ready(function () {
-	$('body').on('click', '.show-sidebar', function (e) {
+	$('body').css('overflow', 'auto').on('click', '.show-sidebar', function (e) {
 		e.preventDefault();
 		$('div#main').toggleClass('sidebar-show');
 		setTimeout(MessagesMenuWidth, 250);
