@@ -2,31 +2,9 @@
 
 /* App Module */
 function changeTheme(theme) {
-
-    removeTheme();
-    var head = angular.element(document.getElementsByTagName('head')[0]);
-    head.append("<link href='" + "styles/themes/" + theme + ".css" + "' rel='stylesheet' class='theme' />");
+    angular.element('.theme').attr("href", "styles/themes/" + theme + ".css");
     window.localStorage.setItem('theme', theme);
-
-
 }
-
-function removeTheme() {
-    var targetelement = "link";
-    var targetattr = "href";
-    var allsuspects = document.getElementsByTagName(targetelement);
-    for (var i = allsuspects.length; i >= 0; i--) { //search backwards within nodelist for matching elements to remove
-        if (allsuspects[i] && allsuspects[i].getAttribute(targetattr) != null && allsuspects[i].getAttribute('class') == 'theme')
-            allsuspects[i].parentNode.removeChild(allsuspects[i])
-    }
-}
-
-function loadThemeFromStorage() {
-    if (window.localStorage.getItem('theme') != null) {
-        changeTheme(window.localStorage.getItem('theme'));
-    }
-}
-loadThemeFromStorage();
 
 var bootstrapApp = angular.module('bootstrapApp', ['http-auth-interceptor', 'tmh.dynamicLocale',
     'ngResource', 'ngRoute', 'ngCookies', 'bootstrapAppUtils', 'pascalprecht.translate',
@@ -35,10 +13,7 @@ var bootstrapApp = angular.module('bootstrapApp', ['http-auth-interceptor', 'tmh
     'ngDragDrop', 'ngDraggable']);
 
 angular.element(document).ready(function () {
-
     angularCustomLoader.loadApp(bootstrapApp);
-
-
 });
 
 bootstrapApp
