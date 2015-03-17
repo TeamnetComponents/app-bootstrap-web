@@ -3404,7 +3404,18 @@ $(document).ready(function () {
 			e.preventDefault();
 		}
 	});
-	var height = window.innerHeight - 49;
+
+    var headerAndFooterHeightSum = 70;
+    $(window).resize(function() {
+        try {
+            var height = window.innerHeight - headerAndFooterHeightSum;
+            $('#main').css('min-height', height);
+        } catch(e) {
+            console.log('Failed to resize #main container.Exception: ', e);
+        }
+    });
+
+	var height = window.innerHeight - headerAndFooterHeightSum;
 	$('#main').css('min-height', height)
 		.on('click', '.expand-link', function (e) {
 			var body = $('body');

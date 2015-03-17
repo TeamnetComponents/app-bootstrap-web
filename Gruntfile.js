@@ -73,6 +73,13 @@ module.exports = function (grunt) {
                     changeOrigin: false
                 },
                 {
+                    context: '/role',
+                    host: 'localhost',
+                    port: 8080,
+                    https: false,
+                    changeOrigin: false
+                },
+                {
                     context: '/dump',
                     host: 'localhost',
                     port: 8080,
@@ -191,6 +198,22 @@ module.exports = function (grunt) {
                     dest: '.tmp/spec',
                     ext: '.js'
                 }]
+            }
+        },
+        compass: {
+            dist: {
+                options: {
+                    sassDir: ['src/main/scss'],
+                    cssDir: 'src/main/webapp/styles',
+                    environment: 'production',
+                    noLineComments: true
+                }
+            },
+            dev: {
+                options: {
+                    sassDir: ['src/main/scss'],
+                    cssDir: 'src/main/webapp/styles'
+                }
             }
         },
         // not used since Uglify task does concat,
