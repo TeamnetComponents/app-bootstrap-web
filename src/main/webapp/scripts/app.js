@@ -259,6 +259,9 @@ bootstrapApp
         $rootScope.$on('event:auth-loginCancelled', function () {
             $location.path('');
         });
+
+        console.log(angular.element('.auth-data-required'));
+        angular.element('.auth-data-required').removeClass("auth-data-required");
     })
     .run(function ($rootScope, $route) {
         // This uses the Atmoshpere framework to do a Websocket connection with the server, in order to send

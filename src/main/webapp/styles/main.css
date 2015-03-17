@@ -153,3 +153,7 @@ ul#strength {
     background-color: gray !important;
 }
 /* end of app-menu style */
+
+.auth-data-required {
+    display: none !important;
+}

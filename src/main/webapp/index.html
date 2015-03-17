@@ -78,7 +78,9 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="dropdown" ng-switch-when="true" ng-if="isAuthorized(userModules.administration)" ng-controller="AdminController">
+                            <li class="dropdown auth-data-required" ng-switch-when="true"
+                                ng-if="isAuthorized(userModules.administration)" ng-controller="AdminController">
+
                                 <a href="" class="dropdown-toggle" data-toggle="dropdown">
                                     <span class="about" translate="global.menu.admin">Admin</span>
                                     <i class="fa fa-angle-down pull-right"></i>
