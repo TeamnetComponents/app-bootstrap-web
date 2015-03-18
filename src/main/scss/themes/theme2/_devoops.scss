@@ -31,11 +31,11 @@ h1, .h1, h2, .h2, h3, .h3 {
 
 #logo {
   position: relative;
-  background: #505559;
+  background: $header-background-color;
 }
 
 #logo a {
-  color: #D8D8D8;
+  color: $header-color;
   font-family: "Righteous", cursive;
   display: block;
   font-size: 20px;
@@ -90,7 +90,7 @@ a.show-sidebar:hover {
   z-index: inherit;
   padding-bottom: 3000px !important;
   margin-bottom: -3000px !important;
-  background: #353535;
+  background: $body-background-color;
   -webkit-transition: 0.1s;
   -moz-transition: 0.1s;
   -o-transition: 0.1s;
@@ -209,7 +209,7 @@ a.show-sidebar:hover {
 #top-panel {
   line-height: 50px;
   height: 50px;
-  background: #505559;
+  background: $header-background-color;
 }
 
 #main {
@@ -282,7 +282,7 @@ a.show-sidebar:hover {
   margin-top: 8px;
   padding: 5px;
   font-size: 20px;
-  color: #9C9A78;
+  color: $header-icon-color;
   line-height: 1em;
   vertical-align: top;
   -webkit-transition: 0.05s;
@@ -2501,7 +2501,7 @@ ul.DTTT_dropdown.dropdown-menu > li:hover > a {
 }
 
 .about {
-  color: #9C9A78 !important;
+  color: $header-color !important;
 }
 
 #about.about-h {
@@ -2706,6 +2706,11 @@ ul.DTTT_dropdown.dropdown-menu > li:hover > a {
   }
 }
 
+.list-group-item {
+  color: $body-background-color;
+}
+
 .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
   background-color: $body-background-color;
+  color: $body-color;
 }
