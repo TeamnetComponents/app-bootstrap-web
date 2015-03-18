@@ -2,12 +2,6 @@ html, body {
     height: initial;
 }
 
-body {
-    background: #fafafa;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #333;
-}
-
 #content {
     float: right;
 }

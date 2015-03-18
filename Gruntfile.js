@@ -206,13 +206,16 @@ module.exports = function (grunt) {
                     sassDir: ['src/main/scss'],
                     cssDir: 'src/main/webapp/styles',
                     environment: 'production',
-                    noLineComments: true
+                    noLineComments: true,
+                    outputStyle: 'compressed',
+                    force: true
                 }
             },
             dev: {
                 options: {
                     sassDir: ['src/main/scss'],
-                    cssDir: 'src/main/webapp/styles'
+                    cssDir: 'src/main/webapp/styles',
+                    force: true
                 }
             }
         },
