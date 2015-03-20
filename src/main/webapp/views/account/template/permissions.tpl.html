@@ -6,14 +6,13 @@
                           class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
 </div>
 <div class="row" id="body">
-    <div class="custom-col-md" ng-class="{'col-anim': isAdd||isEdit}">
-        <div
-             class="thumbnail"
-             data-drop="true"
-             style="min-height: 500px; max-height: 500px;  overflow-y: scroll"
-             ng-model='selectedModules'
-             jqyoui-droppable="{multiple:true}"
-             add-func='addFunction'>
+    <div class="custom-col-md" ng-class="{'col-anim': isEdit}">
+        <div class="thumbnail"
+                data-drop="true"
+                style=" min-height: 220px; max-height: 220px; overflow-y: scroll"
+                ng-model='selectedModules'
+                jqyoui-droppable="{multiple:true}"
+                add-func='addFunction'>
             <input type="text" ng-model="selectedSearch" placeholder="Filter" style="width: 100%">
             <div ng-repeat="selectedModule in selectedModules | filter: {description: selectedSearch}">
                 <div class="list-group"
@@ -63,7 +62,7 @@
     <div ng-show="isAdd || isEdit" style=" margin: 0; padding: 0"
          class="col-md-6 animate-show">
         <div  class="thumbnail"
-              style="min-height: 500px; max-height: 500px;  overflow-y: scroll"
+              style=" min-height: 220px; max-height: 220px; overflow-y: scroll"
               data-drop="true"
               ng-model='modules'
               jqyoui-droppable="{multiple:true}"

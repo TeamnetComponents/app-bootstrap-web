@@ -1,0 +1,104 @@
+<div class="container-fluid">
+    <div id="accountToastr" style="position: fixed;  top: 50px; right: 0px;">
+    </div>
+    <div>
+        <div class="text-center">
+            <h3 class="page-header">Account</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-3" style="margin-right: 0; padding-right: 0;">
+                <div ng-show="view != 'create'"
+                     class="list-group" style="max-height: 500px; overflow: auto">
+                    <div class="md-whiteframe-z1 list-group-item"
+                         style="cursor: pointer; border-top-right-radius: 0px; border-bottom-right-radius: 0px;"
+                         ng-repeat="account in accounts"
+                         ng-click="selectAccount(account)"
+                         ng-class="{active:isSelected(account)}">
+                        {{account.login}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <md-input-container flex>
+                                    <label>First name</label>
+                                    <input ng-model="selectedAccount.firstName" ng-readonly="isView">
+                                </md-input-container>
+                            </div>
+                            <div class="col-md-6">
+                                <md-input-container flex>
+                                    <label>Last name</label>
+                                    <input ng-model="selectedAccount.lastName" ng-readonly="isView">
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <md-input-container flex>
+                                    <label>Email</label>
+                                    <input ng-model="selectedAccount.email" ng-readonly="isView">
+                                </md-input-container>
+                            </div>
+                            <div class="col-md-6" layout="column" style="height: 100px;">
+                                Activated
+                                <md-switch ng-disabled="true" class="md-primary" ng-model="selectedAccount.activated" aria-label="Activated">
+                                </md-switch>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="margin-top: 15px;margin-bottom: 15px;">
+                        <md-divider ></md-divider>
+                    </div>
+                </div>
+                <div class="row" >
+                    <div class="col-md-12" ng-include="roleTpl"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="margin-top: 15px;margin-bottom: 15px;">
+                        <md-divider ></md-divider>
+                    </div>
+                </div>
+                <div class="row" >
+                    <div class="col-md-12" ng-include="permissionTpl"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="margin-top: 15px;margin-bottom: 15px;">
+                        <md-divider ></md-divider>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <md-button class="md-raised"
+                                   ng-show="false">
+                            Create
+                        </md-button>
+                        <md-button class="md-raised"
+                                   ng-show="isView"
+                                   ng-click="editAccount()">
+                            Edit
+                        </md-button>
+                        <md-button class="md-raised"
+                                   ng-show="isEdit"
+                                   ng-click="saveAccount()">
+                            Save
+                        </md-button>
+                        <md-button class="md-raised"
+                                   ng-show="false">
+                            Delete
+                        </md-button>
+                        <md-button class="md-raised"
+                                   ng-show="!isView"
+                                   ng-click="backAccount()">
+                            Back
+                        </md-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
