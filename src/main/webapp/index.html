@@ -120,6 +120,13 @@
                                         </a>
                                     </li>
                                     <li ng-switch-when="true">
+                                        <a href="#/account">
+                                            <i class="fa fa-cog"></i>
+                                            <!--todo: Translate-->
+                                            <span>Account</span>
+                                        </a>
+                                    </li>
+                                    <li ng-switch-when="true">
                                         <a href="#/roles">
                                             <i class="fa fa-cog"></i>
                                             <!--todo: Translate-->
@@ -241,7 +248,7 @@
 <script src="scripts/controllers/MessagesController.js"></script>
 <script src="scripts/controllers/RolesController.js"></script>
 <script src="scripts/controllers/PermissionsController.js"></script>
-<script src="scripts/controllers/TestController.js"></script>
+<script src="scripts/controllers/AccountController.js"></script>
 
 <script src="scripts/services/bootstrapServices.js"></script>
 <script src="scripts/services/Account.js"></script>
@@ -260,7 +267,7 @@
 <script src="scripts/services/ThreadDumpService.js"></script>
 <script src="scripts/services/MessagesService.js"></script>
 <script src="scripts/services/Role.js"></script>
-<script src="scripts/services/Module.js"></script>
+<script src="scripts/services/Permission.js"></script>
 <script src="scripts/directives/bootstrapDirectives.js"></script>
 <script src="scripts/directives/activeLink.js"></script>
 <script src="scripts/directives/activeMenu.js"></script>
@@ -290,7 +297,8 @@
 <script src="/bower_components/Justified-Gallery/dist/js/jquery.justifiedGallery.min.js"></script>
 <script src="/bower_components/tinymce/tinymce.min.js"></script>
 <script src="/bower_components/tinymce/tinymce.jquery.min.js"></script>
-<script src="bower_components/angular-dragdrop/src/angular-dragdrop.min.js"></script>
+<script src="scripts/libs/angular-dragdrop.js"></script>
+<!--<script src="bower_components/angular-dragdrop/src/angular-dragdrop.min.js"></script>-->
 <script src="bower_components/ngDraggable/ngDraggable.js"></script>
 <script src="scripts/angular-loader.js"></script>
 </body>
