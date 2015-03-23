@@ -70,12 +70,19 @@ bootstrapControllers
         };
 
         $scope.saveAccount = function(){
-            showSimpleToast('todo: Account updated in java');
-            $scope.backAccount();
-            /*$scope.selectedAccount.moduleRights = $scope.selectedModuleRights;
-             Account.save($scope.selectedAccount, function(){
-             showSimpleToast('Account updated');
-             })*/
+            var moduleRights = [];
+            $scope.selectedModules.forEach(function(module){
+                $scope.selectedModuleRights[module.code].forEach(function(moduleRight){
+                    moduleRight.module.moduleRights = undefined;
+                    moduleRights.push(moduleRight);
+                })
+            });
+
+            $scope.selectedAccount.moduleRights = moduleRights;
+            Account.save($scope.selectedAccount, function(){
+                showSimpleToast('Account updated');
+                $scope.backAccount();
+            })
         };
 
         $scope.backAccount = function(){
