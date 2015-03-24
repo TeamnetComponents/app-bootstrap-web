@@ -28,9 +28,9 @@
                                 <include>package.json</include>
                             </includes>
                         </resource>
+
                     </webResources>
-                    <packagingExcludes>WEB-INF/lib,bower_components</packagingExcludes>
-                    <packagingIncludes>*</packagingIncludes>
+                    <packagingExcludes>WEB-INF/lib/*.jar,bower_components/**</packagingExcludes>
                 </configuration>
             </plugin>
         </plugins>
