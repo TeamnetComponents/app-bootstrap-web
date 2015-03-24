@@ -12,5 +12,27 @@
     <artifactId>app-bootstrap-web</artifactId>
     <version>0.2-SNAPSHOT</version>
     <packaging>war</packaging>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <warSourceDirectory>src/main/webapp</warSourceDirectory>
+                    <webResources>
+                        <resource>
+                            <directory>.</directory>
+                            <includes>
+                                <include>bower.json</include>
+                                <include>package.json</include>
+                            </includes>
+                        </resource>
+                    </webResources>
+                    <packagingExcludes>WEB-INF/lib,bower_components</packagingExcludes>
+                    <packagingIncludes>*</packagingIncludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
