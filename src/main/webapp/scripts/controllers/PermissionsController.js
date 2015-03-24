@@ -1,110 +1,153 @@
 bootstrapControllers
-    .controller('PermissionsController',['$scope', '$http', 'Module', function($scope, $http, Module){
-        $scope.selectedModuleRight = {};
+    .controller('PermissionsController',['$scope', '$http','$mdDialog', '$mdToast', '$animate', 'Permission', function($scope, $http, $mdDialog, $mdToast, $animate, Permission){
+        var baseTemplateUrl = 'views/permissions/template/';
+        $scope.moduleRightsTpl = baseTemplateUrl + 'moduleRights.tpl.html';
+
         $scope.selectedModule = {};
+        $scope.selectedModule.moduleRights = [];
         $scope.moduleRights = [];
         $scope.allModuleRights = [];
-//        $scope.selectedModuleRights.moduleRights = [];
         $scope.modules = [];
-        $scope.searchText = '';
-        var baseTemplateUrl = 'views/permissions/template/';
 
-        $scope.roleTpl = baseTemplateUrl + 'role.tpl.html';
-        $scope.moduleTpl = baseTemplateUrl + 'module.tpl.html';
-        $scope.moduleRightsTpl = baseTemplateUrl + 'moduleRights.tpl.html';
-        $scope.permissionTpl = baseTemplateUrl + 'permission.tpl.html';
-        $scope.permissionToADdTpl = baseTemplateUrl + 'permissionsToAdd.tpl.html';
+        $scope.isView = true;
+        $scope.isAdd = false;
+        $scope.isEdit = false;
 
+        $scope.isSelected = function(module){
+            return module.id == $scope.selectedModule.id;
+        };
 
-        //todo resource
-        $http.get('app/rest/module/rights').then(function (res){
-            $scope.modules = angular.copy(res.data);
-            if(!_.isEmpty($scope.modules)){
-                $scope.moduleSelect($scope.modules[0]);
+        var functionIndexOf = function(array, func){
+            for (var x = 0; x < array.length; x++) {
+                if (func(array[x]))
+                    return x;
             }
-        });
+            return -1;
+        };
 
-        //todo resource
-        $http.get('app/rest/modulerights/codes').then(function (res){
-            $scope.allModuleRights = angular.copy(res.data);
-        });
-
-        $scope.moduleSelect = function(module){
-/*            if(!module.isSelected){
-                Module.get({moduleId: module.id}, function(res){
-                    $scope.selectedModule.isSelected=false;
-                    $scope.selectedModule = res;
-                    $scope.selectedModule.isSelected=true;
-
-                    console.log('module Selected',$scope.selectedModule);
-                });
-            }*/
-
-
-            if($scope.selectedModule != module){
-                $scope.selectedModule.isSelected=false;
-                $scope.selectedModule = module;
-                $scope.selectedModule.isSelected=true;
-                if($scope.selectedModule.moduleRights === null
-                    || $scope.selectedModule.moduleRights === undefined){
-                    $scope.selectedModule.moduleRights = [];
-                }
-            }
-
-            $scope.moduleRights = [];
-            if(_.isEmpty($scope.selectedModule.moduleRights)){
-                $scope.moduleRights = angular.copy($scope.allModuleRights);
-            } else {
-                $scope.allModuleRights.forEach(function (selectedItem){
-                    var auxBool = true;
-                    $scope.selectedModule.moduleRights.forEach(function (notSelectedItem){
-                        if(angular.equals(selectedItem.right, notSelectedItem.right)){
-                            auxBool = false;
+        $scope.selectModule = function(module){
+            var idx;
+            Permission.get({moduleId: module.id}, function(res){
+                $scope.selectedModule = res;
+                $scope.moduleRights = [];
+                if(_.isEmpty($scope.selectedModule.moduleRights)){
+                    $scope.moduleRights = angular.copy($scope.allModuleRights);
+                } else {
+                    $scope.allModuleRights.forEach(function (selectedItem){
+                        idx = functionIndexOf($scope.selectedModule.moduleRights,
+                            function(el) {return selectedItem.right == el.right});
+                        if(idx < 0){
+                            $scope.moduleRights.push(selectedItem);
                         }
                     });
-                    if(auxBool){
-                        $scope.moduleRights.push(selectedItem);
-                    }
-                });
-            }
-        };
-
-
-        $scope.editModule = function(){
-            $scope.view = 'edit';
-            $scope.addView = !$scope.addView ;
-            if($scope.addView){
-                $scope.permissionClass = 'col-anim';
-            }
-            else{
-                $scope.permissionClass = '';
-            }
-        };
-
-        $scope.createModule = function(){
-            clearSelection($scope.selectedModule);
-            $scope.view = 'create';
-            $scope.addView = !$scope.addView ;
-            if($scope.addView){
-                $scope.permissionClass = 'col-anim';
-            }
-            else{
-                $scope.permissionClass = '';
-            }
-        };
-
-        var clearSelection = function(selection){
-            selection.isSelected = false;
-            selection = {};
-        };
-
-        $scope.saveModule = function(){
-            console.log($scope.selectedModule);
-            Module.save($scope.selectedModule, function (value, responseHeaders) {
-                console.log('Module saved');
+                }
             });
         };
 
 
+        $scope.editModule = function(){
+            clearState();
+            $scope.isEdit = true;
+        };
+
+        $scope.backModule = function(){
+            clearState();
+            $scope.isView = true;
+
+            if($scope.selectedModule.id != undefined){
+                $scope.selectModule($scope.selectedModule);
+            } else if(!_.isEmpty($scope.modules)){
+                $scope.selectModule($scope.modules[0]);
+            } else {
+                $scope.moduleRights = angular.copy($scope.allModuleRights);
+            }
+        };
+
+        $scope.createModule = function(){
+            clearState();
+            $scope.isAdd = true;
+            $scope.selectedModule = {};
+            $scope.selectedModule.moduleRights = [];
+            $scope.moduleRights = angular.copy($scope.allModuleRights);
+        };
+
+
+        $scope.saveModule = function(){
+            if($scope.selectedModule.id != undefined){
+                Permission.save({moduleId: $scope.selectedModule.id}, $scope.selectedModule, function(){
+                    showSimpleToast('Module updated');
+                    $scope.backModule();
+                })
+            } else {
+                // todo fix in java
+                showSimpleToast('todo:Fix save module');
+                $scope.backModule();
+                /*Permission.save($scope.selectedModule, function (value, responseHeaders) {
+                 showSimpleToast('Module saved');
+                 $scope.selectedModule = value;
+                 Permission.getAllModulesWithModuleRights({}, function(res){
+                 $scope.modules = angular.copy(res);
+                 $scope.selectedModule = value;
+                 $scope.backModule();
+                 });
+                 });*/
+            }
+        };
+
+        $scope.deleteModule = function(){
+            // todo fix in java
+            Permission.delete({moduleId: $scope.selectedModule.id}, function(){
+                showSimpleToast('Module deleted');
+                init();
+            });
+        };
+
+        $scope.showConfirm = function(ev) {
+            var confirm = $mdDialog.confirm()
+                .title('Are you sure you want to delete ' + $scope.selectedModule.description + ' ?')
+                .ok('Delete')
+                .cancel('Cancel')
+                .targetEvent(ev);
+            $mdDialog.show(confirm).then(
+                $scope.deleteModule,
+                function() {
+                    console.log('Canceled')
+                });
+        };
+
+        var init = function(){
+            $scope.isView = true;
+            $scope.isAdd = false;
+            $scope.isEdit = false;
+
+            Permission.getAllModulesWithModuleRights({}, function(res){
+                $scope.modules = angular.copy(res);
+                if(!_.isEmpty($scope.modules)){
+                    $scope.selectModule($scope.modules[0]);
+                }
+            });
+
+            Permission.getModuleRightCodes({}, function(res){
+                $scope.allModuleRights = angular.copy(res);
+            });
+        };
+
+        var showSimpleToast = function(message) {
+            $mdToast.show(
+                $mdToast.simple()
+                    .content(message)
+                    .position('top right')
+                    .parent(angular.element('#permissionToastr'))
+                    .hideDelay(1500)
+            );
+        };
+
+        var clearState = function(){
+            $scope.isView = false;
+            $scope.isAdd = false;
+            $scope.isEdit = false;
+        };
+
+        init();
     }]);
 

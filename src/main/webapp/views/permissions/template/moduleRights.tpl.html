@@ -1,16 +1,16 @@
 <div class="row">
-    <div class="col-md-6 {{permissionClass}}">
+    <div class="custom-col-md" ng-class="{'col-anim': isAdd||isEdit}">
         <div  class="thumbnail"
-              style=" max-height: 500px;min-width: 100px;"
+              style=" min-height: 220px; max-height: 220px;"
               data-drop="true"
               ng-model='selectedModule.moduleRights'
               data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=selectedModule.moduleRights])'}"
               jqyoui-droppable="{multiple:true}">
 
             <div  class="list-group">
-                <div ng-repeat="selectedModuleRight in selectedModule.moduleRights | filter: {moduleRightCode: searchText}">
+                <div ng-repeat="selectedModuleRight in selectedModule.moduleRights">
                     <div class="md-whiteframe-z1 list-group-item btn-draggable"
-                         data-drag="!clickBool"
+                         data-drag="isAdd || isEdit"
                          ng-model='selectedModule.moduleRights'
                          ng-show='selectedModuleRight.moduleRightCode !== undefined'
                          ng-click="addElement(selectedModule.moduleRights, 'remove')"
@@ -22,10 +22,10 @@
             </div>
         </div>
     </div>
-    <div ng-show="addView || view == 'create'" style=" margin: 0; padding: 0" valign="top"
+    <div ng-show="isAdd || isEdit" style=" margin: 0; padding: 0"
          class="col-md-6 animate-show">
         <div  class="thumbnail"
-              style=" max-height: 500px; min-height: 200px;min-width: 100px;"
+              style=" min-height: 220px; max-height: 220px;"
               data-drop="true"
               ng-model='moduleRights'
               data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=moduleRights])'}"
@@ -33,9 +33,9 @@
                 >
 
             <div  class="list-group">
-                <div ng-repeat="moduleRight in moduleRights | filter: {moduleRightCode: searchText}">
+                <div ng-repeat="moduleRight in moduleRights">
                     <div class="md-whiteframe-z1 list-group-item btn-draggable"
-                         data-drag="!clickBool"
+                         data-drag="isAdd || isEdit"
                          ng-model='moduleRights'
                          ng-show='moduleRight.moduleRightCode !== undefined'
                          ng-click="addElement(moduleRight, 'add')"

@@ -2,12 +2,6 @@ html, body {
     height: initial;
 }
 
-body {
-    background: #fafafa;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #333;
-}
-
 #content {
     float: right;
 }
@@ -159,4 +153,40 @@ ul#strength {
 
 .auth-data-required {
     display: none !important;
+}
+
+.animate-show {
+    opacity: 1;
+    height: auto;
+    max-height: 500px;
+    width: 50%;
+}
+
+.animate-show.ng-hide-remove.ng-hide-remove-active{
+    -webkit-transition: height 0s ease-out 0.75s, opacity 0.5s ease 0.75s, width 0s ease-out 0.75s;
+}
+
+.animate-show.ng-hide {
+    opacity: 0;
+    height: 0px;
+    width: 0px;
+}
+
+.custom-col-md{
+    width:100%;
+    position:relative;
+    min-height:1px;
+    float:left;
+    display: inline-block;
+    -webkit-transition: width 0.75s ease;
+    -moz-transition: width 0.75s ease;
+    -o-transition: width 0.75s ease;
+    transition: width 0.75s ease;
+}
+.custom-col-md.col-anim{
+    width:50%;
+}
+
+.btn-draggable{
+    text-align: center;
 }

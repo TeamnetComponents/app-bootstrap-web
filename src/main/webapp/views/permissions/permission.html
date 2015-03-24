@@ -1,12 +1,107 @@
-<div class="container-fluid expanded-panel">
-    <div class="panel panel-default  md-whiteframe-z1">
-        <div class="panel-heading">Permissions</div>
+<div class="container-fluid">
+    <div id="permissionToastr" style="position: fixed;  top: 50px; right: 0px;">
+    </div>
+    <div class="row">
+        <div>
+            <div class="text-center">
+                <h3 class="page-header">Permissions</h3>
+            </div>
+            <div class="row">
+                <div class="col-md-3" style="margin-right: 0; padding-right: 0;">
+                    <div ng-show="!isAdd"
+                         class="list-group" style="max-height: 500px; overflow: auto">
+                        <div class="md-whiteframe-z1 list-group-item"
+                             style="cursor: pointer; border-top-right-radius: 0px; border-bottom-right-radius: 0px;"
+                             ng-repeat="module in modules"
+                             ng-click="selectModule(module)"
+                             ng-class="{active:isSelected(module)}">
+                            {{module.description}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <md-input-container flex>
+                                        <label>Permission Code</label>
+                                        <input ng-model="selectedModule.code" ng-readonly="isView">
+                                    </md-input-container>
+                                </div>
+                                <div class="col-md-6">
+                                    <md-input-container flex>
+                                        <label>Permission Description</label>
+                                        <input ng-model="selectedModule.description" ng-readonly="isView">
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6" layout="column" style="height: 100px;">
 
-        <div class="panel-body" >
-            <div class="container-fluid" ng-include="moduleTpl">
+                                    <md-select ng-model="selectedModule.type" placeholder="Module code" ng-disabled="isView">
+                                        <md-option value="1">MENU</md-option>
+                                        <md-option value="2" ng-selected="selected">ENTITY</md-option>
+                                        <md-option value="3" ng-selected="selected">FIELD</md-option>
+                                        <md-option value="4" ng-selected="selected">OTHER</md-option>
+                                    </md-select>
+                                </div>
+                                <div class="col-md-6" layout="column" style="height: 100px;">
+                                    <md-select ng-model="selectedModule.parentModule" ng-disabled="isView">
+                                        <md-select-label>{{ selectedModule.parentModule ? selectedModule.parentModule.description : 'Parent module' }}</md-select-label>
+                                        <md-option ng-value="parentModule" ng-repeat="parentModule in modules track by parentModule.id">
+                                            {{parentModule.description}}
+                                        </md-option>
+                                    </md-select>
+                                </div>
+                            </div>
 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" style="margin-top: 15px;margin-bottom: 15px;">
+                            <md-divider ></md-divider>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-md-12" ng-include="moduleRightsTpl"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" style="margin-top: 15px;margin-bottom: 15px;">
+                            <md-divider ></md-divider>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <md-button class="md-raised"
+                                       ng-show="isView"
+                                       ng-click="createModule()">
+                                Create
+                            </md-button>
+                            <md-button class="md-raised"
+                                       ng-show="isView"
+                                       ng-click="editModule()">
+                                Edit
+                            </md-button>
+                            <md-button class="md-raised"
+                                       ng-show="!isView"
+                                       ng-click="saveModule()">
+                                Save
+                            </md-button>
+                            <md-button class="md-raised"
+                                       ng-show="isView || isEdit"
+                                       ng-click="showConfirm()">
+                                Delete
+                            </md-button>
+                            <md-button class="md-raised"
+                                       ng-show="!isView"
+                                       ng-click="backModule()">
+                                Back
+                            </md-button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
 </div>

@@ -10,7 +10,7 @@ var bootstrapApp = angular.module('bootstrapApp', ['http-auth-interceptor', 'tmh
     'ngResource', 'ngRoute', 'ngCookies', 'bootstrapAppUtils', 'pascalprecht.translate',
     'truncate', 'ngCacheBuster','bootstrapControllers','bootstrapServices','bootstrapDirectives','bootstrapConstants',
     'angular-component.app-grid', 'angular-components.app-menu', 'angular-components.app-menu-admin', 'ui.tree', 'ngMaterial',
-    'ngDragDrop', 'ngDraggable']);
+    'ngDragDrop']);
 
 angular.element(document).ready(function () {
     angularCustomLoader.loadApp(bootstrapApp);
@@ -74,6 +74,13 @@ bootstrapApp
             .when('/resetPassword', {
                 templateUrl: 'views/resetPassword.html',
                 controller: 'PasswordController',
+                access: {
+                    authorizedModules: [AUTH_BOOTSTRAP.all]
+                }
+            })
+            .when('/account', {
+                templateUrl: 'views/account/account.html',
+                controller: 'AccountController',
                 access: {
                     authorizedModules: [AUTH_BOOTSTRAP.all]
                 }

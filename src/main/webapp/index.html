@@ -11,33 +11,13 @@
 
     <meta name="description" content="Teamnet web bootstrap">
 
-    <!-- endbuild -->
-    <link href="/styles/bootstrap.css" rel="stylesheet">
-
-    <link href="/bower_components/jquery-ui/themes/start/jquery-ui.min.css" rel="stylesheet">
-    <link href="/bower_components/fontawesome/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
-    <link href="/bower_components/fancybox/source/jquery.fancybox.css" rel="stylesheet">
-    <link href="/bower_components/fullcalendar/dist/fullcalendar.css" rel="stylesheet">
-    <link href="/bower_components/ng-xCharts/xcharts.min.css" rel="stylesheet">
-    <link href="/bower_components/select2/select2.css" rel="stylesheet">
-    <link href="/bower_components/Justified-Gallery/dist/css/justifiedGallery.min.css" rel="stylesheet">
-
-    <link href="/bower_components/chartist/dist/chartist.min.css" rel="stylesheet">
-
-    <link href="bower_components/select2/select2.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-
-    <link href="bower_components/app-menu/dist/styles/main.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Righteous' rel="stylesheet">
-    <link href="bower_components/angular-ui-tree/dist/angular-ui-tree.min.css" rel="stylesheet">
-    <link href="bower_components/app-menu-admin/dist/styles/main.css" rel="stylesheet">
+    <link href='/styles/main.css' rel='stylesheet' type='text/css'>
 
-    <link href="bower_components/angular-material/angular-material.css" rel="stylesheet">
-    <link href="bower_components/angular-ui-grid/ui-grid.css" rel="stylesheet">
-    <link href="bower_components/app-grid/dist/styles/main.css" rel="stylesheet">
-
-    <link href="/styles/main.css" rel="stylesheet">
+    <!-- added using grunt cssmin task | to add/remove update Gruntfile.js cssmin task and run it again -->
+    <link href="/styles/all.css" rel="stylesheet">
 
     <script>
         var theme = window.localStorage.getItem('theme') ? window.localStorage.getItem('theme') : 'devoops_v2';
@@ -78,6 +58,12 @@
                                         <a href="#" onclick="changeTheme('devoops_v2')">
                                             <i class="fa fa-picture-o"></i>
                                             <span>Devoops V2</span></a>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="changeTheme('devoops_v1')">
+                                            <i class="fa fa-picture-o"></i>
+                                            <span>Devoops V3</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -132,6 +118,13 @@
                                         <a href="#/login">
                                             <i class="fa fa-tasks"></i>
                                             <span translate="global.menu.account.login">Authenticate</span></a>
+                                        </a>
+                                    </li>
+                                    <li ng-switch-when="true">
+                                        <a href="#/account">
+                                            <i class="fa fa-cog"></i>
+                                            <!--todo: Translate-->
+                                            <span>Account</span>
                                         </a>
                                     </li>
                                     <li ng-switch-when="true">
@@ -256,7 +249,7 @@
 <script src="scripts/controllers/MessagesController.js"></script>
 <script src="scripts/controllers/RolesController.js"></script>
 <script src="scripts/controllers/PermissionsController.js"></script>
-<script src="scripts/controllers/TestController.js"></script>
+<script src="scripts/controllers/AccountController.js"></script>
 
 <script src="scripts/services/bootstrapServices.js"></script>
 <script src="scripts/services/Account.js"></script>
@@ -275,7 +268,7 @@
 <script src="scripts/services/ThreadDumpService.js"></script>
 <script src="scripts/services/MessagesService.js"></script>
 <script src="scripts/services/Role.js"></script>
-<script src="scripts/services/Module.js"></script>
+<script src="scripts/services/Permission.js"></script>
 <script src="scripts/directives/bootstrapDirectives.js"></script>
 <script src="scripts/directives/activeLink.js"></script>
 <script src="scripts/directives/activeMenu.js"></script>
@@ -305,7 +298,8 @@
 <script src="/bower_components/Justified-Gallery/dist/js/jquery.justifiedGallery.min.js"></script>
 <script src="/bower_components/tinymce/tinymce.min.js"></script>
 <script src="/bower_components/tinymce/tinymce.jquery.min.js"></script>
-<script src="bower_components/angular-dragdrop/src/angular-dragdrop.min.js"></script>
+<script src="scripts/libs/angular-dragdrop.js"></script>
+<!--<script src="bower_components/angular-dragdrop/src/angular-dragdrop.min.js"></script>-->
 <script src="bower_components/ngDraggable/ngDraggable.js"></script>
 <script src="scripts/angular-loader.js"></script>
 </body>

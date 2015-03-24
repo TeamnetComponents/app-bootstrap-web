@@ -11,7 +11,8 @@ module.exports = function (grunt) {
         yeoman: {
             // configurable paths
             app: require('./bower.json').appPath || 'app',
-            dist: 'src/main/webapp/dist'
+            dist: 'src/main/webapp/dist',
+            webapp: 'src/main/webapp'
         },
         watch: {
             styles: {
@@ -206,13 +207,16 @@ module.exports = function (grunt) {
                     sassDir: ['src/main/scss'],
                     cssDir: 'src/main/webapp/styles',
                     environment: 'production',
-                    noLineComments: true
+                    noLineComments: true,
+                    outputStyle: 'compressed',
+                    force: true
                 }
             },
             dev: {
                 options: {
                     sassDir: ['src/main/scss'],
-                    cssDir: 'src/main/webapp/styles'
+                    cssDir: 'src/main/webapp/styles',
+                    force: true
                 }
             }
         },
@@ -247,6 +251,7 @@ module.exports = function (grunt) {
                 dirs: ['<%= yeoman.dist %>']
             }
         },
+
         imagemin: {
             dist: {
                 files: [{
@@ -268,17 +273,31 @@ module.exports = function (grunt) {
             }
         },
         cssmin: {
-            // By default, your `index.html` <!-- Usemin Block --> will take care of
-            // minification. This option is pre-configured if you do not wish to use
-            // Usemin blocks.
-            // dist: {
-            //     files: {
-            //         '<%= yeoman.dist %>/styles/main.css': [
-            //             '.tmp/styles/{,*/}*.css',
-            //             'styles/{,*/}*.css'
-            //         ]
-            //     }
-            // }
+            // By default, your `index.html` <!-- Usemin Block --> will take care of minification. This option is
+            // pre-configured if you do not wish to use Usemin blocks.
+            dist: {
+                 files: {
+                     '<%= yeoman.webapp %>/styles/all.css': [
+                         '<%= yeoman.webapp %>/styles/bootstrap.css',
+                         '<%= yeoman.webapp %>/bower_components/jquery-ui/themes/start/jquery-ui.min.css',
+                         '<%= yeoman.webapp %>/bower_components/fontawesome/css/font-awesome.min.css',
+                         '<%= yeoman.webapp %>/bower_components/fancybox/source/jquery.fancybox.css',
+                         '<%= yeoman.webapp %>/bower_components/fullcalendar/dist/fullcalendar.css',
+                         '<%= yeoman.webapp %>/bower_components/ng-xCharts/xcharts.min.css',
+                         '<%= yeoman.webapp %>/bower_components/select2/select2.css',
+                         '<%= yeoman.webapp %>/bower_components/Justified-Gallery/dist/css/justifiedGallery.min.css',
+                         '<%= yeoman.webapp %>/bower_components/chartist/dist/chartist.min.css',
+                         '<%= yeoman.webapp %>/bower_components/select2/select2.css',
+                         '<%= yeoman.webapp %>/bower_components/app-menu/dist/styles/main.css',
+                         '<%= yeoman.webapp %>/bower_components/angular-ui-tree/dist/angular-ui-tree.min.css',
+                         '<%= yeoman.webapp %>/bower_components/app-menu-admin/dist/styles/main.css',
+                         '<%= yeoman.webapp %>/bower_components/angular-material/angular-material.css',
+                         '<%= yeoman.webapp %>/bower_components/angular-ui-grid/ui-grid.css',
+                         '<%= yeoman.webapp %>/bower_components/app-grid/dist/styles/main.css',
+                         '<%= yeoman.webapp %>/styles/main.css'
+                     ]
+                 }
+            }
         },
         htmlmin: {
             dist: {
