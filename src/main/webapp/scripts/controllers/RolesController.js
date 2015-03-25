@@ -64,7 +64,7 @@ bootstrapControllers
 
                 $scope.selectedRole = {};
                 clearSelectedModuleRights();
-                getAllModuleRights().then(refreshModuleAndModuleRights)
+                getAllModuleRights();
             };
 
             $scope.editRole = function(){
