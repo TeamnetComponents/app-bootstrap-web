@@ -34,6 +34,8 @@ bootstrapControllers
                 $scope.loading = true;
                 Role.get({roleId: role.id}, function(res){
                     $scope.selectedRole = res;
+                    $scope.selectedRole.validFrom = new Date($scope.selectedRole.validFrom);
+                    $scope.selectedRole.validTo = new Date($scope.selectedRole.validTo);
                     clearSelectedModuleRights();
                     getAllModuleRights().then(function(){
                         $scope.selectedRole.moduleRights.forEach(function (item){
@@ -62,7 +64,7 @@ bootstrapControllers
 
                 $scope.selectedRole = {};
                 clearSelectedModuleRights();
-                getAllModuleRights().then(refreshModuleAndModuleRights)
+                getAllModuleRights();
             };
 
             $scope.editRole = function(){
@@ -84,13 +86,13 @@ bootstrapControllers
                 if($scope.selectedRole.id !== undefined){
                     Role.update($scope.selectedRole, function (value) {
                         showSimpleToast('Role updated');
-                        $scope.selectedRole = value;
+                        $scope.selectedRole.id = value.id;
                         $scope.backRole();
                     });
                 }else{
                     Role.save($scope.selectedRole, function (value) {
                         showSimpleToast('Role saved');
-                        $scope.selectedRole = value;
+                        $scope.selectedRole.id = value.id;
                         getRoles().then($scope.backRole);
                     });
                 }
