@@ -8,6 +8,10 @@ bootstrapServices.factory('Account',['$resource', function ($resource) {
         'getAllAccounts': {
             url: 'app/rest/accounts',
             method: 'GET'
+        },
+        'updateAccount': {
+            url: 'app/rest/account/update',
+            method: 'POST'
         }
     });
 }]);

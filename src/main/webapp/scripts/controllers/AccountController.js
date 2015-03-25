@@ -79,9 +79,12 @@ bootstrapControllers
             });
 
             $scope.selectedAccount.moduleRights = moduleRights;
-            Account.save($scope.selectedAccount, function(){
+            Account.updateAccount($scope.selectedAccount, function(){
                 showSimpleToast('Account updated');
                 $scope.backAccount();
+            },
+            function(error){
+                showSimpleToast(error.data.errMsg);
             })
         };
 
