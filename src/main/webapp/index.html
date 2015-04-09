@@ -68,7 +68,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="dropdown auth-data-required" ng-switch-when="true"
+                            <li class="dropdown auth-data-required" ng-if="securityEnabled" ng-switch-when="true"
                                 ng-if="isAuthorized(userModules.administration)" ng-controller="AdminController">
 
                                 <a href="" class="dropdown-toggle" data-toggle="dropdown">
@@ -77,13 +77,16 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#/tracker"><span class="glyphicon glyphicon-eye-open"></span>
-                                        &nbsp;<span translate="global.menu.account.tracker">User tracking</span></a></li>
+                                        &nbsp;<span translate="global.menu.account.tracker">User tracking</span></a>
+                                    </li>
                                     <li><a href="#/metrics"><span class="glyphicon glyphicon-dashboard"></span>
                                         &nbsp;<span translate="global.menu.account.metrics">Metrics</span></a></li>
                                     <li><a href="#/health"><span class="glyphicon glyphicon-heart"></span>
                                         &#xA0;<span translate="global.menu.account.health">Health</span></a></li>
                                     <li><a href="#/configuration"><span class="glyphicon glyphicon-list-alt"></span>
-                                        &#xA0;<span translate="global.menu.account.configuration">Configuration</span></a></li>
+                                        &#xA0;<span
+                                                translate="global.menu.account.configuration">Configuration</span></a>
+                                    </li>
                                     <li><a href="#/audits"><span class="glyphicon glyphicon-bell"></span>
                                         &nbsp;<span translate="global.menu.account.audits">Audits</span></a></li>
                                     <li><a href="#/logs"><span class="glyphicon glyphicon-tasks"></span>
@@ -94,10 +97,10 @@
                                         &nbsp;<span translate="global.menu.account.menus">Menus</span></a></li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown" ng-if="securityEnabled">
                                 <a href="" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-cogs"></i>
-                                    <span class="about" >Security</span>
+                                    <span class="about">Security</span>
                                     <i class="fa fa-angle-down pull-right"></i>
                                 </a>
 
@@ -179,14 +182,15 @@
 <!--Start Container-->
 <div id="main" class="container-fluid">
     <div class="row">
-        <div id="sidebar-left" class="col-xs-2 col-sm-2" ng-if="$root.account">
-            <navigation root-data-url="data/rest/menu/0" parent-data-url="data/rest/menu/:id" user-rights="$root.account.moduleRights"></navigation>
+        <div id="sidebar-left" class="col-xs-2 col-sm-2">
+            <navigation root-data-url="data/rest/menu/0" parent-data-url="data/rest/menu/:id"
+                        user-rights="$root.account.moduleRights" security-enabled="securityEnabled"></navigation>
         </div>
 
         <!--Start Content-->
-        <div id="content" class="col-xs-10 col-sm-10" >
+        <div id="content" class="col-xs-10 col-sm-10">
             <div class="row">
-                <div class="col-md-12 container-fluid " ng-view=""  style="margin-top: 35px">
+                <div class="col-md-12 container-fluid " ng-view="" style="margin-top: 35px">
                 </div>
             </div>
 
@@ -223,7 +227,6 @@
 
 
 <script src="bower_components/select2/select2.min.js"></script>
-\
 <script src="bower_components/angular-ui-grid/ui-grid.js"></script>
 <script src="bower_components/app-grid/src/app-grid.js"></script>
 <script src="bower_components/app-menu/dist/app-menu.js"></script>
