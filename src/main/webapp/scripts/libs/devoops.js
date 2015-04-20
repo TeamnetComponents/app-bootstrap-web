@@ -1144,7 +1144,7 @@ function LoadAjaxContent(url){
 			$('.preloader').hide();
 		},
 		error: function (jqXHR, textStatus, errorThrown) {
-			alert(errorThrown);
+			console.log(errorThrown);
 		},
 		dataType: "html",
 		async: false
