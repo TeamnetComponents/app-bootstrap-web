@@ -7,7 +7,7 @@ bootstrapServices.factory('Permission',['$resource', function ($resource) {
             isArray: true
         },
         'getModuleRights': {
-            url: '/app/rest/modulerights',
+            url: 'app/rest/modulerights',
             method: 'GET',
             isArray: true
         },
