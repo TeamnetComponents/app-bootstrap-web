@@ -31,7 +31,7 @@ loadThemeFromStorage();
 var bootstrapApp = angular.module('bootstrapApp', ['http-auth-interceptor', 'tmh.dynamicLocale',
     'ngResource', 'ngRoute', 'ngCookies', 'bootstrapAppUtils', 'pascalprecht.translate',
     'truncate', 'ngCacheBuster','bootstrapControllers','bootstrapServices','bootstrapDirectives','bootstrapConstants',
-    'angular-components.appGrid', 'angular-components.app-menu', 'angular-components.app-menu-admin', 'ui.tree']);
+    'angular-component.app-grid', 'angular-components.app-menu', 'angular-components.app-menu-admin', 'ui.tree']);
 
 angular.element(document).ready(function () {
 
