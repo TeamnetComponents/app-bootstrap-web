@@ -292,8 +292,6 @@ module.exports = function (grunt) {
                          '<%= yeoman.webapp %>/bower_components/angular-ui-tree/dist/angular-ui-tree.min.css',
                          '<%= yeoman.webapp %>/bower_components/app-menu-admin/dist/styles/main.css',
                          '<%= yeoman.webapp %>/bower_components/angular-material/angular-material.css',
-                         '<%= yeoman.webapp %>/bower_components/angular-ui-grid/ui-grid.css',
-                         '<%= yeoman.webapp %>/bower_components/app-grid/dist/styles/main.css',
                          '<%= yeoman.webapp %>/styles/main.css'
                      ]
                  }
