@@ -38,6 +38,9 @@ var angularCustomLoader = {
 
 
         internal.resolveScripts = function () {
+            if (!internal.modulesLoaded) {
+                return;
+            }
             var mResCnt = internal.scripts.length;
             if (internal.scripts.length > 0) {
                 angular.forEach(internal.scripts, function (script) {
