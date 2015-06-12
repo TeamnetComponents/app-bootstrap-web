@@ -42,6 +42,7 @@
     "ngDraggable":"0.1.2",
     "angular-ui-select": "^0.12.0",
     "selectize": "^0.12.1",
+    "moment": "^2.10.3",
     "app-menu": "0.0.2",
     "app-menu-admin": "0.0.2",
     "app-grid": "2.0.0"
