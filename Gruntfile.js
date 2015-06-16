@@ -295,6 +295,7 @@ module.exports = function (grunt) {
                          '<%= yeoman.webapp %>/bower_components/angular-material/angular-material.css',
                          '<%= yeoman.webapp %>/bower_components/angular-ui-grid/ui-grid.css',
                          '<%= yeoman.webapp %>/bower_components/app-grid/dist/styles/main.css',
+                         '<%= yeoman.webapp %>/bower_components/angular-bootstrap/ui-bootstrap-csp.css',
                          '<%= yeoman.webapp %>/styles/main.css'
                      ]
                  }
