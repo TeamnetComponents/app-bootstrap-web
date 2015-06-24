@@ -234,8 +234,8 @@ bootstrapControllers
             Account.getAllAccounts({}, function(res){
                 console.log('Account getAllAccounts',res);
                 $scope.accounts = res.content;
-                Role.get(function(res){
-                    $scope.allRoles = res.content;
+                Role.getAll(function(res){
+                    $scope.allRoles = res;
                     if(!_.isEmpty($scope.accounts)){
                         $scope.selectAccount($scope.accounts[0]);
                     }

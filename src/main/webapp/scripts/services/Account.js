@@ -1,12 +1,12 @@
 
 bootstrapServices.factory('Account',['$resource', function ($resource) {
-    return $resource('app/rest/account', {}, {
+    return $resource('app/rest/account/getCurrent', {}, {
         'getByLogin': {
-            url:'app/rest/account/:login',
+            url:'app/rest/adminAccount/accountByLogin/:login',
             method: 'GET'
         },
         'getAllAccounts': {
-            url: 'app/rest/accounts',
+            url: 'app/rest/adminAccount/allAccount',
             method: 'GET'
         },
         'updateAccount': {

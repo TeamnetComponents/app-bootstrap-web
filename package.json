@@ -43,7 +43,8 @@
     "bower": "1.3.12",
     "generator-jhipster": "1.10.2",
     "lodash": "2.4.1",
-    "zeparser": "0.0.7"
+    "zeparser": "0.0.7",
+    "grunt-simple-smtp": "~0.1"
   },
   "engines": {
     "node": ">=0.10.0"

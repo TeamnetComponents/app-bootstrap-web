@@ -1,6 +1,6 @@
 
 
-bootstrapControllers.controller('RegisterController',['$scope', '$translate', 'Register', function ($scope, $translate, Register) {
+bootstrapControllers.controller('RegisterController',['$scope', '$translate', 'PublicRegister', function ($scope, $translate, PublicRegister) {
     $scope.success = null;
     $scope.error = null;
     $scope.doNotMatch = null;
@@ -15,7 +15,7 @@ bootstrapControllers.controller('RegisterController',['$scope', '$translate', 'R
             $scope.error = null;
             $scope.errorUserExists = null;
             $scope.errorEmailExists = null;
-            Register.save($scope.registerAccount,
+            PublicRegister.save($scope.registerAccount,
                 function (value, responseHeaders) {
                     $scope.success = 'OK';
                 },
