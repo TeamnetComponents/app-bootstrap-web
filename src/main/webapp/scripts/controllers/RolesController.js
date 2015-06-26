@@ -224,8 +224,8 @@ bootstrapControllers
 
             var getRoles = function(){
                 var deferred = $q.defer();
-                Role.get({}, function (res){
-                        $scope.roles = res.content;
+                Role.getAll({}, function (res){
+                        $scope.roles = res
                         deferred.resolve();
                     },
                     function(){
