@@ -21,7 +21,7 @@ bootstrapApp
 
         //Cache everything except rest api requests
         httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*rest.*/], true);
-
+        $httpProvider.interceptors.push('authHttpResponseInterceptor');
         $routeProvider
             .when('/register', {
                 templateUrl: 'views/register.html',
