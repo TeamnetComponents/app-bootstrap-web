@@ -263,8 +263,11 @@ bootstrapApp
 
             // Call when the 403 response is returned by the server
             $rootScope.$on('event:auth-notAuthorized', function (rejection) {
-                $rootScope.errorMessage = 'errors.403';
-                $location.path('/error').replace();
+                if ($location.path() !== "/" && $location.path() !== "" && $location.path() !== "/register" &&
+                    $location.path() !== "/activate" && $location.path() !== "/login") {
+                    $rootScope.errorMessage = 'errors.403';
+                    $location.path('/error').replace();
+                }
             });
 
             // Call when the user logs out
