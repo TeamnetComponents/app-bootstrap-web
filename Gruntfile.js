@@ -3,9 +3,50 @@
 
 var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
 
+var contextPath = '/bootstrap';
+
+var MIDDLEWARE_HOST = '10.6.33.102';
+var MIDDLEWARE_PORT = 8282;
+
+var useExternalTomcat = true;
+
+function rewriteUrl(backend) {
+    var rewrite = {};
+    if (useExternalTomcat) {
+        rewrite['^/' + backend] = contextPath + '/' + backend;
+    }
+
+    console.log('return ' + rewrite);
+
+    return rewrite;
+}
+
+function rewriteSetCookie(req, res, next) {
+
+    var isProxyRequest = req.url.lastIndexOf('/', 0) === 0;
+    if (isProxyRequest) {
+        // we intercept the writeHead function, so that we can exchange headers just before they are written
+        var oldWriteHead = res.writeHead;
+        res.writeHead = function () {
+            var cookie = res.getHeader('Set-Cookie');
+            if (cookie) {
+                res.setHeader('Set-Cookie', cookie.map(function (item) {
+                    // Replace paths in all cookies. The simple string/replace approach might be too naive in some cases, so check before you copy&paste before thinking
+                    return item.replace(/\/bootstrap/, '');
+                }));
+            }
+            oldWriteHead.apply(res, arguments);
+        };
+    }
+    next();
+}
+
+
+
 module.exports = function (grunt) {
     require('load-grunt-tasks')(grunt);
     require('time-grunt')(grunt);
+
 
     grunt.initConfig({
         yeoman: {
@@ -47,73 +88,84 @@ module.exports = function (grunt) {
             proxies: [
                 {
                     context: '/data',
-                    host: 'localhost',
-                    port: 8080,
+                    host: MIDDLEWARE_HOST,
+                    port: MIDDLEWARE_PORT,
                     https: false,
-                    changeOrigin: false
+                    changeOrigin: false,
+                    rewrite: rewriteUrl('data')
                 },
                 {
                     context: '/app',
-                    host: 'localhost',
-                    port: 8080,
+                    host: MIDDLEWARE_HOST,
+                    port: MIDDLEWARE_PORT,
                     https: false,
-                    changeOrigin: false
+                    changeOrigin: false,
+                    rewrite: rewriteUrl('app')
+
                 },
                 {
                     context: '/metrics',
-                    host: 'localhost',
-                    port: 8080,
+                    host: MIDDLEWARE_HOST,
+                    port: MIDDLEWARE_PORT,
                     https: false,
-                    changeOrigin: false
+                    changeOrigin: false,
+                    rewrite: rewriteUrl('metrics')
                 },
                 {
                     context: '/dictionary',
-                    host: 'localhost',
-                    port: 8080,
+                    host: MIDDLEWARE_HOST,
+                    port: MIDDLEWARE_PORT,
                     https: false,
-                    changeOrigin: false
+                    changeOrigin: false,
+                    rewrite: rewriteUrl('dictionary')
                 },
                 {
                     context: '/role',
-                    host: 'localhost',
-                    port: 8080,
+                    host: MIDDLEWARE_HOST,
+                    port: MIDDLEWARE_PORT,
                     https: false,
-                    changeOrigin: false
+                    changeOrigin: false,
+                    rewrite: rewriteUrl('role')
                 },
                 {
                     context: '/dump',
-                    host: 'localhost',
-                    port: 8080,
+                    host: MIDDLEWARE_HOST,
+                    port: MIDDLEWARE_PORT,
                     https: false,
-                    changeOrigin: false
+                    changeOrigin: false,
+                    rewrite: rewriteUrl('dump')
                 },
                 {
                     context: '/health',
-                    host: 'localhost',
-                    port: 8080,
+                    host: MIDDLEWARE_HOST,
+                    port: MIDDLEWARE_PORT,
                     https: false,
-                    changeOrigin: false
+                    changeOrigin: false,
+                    rewrite: rewriteUrl('health')
                 },
                 {
                     context: '/configprops',
-                    host: 'localhost',
-                    port: 8080,
+                    host: MIDDLEWARE_HOST,
+                    port: MIDDLEWARE_PORT,
                     https: false,
-                    changeOrigin: false
+                    changeOrigin: false,
+                    rewrite: rewriteUrl('configprops')
                 },
                 {
                     context: '/beans',
-                    host: 'localhost',
-                    port: 8080,
+                    host: MIDDLEWARE_HOST,
+                    port: MIDDLEWARE_PORT,
                     https: false,
-                    changeOrigin: false
+                    changeOrigin: false,
+                    rewrite: rewriteUrl('beans')
                 },
                 {
                     context: '/api-docs',
-                    host: 'localhost',
-                    port: 8080,
+                    host: MIDDLEWARE_HOST,
+                    port: MIDDLEWARE_PORT,
                     https: false,
-                    changeOrigin: false
+                    changeOrigin: false,
+                    rewrite: rewriteUrl('api-docs')
                 }
             ],
             options: {
@@ -130,11 +182,18 @@ module.exports = function (grunt) {
                         'src/main/webapp'
                     ],
                     middleware: function (connect) {
-                        return [
-                            proxySnippet,
-                            connect.static('.tmp'),
-                            connect.static('src/main/webapp')
-                        ];
+                        var overlays =[];
+                        if(useExternalTomcat){
+                            overlays=[rewriteSetCookie, proxySnippet];
+                        }else{
+                            overlays=[proxySnippet];
+                        }
+
+                        overlays.push(connect.static('.tmp'));
+                        overlays.push(connect.static('src/main/webapp/'));
+
+
+                        return overlays;
                     }
                 }
             },
