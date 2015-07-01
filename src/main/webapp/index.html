@@ -182,7 +182,7 @@
 <!--Start Container-->
 <div id="main" class="container-fluid">
     <div class="row">
-        <div id="sidebar-left" class="col-xs-2 col-sm-2">
+        <div id="sidebar-left" class="col-xs-2 col-sm-2"  ng-if="authenticated">
             <navigation root-data-url="app/rest/menu/children/0" parent-data-url="app/rest/menu/children/:id"
                         user-rights="$root.account.moduleRights" security-enabled="securityEnabled"></navigation>
         </div>
