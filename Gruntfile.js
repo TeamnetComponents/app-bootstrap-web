@@ -104,6 +104,16 @@ module.exports = function (grunt) {
 
                 },
                 {
+                    context: '/cfg',
+                    host: MIDDLEWARE_HOST,
+                    port: MIDDLEWARE_PORT,
+                    https: false,
+                    changeOrigin: false,
+                    rewrite: rewriteUrl('cfg')
+
+                },
+
+                {
                     context: '/metrics',
                     host: MIDDLEWARE_HOST,
                     port: MIDDLEWARE_PORT,
