@@ -69,12 +69,16 @@ bootstrapControllers
             $scope.isEdit = true;
         };
 
-        $scope.saveAccount = function(){
-            var moduleRights = [];
-            $scope.selectedModules.forEach(function(module){
-                $scope.selectedModuleRights[module.code].forEach(function(moduleRight){
+        $scope.saveAccount = function() {
+            var moduleRights;
+            $scope.selectedModules.forEach(function(module) {
+                $scope.selectedModuleRights[module.code].forEach(function(moduleRight) {
+                    if(moduleRights === undefined) {
+                        moduleRights = {};
+                    }
+
                     moduleRight.module.moduleRights = undefined;
-                    moduleRights.push(moduleRight);
+                    moduleRights[module.code+'-'+moduleRight.moduleRightCode] = moduleRight;
                 })
             });
 
