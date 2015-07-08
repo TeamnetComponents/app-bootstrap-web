@@ -74,8 +74,16 @@ bootstrapControllers
 
         $scope.saveModule = function(){
             if($scope.selectedModule.id != undefined){
-                Permission.save({moduleId: $scope.selectedModule.id}, $scope.selectedModule, function(){
-                    showSimpleToast('Module updated');
+                Permission.save({moduleId: $scope.selectedModule.id}, $scope.selectedModule, function(data){
+                    var status = "";
+                    for(var i=0;i<2;i++){
+                        status += data[i];
+                    };
+                    if(status!="OK"){
+                        showSimpleToast('Forbidden operation! Module assigned to Roles or Accounts.');
+                    }else{
+                        showSimpleToast('Module updated');
+                    }
                     $scope.backModule();
                 })
             } else {
