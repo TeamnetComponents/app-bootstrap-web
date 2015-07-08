@@ -16,7 +16,10 @@ bootstrapServices.factory('authHttpResponseInterceptor', ['$q', '$location', 'ht
                 return deferred.promise;
             } else if (response.status === 403 && !response.config.ignoreAuthModule) {
                 $rootScope.$broadcast('event:auth-notAuthorized', response);
+                return $q.reject(response);
 
+            }else if(response.status==503){
+               return response || $q.when(response);
             }
             // otherwise, default behaviour
             return $q.reject(response);
