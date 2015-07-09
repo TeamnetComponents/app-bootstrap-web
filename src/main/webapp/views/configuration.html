@@ -1,24 +1,40 @@
-<div>
-    <h2 translate="configuration.title">configuration</h2>
+<div id="page-configuration">
+    <h2 translate="configuration.title" class="page-title">configuration</h2>
 
-    {{'configuration.filter' | translate}} <input type="text" ng-model="filter" class="form-control">
+    <div class="panel panel-default">
+        <form class="form" role="form">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12">
+                        <p class="mt10 mb0">{{'configuration.filter' | translate}}</p>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
+                        <input type="text" ng-model="filter" class="form-control" placeholder="filter the search">
+                    </div>
+                </div>                
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped table-responsive">
+                    <thead>
+                    <tr>
+                        <th ng-click="predicate = 'prefix'; reverse=!reverse" id="prefix-width">{{'configuration.table.prefix' | translate}}</th>
+                        <th id="prop-width">{{'configuration.table.properties' | translate}}</th>
+                    </tr>
+                    </thead>
 
-    <table class="table table-condensed table-striped table-bordered table-responsive">
-        <thead>
-        <tr>
-            <th ng-click="predicate = 'prefix'; reverse=!reverse">{{'configuration.table.prefix' | translate}}</th>
-            <th>{{'configuration.table.properties' | translate}}</th>
-        </tr>
-        </thead>
-
-        <tr ng-repeat="entry in configuration | filter:filter | orderBy:predicate:reverse">
-            <td>{{entry.prefix}}</span></td>
-            <td>
-                <div class="row" ng-repeat="(key, value) in entry.properties">
-                    <div class="col-md-6">{{key}}</div>
-                    <div class="col-md-6"><span class="label label-info">{{value}}</span></div>
-                </div>
-            </td>
-        </tr>
-    </table>
+                    <tr ng-repeat="entry in configuration | filter:filter | orderBy:predicate:reverse">
+                        <td><span><strong>{{entry.prefix}}</strong></span></td>
+                        <td class="fixwidth">
+                            <div class="custom-row" ng-repeat="(key, value) in entry.properties">
+                                {{key}}
+                                <div class="label label-info pull-right">{{value}}</div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
 </div>

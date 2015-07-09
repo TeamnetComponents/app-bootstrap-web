@@ -1,4 +1,233 @@
-<div class="container-fluid">
+<div>
+    <div class="panel panel-default">
+        <form class="form" role="form">
+            <div class="panel-heading">
+                <h4>Roles</h4>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-4">
+                        <div ng-show="!isAdd"
+                             class="list-group" style="max-height: 500px; overflow: auto">
+                            <div class="list-group-item"
+                                 style="cursor: pointer; border-top-right-radius: 0px; border-bottom-right-radius: 0px;"
+                                 ng-repeat="role in roles"
+                                 ng-click="selectRole(role)"
+                                 ng-class="{active:isSelected(role)}">
+                                {{role.description}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-sm-4">
+                           <div class="row m0">
+                               <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Role Code</label>
+                                        <input type="text" class="form-control" ng-model="selectedRole.code" ng-readonly="isView">
+                                    </div>                                   
+                               </div>
+                               <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Role Description</label>
+                                        <input type="text" class="form-control" ng-model="selectedRole.description" ng-readonly="isView">
+                                    </div>                                   
+                               </div>                               
+                           </div>
+                           <div class="row m0">
+                               <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Valid from</label>
+                                        <input type="date" class="form-control" ng-model="selectedRole.validTo" ng-readonly="isView">
+                                    </div>                                   
+                               </div>
+                               <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Valid to</label>
+                                        <input type="date" class="form-control" ng-model="selectedRole.validTo" ng-readonly="isView">
+                                    </div>                                   
+                               </div>                               
+                           </div>
+                           <div class="row m0">
+                               <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Version</label>
+                                        <input type="text" class="form-control" ng-model="selectedRole.version" ng-readonly="isView">
+                                    </div>                                   
+                               </div>
+                               <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Active</label>
+                                        <div class="inline-selects">
+                                            <label class="radio-inline">
+                                              <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Option 1
+                                            </label>
+                                            <label class="radio-inline">
+                                              <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Option 2
+                                            </label>
+                                        </div> 
+                                    </div>                                   
+                               </div>                               
+                           </div>
+                           <div class="row m0">
+                               <div class="col-lg-12">
+                                   <div class="separator mt5 mb15"></div>
+                               </div>
+                           </div>
+                            <div class="row m0">
+                                <div class="col-md-12 text-right mb15">
+
+                                    <button class="btn btn-primary"
+                                               ng-show="isView"
+                                               ng-click="createRole()">
+                                        Create
+                                    </button>
+                                    <button class="btn btn-info"
+                                               ng-show="isView"
+                                               ng-click="editRole()">
+                                        Edit
+                                    </button>
+                                    <button class="btn btn-success"
+                                               ng-show="!isView"
+                                               ng-click="saveRole()">
+                                        Save
+                                    </button>
+                                    <button class="btn btn-danger"
+                                               ng-show="isView || isEdit"
+                                               ng-click="showConfirm($event)">
+                                        Delete
+                                    </button>
+                                    <button class="btn btn-warning"
+                                               ng-show="!isView"
+                                               ng-click="backRole()">
+                                        Back
+                                    </button>                                    
+                                </div>
+                            </div>                            
+                            <div class="row m0">
+                                <div class="col-md-12" ng-include="permissionTpl"></div>
+                            </div>
+                    </div>                                            
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- <div>
+    <div class="panel panel-default">
+        <form class="form" role="form">
+            <div class="panel-heading">
+                <h4>Roles</h4>
+            </div>
+            <div class="panel-body">
+                Nav tabs
+                <ul class="nav nav-tabs" role="tablist" ng-show="!isAdd">
+                    <li role="presentation" 
+                         ng-repeat="role in roles"
+                         ng-click="selectRole(role)"
+                         ng-class="{active:isSelected(role)}"><a href="#{{role.description}}" aria-controls="{{role.description}}" role="tab" data-toggle="tab">
+                        {{role.description}}</a></li>
+
+
+                    Tab panes
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane" id="{{role.description}}" ng-repeat="role in roles" ng-class="{active:isSelected(role)}">
+                           <div class="row m0">
+                               <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Role Code</label>
+                                        <input type="text" class="form-control" ng-model="selectedRole.code" ng-readonly="isView">
+                                    </div>                                   
+                               </div>
+                               <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Role Description</label>
+                                        <input type="text" class="form-control" ng-model="selectedRole.description" ng-readonly="isView">
+                                    </div>                                   
+                               </div>                               
+                           </div>
+                           <div class="row m0">
+                               <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Valid from</label>
+                                        <input type="date" class="form-control" ng-model="selectedRole.validTo" ng-readonly="isView">
+                                    </div>                                   
+                               </div>
+                               <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Valid to</label>
+                                        <input type="date" class="form-control" ng-model="selectedRole.validTo" ng-readonly="isView">
+                                    </div>                                   
+                               </div>                               
+                           </div>
+                           <div class="row m0">
+                               <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Version</label>
+                                        <input type="text" class="form-control" ng-model="selectedRole.version" ng-readonly="isView">
+                                    </div>                                   
+                               </div>
+                               <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Active</label>
+                                        <div class="inline-selects">
+                                            <label class="radio-inline">
+                                              <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Option 1
+                                            </label>
+                                            <label class="radio-inline">
+                                              <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Option 2
+                                            </label>
+                                        </div> 
+                                    </div>                                   
+                               </div>                               
+                           </div>
+                           <div class="row">
+                               <div class="col-lg-12">
+                                   <div class="separator mt5 mb15"></div>
+                               </div>
+                           </div>
+                            <div class="row m0">
+                                <div class="col-md-12 text-right mb15">
+
+                                    <button class="btn btn-primary"
+                                               ng-show="isView"
+                                               ng-click="createRole()">
+                                        Create
+                                    </button>
+                                    <button class="btn btn-info"
+                                               ng-show="isView"
+                                               ng-click="editRole()">
+                                        Edit
+                                    </button>
+                                    <button class="btn btn-success"
+                                               ng-show="!isView"
+                                               ng-click="saveRole()">
+                                        Save
+                                    </button>
+                                    <button class="btn btn-danger"
+                                               ng-show="isView || isEdit"
+                                               ng-click="showConfirm($event)">
+                                        Delete
+                                    </button>
+                                    <button class="btn btn-warning"
+                                               ng-show="!isView"
+                                               ng-click="backRole()">
+                                        Back
+                                    </button>                                    
+                                </div>
+                            </div>                            
+                            <div class="row m0">
+                                <div class="col-md-12" ng-include="permissionTpl"></div>
+                            </div>
+                                                                                 
+                        </div>
+                    </div>                        
+                </ul>
+            </div>
+        </form>
+    </div>
+</div>
+ -->
+<!-- <div class="container-fluid">
     <div id="roleToastr" style="position: fixed;  top: 50px; right: 0px;">
     </div>
     <div class="row">
@@ -80,7 +309,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <!--todo align-->
+                    todo align
                     <div class="col-md-12">
                         <md-button class="md-raised"
                                    ng-show="isView"
@@ -112,4 +341,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

@@ -5,14 +5,10 @@
                                           z-index: 9999"
                           class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
 </div>
-<div class="row" id="body">
-    <div class="custom-col-md" ng-class="{'col-anim': isAdd||isEdit}">
+<div class="row permissions-editor" id="body">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" ng-class="{'col-anim': isAdd||isEdit}">
         <div class="thumbnail">
-            <md-toolbar style="min-height: 0; font-size: 1.2em; z-index: 0">
-                <div>
-                    <input type="text" ng-model="selectedSearch" placeholder="Filter" style="width: 100%; color: #000000">
-                </div>
-            </md-toolbar>
+                <input type="text" class="form-control mb15" ng-model="selectedSearch" placeholder="Filter">
             <md-content>
                 <div data-drop="true"
                      style="min-height: 500px; max-height: 500px;  overflow-y: scroll"
@@ -35,14 +31,10 @@
                                                 onStart: 'startFnc',
                                                 onStop: 'stopFnc'}">
                             <div>
-                                <div class="myClass md-whiteframe-z1 list-group-item btn-draggable"
-                                     style="border-bottom-right-radius: 0;
-                                            border-bottom-left-radius: 0;
-                                             background-color: #F0F0F0;
-                                             border-color: #F0F0F0;">
+                                <div class="myClass md-whiteframe-z1 list-group-item btn-draggable categoryPermission">
                                     {{selectedModule.description}}
                                 </div>
-                                <div class="md-whiteframe-z1 list-group-item btn-draggable"
+                                <div class="md-whiteframe-z1 list-group-item btn-draggable accessPermission"
                                      style=" border-radius: 0px;"
                                      ng-repeat="selectedModuleRight in selectedModuleRights[selectedModule.code]"
                                      ng-show="selectedModuleRight.moduleRightCode"
@@ -66,14 +58,10 @@
             </md-content>
         </div>
     </div>
-    <div ng-show="isAdd || isEdit" style=" margin: 0; padding: 0"
-         class="col-md-6 animate-show">
+    <div ng-show="isAdd || isEdit"
+         class="col-lg-6 col-md-6 col-sm-6 col-xs-12 animate-show">
         <div class="thumbnail">
-            <md-toolbar style="min-height: 0; font-size: 1.2em; z-index: 0">
-                <div>
-                    <input type="text" ng-model="search" placeholder="Filter" style="width: 100%; color: #000000">
-                </div>
-            </md-toolbar>
+            <input type="text" class="form-control mb15" ng-model="search" placeholder="Filter">
             <md-content>
                 <div  style="min-height: 500px; max-height: 500px;  overflow-y: scroll"
                       data-drop="true"
@@ -97,14 +85,10 @@
                                                 onStart: 'startFnc',
                                                 onStop: 'stopFnc'}">
                             <div>
-                                <div class="md-whiteframe-z1 list-group-item btn-draggable"
-                                     style="border-bottom-right-radius: 0;
-                                            border-bottom-left-radius: 0;
-                                             background-color: #f0f0f0;
-                                             border-color: #F0F0F0;">
+                                <div class="md-whiteframe-z1 list-group-item btn-draggable  categoryPermission">
                                     {{module.description}}
                                 </div>
-                                <div class="list-group-item btn-draggable"
+                                <div class="list-group-item btn-draggable accessPermission"
                                      ng-repeat="moduleRight in moduleRights[module.code]"
                                      ng-show="moduleRight.moduleRightCode"
                                      data-drag="isAdd || isEdit"

@@ -2,7 +2,8 @@
 <html>
 <head>
     <title>Swagger UI</title>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
+<!--     <link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/> -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
     <link href='../bower_components/swagger-ui/dist/css/reset.css' media='screen' rel='stylesheet' type='text/css'/>
     <link href='../bower_components/swagger-ui/dist/css/screen.css' media='screen' rel='stylesheet' type='text/css'/>
     <link href='../bower_components/swagger-ui/dist/css/reset.css' media='print' rel='stylesheet' type='text/css'/>
@@ -55,3 +56,28 @@
 <div id="swagger-ui-container" class="swagger-ui-wrap"></div>
 </body>
 </html>
+<style>
+    body{
+        font-family: 'Open Sans', sans-serif !important;
+        color: #333;
+    }
+    h1,h2,h3,h4,h5,h6,a{
+        font-family: 'Open Sans', sans-serif !important;
+    }
+    #swagger-ui-container{
+        padding: 15px;
+        border-radius: 4px;
+        background-color: #fff;
+        max-width: 100%;
+    }
+    .heading h2{
+        font-size: 16px !important;
+    }
+    .heading h2 a{
+        color: #333 !important;
+    }
+.swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.get div.content{
+        border: none !important;
+        background-color: #f4f4f4 !important;
+}    
+</style>

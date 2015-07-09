@@ -7,44 +7,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Teamnet web bootstrap</title>
-
     <meta name="description" content="Teamnet web bootstrap">
 
-    <!-- endbuild -->
-    <link href="/styles/bootstrap.css" rel="stylesheet">
+    <!-- CSS Styles -->
+    <link href="/styles/all.css" rel="stylesheet">
+    <link href="/styles/themes/tdi.css" rel="stylesheet">
+        <!-- CSS Styles for components -->
+        <!--<link href="/bower_components/jquery-ui/themes/base/all.css" rel="stylesheet">-->
+        <!--<link href="/bower_components/fontawesome/css/font-awesome.min.css" rel="stylesheet">-->
+        <!--<link href='http://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'> -->
+        <!--<link href="/bower_components/fancybox/source/jquery.fancybox.css" rel="stylesheet">-->
+        <!--<link href="/bower_components/fullcalendar/dist/fullcalendar.css" rel="stylesheet">-->
+        <!--<link href="/bower_components/ng-xCharts/xcharts.min.css" rel="stylesheet">-->
+        <!--<link href="/bower_components/select2/dist/css/select2.css" rel="stylesheet">-->
+        <!--<link href="/bower_components/Justified-Gallery/dist/css/justifiedGallery.min.css" rel="stylesheet">-->
+        <!--<link href="/bower_components/chartist/dist/chartist.min.css" rel="stylesheet">-->
+        <!--<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">-->
+        <!-- <link href="bower_components/app-menu/dist/styles/main.css" rel="stylesheet"> -->
+        <!-- <link href="bower_components/angular-ui-tree/dist/angular-ui-tree.min.css"rel="stylesheet"> -->
+        <!-- <link href="bower_components/app-menu-admin/dist/styles/main.css" rel="stylesheet"> -->
+         <!--<link href="bower_components/angular-material/angular-material.css" rel="stylesheet">-->
+        <!-- <link href="bower_components/angular-ui-grid/ui-grid.css" rel="stylesheet"> -->
+        <!-- <link href="bower_components/app-grid/dist/styles/main.css" rel="stylesheet"> -->
+        <!-- CSS Styles for components -->
 
-    <link href="/bower_components/jquery-ui/themes/base/all.css" rel="stylesheet">
-    <link href="/bower_components/fontawesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
-    <link href="/bower_components/fancybox/source/jquery.fancybox.css" rel="stylesheet">
-    <link href="/bower_components/fullcalendar/dist/fullcalendar.css" rel="stylesheet">
-    <link href="/bower_components/ng-xCharts/xcharts.min.css" rel="stylesheet">
-    <link href="/bower_components/select2/dist/css/select2.css" rel="stylesheet">
-    <link href="/bower_components/Justified-Gallery/dist/css/justifiedGallery.min.css" rel="stylesheet">
-
-    <link href="/bower_components/chartist/dist/chartist.min.css" rel="stylesheet">
-
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-
-    <link href="bower_components/app-menu/dist/styles/main.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Righteous' rel="stylesheet">
-    <link href="bower_components/angular-ui-tree/dist/angular-ui-tree.min.css" rel="stylesheet">
-    <link href="bower_components/app-menu-admin/dist/styles/main.css" rel="stylesheet">
-
-    <link href="bower_components/angular-material/angular-material.css" rel="stylesheet">
-    <link href="bower_components/angular-ui-grid/ui-grid.css" rel="stylesheet">
-    <link href="bower_components/app-grid/dist/styles/main.css" rel="stylesheet">
-
-    <link href="/styles/main.css" rel="stylesheet">
-
+        <!-- <link href="/styles/main.css" rel="stylesheet"> -->
+        <!-- CSS Styles for components -->
+    <!-- CSS Styles -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
+    <!--
     <script>
         var theme = window.localStorage.getItem('theme') ? window.localStorage.getItem('theme') : 'devoops_v2';
         document.write("<link href='styles/themes/" + theme + ".css' rel='stylesheet' class='theme' />");
     </script>
+    -->
+
+    <!-- Andrei custom style -->
+        <!--<link href="/styles/fonts/style.css" rel="stylesheet">-->
+        <!--<link href="/styles/CSS/theme.css" rel="stylesheet">-->
+        <!--<link href="/styles/CSS/components.css" rel="stylesheet">-->
+        <!--<link href="/styles/CSS/tdi.css" rel="stylesheet">-->
+    <!-- Andrei custom style -->
 </head>
 <body>
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-fixed-top">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -54,20 +60,30 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt=""></a>
+      <a class="navbar-brand" href="index.html"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right" ng-switch="authenticated">
-        <li class="dropdown auth-data-required" ng-if="securityEnabled" ng-switch-when="true"
-            ng-if="isAuthorized(userModules.administration)" ng-controller="AdminController">
-
-            <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                <span class="about" translate="global.menu.admin">Admin</span>
+        <form class="navbar-form navbar-left" role="search" id="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default"></button>
+        </form>
+        <div class="separator"></div>
+        <li><a href="#" class="with-custom-icon"><i class="icon-icon5"></i>Importuri programate</a></li>
+        <div class="separator"></div>
+        <li class="dropdown" ng-if="securityEnabled">
+            <a href="" class="dropdown-toggle with-custom-icon" data-toggle="dropdown">
+                <i class="icon-icon4"></i>
+                Settings
                 <i class="fa fa-angle-down pull-right"></i>
             </a>
+
             <ul class="dropdown-menu">
+                <li class="dropdown-header">Category name</li>
                 <li><a href="#/tracker"><span class="glyphicon glyphicon-eye-open"></span>
                     &nbsp;<span translate="global.menu.account.tracker">User tracking</span></a>
                 </li>
@@ -87,16 +103,8 @@
                     &nbsp;<span translate="global.menu.account.apidocs">API Docs</span></a></li>
                 <li><a href="#/menus"><span class="glyphicon glyphicon-list-alt"></span>
                     &nbsp;<span translate="global.menu.account.menus">Menus</span></a></li>
-            </ul>
-        </li>
-        <li class="dropdown" ng-if="securityEnabled">
-            <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-cogs"></i>
-                <span class="about">Security</span>
-                <i class="fa fa-angle-down pull-right"></i>
-            </a>
-
-            <ul class="dropdown-menu">
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Category name</li>
                 <li>
                     <a href="#">
                         <i class="fa fa-user"></i>
@@ -115,13 +123,9 @@
                         <span translate="global.menu.account.login">Authenticate</span></a>
                     </a>
                 </li>
-                <li ng-switch-when="true">
-                    <a href="#/account">
-                        <i class="fa fa-cog"></i>
-                        <!--todo: Translate-->
-                        <span>Account</span>
-                    </a>
-                </li>
+
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Category name</li>
                 <li ng-switch-when="true">
                     <a href="#/roles">
                         <i class="fa fa-cog"></i>
@@ -142,19 +146,8 @@
                         <span translate="global.menu.account.settings">Settings</span></a>
                     </a>
                 </li>
-                <li ng-switch-when="true">
-                    <a href="#/resetPassword">
-                        <i class="fa fa-cog"></i>
-                        <!--todo: Translate-->
-                        <span>Reset password</span>
-                    </a>
-                </li>
-                <li ng-switch-when="true">
-                    <a href="#/logout">
-                        <i class="fa fa-power-off"></i>
-                        <span translate="global.menu.account.logout">Log out</span>
-                    </a>
-                </li>
+
+
                 <li ng-switch-when="false">
                     <a href="#/register">
                         <i class="fa fa-user"></i>
@@ -163,6 +156,33 @@
                 </li>
             </ul>
         </li>
+        <div class="separator"></div>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle with-user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="images/user.png">User Name <i class="fa fa-angle-down pull-right"></i></a>
+          <ul class="dropdown-menu">
+            <li ng-switch-when="true">
+                <a href="#/account">
+                    <i class="fa fa-cog"></i>
+                    <!--todo: Translate-->
+                    <span>Account</span>
+                </a>
+            </li>
+            <li ng-switch-when="true">
+                <a href="#/resetPassword">
+                    <i class="fa fa-cog"></i>
+                    <!--todo: Translate-->
+                    <span>Reset password</span>
+                </a>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li ng-switch-when="true">
+                <a href="#/logout">
+                    <i class="fa fa-power-off"></i>
+                    <span translate="global.menu.account.logout">Log out</span>
+                </a>
+            </li>
+          </ul>
+        </li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -170,15 +190,15 @@
 <!--Start Container-->
 <div id="main" class="container-fluid">
     <div class="row">
-        <div id="sidebar-left" class="col-xs-2 col-sm-2"  ng-if="authenticated">
+        <div id="sidebar-left" class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  ng-if="authenticated">
             <navigation root-data-url="app/rest/menu/children/0" parent-data-url="app/rest/menu/children/:id"
                         user-rights="$root.account.moduleRights" security-enabled="securityEnabled"></navigation>
         </div>
 
         <!--Start Content-->
-        <div id="content" class="col-xs-10 col-sm-10">
+        <div id="content" class="col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
             <div class="row">
-                <div class="col-md-12 container-fluid " ng-view="" style="margin-top: 35px">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container-fluid " ng-view="">
                 </div>
             </div>
 

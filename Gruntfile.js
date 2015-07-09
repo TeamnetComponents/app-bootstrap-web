@@ -339,7 +339,7 @@ module.exports = function (grunt) {
                  files: {
                      '<%= yeoman.webapp %>/styles/all.css': [
                          '<%= yeoman.webapp %>/styles/bootstrap.css',
-                         '<%= yeoman.webapp %>/bower_components/jquery-ui/themes/start/jquery-ui.min.css',
+                         '<%= yeoman.webapp %>/bower_components/jquery-ui/themes/base/all.css',
                          '<%= yeoman.webapp %>/bower_components/fontawesome/css/font-awesome.min.css',
                          '<%= yeoman.webapp %>/bower_components/fancybox/source/jquery.fancybox.css',
                          '<%= yeoman.webapp %>/bower_components/fullcalendar/dist/fullcalendar.css',
@@ -348,15 +348,19 @@ module.exports = function (grunt) {
                          '<%= yeoman.webapp %>/bower_components/select2/dist/css/select2.min.css',
                          '<%= yeoman.webapp %>/bower_components/selectize/dist/css/selectize.css',
                          '<%= yeoman.webapp %>/bower_components/Justified-Gallery/dist/css/justifiedGallery.min.css',
-                         '<%= yeoman.webapp %>/bower_components/chartist/dist/chartist.min.css',
-                         '<%= yeoman.webapp %>/bower_components/app-menu/dist/styles/main.css',
-                         '<%= yeoman.webapp %>/bower_components/angular-ui-tree/dist/angular-ui-tree.min.css',
-                         '<%= yeoman.webapp %>/bower_components/app-menu-admin/dist/styles/main.css',
+                         //'<%= yeoman.webapp %>/bower_components/chartist/dist/chartist.min.css',
+                         //'<%= yeoman.webapp %>/bower_components/app-menu/dist/styles/main.css',
+                         //'<%= yeoman.webapp %>/bower_components/angular-ui-tree/dist/angular-ui-tree.min.css',
+                         //'<%= yeoman.webapp %>/bower_components/app-menu-admin/dist/styles/main.css',
                          '<%= yeoman.webapp %>/bower_components/angular-material/angular-material.css',
-                         '<%= yeoman.webapp %>/bower_components/angular-ui-grid/ui-grid.css',
-                         '<%= yeoman.webapp %>/bower_components/app-grid/dist/styles/main.css',
-                         '<%= yeoman.webapp %>/bower_components/angular-bootstrap/ui-bootstrap-csp.css',
-                         '<%= yeoman.webapp %>/styles/main.css'
+                         //'<%= yeoman.webapp %>/bower_components/angular-ui-grid/ui-grid.css',
+                         //'<%= yeoman.webapp %>/bower_components/app-grid/dist/styles/main.css',
+                         //'<%= yeoman.webapp %>/bower_components/angular-bootstrap/ui-bootstrap-csp.css',
+                         //'<%= yeoman.webapp %>/styles/main.css',
+                         '<%= yeoman.webapp %>/styles/fonts/style.css',
+                         '<%= yeoman.webapp %>/styles/themes/tdi/theme.css',
+                         '<%= yeoman.webapp %>/styles/themes/tdi/tdi.css',
+                         '<%= yeoman.webapp %>/styles/themes/tdi/components.css'
                      ]
                  }
             }

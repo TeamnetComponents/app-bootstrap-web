@@ -1,4 +1,22 @@
-<div ng-cloak>
+<div ng-clock>
+    <div class="panel panel-default">
+        <form class="form" role="form">
+            <div class="panel-heading">
+                <h4 translate="errors.title">Error Page!</h4>
+            </div>
+            <div class="panel-body">
+                <div ng-switch="authenticated" ng-show="errorMessage">
+                    <div class="alert alert-danger" ng-switch-when="true"
+                         translate="{{errorMessage}}" translate-values="{username: '{{account.login}}'}">
+                        You are logged in as user "Admin".
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- <div ng-cloak>
     <div class="row">
         <div class="col-md-8">
             <h1 translate="errors.title">Error Page!</h1>
@@ -11,4 +29,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
