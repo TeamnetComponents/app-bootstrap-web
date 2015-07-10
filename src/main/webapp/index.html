@@ -12,48 +12,16 @@
     <!-- CSS Styles -->
     <link href="/styles/all.css" rel="stylesheet">
     <link href="/styles/themes/tdi.css" rel="stylesheet">
-    <!-- CSS Styles for components -->
-    <!--<link href="/bower_components/jquery-ui/themes/base/all.css" rel="stylesheet">-->
-    <!--<link href="/bower_components/fontawesome/css/font-awesome.min.css" rel="stylesheet">-->
-    <!--<link href='http://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'> -->
-    <!--<link href="/bower_components/fancybox/source/jquery.fancybox.css" rel="stylesheet">-->
-    <!--<link href="/bower_components/fullcalendar/dist/fullcalendar.css" rel="stylesheet">-->
-    <!--<link href="/bower_components/ng-xCharts/xcharts.min.css" rel="stylesheet">-->
-    <!--<link href="/bower_components/select2/dist/css/select2.css" rel="stylesheet">-->
-    <!--<link href="/bower_components/Justified-Gallery/dist/css/justifiedGallery.min.css" rel="stylesheet">-->
-    <!--<link href="/bower_components/chartist/dist/chartist.min.css" rel="stylesheet">-->
-    <!--<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">-->
-    <!-- <link href="bower_components/app-menu/dist/styles/main.css" rel="stylesheet"> -->
-    <!-- <link href="bower_components/angular-ui-tree/dist/angular-ui-tree.min.css"rel="stylesheet"> -->
-    <!-- <link href="bower_components/app-menu-admin/dist/styles/main.css" rel="stylesheet"> -->
-    <!--<link href="bower_components/angular-material/angular-material.css" rel="stylesheet">-->
-    <!-- <link href="bower_components/angular-ui-grid/ui-grid.css" rel="stylesheet"> -->
-    <!-- <link href="bower_components/app-grid/dist/styles/main.css" rel="stylesheet"> -->
-    <!-- CSS Styles for components -->
-
-    <!-- <link href="/styles/main.css" rel="stylesheet"> -->
-    <!-- CSS Styles for components -->
     <!-- CSS Styles -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext'
           rel='stylesheet' type='text/css'>
-    <!--
-    <script>
-        var theme = window.localStorage.getItem('theme') ? window.localStorage.getItem('theme') : 'devoops_v2';
-        document.write("<link href='styles/themes/" + theme + ".css' rel='stylesheet' class='theme' />");
-    </script>
-    -->
-
-    <!-- Andrei custom style -->
-    <!--<link href="/styles/fonts/style.css" rel="stylesheet">-->
-    <!--<link href="/styles/CSS/theme.css" rel="stylesheet">-->
-    <!--<link href="/styles/CSS/components.css" rel="stylesheet">-->
-    <!--<link href="/styles/CSS/tdi.css" rel="stylesheet">-->
     <!-- Andrei custom style -->
     <link href="bower_components/angular-ui-grid/ui-grid.css" rel="stylesheet">
     <!-- de vazut unde-l bagam vio -->
 
 </head>
 <body>
+
 <nav class="navbar navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -80,7 +48,7 @@
                 <div class="separator"></div>
                 <li><a href="#" class="with-custom-icon"><i class="icon-icon5"></i>Importuri programate</a></li>
                 <div class="separator"></div>
-                <li class="dropdown" ng-if="securityEnabled">
+                <li class="dropdown" ng-if="securityEnabled"  ng-switch-when="false">
                     <a href="" class="dropdown-toggle with-custom-icon" data-toggle="dropdown">
                         <i class="icon-icon4"></i>
                         Settings
@@ -88,59 +56,70 @@
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li class="dropdown-header"  ng-switch-when="false">Public account</li>
-                        <li ng-switch-when="false">
+                        <li class="dropdown-header"  >Public account</li>
+                        <li >
                             <a href="#/login">
                                 <i class="fa fa-tasks"></i>
                                 <span translate="global.menu.account.login">Authenticate</span></a>
                             </a>
                         </li>
-                        <li ng-switch-when="false">
+                        <li >
                             <a href="#/register">
                                 <i class="fa fa-user"></i>
                                 <span translate="global.menu.account.register">Register</span>
                             </a>
                         </li>
+                    </ul>
+                </li>
+                <li class="dropdown" ng-if="securityEnabled && isInRoles(['ROLE_ADMIN'])">
+                    <a href="" class="dropdown-toggle with-custom-icon" data-toggle="dropdown">
+                        <i class="icon-icon4"></i>
+                        Settings
+                        <i class="fa fa-angle-down pull-right"></i>
+                    </a>
+
+                    <ul class="dropdown-menu">
+
                         <li class="dropdown-header" ng-switch-when="true">Administration</li>
                         <li ng-switch-when="true">
                             <a href="#/tracker" ><span class="glyphicon glyphicon-eye-open"></span>
-                            &nbsp;<span translate="global.menu.account.tracker">User tracking</span>
+                                &nbsp;<span translate="global.menu.account.tracker">User tracking</span>
                             </a>
                         </li>
                         <li  ng-switch-when="true">
                             <a href="#/metrics"><span class="glyphicon glyphicon-dashboard"></span>
-                            &nbsp;<span translate="global.menu.account.metrics">Metrics</span>
+                                &nbsp;<span translate="global.menu.account.metrics">Metrics</span>
                             </a>
                         </li>
                         <li  ng-switch-when="true">
                             <a href="#/health"><span class="glyphicon glyphicon-heart"></span>
-                            &#xA0;<span translate="global.menu.account.health">Health</span>
+                                &#xA0;<span translate="global.menu.account.health">Health</span>
                             </a>
                         </li>
                         <li  ng-switch-when="true">
                             <a href="#/configuration"><span class="glyphicon glyphicon-list-alt"></span>
-                            &#xA0;<span
-                                    translate="global.menu.account.configuration">Configuration</span>
+                                &#xA0;<span
+                                        translate="global.menu.account.configuration">Configuration</span>
                             </a>
                         </li>
                         <li  ng-switch-when="true">
                             <a href="#/audits"><span class="glyphicon glyphicon-bell"></span>
-                            &nbsp;<span translate="global.menu.account.audits">Audits</span>
+                                &nbsp;<span translate="global.menu.account.audits">Audits</span>
                             </a>
                         </li>
                         <li  ng-switch-when="true">
                             <a href="#/logs"><span class="glyphicon glyphicon-tasks"></span>
-                            &nbsp;<span translate="global.menu.account.logs">Logs</span>
+                                &nbsp;<span translate="global.menu.account.logs">Logs</span>
                             </a>
                         </li>
                         <li  ng-switch-when="true">
                             <a href="#/docs"><span class="glyphicon glyphicon-book"></span>
-                            &nbsp;<span translate="global.menu.account.apidocs">API Docs</span>
+                                &nbsp;<span translate="global.menu.account.apidocs">API Docs</span>
                             </a>
                         </li>
                         <li  ng-switch-when="true">
                             <a href="#/menus"><span class="glyphicon glyphicon-list-alt"></span>
-                            &nbsp;<span translate="global.menu.account.menus">Menus</span>
+                                &nbsp;<span translate="global.menu.account.menus">Menus</span>
                             </a>
                         </li>
                         <li  ng-switch-when="true">
@@ -149,9 +128,6 @@
                                 <span translate="global.menu.account.sessions">Sessions</span></a>
                             </a>
                         </li>
-
-
-
                         <li  role="separator" class="divider" ng-switch-when="true"></li>
                         <li  class="dropdown-header"  ng-switch-when="true">Security</li>
                         <li  ng-switch-when="true">
@@ -175,26 +151,18 @@
                                 <span>Permissions</span>
                             </a>
                         </li>
-
-
                     </ul>
                 </li>
                 <div class="separator"  ng-switch-when="true"></div>
                 <li class="dropdown" ng-switch-when="true">
                     <a href="#" class="dropdown-toggle with-user" data-toggle="dropdown" role="button"
-                       aria-haspopup="true" aria-expanded="false"><img src="images/user.png">User Name <i
+                       aria-haspopup="true" aria-expanded="false"><img src="images/user.png">{{account.firstName}}&nbsp;{{account.lastName}} <i
                             class="fa fa-angle-down pull-right"></i></a>
                     <ul class="dropdown-menu" >
                         <li>
                             <a href="#/settings">
                                 <i class="fa fa-cog"></i>
-                                <span translate="global.menu.account.settings">Settings</span></a>
-                            </a>
-                        </li>
-                        <li >
-                            <a href="#">
-                                <i class="fa fa-user"></i>
-                                <span>Profile</span>
+                                <span translate="global.menu.account.settings">Profile</span></a>
                             </a>
                         </li>
                         <li>
@@ -265,7 +233,6 @@
 <script src="scripts/constants/USER_ROLES.js"></script>
 <script src="scripts/constants/AUTH_BOOTSTRAP.js"></script>
 <script src="scripts/constants/MESSAGES.js"></script>
-
 
 <script src="bower_components/angular-ui-select/dist/select.js"></script>
 <script src="bower_components/select2/dist/js/select2.full.min.js"></script>
@@ -351,4 +318,5 @@
 <script src="bower_components/ngDraggable/ngDraggable.js"></script>
 <script src="scripts/angular-loader.js"></script>
 </body>
+
 </html>

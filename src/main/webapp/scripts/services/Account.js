@@ -12,6 +12,9 @@ bootstrapServices.factory('Account',['$resource', function ($resource) {
         'updateAccount': {
             url: 'app/rest/adminAccount/updateAccount',
             method: 'POST'
+        },'updateCurrentAccount':{
+            url:'/app/rest/account/update',
+            method:'PUT'
         }
     });
 }]);

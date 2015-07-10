@@ -8,7 +8,7 @@ bootstrapControllers.controller('SettingsController',['$scope', 'Account', funct
         $scope.success = null;
         $scope.error = null;
         $scope.errorEmailExists = null;
-        Account.save($scope.settingsAccount,
+        Account.updateCurrentAccount($scope.settingsAccount,
             function (value, responseHeaders) {
                 $scope.error = null;
                 $scope.success = 'OK';

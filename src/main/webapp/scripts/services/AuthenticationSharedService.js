@@ -12,7 +12,7 @@ bootstrapServices.factory('AuthenticationSharedService', ['$rootScope', '$http',
                 }).success(function (data, status, headers, config) {
                     Account.get(function (data) {
                         Session.create(data.login, data.firstName, data.lastName, data.email, data.roles, data.gender, data.moduleRights);
-                        $rootScope.account = Session;
+                        $rootScope.c = Session;
 
                         authService.loginConfirmed(data);
                     });
@@ -79,21 +79,20 @@ bootstrapServices.factory('AuthenticationSharedService', ['$rootScope', '$http',
                 return isAuthorized;
             },
             isInRoles: function (roles) {
-
+                var isInRoles=false;
                 angular.forEach(roles, function (role) {
 
                     if (!!Session.login) {
 
                         angular.forEach(Session.userRoles, function (role_) {
                             if (angular.equals(role_.code, role)) {
-                                return true;
+                                isInRoles=isInRoles|| true;
                             }
                         });
                     }
 
-                    return false;
-
                 });
+                return isInRoles;
             },
             logout: function () {
                 $rootScope.authenticationError = false;
