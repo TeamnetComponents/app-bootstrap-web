@@ -1,5 +1,7 @@
 bootstrapControllers
-    .controller('PermissionsController',['$scope', '$http','$mdDialog', '$mdToast', '$animate', 'Permission', function($scope, $http, $mdDialog, $mdToast, $animate, Permission){
+    .controller('PermissionsController',['$scope', '$rootScope', '$http','$mdDialog', '$mdToast', '$animate', 'Permission',
+        function($scope, $rootScope, $http, $mdDialog, $mdToast, $animate, Permission){
+
         var baseTemplateUrl = 'views/permissions/template/';
         $scope.moduleRightsTpl = baseTemplateUrl + 'moduleRights.tpl.html';
 
@@ -128,12 +130,10 @@ bootstrapControllers
             $scope.isAdd = false;
             $scope.isEdit = false;
 
-            Permission.getAllModulesWithModuleRights({}, function(res){
-                $scope.modules = angular.copy(res);
-                if(!_.isEmpty($scope.modules)){
-                    $scope.selectModule($scope.modules[0]);
-                }
-            });
+            $scope.modules = angular.copy($rootScope.modules);
+            if(!_.isEmpty($scope.modules)){
+                $scope.selectModule($scope.modules[0]);
+            }
 
             Permission.getModuleRightCodes({}, function(res){
                 $scope.allModuleRights = angular.copy(res);
