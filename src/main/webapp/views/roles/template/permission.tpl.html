@@ -18,8 +18,8 @@
                     <div ng-repeat="selectedModule in selectedModules | filter: {description: selectedSearch}">
                         <div class="list-group"
                              data-drag="isAdd || isEdit"
-                             ng-model='selectedModuleRights[selectedModule.code]'
-                             ng-show='selectedModuleRights[selectedModule.code].length !== 0'
+                             ng-model='selectedModule.moduleRights'
+                             ng-show='selectedModule.moduleRights.length > 0'
                              drag-list="true"
                              data-jqyoui-options="{revert: 'invalid',
                                                    helper: 'clone',
@@ -36,10 +36,10 @@
                                 </div>
                                 <div class="md-whiteframe-z1 list-group-item btn-draggable accessPermission"
                                      style=" border-radius: 0px;"
-                                     ng-repeat="selectedModuleRight in selectedModuleRights[selectedModule.code]"
+                                     ng-repeat="selectedModuleRight in selectedModule.moduleRights"
                                      ng-show="selectedModuleRight.moduleRightCode"
                                      data-drag="isAdd || isEdit"
-                                     ng-model='selectedModuleRights[selectedModule.code]'
+                                     ng-model='selectedModule.moduleRights'
                                      data-jqyoui-options="{revert: 'invalid',
                                                            helper: 'clone',
                                                            appendTo: 'body',
@@ -72,8 +72,8 @@
                     <div class="list-group" ng-repeat="module in modules | filter: {description: search}">
                         <div class="list-group btn-draggable"
                              data-drag="isAdd || isEdit"
-                             ng-model='moduleRights[module.code]'
-                             ng-show='moduleRights[module.code].length !== 0'
+                             ng-model='module.moduleRights'
+                             ng-show='module.moduleRights.length > 0'
                              drag-list="true"
                              data-jqyoui-options="{revert: 'invalid',
                                                    helper: 'clone',
@@ -89,10 +89,10 @@
                                     {{module.description}}
                                 </div>
                                 <div class="list-group-item btn-draggable accessPermission"
-                                     ng-repeat="moduleRight in moduleRights[module.code]"
+                                     ng-repeat="moduleRight in module.moduleRights"
                                      ng-show="moduleRight.moduleRightCode"
                                      data-drag="isAdd || isEdit"
-                                     ng-model='moduleRights[module.code]'
+                                     ng-model='module.moduleRights'
                                      data-jqyoui-options="{revert: 'invalid',
                                                            helper: 'clone',
                                                            appendTo: 'body',
