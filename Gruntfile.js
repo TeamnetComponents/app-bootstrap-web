@@ -3,7 +3,7 @@
 
 var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
 
-var contextPath = '/demo-run';
+var contextPath = '/tdi';
 
 var MIDDLEWARE_HOST = '10.6.33.102';
 var MIDDLEWARE_PORT = 8282;
@@ -32,7 +32,7 @@ function rewriteSetCookie(req, res, next) {
             if (cookie) {
                 res.setHeader('Set-Cookie', cookie.map(function (item) {
                     // Replace paths in all cookies. The simple string/replace approach might be too naive in some cases, so check before you copy&paste before thinking
-                    return item.replace(/\/demo-run/, '');
+                    return item.replace(/\/tdi/, '');
                 }));
             }
             oldWriteHead.apply(res, arguments);
