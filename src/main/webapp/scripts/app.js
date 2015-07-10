@@ -233,6 +233,7 @@ bootstrapApp
         if($rootScope.securityEnabled){
             $rootScope.$on('$routeChangeStart', function (event, next) {
                 $rootScope.isAuthorized = AuthenticationSharedService.isAuthorized;
+                $rootScope.isInRoles = AuthenticationSharedService.isInRoles;
                 $rootScope.userModules = AUTH_BOOTSTRAP;
 //                if(next.access!=undefined&&next.access.authorizedModules!=undefined&&next.access.authorizedModules.length>0&&next.access.authorizedModules[0]!='*'){
                 AuthenticationSharedService.valid(next.access.authorizedModules);
