@@ -74,17 +74,18 @@ bootstrapControllers
             };
 
             $scope.saveRole = function() {
-                var moduleRights = {};
+                var moduleRights = [];
                 $scope.selectedModules.forEach(function(module) {
                     module.moduleRights.forEach(function(moduleRight) {
                         moduleRight.module.moduleRights = undefined;
-                        moduleRights[module.code+'-'+moduleRight.moduleRightCode] = moduleRight;
+                        //moduleRights[module.code+'-'+moduleRight.moduleRightCode] = moduleRight;
+                        moduleRights.push(moduleRight);
                     })
                 });
 
                 $scope.selectedRole.moduleRights = moduleRights;
                 if($scope.selectedRole.id !== undefined){
-                    Role.update($scope.selectedRole, function (value) {
+                    Role.update({roleId: $scope.selectedRole.id},$scope.selectedRole, function (value) {
                         showSimpleToast('Role updated');
                         $scope.selectedRole.id = value.id;
                         $scope.backRole();
