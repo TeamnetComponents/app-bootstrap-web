@@ -69,7 +69,12 @@ module.exports = function (grunt) {
                     'src/main/webapp/**/*.json',
                     '.tmp/styles/**/*.css',
                     '{.tmp/,}src/main/webapp/scripts/**/*.js',
-                    'src/main/webapp/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
+                    'src/main/webapp/images/**/*.{png,jpg,jpeg,gif,webp,svg}',
+
+                    '../app-scheduler-ui/src/main/webapp/scheduler/**/*.{html,json,js,css,png,jpg,jpeg,gif,webp,svg}',
+                    '../tdi-ui/src/main/webapp/**/*.{html,json,js,css,png,jpg,jpeg,gif,webp,svg}',
+                    '../tdi-csvimp-plugin-ui/src/main/webapp/csvimp-plugin/**/*.{html,json,js,css,png,jpg,jpeg,gif,webp,svg}',
+                    '../tdi-history-ui/src/main/webapp/history/**/*.{html,json,js,css,png,jpg,jpeg,gif,webp,svg}'
                 ]
             }
         },
@@ -193,6 +198,10 @@ module.exports = function (grunt) {
                         overlays.push(connect.static('.tmp'));
                         overlays.push(connect.static('src/main/webapp/'));
 
+                        overlays.push(connect.static('../tdi-ui/src/main/webapp'));
+                        overlays.push(connect.static('../app-scheduler-ui/src/main/webapp'));
+                        overlays.push(connect.static('../tdi-csvimp-plugin-ui/src/main/webapp'));
+                        overlays.push(connect.static('../tdi-history-ui/src/main/webapp'));
 
                         return overlays;
                     }
@@ -352,15 +361,15 @@ module.exports = function (grunt) {
                          //'<%= yeoman.webapp %>/bower_components/app-menu/dist/styles/main.css',
                          //'<%= yeoman.webapp %>/bower_components/angular-ui-tree/dist/angular-ui-tree.min.css',
                          //'<%= yeoman.webapp %>/bower_components/app-menu-admin/dist/styles/main.css',
-                         '<%= yeoman.webapp %>/bower_components/angular-material/angular-material.css',
+                         //'<%= yeoman.webapp %>/bower_components/angular-material/angular-material.css',
                          //'<%= yeoman.webapp %>/bower_components/angular-ui-grid/ui-grid.css',
                          //'<%= yeoman.webapp %>/bower_components/app-grid/dist/styles/main.css',
                          //'<%= yeoman.webapp %>/bower_components/angular-bootstrap/ui-bootstrap-csp.css',
                          //'<%= yeoman.webapp %>/styles/main.css',
-                         '<%= yeoman.webapp %>/styles/fonts/style.css',
-                         '<%= yeoman.webapp %>/styles/themes/tdi/theme.css',
-                         '<%= yeoman.webapp %>/styles/themes/tdi/tdi.css',
-                         '<%= yeoman.webapp %>/styles/themes/tdi/components.css'
+                         //'<%= yeoman.webapp %>/styles/fonts/style.css',
+                         //'<%= yeoman.webapp %>/styles/themes/tdi/theme.css',
+                         //'<%= yeoman.webapp %>/styles/themes/tdi/tdi.css',
+                         //'<%= yeoman.webapp %>/styles/themes/tdi/components.css'
                      ]
                  }
             }

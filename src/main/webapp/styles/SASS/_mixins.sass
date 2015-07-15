@@ -1,0 +1,43 @@
+=icomoon($icon, $size, $position: "before")
+	&:#{$position}
+		font-family: 'icomoon'
+		content: '\e#{$icon}'
+		display: inline-block
+		speak: none
+		font-size: $size
+		font-style: normal
+		font-weight: normal
+		font-variant: normal
+		text-transform: none
+		line-height: 1
+		-webkit-font-smoothing: antialiased
+		-moz-osx-font-smoothing: grayscale
+		@content
+=placeholder ($color)
+	&::-webkit-input-placeholder
+		color: $color
+		@content
+	&::-moz-placeholder
+		color: $color
+		@content
+	&:-moz-placeholder
+		color: $color
+		@content
+	&:-ms-input-placeholder
+		color: $color
+		@content
+=rez($class)
+	@if $class == xs
+		@media (max-width: 767px)
+			@content
+	@else if $class == sm
+		@media (min-width: 768px) and (max-width: 991px)
+			@content
+	@else if $class == md
+		@media (min-width: 992px) and (max-width: 1199px)
+			@content
+	@else if $class == lg
+		@media (min-width: 1200px)
+			@content 
+	@else
+		@warn "Breakpoint mixin supports: xs, sm, md, lg"

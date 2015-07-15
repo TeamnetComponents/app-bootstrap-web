@@ -1,0 +1,237 @@
+/* line 7, ../SASS/tdi.sass */
+.step-progress {
+  color: #2ecc71;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: -40px;
+}
+
+/* line 13, ../SASS/tdi.sass */
+.step-layout {
+  padding: 15px 0;
+  border-radius: 4px;
+  background-color: #e0e0e0;
+  border-bottom: 5px solid #cbcbcb;
+  margin-bottom: 15px;
+}
+/* line 19, ../SASS/tdi.sass */
+.step-layout .icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  position: relative;
+}
+@media (max-width: 767px) {
+  /* line 19, ../SASS/tdi.sass */
+  .step-layout .icon {
+    margin: 0 auto;
+    margin-bottom: 30px;
+  }
+}
+/* line 27, ../SASS/tdi.sass */
+.step-layout .icon.orange {
+  background-color: #f39200;
+}
+/* line 29, ../SASS/tdi.sass */
+.step-layout .icon.red {
+  background-color: #e7332a;
+}
+/* line 31, ../SASS/tdi.sass */
+.step-layout .icon.blue {
+  background-color: #009dc5;
+}
+/* line 33, ../SASS/tdi.sass */
+.step-layout .icon.green {
+  background-color: #008d36;
+}
+/* line 35, ../SASS/tdi.sass */
+.step-layout .icon.blue2 {
+  background-color: #1b337c;
+}
+/* line 37, ../SASS/tdi.sass */
+.step-layout .icon.purple {
+  background-color: #662383;
+}
+/* line 39, ../SASS/tdi.sass */
+.step-layout .icon:before {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.12);
+  display: inline-block;
+  width: 64px;
+  height: 32px;
+  border-radius: 64px 64px 0 0;
+  transform: rotate(-150deg);
+  margin-top: 30px;
+  margin-left: -8px;
+}
+/* line 49, ../SASS/tdi.sass */
+.step-layout .icon.icon1:after {
+  content: "";
+  width: 64px;
+  height: 64px;
+  background-image: url("../img/icon1.png");
+  display: inline-block;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  left: 0;
+  top: 0;
+}
+/* line 60, ../SASS/tdi.sass */
+.step-layout .icon.icon2:after {
+  content: "";
+  width: 64px;
+  height: 64px;
+  background-image: url("../img/icon2.png");
+  display: inline-block;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  left: 0;
+  top: 0;
+}
+/* line 71, ../SASS/tdi.sass */
+.step-layout .icon.icon3:after {
+  content: "";
+  width: 64px;
+  height: 64px;
+  background-image: url("../img/icon3.png");
+  display: inline-block;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  left: 0;
+  top: 0;
+}
+/* line 82, ../SASS/tdi.sass */
+.step-layout .icon.icon4:after {
+  content: "";
+  width: 64px;
+  height: 64px;
+  background-image: url("../img/icon4.png");
+  display: inline-block;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  left: 0;
+  top: 0;
+}
+/* line 93, ../SASS/tdi.sass */
+.step-layout .icon.icon5:after {
+  content: "";
+  width: 64px;
+  height: 64px;
+  background-image: url("../img/icon5.png");
+  display: inline-block;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  left: 0;
+  top: 0;
+}
+/* line 104, ../SASS/tdi.sass */
+.step-layout .icon.icon6:after {
+  content: "";
+  width: 64px;
+  height: 64px;
+  background-image: url("../img/icon6.png");
+  display: inline-block;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  left: 0;
+  top: 0;
+}
+/* line 115, ../SASS/tdi.sass */
+.step-layout .about {
+  padding-right: 170px;
+  cursor: pointer;
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  /* line 115, ../SASS/tdi.sass */
+  .step-layout .about {
+    padding-left: 25px;
+    padding-right: 30px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  /* line 115, ../SASS/tdi.sass */
+  .step-layout .about {
+    padding-left: 35px;
+    padding-right: 80px;
+  }
+}
+@media (max-width: 767px) {
+  /* line 115, ../SASS/tdi.sass */
+  .step-layout .about {
+    padding-right: 85px;
+  }
+}
+/* line 126, ../SASS/tdi.sass */
+.step-layout .about p {
+  margin-bottom: 0;
+  line-height: 1.2;
+}
+/* line 129, ../SASS/tdi.sass */
+.step-layout .about p.title {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+/* line 135, ../SASS/tdi.sass */
+.step-layout.completed .step-desc {
+  background-image: url("../img/success.png");
+  background-repeat: no-repeat;
+  background-position: 98% 50%;
+  background-position: calc(100% - 15px) 50%;
+}
+/* line 140, ../SASS/tdi.sass */
+.step-layout.notcompleted .step-desc {
+  background-image: url("../img/success2.png");
+  background-repeat: no-repeat;
+  background-position: 98% 50%;
+  background-position: calc(100% - 15px) 50%;
+}
+/* line 145, ../SASS/tdi.sass */
+.step-layout.error .step-desc {
+  background-image: url("../img/error.png");
+  background-repeat: no-repeat;
+  background-position: 98% 50%;
+  background-position: calc(100% - 15px) 50%;
+}
+@media (max-width: 767px) {
+  /* line 151, ../SASS/tdi.sass */
+  .step-layout.completed .step-desc, .step-layout.notcompleted .step-desc, .step-layout.error .step-desc {
+    background-position: 98% 120px;
+    background-position: calc(100% - 15px) 120px;
+  }
+}
+/* line 154, ../SASS/tdi.sass */
+.step-layout.active.completed .step-desc, .step-layout.active.notcompleted .step-desc, .step-layout.active.error .step-desc {
+  background-position: 98% 30%;
+  background-position: calc(100% - 15px) calc(50% - 7px);
+}
+/* line 157, ../SASS/tdi.sass */
+.step-layout.active {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+/* line 160, ../SASS/tdi.sass */
+.step-layout.active .step-desc {
+  border-bottom: 5px solid #cbcbcb;
+  padding-bottom: 15px;
+}
+/* line 163, ../SASS/tdi.sass */
+.step-layout .step-content {
+  background-color: #f4f4f4;
+  padding: 15px 0;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+/* line 169, ../SASS/tdi.sass */
+.step-layout:not(.active) .step-content {
+  display: none;
+}
