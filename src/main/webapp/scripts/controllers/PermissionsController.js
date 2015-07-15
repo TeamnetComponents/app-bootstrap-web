@@ -1,6 +1,6 @@
 bootstrapControllers
-    .controller('PermissionsController',['$scope', '$rootScope', '$http','$mdDialog', '$mdToast', '$animate', 'Permission',
-        function($scope, $rootScope, $http, $mdDialog, $mdToast, $animate, Permission){
+    .controller('PermissionsController',['$scope', '$rootScope', '$http','$mdDialog', '$mdToast', '$animate', 'Permission','Permissions',
+        function($scope, $rootScope, $http, $mdDialog, $mdToast, $animate, Permission,Permissions){
 
         var baseTemplateUrl = 'views/permissions/template/';
         $scope.moduleRightsTpl = baseTemplateUrl + 'moduleRights.tpl.html';
@@ -84,6 +84,7 @@ bootstrapControllers
                     if(status!="OK"){
                         showSimpleToast('Forbidden operation! Module assigned to Roles or Accounts.');
                     }else{
+                        Permissions.refreshAdminModules();
                         showSimpleToast('Module updated');
                     }
                     $scope.backModule();
@@ -130,7 +131,7 @@ bootstrapControllers
             $scope.isAdd = false;
             $scope.isEdit = false;
 
-            $scope.modules = angular.copy($rootScope.modules);
+            $scope.modules = angular.copy(window.localStorage.getObj('modules'));
             if(!_.isEmpty($scope.modules)){
                 $scope.selectModule($scope.modules[0]);
             }
