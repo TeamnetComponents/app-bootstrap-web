@@ -2,8 +2,8 @@
  * Created by mihai.vaduva on 1/30/15.
  */
 bootstrapControllers
-    .controller('RolesController',['$scope', '$http', '$q', '$mdDialog','$mdToast', '$animate','Role', 'Permission',
-        function($scope, $http, $q, $mdDialog, $mdToast, $animate, Role, Permission){
+    .controller('RolesController',['$scope', '$http', '$q', '$mdDialog','Notification', '$animate','Role',
+        function($scope, $http, $q, $mdDialog, Notification, $animate, Role){
 
             var baseTemplateUrl = 'views/roles/template/';
             $scope.permissionTpl = baseTemplateUrl + 'permission.tpl.html';
@@ -86,13 +86,13 @@ bootstrapControllers
                 $scope.selectedRole.moduleRights = moduleRights;
                 if($scope.selectedRole.id !== undefined){
                     Role.update({roleId: $scope.selectedRole.id},$scope.selectedRole, function (value) {
-                        showSimpleToast('Role updated');
+                        Notification.success('Role updated');
                         $scope.selectedRole.id = value.id;
                         $scope.backRole();
                     });
                 }else{
                     Role.save($scope.selectedRole, function (value) {
-                        showSimpleToast('Role saved');
+                        Notification.success('Role saved');
                         $scope.selectedRole.id = value.id;
                         getRoles().then($scope.backRole);
                     });
@@ -101,7 +101,7 @@ bootstrapControllers
 
             $scope.deleteRole = function(){
                 Role.delete({roleId: $scope.selectedRole.id}, function(){
-                    showSimpleToast('Role deleted');
+                    Notification.success('Role deleted');
                     init();
                 });
             };
@@ -174,16 +174,6 @@ bootstrapControllers
                     function() {
                         console.log('Canceled')
                     });
-            };
-
-            var showSimpleToast = function(message) {
-                $mdToast.show(
-                    $mdToast.simple()
-                        .content(message)
-                        .position('top right')
-                        .parent(angular.element('#roleToastr'))
-                        .hideDelay(1500)
-                );
             };
 
             var clearSelectedModuleRights = function(){

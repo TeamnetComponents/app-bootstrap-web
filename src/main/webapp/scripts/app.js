@@ -10,14 +10,14 @@ var bootstrapApp = angular.module('bootstrapApp', ['http-auth-interceptor', 'tmh
     'ngResource', 'ngRoute', 'ngCookies', 'bootstrapAppUtils', 'pascalprecht.translate',
     'truncate', 'ngCacheBuster','bootstrapControllers','bootstrapServices','bootstrapDirectives','bootstrapConstants',
     'angular-component.app-grid', 'angular-components.app-menu', 'angular-components.app-menu-admin', 'ui.tree', 'ngMaterial',
-    'ngDragDrop', 'ui.select', 'ngSanitize']);
+    'ngDragDrop', 'ui.select', 'ngSanitize', 'ui-notification']);
 
 angular.element(document).ready(function () {
     angularCustomLoader.loadApp(bootstrapApp);
 });
 
 bootstrapApp
-    .config(function ($routeProvider, $httpProvider, $translateProvider, tmhDynamicLocaleProvider, httpRequestInterceptorCacheBusterProvider, AUTH_BOOTSTRAP) {
+    .config(function ($routeProvider, $httpProvider, $translateProvider, tmhDynamicLocaleProvider, httpRequestInterceptorCacheBusterProvider, AUTH_BOOTSTRAP, NotificationProvider) {
 
         //Cache everything except rest api requests
         httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*rest.*/], true);
@@ -222,6 +222,16 @@ bootstrapApp
 
         tmhDynamicLocaleProvider.localeLocationPattern('bower_components/angular-i18n/angular-locale_{{locale}}.js');
         tmhDynamicLocaleProvider.useCookieStorage('NG_TRANSLATE_LANG_KEY');
+
+        NotificationProvider.setOptions({
+            delay: 10000,
+            startTop: 20,
+            startRight: 10,
+            verticalSpacing: 20,
+            horizontalSpacing: 20,
+            positionX: 'left',
+            positionY: 'bottom'
+        });
     })
     .run(function ($rootScope, $location, $http, AuthenticationSharedService, Session, AUTH_BOOTSTRAP) {
         $rootScope.authenticated = false;
