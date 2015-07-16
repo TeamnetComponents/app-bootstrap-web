@@ -2,8 +2,8 @@
  * Created by mihai.vaduva on 1/30/15.
  */
 bootstrapControllers
-    .controller('RolesController',['$scope', '$http', '$q', '$mdDialog','Notification', '$animate','Role',
-        function($scope, $http, $q, $mdDialog, Notification, $animate, Role){
+    .controller('RolesController',['$scope', '$http', '$q','Notification', '$animate','Role',
+        function($scope, $http, $q, Notification, $animate, Role){
 
             var baseTemplateUrl = 'views/roles/template/';
             $scope.permissionTpl = baseTemplateUrl + 'permission.tpl.html';
@@ -164,16 +164,9 @@ bootstrapControllers
             };
 
             $scope.showConfirm = function(ev) {
-                var confirm = $mdDialog.confirm()
-                    .title('Are you sure you want to delete ' + $scope.selectedRole.description + ' ?')
-                    .ok('Delete')
-                    .cancel('Cancel')
-                    .targetEvent(ev);
-                $mdDialog.show(confirm).then(
-                    $scope.deleteRole,
-                    function() {
-                        console.log('Canceled')
-                    });
+                if (confirm('Are you sure you want to delete ' + $scope.selectedRole.description + '?') ) {
+                    $scope.deleteRole();
+                }
             };
 
             var clearSelectedModuleRights = function(){

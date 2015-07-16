@@ -1,6 +1,6 @@
 bootstrapControllers
-    .controller('PermissionsController',['$scope', '$rootScope', '$http','$mdDialog', 'Notification', '$animate', 'Permission','Permissions',
-        function($scope, $rootScope, $http, $mdDialog, Notification, $animate, Permission,Permissions){
+    .controller('PermissionsController',['$scope', '$rootScope', '$http', 'Notification', '$animate', 'Permission','Permissions',
+        function($scope, $rootScope, $http, Notification, $animate, Permission, Permissions){
 
         var baseTemplateUrl = 'views/permissions/template/';
         $scope.moduleRightsTpl = baseTemplateUrl + 'moduleRights.tpl.html';
@@ -114,16 +114,9 @@ bootstrapControllers
         };
 
         $scope.showConfirm = function(ev) {
-            var confirm = $mdDialog.confirm()
-                .title('Are you sure you want to delete ' + $scope.selectedModule.description + ' ?')
-                .ok('Delete')
-                .cancel('Cancel')
-                .targetEvent(ev);
-            $mdDialog.show(confirm).then(
-                $scope.deleteModule,
-                function() {
-                    console.log('Canceled')
-                });
+            if(confirm('Are you sure you want to delete ' + $scope.selectedModule.description + ' ?')) {
+                $scope.deleteModule();
+            }
         };
 
         var init = function(){

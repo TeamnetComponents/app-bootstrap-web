@@ -9,7 +9,7 @@ function changeTheme(theme) {
 var bootstrapApp = angular.module('bootstrapApp', ['http-auth-interceptor', 'tmh.dynamicLocale',
     'ngResource', 'ngRoute', 'ngCookies', 'bootstrapAppUtils', 'pascalprecht.translate',
     'truncate', 'ngCacheBuster','bootstrapControllers','bootstrapServices','bootstrapDirectives','bootstrapConstants',
-   'angular-components.app-menu', 'angular-components.app-menu-admin', 'ui.tree', 'ngMaterial',
+   'angular-components.app-menu', 'angular-components.app-menu-admin', 'ui.tree',
     'ngDragDrop', 'ui.select', 'ngSanitize', 'ui-notification']);
 
 angular.element(document).ready(function () {
