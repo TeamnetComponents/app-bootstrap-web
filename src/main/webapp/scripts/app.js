@@ -2,14 +2,14 @@
 
 /* App Module */
 function changeTheme(theme) {
-    angular.element('.theme').attr("href", "styles/themes/" + theme + ".css");
+    angular.element('.theme-stylesheet').attr("href", "/bower_components/app-theme/dist/themes/" + theme + ".css");
     window.localStorage.setItem('theme', theme);
 }
 
 var bootstrapApp = angular.module('bootstrapApp', ['http-auth-interceptor', 'tmh.dynamicLocale',
     'ngResource', 'ngRoute', 'ngCookies', 'bootstrapAppUtils', 'pascalprecht.translate',
     'truncate', 'ngCacheBuster','bootstrapControllers','bootstrapServices','bootstrapDirectives','bootstrapConstants',
-    'angular-component.app-grid', 'angular-components.app-menu', 'angular-components.app-menu-admin', 'ui.tree', 'ngMaterial',
+   'angular-components.app-menu', 'angular-components.app-menu-admin', 'ui.tree', 'ngMaterial',
     'ngDragDrop', 'ui.select', 'ngSanitize', 'ui-notification']);
 
 angular.element(document).ready(function () {
