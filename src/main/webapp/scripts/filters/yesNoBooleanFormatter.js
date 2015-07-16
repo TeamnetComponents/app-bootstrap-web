@@ -12,6 +12,8 @@ bootstrapFilters
                 return boolLabels[someBooleanValue.toLowerCase() === 'true' || someBooleanValue === '1'];
             if (typeof(someBooleanValue) === 'number')
                 return boolLabels[someBooleanValue === 1];
+            if (someBooleanValue === undefined || someBooleanValue === null)
+                return "N/A";
             return someBooleanValue;
         }
     });
