@@ -7,8 +7,8 @@ function changeTheme(theme) {
 }
 
 var bootstrapApp = angular.module('bootstrapApp', ['http-auth-interceptor', 'tmh.dynamicLocale',
-    'ngResource', 'ngRoute', 'ngCookies', 'bootstrapAppUtils', 'pascalprecht.translate',
-    'truncate', 'ngCacheBuster','bootstrapControllers','bootstrapServices','bootstrapDirectives','bootstrapConstants',
+    'ngResource', 'ngRoute', 'ngCookies', 'bootstrapAppUtils', 'pascalprecht.translate', 'truncate', 'ngCacheBuster',
+    'bootstrapControllers','bootstrapServices','bootstrapDirectives','bootstrapConstants', 'bootstrapFilters',
     'angular-component.app-grid', 'angular-components.app-menu', 'angular-components.app-menu-admin', 'ui.tree',
     'ngDragDrop', 'ui.select', 'ngSanitize', 'ui-notification', 'angular-ui-confirm','ui.bootstrap.datetimepicker',
     'ui.bootstrap.datepicker']);
@@ -18,8 +18,8 @@ angular.element(document).ready(function () {
 });
 
 bootstrapApp
-    .config(function ($routeProvider, $httpProvider, $translateProvider, tmhDynamicLocaleProvider, httpRequestInterceptorCacheBusterProvider, AUTH_BOOTSTRAP, NotificationProvider,datepickerPopupConfig) {
-        datepickerPopupConfig.datepickerPopup='dd.MM.yyyy';
+    .config(function ($routeProvider, $httpProvider, $translateProvider, tmhDynamicLocaleProvider, httpRequestInterceptorCacheBusterProvider, AUTH_BOOTSTRAP, NotificationProvider) {
+
         //Cache everything except rest api requests
         httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*rest.*/], true);
         $httpProvider.interceptors.push('authHttpResponseInterceptor');
