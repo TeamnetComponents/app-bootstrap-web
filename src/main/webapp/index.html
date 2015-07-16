@@ -17,6 +17,8 @@
     <!-- CSS Styles -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
 
+    <link href="bower_components/angular-ui-grid/ui-grid.css" rel="stylesheet">
+    <link href="bower_components/angular-bootstrap-datetimepicker/src/css/datetimepicker.css" rel="stylesheet">
 
     <script>
         var theme = window.localStorage.getItem('theme') ? window.localStorage.getItem('theme') : 'tdi';
@@ -262,6 +264,9 @@
 
 <script src="bower_components/angular-ui-select/dist/select.js"></script>
 <script src="bower_components/select2/dist/js/select2.full.min.js"></script>
+<script src="bower_components/angular-ui-grid/ui-grid.js"></script>
+<script src="bower_components/file-saver.js/FileSaver.js"></script>
+<script src="bower_components/app-grid/dist/app-grid.js"></script>
 <script src="bower_components/app-menu/dist/app-menu.js"></script>
 
 <script src="scripts/controllers/bootstrapControllers.js"></script>
@@ -324,12 +329,13 @@
 <script src="bower_components/moment/min/moment.min.js"></script>
 <script src="bower_components/underscore/underscore-min.js"></script>
 <script src="bower_components/hammerjs/hammer.js"></script>
+<script src="bower_components/angular-material/angular-material.js"></script>
 <script src="bower_components/angular-aria/angular-aria.js"></script>
 <script src="bower_components/angular-animate/angular-animate.js"></script>
 <script src="bower_components/angular-messages/angular-messages.js"></script>
 <script src="bower_components/angular-ui-grid/ui-grid.js"></script>
-<script src="bower_components/file-saver.js/FileSaver.js"/>
-<script src="bower_components/app-grid/dist/app-grid.js"></script>
+
+
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
 
@@ -341,11 +347,21 @@
 <script src="scripts/libs/angular-dragdrop.js"></script>
 <!--<script src="bower_components/angular-dragdrop/src/angular-dragdrop.min.js"></script>-->
 <script src="bower_components/ngDraggable/ngDraggable.js"></script>
-
-<script src="bower_components/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
-
 <script src="scripts/angular-loader.js"></script>
+<script src="bower_components/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
+<script type="text/javascript" src="bower_components/moment/moment.js"></script>
+<script type="text/javascript" src="bower_components/moment/locale/ro.js"></script>
+<script type="text/javascript" src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+
+<style>
+    .datetimepicker {
+        width: 400px;
+    }
+
+
+</style>
 <script src="http://code.shutterstock.com/rickshaw/vendor/d3.v3.js"></script>
 <script src="http://code.shutterstock.com/rickshaw/rickshaw.min.js"></script>
 </body>
+
 </html>
