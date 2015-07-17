@@ -10,7 +10,7 @@ var bootstrapApp = angular.module('bootstrapApp', ['http-auth-interceptor', 'tmh
     'ngResource', 'ngRoute', 'ngCookies', 'bootstrapAppUtils', 'pascalprecht.translate',
     'truncate', 'ngCacheBuster','bootstrapControllers','bootstrapServices','bootstrapDirectives','bootstrapConstants',
     'angular-component.app-grid', 'angular-components.app-menu', 'angular-components.app-menu-admin', 'ui.tree', 'ngMaterial',
-    'ngDragDrop', 'ui.select', 'ngSanitize']);
+    'ngDragDrop', 'ui.select','ui.select2' ,'ngSanitize']);
 
 angular.element(document).ready(function () {
     angularCustomLoader.loadApp(bootstrapApp);
