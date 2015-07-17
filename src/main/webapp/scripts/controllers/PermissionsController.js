@@ -1,6 +1,6 @@
 bootstrapControllers
-    .controller('PermissionsController',['$scope', '$rootScope', '$http','$mdDialog', '$mdToast', '$animate', 'Permission',
-        function($scope, $rootScope, $http, $mdDialog, $mdToast, $animate, Permission){
+    .controller('PermissionsController',['$scope', '$rootScope', '$http', 'Notification', '$animate', 'Permission','Permissions',
+        function($scope, $rootScope, $http, Notification, $animate, Permission, Permissions){
 
         var baseTemplateUrl = 'views/permissions/template/';
         $scope.moduleRightsTpl = baseTemplateUrl + 'moduleRights.tpl.html';
@@ -82,15 +82,16 @@ bootstrapControllers
                         status += data[i];
                     };
                     if(status!="OK"){
-                        showSimpleToast('Forbidden operation! Module assigned to Roles or Accounts.');
+                        Notification.error('Forbidden operation! Module assigned to Roles or Accounts.');
                     }else{
-                        showSimpleToast('Module updated');
+                        Permissions.refreshAdminModules();
+                        Notification.success('Module updated');
                     }
                     $scope.backModule();
                 })
             } else {
                 // todo fix in java
-                showSimpleToast('todo:Fix save module');
+                Notification.error('todo:Fix save module');
                 $scope.backModule();
                 /*Permission.save($scope.selectedModule, function (value, responseHeaders) {
                  showSimpleToast('Module saved');
@@ -107,22 +108,15 @@ bootstrapControllers
         $scope.deleteModule = function(){
             // todo fix in java
             Permission.delete({moduleId: $scope.selectedModule.id}, function(){
-                showSimpleToast('Module deleted');
+                Notification.success('Module deleted');
                 init();
             });
         };
 
         $scope.showConfirm = function(ev) {
-            var confirm = $mdDialog.confirm()
-                .title('Are you sure you want to delete ' + $scope.selectedModule.description + ' ?')
-                .ok('Delete')
-                .cancel('Cancel')
-                .targetEvent(ev);
-            $mdDialog.show(confirm).then(
-                $scope.deleteModule,
-                function() {
-                    console.log('Canceled')
-                });
+            if(confirm('Are you sure you want to delete ' + $scope.selectedModule.description + ' ?')) {
+                $scope.deleteModule();
+            }
         };
 
         var init = function(){
@@ -130,7 +124,7 @@ bootstrapControllers
             $scope.isAdd = false;
             $scope.isEdit = false;
 
-            $scope.modules = angular.copy($rootScope.modules);
+            $scope.modules = angular.copy(window.localStorage.getObj('modules'));
             if(!_.isEmpty($scope.modules)){
                 $scope.selectModule($scope.modules[0]);
             }
@@ -138,16 +132,6 @@ bootstrapControllers
             Permission.getModuleRightCodes({}, function(res){
                 $scope.allModuleRights = angular.copy(res);
             });
-        };
-
-        var showSimpleToast = function(message) {
-            $mdToast.show(
-                $mdToast.simple()
-                    .content(message)
-                    .position('top right')
-                    .parent(angular.element('#permissionToastr'))
-                    .hideDelay(1500)
-            );
         };
 
         var clearState = function(){

@@ -10,18 +10,21 @@
     <meta name="description" content="Teamnet web bootstrap">
 
     <!-- CSS Styles -->
-    <link href="/styles/all.css" rel="stylesheet">
-    <link href="/styles/themes/tdi.css" rel="stylesheet">
-    <!-- CSS Styles -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext'
-          rel='stylesheet' type='text/css'>
-    <!-- Andrei custom style -->
-    <link href="bower_components/angular-ui-grid/ui-grid.css" rel="stylesheet">
-    <!-- de vazut unde-l bagam vio -->
+    <link href="/bower_components/app-theme/dist/bower_components.css" rel="stylesheet">
+    <link href="/bower_components/app-theme/dist/themes/tdi.css" rel="stylesheet" class="theme-stylesheet">
 
+
+    <!-- CSS Styles -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
+
+    <script>
+        var theme = window.localStorage.getItem('theme') ? window.localStorage.getItem('theme') : 'tdi';
+        window.localStorage.setItem('theme', theme);
+
+        document.write("<link href='/bower_components/app-theme/dist/themes/" + theme + ".css' rel='stylesheet' class='theme-stylesheet' />");
+    </script>
 </head>
 <body>
-
 <nav class="navbar navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -45,6 +48,28 @@
                     </div>
                     <button type="submit" class="btn btn-default"></button>
                 </form>
+                <div class="separator"></div>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle with-custom-icon" data-toggle="dropdown">
+                        <i class="fa fa-cogs"></i>&nbsp;Themes<i class="fa fa-angle-down pull-right"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#" onclick="changeTheme('tdi')">
+                                <i class="fa fa-picture-o"></i>
+                                <span>TDI</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="changeTheme('tni')">
+                                <i class="fa fa-picture-o"></i>
+                                <span>TNI (default)</span></a>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
                 <div class="separator"></div>
                 <li><a href="#" class="with-custom-icon"><i class="icon-icon5"></i>Importuri programate</a></li>
                 <div class="separator"></div>
@@ -237,7 +262,8 @@
 <script src="bower_components/angular-ui-select/dist/select.js"></script>
 <script src="bower_components/select2/dist/js/select2.full.min.js"></script>
 <script src="bower_components/angular-ui-grid/ui-grid.js"></script>
-<script src="bower_components/app-grid/src/app-grid.js"></script>
+<script src="bower_components/file-saver.js/FileSaver.js"></script>
+<script src="bower_components/app-grid/dist/app-grid.js"></script>
 <script src="bower_components/app-menu/dist/app-menu.js"></script>
 
 <script type="text/javascript" src="bower_components/angular-ui-select2/src/select2.js"></script>
@@ -283,6 +309,7 @@
 <script src="scripts/services/MessagesService.js"></script>
 <script src="scripts/services/Role.js"></script>
 <script src="scripts/services/Permission.js"></script>
+<script src="scripts/services/Permissions.js"></script>
 <script src="scripts/directives/bootstrapDirectives.js"></script>
 <script src="scripts/directives/activeLink.js"></script>
 <script src="scripts/directives/activeMenu.js"></script>
@@ -290,6 +317,11 @@
 <script src="scripts/directives/passwordStrengthBar.js"></script>
 <script src="scripts/directives/showValidation.js"></script>
 <script src="scripts/services/httpResponseInterceptor.js"></script>
+
+<script src="scripts/filters/bootstrapFilters.js"></script>
+<script src="scripts/filters/simpleDateFormatter.js"></script>
+<script src="scripts/filters/simpleDateTimeFormatter.js"></script>
+<script src="scripts/filters/yesNoBooleanFormatter.js"></script>
 
 <script src="bower_components/atmosphere/atmosphere.js"></script>
 <script src="bower_components/jquery-atmosphere/jquery.atmosphere.js"></script>
@@ -306,7 +338,8 @@
 <script src="bower_components/angular-animate/angular-animate.js"></script>
 <script src="bower_components/angular-messages/angular-messages.js"></script>
 <script src="bower_components/angular-ui-grid/ui-grid.js"></script>
-<script src="bower_components/app-grid/dist/app-grid.js"></script>
+
+
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
 
@@ -319,6 +352,29 @@
 <!--<script src="bower_components/angular-dragdrop/src/angular-dragdrop.min.js"></script>-->
 <script src="bower_components/ngDraggable/ngDraggable.js"></script>
 <script src="scripts/angular-loader.js"></script>
-</body>
+<script src="bower_components/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
+<script src="bower_components/angular-ui-confirm/angular-ui-confirm.min.js"></script>
+<script type="text/javascript" src="bower_components/moment/moment.js"></script>
+<script type="text/javascript" src="bower_components/moment/locale/ro.js"></script>
+<script type="text/javascript" src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
 
+<script src="http://code.shutterstock.com/rickshaw/vendor/d3.v3.js"></script>
+<script src="http://code.shutterstock.com/rickshaw/rickshaw.min.js"></script>
+</body>
+<style>
+    .datetimepicker {
+        width: 400px;
+    }
+    .dropdown-menu table tbody tr td{
+        padding: 3px !important;
+    }
+    .dropdown-menu table tbody tr td .btn-default{
+        background-color: #fff !important;
+        border: 1px solid #ccc !important;
+    }
+    .dropdown-menu table thead button{
+        background-color: #fff !important;
+    }
+
+</style>
 </html>

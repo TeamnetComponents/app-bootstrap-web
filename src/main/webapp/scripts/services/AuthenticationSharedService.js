@@ -1,5 +1,5 @@
-bootstrapServices.factory('AuthenticationSharedService',['$rootScope', '$http', 'authService', 'Session', 'Account', 'Permission',
-    function ($rootScope, $http, authService, Session, Account, Permission) {
+bootstrapServices.factory('AuthenticationSharedService',['$rootScope', '$http', 'authService', 'Session', 'Account', 'Permissions',
+    function ($rootScope, $http, authService, Session, Account, Permissions) {
     return {
         login: function (param) {
             var data ="j_username=" + encodeURIComponent(param.username) +"&j_password=" +
@@ -13,37 +13,11 @@ bootstrapServices.factory('AuthenticationSharedService',['$rootScope', '$http', 
                 Account.get(function(data) {
                     Session.create(data.login, data.firstName, data.lastName, data.email, data.roles,data.gender, data.moduleRights);
                     $rootScope.account = Session;
-
+                    Permissions.refreshAdminModules();
                     authService.loginConfirmed(data);
                 });
 
-                Permission.getAllModulesWithModuleRights({}, function(res){
-                    var modules = angular.copy(res);
-                    var moduleRights = {};
-                    for(var i=0; i<modules.length; i++) {
-                        var thisModule = modules[i];
-                        var thisModuleRights = thisModule.moduleRights;
 
-                        for(var j=0; j<thisModuleRights.length; j++) {
-                            var moduleRight = thisModuleRights[j];
-
-                            var module = {};
-                            for(var prop in thisModule) {
-                                if(prop == 'moduleRights') {
-                                    continue;
-                                }
-
-                                module[prop] = thisModule[prop];
-                            }
-
-                            moduleRight['module'] = module;
-                            moduleRights[moduleRight.id] = moduleRight;
-                        }
-                    }
-
-                    window.localStorage.setObj('modules', modules);
-                    window.localStorage.setObj('moduleRights', moduleRights);
-                });
             }).error(function (data, status, headers, config) {
                 $rootScope.authenticationError = true;
                 Session.invalidate();

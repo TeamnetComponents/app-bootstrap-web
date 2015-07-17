@@ -1,0 +1,790 @@
+////////// Imports //////////
+@import "compass"
+@import "mixins"
+@import "classes"
+@import "variables"
+////////// Imports //////////
+/////////////// Theme ////////////////
+html, body
+	height: 100%
+body
+	font-family: $font !important
+	color: $black !important
+	font-size: 12px
+	overflow-x: hidden !important
+a:focus
+	outline: none
+a
+	transition: all 0.3s ease-in
+h1, h2, h3, h4, h5, h6
+	text-transform: uppercase
+	font-weight: 800
+h1
+	font-size: 18px
+h2
+	font-size: 16px
+h3
+	font-size: 14px
+h4, h5, h6
+	font-size: 12px					
+/////////////// Top bar navigation ////////////////	
+nav.navbar
+	border: none
+	border-radius: 0
+	margin-bottom: 0
+	background-color: $white
+	border-bottom: 1px solid $red
+	a.navbar-brand
+		width: 120px
+		height: 25px
+		padding: 0
+		margin: 12px 15px 12px 0 !important
+		background-image: url($logo)
+	.separator
+		width: 1px
+		height: 50px
+		background-color: $light-grey
+		float: left
+	.navbar-form
+		position: relative
+		margin: 11px 10px
+		border: 0
+		padding: 0
+		input.form-control
+			border-radius: $border-radius
+			border: none
+			box-shadow: none
+			background-color: $light-grey
+			height: 28px
+			font-size: 12px
+			width: 180px
+			color: $black
+			@include placeholder ($black)
+		button
+			border: none
+			margin-right: 0
+			position: absolute
+			right: 0
+			top: 0
+			padding: 5px 6px
+			line-height: 1
+			background-color: transparent
+			transition: all 0.3s ease-in
+			@include icomoon('\e600', 17px)
+			&:hover
+				color: $red
+			&:focus
+				outline: none
+	ul.navbar-nav
+		a
+			font-size: 12px
+			color: $black
+			&:hover, &:active
+				background-color: #f1eeee
+				[class^="icon-"], [class*=" icon-"]
+					color: $red
+			&.with-custom-icon
+				padding-left: 50px	
+			[class^="icon-"], [class*=" icon-"]
+				font-size: 26px
+				position: absolute
+				left: 15px
+				top: 12px
+				color: $dark-grey
+				transition: all 0.3s ease-in
+			&.with-user
+				padding-left: 60px
+				img
+					border-radius: 50%
+					position: absolute
+					left: 15px
+					top: 11px	
+		li.active a		
+			background-color: $red
+			color: $white		
+			[class^="icon-"], [class*=" icon-"]
+				color: $white
+		a.dropdown-toggle i.fa-angle-down
+			margin-top: 4px
+			margin-left: 7px
+			color: $black
+	ul.dropdown-menu
+		box-shadow: none
+		border-color: $light-grey
+		border-top: 1px solid transparent
+		a
+			padding: 5px 15px
+		.divider
+			margin: 3px 0	
+	.dropdown-header
+		font-weight: 600
+		color: $red
+		padding: 5px 15px
+		padding-bottom: 2px	
+/////////////// Sidebar navigation ////////////////											
+#sidebar-left
+	height: 100%
+	position: fixed
+	background-color: $light-grey
+	padding: 0
+	z-index: 1
+	ul.main-menu
+		margin-top: 15px
+		li
+			min-height: 25px
+			margin-bottom: 15px
+			display: inline-block
+			width: 100%
+			a
+				height: 25px
+				width: 100%
+				display: block
+				line-height: 25px
+				font-size: 12px
+				color: $black
+				font-weight: 600
+				position: relative
+				padding: 0
+				padding-left: 55px
+				cursor: pointer
+				i.fa
+					display: flex
+					justify-content: center
+					align-items: center
+					position: absolute
+					left: 15px
+					height: 25px
+					width: 25px
+					background-color: $dark-grey
+					border-radius: $border-radius
+					color: $light-grey
+					font-weight: 300
+					transition: all 0.3s ease-in
+					&:before
+						font-size: 16px
+				&:focus
+					background-color: transparent
+					text-decoration: none
+				&:hover
+					background-color: transparent
+					text-decoration: none
+					i.fa
+						background-color: $red
+			.dropdown-menu
+				display: block
+				position: relative
+				box-shadow: none
+				border: 0
+				left: auto
+				top: auto
+				width: 100%
+				min-width: 0
+				border-radius: 0
+				margin-top: 15px
+				background-color: $dark-grey
+				background-image: url('../img/dots.png')
+				background-repeat: repeat-y
+				background-size: auto
+				background-position: 25px 1px
+				ul.main-menu
+					margin-top: 5px
+					margin-bottom: 5px
+				li
+					margin-bottom: 0
+				a
+					color: $white
+					position: relative
+					&:after
+						content: ''
+						width: 6px
+						height: 6px
+						background-color: $red
+						border-radius: 50%
+						position: absolute
+						left: 24px
+						top: 10px 
+					&:before
+						content: ''
+						width: 10px
+						height: 10px
+						background-color: $medium-grey
+						border-radius: 50%
+						position: absolute
+						left: 22px
+						top: 8px
+						transition: all 0.3s ease-in
+					&:hover
+						text-decoration: none
+						&:before
+							background-color: $red	 
+					i
+						display: none
+.separator
+	width: 100%
+	height: 1px
+	background-color: $medium-grey												
+/////////////// Content ////////////////							
+#main
+	padding-top: 50px
+#content
+	padding-top: 15px
+	#page-login
+		margin-left: -16.66667%
+	#page-configuration
+		#prefix-width
+			width: 300px
+		#prop-width
+			width: 700px
+		.fixwidth
+			max-width: 700px
+		.custom-row
+			display: block
+			line-height: 1.8
+			margin-bottom: 5px
+			.label
+				max-width: 350px
+				word-wrap: break-word
+				white-space: normal
+				text-align: left
+				font-size: 12px
+				line-height: 1.2
+				font-weight: 400
+		.custom-row:last-child
+			margin-bottom: 0		
+	
+/////////////// Bootstrap standard components ////////////////
+/////////////// Forms ////////////////	
+.form-group
+	position: relative
+	label
+		font-size: 12px
+		font-weight: 400
+		padding-left: 8px
+		margin-bottom: 8px
+	.form-control
+		font-size: 12px
+		color: $input-color
+		padding: $input-padding
+		border: $input-border
+		background-color: $input-bg
+		box-shadow: none
+		border-radius: $border-radius
+		@include placeholder (lighten($black, 40%))
+	&.has-success
+		.form-control
+			box-shadow: none
+			animation: success-border 2.5s
+			animation-iteration-count: 1
+			animation-fill-mode: forwards		
+		&:before
+			content: '\f00c'
+			display: inline-block
+			font-family: FontAwesome
+			font-style: normal
+			font-weight: normal
+			line-height: 1
+			-webkit-font-smoothing: antialiased
+			-moz-osx-font-smoothing: grayscale
+			position: absolute
+			right: 10px
+			top: 34px
+			font-size: 18px
+			color: $success
+			animation: success-icon 2.5s
+			animation-iteration-count: 1
+			animation-fill-mode: forwards																		
+	&.has-error
+		.form-control
+			box-shadow: none
+			animation: error-border 2.5s
+			animation-iteration-count: 1
+			animation-fill-mode: forwards		
+		&:before
+			content: '\f00d'
+			display: inline-block
+			font-family: FontAwesome
+			font-style: normal
+			font-weight: normal
+			line-height: 1
+			-webkit-font-smoothing: antialiased
+			-moz-osx-font-smoothing: grayscale
+			position: absolute
+			right: 10px
+			top: 34px
+			font-size: 18px
+			color: $danger
+			animation: error-icon 2.5s
+			animation-iteration-count: 1
+			animation-fill-mode: forwards		
+textarea
+	resize: none
+.full-width
+	width: 100%
+i.css-icon
+	position: absolute
+	right: 15px
+	top: 32px
+	font-size: 20px
+	color: $input-color
+.inline-selects
+	display: block
+	margin-top: 7px
+	padding-left: 20px
+	.radio-inline, .checkbox-inline
+		margin-right: 15px
+		line-height: 20px				
+.form-control
+	font-size: 12px
+	color: $input-color
+	padding: $input-padding
+	border: $input-border
+	background-color: $input-bg
+	box-shadow: none
+	border-radius: $border-radius
+	transition: border 0.3s ease-in
+	@include placeholder (lighten($black, 40%))	
+.form-control:active, .form-control:focus
+	outline: none
+	box-shadow: none
+	border: 1px solid $medium-grey
+.input-group-addon
+	font-size: 12px
+	color: $white
+	padding: $input-padding
+	border: 1px solid $red
+	background-color: $red
+/////////////// Tabel ////////////////	
+table
+	background-color: $white
+	border-radius: $border-radius
+	margin-bottom: 0
+	thead th
+		font-size: 12px
+		font-weight: 800
+		text-transform: uppercase
+		border-bottom: 1px solid #cbcbcb !important
+		padding: 15px !important
+		line-height: 1 !important
+	tbody
+		tr td
+			padding: 15px !important
+			line-height: 1 !important
+			font-size: 12px
+	.progress
+		margin-bottom: 0
+		&.small-homepage
+			height: 10px
+	.progress-status
+		color: #8b8a8a
+		margin-top: 10px
+		span
+			font-weight: 600		
+	p.row-title
+		text-transform: uppercase
+		margin-bottom: 5px
+		line-height: 1
+		font-weight: 400
+	p.small
+		color: #8b8a8a
+		margin-bottom: 0
+		line-height: 1		
+/////////////// Panel ////////////////	
+.panel
+	background-color: #f4f4f4
+	border-radius: $border-radius
+	border: none
+	box-shadow: none	
+	.panel-heading
+		background-color: $light-grey
+		padding: 15px 20px
+		border-bottom: 3px solid $medium-grey
+		h1,h2,h3,h4,h5,h6
+			margin: 0
+			padding: 0
+			border: none	
+	&.custom
+		margin-bottom: 15px
+		.panel-heading
+			padding: 15px 20px
+			background-color: $light-grey
+			border-bottom: none
+			border-radius: $border-radius
+			h4
+				font-size: 14px
+				font-weight: 400
+				text-transform: none
+				a:hover, a:active, a:focus
+					text-decoration: none
+		.panel-body
+			background-color: #f4f4f4
+			p
+				font-size: 12px
+				color: #8b8a8a
+				margin-bottom: 10px
+				line-height: 1.2
+				span
+					color: $black
+					font-weight: 600
+	&.visible
+		.panel-heading
+			background-color: $dark-grey
+			color: $white							 
+	table
+		background-color: $white
+		border-radius: $border-radius
+		margin-bottom: 0
+		thead th
+			font-size: 12px
+			font-weight: 800
+			text-transform: uppercase
+			border-bottom: 1px solid #cbcbcb !important
+			padding: 15px !important
+			line-height: 1 !important
+		tbody
+			tr td
+				padding: 15px !important
+				line-height: 1 !important
+				font-size: 12px
+.page-title
+	font-size: 16px
+	margin: 20px 20px 25px 20px	
+.semititle
+	border-bottom: 1px solid #cbcbcb
+	padding-bottom: 5px
+	margin-bottom: 15px						
+/////////////// Alerts ////////////////	
+.alert
+	border-radius: $border-radius
+	border-style: solid
+	border-top-width: 1px
+	border-left-width: 1px
+	border-right-width: 1px
+	border-bottom-width: 3px
+	&.alert-success
+		border-color: $success
+		background-color: lighten($success, 45%)
+		color: darken($success, 20%)
+		a
+			color: darken($success, 30%)
+			font-weight: 600
+	&.alert-warning
+		border-color: $warning
+		background-color: lighten($warning, 40%)
+		color: darken($warning, 20%)
+		a
+			color: darken($warning, 30%)
+			font-weight: 600
+	&.alert-info
+		border-color: $info
+		background-color: lighten($info, 40%)
+		color: darken($info, 20%)
+		a
+			color: darken($info, 30%)
+			font-weight: 600
+	&.alert-danger
+		border-color: $danger
+		background-color: lighten($danger, 40%)
+		color: darken($danger, 20%)
+		a
+			color: darken($danger, 30%)
+			font-weight: 600
+/////////////// Buttons ////////////////						
+.btn
+	border: none
+	border-radius: $border-radius
+	font-size: 12px
+	text-transform: uppercase
+	letter-spacing: 1px
+	font-weight: 800
+	padding: 10px 15px
+	line-height: 1
+.btn-default
+	background-color: #ddd
+	color: $black
+	&:hover
+		background-color: darken(#ddd, 10%)	
+.btn-primary
+	background-color: $primary
+	color: $white
+	&:hover
+		background-color: darken($primary, 10%)	
+.btn-danger
+	background-color: $danger
+	color: $white
+	&:hover
+		background-color: darken($danger, 10%)		
+.btn-info
+	background-color: $info
+	color: $white
+	&:hover
+		background-color: darken($info, 10%)		
+.btn-success
+	background-color: $success
+	color: $white
+	&:hover
+		background-color: darken($success, 10%)		
+.btn-warning
+	background-color: $warning
+	color: $white
+	&:hover
+		background-color: darken($warning, 10%)		
+.btn-xs
+	padding: 5px
+	font-weight: 600
+	border-radius: $border-radius
+	line-height: 1
+	font-size: 10px
+/////////////// Progress ////////////////	
+.progress
+	background-color: #e2e1e2
+	box-shadow: none
+.progress-bar-success
+	background-color: $success				
+.progress-bar-warning
+	background-color: $warning
+.progress-bar-info
+	background-color: $info
+.progress-bar-danger
+	background-color: $danger
+.progress-bar
+	box-shadow: none
+	font-weight: 600
+/////////////// Modal ////////////////
+.modal-backdrop
+	position: fixed
+.modal-backdrop.in
+	height: 100%
+	opacity: 0.65
+.modal-header
+	background-color: $light-grey
+	padding: 15px 20px
+	border-bottom: 3px solid $medium-grey
+	border-top-left-radius: $border-radius
+	border-top-right-radius: $border-radius
+	position: relative	
+	h1,h2,h3,h4,h5,h6
+		margin: 0
+		padding: 0
+		border: none
+		padding-left: 36px
+		i
+			font-size: 28px
+			position: absolute
+			left: 20px
+			top: 10px
+			color: $dark-grey
+	span.light
+		font-weight: 600	
+.modal-body
+	background-color: #f4f4f4
+.modal-footer
+	background-color: #f4f4f4
+	border-top: 1px solid $medium-grey
+	border-bottom-left-radius: $border-radius
+	border-bottom-right-radius: $border-radius
+/////////////// Tabs ////////////////
+.nav-tabs
+	li
+		&.active
+			a
+				color: $red !important
+				&:hover
+					color: $red !important
+		a
+			background-color: $light-grey
+			color: $dark-grey
+			font-weight: 600
+			&:hover
+				color: $red
+
+.tab-content
+	.tab-pane
+		padding: 15px 0
+		background-color: $white
+		border-bottom-left-radius: $border-radius
+		border-bottom-right-radius: $border-radius
+		border: 1px solid #ddd
+		border-top: none
+	>.active
+		display: inline-block
+		width: 100%	
+.list-group-item
+	outline: none
+	&:focus, &:active
+		outline: none
+.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus
+	background-color: $red
+	border-color: $red
+	outline: none														
+/////////////// Homepage ////////////////
+.statistic-box
+	height: 95px
+	position: relative
+	transition: all 0.3s ease-in
+	margin-bottom: 30px
+	path
+		transition: all 0.3s ease-in
+	&.yellow
+		background-color: $box-yellow
+		path
+			fill: darken($box-yellow, 7%)
+	&.red
+		background-color: $box-red
+		path
+			fill: darken($box-red, 7%)
+	&.blue
+		background-color: $box-blue
+		path
+			fill: darken($box-blue, 7%)
+	&.green
+		background-color: $box-green
+		path
+			fill: darken($box-green, 7%)
+	&:hover
+		&.yellow
+			background-color: darken($box-yellow, 3%)
+			path
+				fill: darken($box-yellow, 10%)
+		&.red
+			background-color: darken($box-red, 3%)
+			path
+				fill: darken($box-red, 10%)
+		&.blue
+			background-color: darken($box-blue, 3%)
+			path
+				fill: darken($box-blue, 10%)
+		&.green
+			background-color: darken($box-green, 3%)
+			path
+				fill: darken($box-green, 10%)
+		.icon
+			animation: icon 2s 6000s
+			animation-iteration-count: 1
+			animation-fill-mode: forwards												
+	.bg
+		width: 100%
+		height: 100%
+		position: absolute
+		z-index: 10
+		svg
+			width: 100%
+			display: block
+		#chart, #chart2, #chart3, #chart4
+			position: absolute
+			bottom: 0	
+	.content
+		width: 100%
+		height: 100%
+		padding: 10px
+		position: absolute
+		z-index: 100		
+	.number
+		font-size: 32px
+		font-weight: 700
+		letter-spacing: 1px
+		color: $white
+		line-height: 1
+	.title
+		font-size: 14px
+		font-weight: 600
+		text-transform: uppercase
+		color: $white
+		line-height: 1
+		margin-top: 10px
+	.change
+		text-align: right
+		color: $white
+		.percent
+			font-weight: 700
+			font-size: 14px
+			text-transform: uppercase
+			line-height: 1
+		.week
+			font-size: 10px
+			font-weight: 600
+			text-transform: uppercase
+			line-height: 1
+			margin-top: 4px
+	.icon
+		position: absolute
+		right: 10px
+		bottom: 10px
+		color: $white
+		line-height: 1
+		&.out
+			animation: icon-out 2s
+			animation-iteration-count: 1
+			animation-fill-mode: forwards		
+		&.over
+			animation: icon-over 2s
+			animation-iteration-count: 1
+			animation-fill-mode: forwards
+		&.icon1
+			@include icomoon('\e606', 42px)				
+		&.icon2
+			@include icomoon('\e605', 42px)	
+		&.icon3
+			@include icomoon('\e60d', 42px)	
+		&.icon4
+			@include icomoon('\e60e', 42px)
+.videoplayer
+	border-radius: $border-radius
+	background-color: $medium-grey
+	padding: 4px
+	img
+		width: 100%
+		border-radius: $border-radius													
+/////////////// Animations ////////////////
+@include keyframes(success-border)
+	0%
+		border: $input-border
+	20%
+		border: 1px solid $success
+	80%
+		border: 1px solid $success	
+	100%
+		border: $input-border
+@include keyframes(success-icon)
+	0%
+		opacity: 0
+	20%
+		opacity: 1
+	80%
+		opacity: 1	
+	100%
+		opacity: 0
+@include keyframes(error-border)
+	0%
+		border: $input-border
+	20%
+		border: 1px solid $danger
+	100%
+		border: 1px solid $danger	
+@include keyframes(error-icon)
+	0%
+		opacity: 0
+	20%
+		opacity: 1
+	80%
+		opacity: 1	
+	100%
+		opacity: 1					
+@include keyframes(icon-over)
+	0%
+		bottom: 10px
+	100%
+		bottom: -10px
+@include keyframes(icon-out)
+	0%
+		bottom: -10px
+	100%
+		bottom: 10px		
+//@include keyframes(icon)
+//	0%
+//		bottom: 10px
+//	25%
+//		bottom: -10px
+//	75%
+//		bottom: -10px	
+//	100%
+//		bottom: 10px			

@@ -1,0 +1,170 @@
+////////// Imports //////////
+@import "compass"
+@import "mixins"
+@import "variables"
+////////// Imports //////////
+/////////////// TDI ////////////////
+.step-progress
+	color: $success
+	font-size: 10px
+	font-weight: 700
+	text-transform: uppercase
+	margin-top: -40px
+.step-layout
+	padding: 15px 0
+	border-radius: $border-radius
+	background-color: $light-grey
+	border-bottom: 5px solid $medium-grey
+	margin-bottom: 15px
+	.icon
+		width: 64px
+		height: 64px
+		border-radius: 50%
+		position: relative
+		@include rez(xs)
+			margin: 0 auto
+			margin-bottom: 30px
+		&.orange
+			background-color: $icon-orange
+		&.red
+			background-color: $icon-red
+		&.blue
+			background-color: $icon-blue
+		&.green
+			background-color: $icon-green
+		&.blue2
+			background-color: $icon-blue2
+		&.purple
+			background-color: $icon-purple												
+		&:before
+			content: ''
+			background-color: rgba(0,0,0,.12)
+			display: inline-block
+			width: 64px
+			height: 32px
+			border-radius: 64px 64px 0 0
+			transform: rotate(-150deg)
+			margin-top: 30px
+			margin-left: -8px
+		&.icon1:after
+			content: ''
+			width: 64px
+			height: 64px
+			background-image: url('../img/icon1.png')
+			display: inline-block
+			position: absolute
+			background-repeat: no-repeat
+			background-position: 50% 50%
+			left: 0
+			top: 0
+		&.icon2:after
+			content: ''
+			width: 64px
+			height: 64px
+			background-image: url('../img/icon2.png')
+			display: inline-block
+			position: absolute
+			background-repeat: no-repeat
+			background-position: 50% 50%
+			left: 0
+			top: 0
+		&.icon3:after
+			content: ''
+			width: 64px
+			height: 64px
+			background-image: url('../img/icon3.png')
+			display: inline-block
+			position: absolute
+			background-repeat: no-repeat
+			background-position: 50% 50%
+			left: 0
+			top: 0
+		&.icon4:after
+			content: ''
+			width: 64px
+			height: 64px
+			background-image: url('../img/icon4.png')
+			display: inline-block
+			position: absolute
+			background-repeat: no-repeat
+			background-position: 50% 50%
+			left: 0
+			top: 0			
+		&.icon5:after
+			content: ''
+			width: 64px
+			height: 64px
+			background-image: url('../img/icon5.png')
+			display: inline-block
+			position: absolute
+			background-repeat: no-repeat
+			background-position: 50% 50%
+			left: 0
+			top: 0
+		&.icon6:after
+			content: ''
+			width: 64px
+			height: 64px
+			background-image: url('../img/icon6.png')
+			display: inline-block
+			position: absolute
+			background-repeat: no-repeat
+			background-position: 50% 50%
+			left: 0
+			top: 0			
+	.about
+		padding-right: 170px
+		cursor: pointer
+		@include rez(md)
+			padding-left: 25px
+			padding-right: 30px
+		@include rez(sm)
+			padding-left: 35px
+			padding-right: 80px
+		@include rez(xs)
+			padding-right: 85px	
+		p
+			margin-bottom: 0
+			line-height: 1.2
+			&.title
+				margin-top: 5px
+				margin-bottom: 10px
+				font-weight: 800
+				text-transform: uppercase
+				font-size: 14px
+	&.completed .step-desc
+		background-image: url('../img/success.png')
+		background-repeat: no-repeat
+		background-position: 98% 50%
+		background-position: calc(100% - 15px) 50%			
+	&.notcompleted .step-desc
+		background-image: url('../img/success2.png')
+		background-repeat: no-repeat
+		background-position: 98% 50%
+		background-position: calc(100% - 15px) 50%
+	&.error .step-desc
+		background-image: url('../img/error.png')
+		background-repeat: no-repeat
+		background-position: 98% 50%
+		background-position: calc(100% - 15px) 50%
+	@include rez(xs)
+		&.completed .step-desc, &.notcompleted .step-desc, &.error .step-desc
+			background-position: 98% 120px
+			background-position: calc(100% - 15px) 120px
+	&.active.completed .step-desc, &.active.notcompleted .step-desc, &.active.error .step-desc
+		background-position: 98% 30%
+		background-position: calc(100% - 15px) calc(50% - 7px)
+	&.active
+		border-bottom: none
+		padding-bottom: 0
+		.step-desc
+			border-bottom: 5px solid $medium-grey
+			padding-bottom: 15px
+	.step-content
+		background-color: #f4f4f4
+		padding: 15px 0				
+		border-bottom-left-radius: $border-radius
+		border-bottom-right-radius: $border-radius
+	&:not(.active)
+		.step-content
+			display: none	

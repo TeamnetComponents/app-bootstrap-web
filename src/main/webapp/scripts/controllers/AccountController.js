@@ -2,7 +2,7 @@
  * Created by mihai.vaduva on 3/17/15.
  */
 bootstrapControllers
-    .controller('AccountController',['$scope', '$rootScope', '$http', '$q', '$mdToast', '$animate', 'Role', 'Permission', 'Account', function($scope, $rootScope, $http, $q, $mdToast, $animate, Role,Permission, Account){
+    .controller('AccountController',['$scope', '$rootScope', '$http', '$q', 'Notification', '$animate', 'Role', 'Permission', 'Account', function($scope, $rootScope, $http, $q, Notification, $animate, Role,Permission, Account){
         $scope.roles = [];
         $scope.accounts = [];
         $scope.selectedAccount = {};
@@ -121,10 +121,10 @@ bootstrapControllers
             $scope.selectedAccount.moduleRights = moduleRights;
 
             Account.updateAccount($scope.selectedAccount, function() {
-                showSimpleToast('Account updated');
+                Notification.success('Account updated');
                 $scope.backAccount();
             }, function(error) {
-                showSimpleToast(error.data.errMsg);
+                Notification.error(error.data.errMsg);
             });
         };
 
@@ -205,16 +205,6 @@ bootstrapControllers
                     return x;
             }
             return -1;
-        };
-
-        var showSimpleToast = function(message) {
-            $mdToast.show(
-                $mdToast.simple()
-                    .content(message)
-                    .position('top right')
-                    .parent(angular.element('#accountToastr'))
-                    .hideDelay(1500)
-            );
         };
 
         var init = function() {
