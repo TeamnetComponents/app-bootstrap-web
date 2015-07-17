@@ -51,7 +51,7 @@
     "app-file-uploader":"0.0.2",
     "angular-ui-notification": "0.0.11",
     "angular-bootstrap-datetimepicker":"0.3.13",
-    "bootstrap-filestyle": "1.1.2"
+    "bootstrap-filestyle": "1.1.2",
     "angular-ui-confirm": "latest"
   },
   "devDependencies": {
