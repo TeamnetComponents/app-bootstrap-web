@@ -17,9 +17,6 @@
     <!-- CSS Styles -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
 
-    <link href="bower_components/angular-ui-grid/ui-grid.css" rel="stylesheet">
-    <link href="bower_components/angular-bootstrap-datetimepicker/src/css/datetimepicker.css" rel="stylesheet">
-
     <script>
         var theme = window.localStorage.getItem('theme') ? window.localStorage.getItem('theme') : 'tdi';
         window.localStorage.setItem('theme', theme);
@@ -319,6 +316,11 @@
 <script src="scripts/directives/showValidation.js"></script>
 <script src="scripts/services/httpResponseInterceptor.js"></script>
 
+<script src="scripts/filters/bootstrapFilters.js"></script>
+<script src="scripts/filters/simpleDateFormatter.js"></script>
+<script src="scripts/filters/simpleDateTimeFormatter.js"></script>
+<script src="scripts/filters/yesNoBooleanFormatter.js"></script>
+
 <script src="bower_components/atmosphere/atmosphere.js"></script>
 <script src="bower_components/jquery-atmosphere/jquery.atmosphere.js"></script>
 <script src="bower_components/headjs/dist/1.0.0/head.min.js"></script>
@@ -349,21 +351,30 @@
 <script src="bower_components/ngDraggable/ngDraggable.js"></script>
 <script src="scripts/angular-loader.js"></script>
 <script src="bower_components/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
+<script src="bower_components/angular-ui-confirm/angular-ui-confirm.min.js"></script>
 <script type="text/javascript" src="bower_components/moment/moment.js"></script>
 <script type="text/javascript" src="bower_components/moment/locale/ro.js"></script>
 <script type="text/javascript" src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
 <script type="text/javascript" src="bower_components/app-file-uploader/dist/app-file-uploader.js"></script>
 <script type="text/javascript" src="bower_components/bootstrap-filestyle/src/bootstrap-filestyle.js"></script>
 
+<script src="http://code.shutterstock.com/rickshaw/vendor/d3.v3.js"></script>
+<script src="http://code.shutterstock.com/rickshaw/rickshaw.min.js"></script>
+</body>
 <style>
     .datetimepicker {
         width: 400px;
     }
-
+    .dropdown-menu table tbody tr td{
+        padding: 3px !important;
+    }
+    .dropdown-menu table tbody tr td .btn-default{
+        background-color: #fff !important;
+        border: 1px solid #ccc !important;
+    }
+    .dropdown-menu table thead button{
+        background-color: #fff !important;
+    }
 
 </style>
-<script src="http://code.shutterstock.com/rickshaw/vendor/d3.v3.js"></script>
-<script src="http://code.shutterstock.com/rickshaw/rickshaw.min.js"></script>
-</body>
-
 </html>
