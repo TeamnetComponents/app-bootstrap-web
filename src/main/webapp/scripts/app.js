@@ -10,7 +10,7 @@ var bootstrapApp = angular.module('bootstrapApp', ['http-auth-interceptor', 'tmh
     'ngResource', 'ngRoute', 'ngCookies', 'bootstrapAppUtils', 'pascalprecht.translate', 'truncate', 'ngCacheBuster',
     'bootstrapControllers','bootstrapServices','bootstrapDirectives','bootstrapConstants', 'bootstrapFilters',
     'angular-component.app-grid', 'angular-components.app-menu', 'angular-components.app-menu-admin', 'ui.tree',
-    'ngDragDrop', 'ui.select','ui.select2', 'ngSanitize', 'ui-notification', 'angular-ui-confirm','ui.bootstrap.datetimepicker',
+    'ngDragDrop', 'ui.select','ngSanitize', 'ui-notification', 'angular-ui-confirm','ui.bootstrap.datetimepicker',
     'ui.bootstrap.datepicker']);
 
 angular.element(document).ready(function () {
