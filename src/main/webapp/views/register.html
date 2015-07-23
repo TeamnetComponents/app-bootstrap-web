@@ -3,207 +3,11 @@
         <div class="col-xs-12 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
             <div class="alert alert-info" translate="global.messages.info.authenticated">
                 <a href="#/login">authenticate</a>
-            </div>       
+            </div>
             <div class="panel panel-default">
-                <form class="form" role="form">
-                    <div class="panel-heading"><h3 class="page-header" translate="register.title">Registration</h3></div>
-                    <div class="panel-body">
-<form ng-show="!success" name="form" role="form" novalidate ng-submit="register()" show-validation>
-
-                        <div class="form-group">
-                            <label translate="global.form.username">Login</label>
-                            <input type="text" class="form-control" name="login"
-                                   placeholder="{{'global.form.username.placeholder' | translate}}"
-                                   ng-model="registerAccount.login" ng-minlength=1 ng-maxlength=50
-                                   ng-pattern="/^[a-z0-9]*$/" required>
-
-                            <div ng-show="form.login.$dirty && form.login.$invalid">
-                                <p class="help-block"
-                                   ng-show="form.login.$error.required"
-                                   translate="register.messages.validate.login.required">
-                                    Your login is required.
-                                </p>
-
-                                <p class="help-block"
-                                   ng-show="form.login.$error.minlength"
-                                   translate="register.messages.validate.login.minlength">
-                                    Your login is required to be at least 1 character
-                                </p>
-
-                                <p class="help-block"
-                                   ng-show="form.login.$error.maxlength"
-                                   translate="register.messages.validate.login.maxlength">
-                                    Your login cannot be longer than 50 characters
-                                </p>
-
-                                <p class="help-block"
-                                   ng-show="form.login.$error.pattern"
-                                   translate="register.messages.validate.login.pattern">
-                                    Your login can only contain lower-case letters and digits
-                                </p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label translate="global.form.email">E-mail</label>
-                            <input type="email" class="form-control" name="email"
-                                   placeholder="{{'global.form.email.placeholder' | translate}}"
-                                   ng-model="registerAccount.email" ng-minlength=5 ng-maxlength=100 required>
-
-                            <div ng-show="form.email.$dirty && form.email.$invalid">
-                                <p class="help-block"
-                                   ng-show="form.email.$error.required"
-                                   translate="global.messages.validate.email.required">
-                                    Your e-mail is required.
-                                </p>
-
-                                <p class="help-block"
-                                   ng-show="form.email.$error.email" translate="global.messages.validate.email.invalid">
-                                    Your e-mail is invalid.
-                                </p>
-
-                                <p class="help-block"
-                                   ng-show="form.email.$error.minlength"
-                                   translate="global.messages.validate.email.minlength">
-                                    Your e-mail is required to be at least 5 characters
-                                </p>
-
-                                <p class="help-block"
-                                   ng-show="form.email.$error.maxlength"
-                                   translate="global.messages.validate.email.maxlength">
-                                    Your e-mail cannot be longer than 100 characters
-                                </p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label translate="global.form.newpassword">New password</label>
-                            <input type="password" class="form-control" name="password"
-                                   placeholder="{{'global.form.newpassword.placeholder' | translate}}"
-                                   ng-model="registerAccount.password" ng-minlength=5 ng-maxlength=50 required>
-
-                            <div ng-show="form.password.$dirty && form.password.$invalid">
-                                <p class="help-block"
-                                   ng-show="form.password.$error.required"
-                                   translate="global.messages.validate.newpassword.required">
-                                    Your password is required.
-                                </p>
-
-                                <p class="help-block"
-                                   ng-show="form.password.$error.minlength"
-                                   translate="global.messages.validate.newpassword.minlength">
-                                    Your password is required to be at least 5 characters
-                                </p>
-
-                                <p class="help-block"
-                                   ng-show="form.password.$error.maxlength"
-                                   translate="global.messages.validate.newpassword.maxlength">
-                                    Your password cannot be longer than 50 characters
-                                </p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label translate="global.form.confirmpassword">New password confirmation</label>
-                            <input type="password" class="form-control" name="confirmPassword"
-                                   placeholder="{{'global.form.confirmpassword.placeholder' | translate}}"
-                                   ng-model="confirmPassword" ng-minlength=5 ng-maxlength=50 required>
-
-                            <div ng-show="form.confirmPassword.$dirty && form.confirmPassword.$invalid">
-                                <p class="help-block"
-                                   ng-show="form.confirmPassword.$error.required"
-                                   translate="global.messages.validate.confirmpassword.required">
-                                    Your password confirmation is required.
-                                </p>
-
-                                <p class="help-block"
-                                   ng-show="form.confirmPassword.$error.minlength"
-                                   translate="global.messages.validate.confirmpassword.minlength">
-                                    Your password confirmation is required to be at least 5 characters
-                                </p>
-
-                                <p class="help-block"
-                                   ng-show="form.confirmPassword.$error.maxlength"
-                                   translate="global.messages.validate.confirmpassword.maxlength">
-                                    Your password confirmation cannot be longer than 50 characters
-                                </p>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="form-group">
-                                <label translate="global.form.gender">Gender</label>
-                                <div class="inline-selects">
-                                    <label class="radio-inline">
-                                      <input ng-model="registerAccount.gender" type="radio" name="gender" checked value="MALE" required> Male
-                                    </label>
-                                    <label class="radio-inline">
-                                      <input ng-model="registerAccount.gender" type="radio" name="gender" value="FEMALE" required> Female
-                                    </label>
-                                </div> 
-                            </div>                         
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary btn-block"
-                                    translate="register.form.button">Register
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="alert alert-success" ng-show="success" translate="register.messages.success">
-                <strong>Registration saved!</strong> Please check your email for confirmation.
-            </div>
-
-            <div class="alert alert-danger" ng-show="error" translate="register.messages.error.fail">
-                <strong>Registration failed!</strong> Please check your input and try again.
-            </div>
-
-            <div class="alert alert-danger" ng-show="errorUserExists"
-                 translate="register.messages.error.userexists">
-                <strong>Login name already registered!</strong> Please choose another one.
-            </div>
-
-            <div class="alert alert-danger" ng-show="errorEmailExists"
-                 translate="register.messages.error.emailexists">
-                <strong>E-mail is already in use!</strong> Please choose another one.
-            </div>
-
-            <div class="alert alert-danger" ng-show="doNotMatch" translate="global.messages.error.dontmatch">
-                The password and its confirmation do not match!
-            </div>                      
-        </div>
-    </div>
-</div>
-<!-- 
-<div class="container-fluid">
-    <div id="page-login" class="row">
-        <div class="col-xs-12 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-            <div class="text-right" translate="global.messages.info.authenticated">
-                <a href="#/login">authenticate</a>
-            </div>
-            <div class="box">
-                <div class="box-content">
-                    <div class="text-center">
-                        <h3 class="page-header" translate="register.title">Registration</h3>
-                    </div>
-                    <div class="alert alert-success" ng-show="success" translate="register.messages.success">
-                        <strong>Registration saved!</strong> Please check your email for confirmation.
-                    </div>
-
-                    <div class="alert alert-danger" ng-show="error" translate="register.messages.error.fail">
-                        <strong>Registration failed!</strong> Please check your input and try again.
-                    </div>
-
-                    <div class="alert alert-danger" ng-show="errorUserExists"
-                         translate="register.messages.error.userexists">
-                        <strong>Login name already registered!</strong> Please choose another one.
-                    </div>
-
-                    <div class="alert alert-danger" ng-show="errorEmailExists"
-                         translate="register.messages.error.emailexists">
-                        <strong>E-mail is already in use!</strong> Please choose another one.
-                    </div>
-
-                    <div class="alert alert-danger" ng-show="doNotMatch" translate="global.messages.error.dontmatch">
-                        The password and its confirmation do not match!
-                    </div>
+                <!--<form class="form" role="form">-->
+                <div class="panel-heading"><h3 class="page-header" translate="register.title">Registration</h3></div>
+                <div class="panel-body">
                     <form ng-show="!success" name="form" role="form" novalidate ng-submit="register()" show-validation>
 
                         <div class="form-group">
@@ -295,7 +99,6 @@
                                     Your password cannot be longer than 50 characters
                                 </p>
                             </div>
-                            <password-strength-bar password-to-check="registerAccount.password"></password-strength-bar>
                         </div>
                         <div class="form-group">
                             <label translate="global.form.confirmpassword">New password confirmation</label>
@@ -323,40 +126,43 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="row form-group">
+                        <div class="form-group">
                             <label translate="global.form.gender">Gender</label>
-
-                            <div class="col-sm-4">
-                                <div class="radio">
-                                    <label>
-                                        <input ng-model="registerAccount.gender" type="radio" name="gender" checked value="MALE" required> Male
-                                        <i class="fa fa-circle-o"></i>
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input ng-model="registerAccount.gender" type="radio" name="gender" value="FEMALE" required> Female
-                                        <i class="fa fa-circle-o"></i>
-                                    </label>
-                                </div>
-                                <div ng-show="form.confirmPassword.$dirty && form.confirmPassword.$invalid">
-                                    <p class="help-block"
-                                       ng-show="form.gender.$error.required"
-                                       translate="global.messages.validate.gender.required">
-                                        Your gender is required
-                                    </p>
-                                </div>
+                            <div class="radio-container">
+                                <input ng-model="registerAccount.gender" id="male" type="radio" name="gender"
+                                       value="male" required>
+                                <label class="custom-select" for="male">Male</label>
+                                <input ng-model="registerAccount.gender" id="female" type="radio" name="gender"
+                                       value="female" required>
+                                <label class="custom-select" for="female">Female</label>
                             </div>
                         </div>
                         <div class="text-center">
-                            <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary"
+                            <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary btn-block"
                                     translate="register.form.button">Register
                             </button>
                         </div>
                     </form>
                 </div>
+
+                <div class="alert alert-danger" ng-show="error" translate="register.messages.error.fail">
+                    <strong>Registration failed!</strong> Please check your input and try again.
+                </div>
+
+                <div class="alert alert-danger" ng-show="errorUserExists"
+                     translate="register.messages.error.userexists">
+                    <strong>Login name already registered!</strong> Please choose another one.
+                </div>
+
+                <div class="alert alert-danger" ng-show="errorEmailExists"
+                     translate="register.messages.error.emailexists">
+                    <strong>E-mail is already in use!</strong> Please choose another one.
+                </div>
+
+                <div class="alert alert-danger" ng-show="doNotMatch" translate="global.messages.error.dontmatch">
+                    The password and its confirmation do not match!
+                </div>
             </div>
         </div>
     </div>
 </div>
- -->
