@@ -47,6 +47,7 @@
     "app-menu-admin": "0.0.2",
     "app-grid": "2.0.0",
     "app-theme": "latest",
+    "app-tabs": "latest",
     "angular-bootstrap": "^0.13.0",
     "app-file-uploader":"0.0.1",
     "angular-ui-notification": "0.0.11",

@@ -176,6 +176,39 @@
                                 <span>Permissions</span>
                             </a>
                         </li>
+                        <li ng-switch-when="true">
+                            <a href="#/functions">
+                                <i class="fa fa-cog"></i>
+                                <!--todo: Translate-->
+                                <span>Functions</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <div class="separator"  ng-switch-when="true"></div>
+                <li class="dropdown" ng-if="securityEnabled && isInRoles(['ROLE_ADMIN'])">
+                    <a href="" class="dropdown-toggle with-custom-icon" data-toggle="dropdown">
+                        <i class="icon-icon6"></i>
+                        Organizations
+                        <i class="fa fa-angle-down pull-right"></i>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li ng-switch-when="true">
+                            <a href="#/organizationUnit/manage"><span class="glyphicon glyphicon-briefcase"></span>
+                                &nbsp;<span>Manage Organizations</span>
+                            </a>
+                        </li>
+                        <li  ng-switch-when="true">
+                            <a href="#/organizationalUnit"><span class="glyphicon glyphicon-list"></span></span>
+                                &nbsp;<span>Manage Organization Units</span>
+                            </a>
+                        </li>
+                        <li  ng-switch-when="true">
+                            <a href="#/functions"><span class="glyphicon glyphicon-edit"></span></span>
+                                &nbsp;<span>Manage Functions</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <div class="separator"  ng-switch-when="true"></div>
@@ -266,6 +299,8 @@
 <script src="bower_components/app-grid/dist/app-grid.js"></script>
 <script src="bower_components/app-menu/dist/app-menu.js"></script>
 
+<script src="bower_components/app-tabs/dist/app-tabs.js"></script>
+
 <script src="scripts/controllers/bootstrapControllers.js"></script>
 <script src="scripts/controllers/AuditsController.js"></script>
 <script src="scripts/controllers/ActivationController.js"></script>
@@ -287,6 +322,7 @@
 <script src="scripts/controllers/MessagesController.js"></script>
 <script src="scripts/controllers/RolesController.js"></script>
 <script src="scripts/controllers/PermissionsController.js"></script>
+<script src="scripts/controllers/FunctionsController.js"></script>
 <script src="scripts/controllers/AccountController.js"></script>
 
 <script src="scripts/services/bootstrapServices.js"></script>
@@ -308,6 +344,8 @@
 <script src="scripts/services/Role.js"></script>
 <script src="scripts/services/Permission.js"></script>
 <script src="scripts/services/Permissions.js"></script>
+
+<script src="scripts/services/Function.js"></script>
 <script src="scripts/directives/bootstrapDirectives.js"></script>
 <script src="scripts/directives/activeLink.js"></script>
 <script src="scripts/directives/activeMenu.js"></script>
