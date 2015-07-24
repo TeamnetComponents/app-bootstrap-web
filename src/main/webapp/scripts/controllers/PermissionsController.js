@@ -11,6 +11,13 @@ bootstrapControllers
         $scope.allModuleRights = [];
         $scope.modules = [];
 
+        $scope.moduleCodeOptions = [
+            {value : '1',  description : 'MENU'  },
+            {value : '2',  description : 'ENTITY'  },
+            {value : '3',  description : 'FIELD'  },
+            {value : '4',  description : 'OTHER'  }
+        ];
+
         $scope.isView = true;
         $scope.isAdd = false;
         $scope.isEdit = false;
@@ -90,18 +97,16 @@ bootstrapControllers
                     $scope.backModule();
                 })
             } else {
-                // todo fix in java
-                Notification.error('todo:Fix save module');
-                $scope.backModule();
-                /*Permission.save($scope.selectedModule, function (value, responseHeaders) {
-                 showSimpleToast('Module saved');
+                $scope.selectedModule.type = $scope.selectedModule.type.value;
+                Permission.save($scope.selectedModule, function (value, responseHeaders) {
+                 Notification.success('Module saved');
                  $scope.selectedModule = value;
                  Permission.getAllModulesWithModuleRights({}, function(res){
                  $scope.modules = angular.copy(res);
                  $scope.selectedModule = value;
                  $scope.backModule();
                  });
-                 });*/
+                 });
             }
         };
 

@@ -47,13 +47,18 @@
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="form-group">
                                             <label>Module code</label>
-                                            <select class="form-control selectpicker" ng-model="selectedModule.type">
-                                                <option value="1">MENU</option>
-                                                <option value="2" ng-selected="selected">ENTITY</option>
-                                                <option value="3" ng-selected="selected">FIELD</option>
-                                                <option value="4" ng-selected="selected">OTHER</option>
-                                            </select>
-                                        </div>    
+                                            <ui-select ng-model="selectedModule.type"
+                                                       ng-disabled="isView"
+                                                       theme="selectize"
+                                                    >
+                                                <ui-select-match >
+                                                    {{$select.selected.description}}
+                                                </ui-select-match>
+                                                <ui-select-choices repeat="moduleCode.value as moduleCode in moduleCodeOptions  | filter: $select.search">
+                                                    <div ng-bind-html="moduleCode.description | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
 <!--                                         <md-select ng-model="selectedModule.type" placeholder="Module code" ng-disabled="isView">
     <md-option value="1">MENU</md-option>
     <md-option value="2" ng-selected="selected">ENTITY</md-option>
@@ -70,13 +75,20 @@
 </md-select> -->
                                         <div class="form-group">
                                             <label>Parent module</label>
-                                            <select class="form-control selectpicker" ng-model="selectedModule.parentModule" ng-disabled="isView">
-                                                <option ng-value="parentModule" ng-repeat="parentModule in modules track by parentModule.id">{{parentModule.description}}</option>
-                                            </select>
-                                        </div>   
+                                            <ui-select ng-model="selectedModule.parentModule"
+                                                       ng-disabled="isView"
+                                                       theme="selectize"
+                                                    >
+                                                <ui-select-match>
+                                                    {{$select.selected.description}}
+                                                </ui-select-match>
+                                                <ui-select-choices repeat="parentModule in modules  | filter: $select.search">
+                                                    <div ng-bind-html="parentModule.description | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                         <div class="row">
