@@ -43,13 +43,10 @@
                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                    <label>Active</label>
-                                    <div class="inline-selects">
-                                        <label class="radio-inline">
-                                          <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Option 1
-                                        </label>
-                                        <label class="radio-inline">
-                                          <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Option 2
-                                        </label>
+                                    <input type="checkbox" name="activated"
+                                           ng-model="selectedAccount.activated"
+                                           ng-checked="selectedAccount.activated"
+                                           class="mr5" >
                                     </div> 
                                 </div>                                   
                            </div>                               

@@ -37,7 +37,7 @@
                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group">
                                         <label>Valid from</label>
-                                        <input type="date" class="form-control" ng-model="selectedRole.validTo" ng-readonly="isView">
+                                        <input type="date" class="form-control" ng-model="selectedRole.validFrom" ng-readonly="isView">
                                     </div>                                   
                                </div>
                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -57,15 +57,11 @@
                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group">
                                         <label>Active</label>
-                                        <div class="inline-selects">
-                                            <label class="radio-inline">
-                                              <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Option 1
-                                            </label>
-                                            <label class="radio-inline">
-                                              <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Option 2
-                                            </label>
-                                        </div> 
-                                    </div>                                   
+                                        <input type="checkbox" name="active"
+                                               ng-model="selectedRole.active"
+                                               ng-checked="selectedRole.active"
+                                               class="mr5" >
+                                    </div>
                                </div>                               
                            </div>
                            <div class="row m0">

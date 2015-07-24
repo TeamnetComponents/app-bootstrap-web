@@ -9,7 +9,7 @@ function changeTheme(theme) {
 var bootstrapApp = angular.module('bootstrapApp', ['http-auth-interceptor', 'tmh.dynamicLocale',
     'ngResource', 'ngRoute', 'ngCookies', 'bootstrapAppUtils', 'pascalprecht.translate', 'truncate', 'ngCacheBuster',
     'bootstrapControllers','bootstrapServices','bootstrapDirectives','bootstrapConstants', 'bootstrapFilters',
-    'angular-component.app-grid', 'angular-components.app-menu', 'angular-components.app-menu-admin', 'ui.tree',
+    'angular-component.app-grid', 'angular-components.app-menu', 'angular-components.app-menu-admin', 'angular-component.app-tabs', 'ui.tree',
     'ngDragDrop', 'ui.select', 'ngSanitize', 'ui-notification', 'angular-ui-confirm','ui.bootstrap.datetimepicker',
     'ui.bootstrap.datepicker']);
 
@@ -96,6 +96,13 @@ bootstrapApp
             .when('/permissions', {
                 templateUrl: 'views/permissions/permission.html',
                 controller: 'PermissionsController',
+                access: {
+                    authorizedModules: [AUTH_BOOTSTRAP.all]
+                }
+            })
+            .when('/functions', {
+                templateUrl: 'views/functions/function.html',
+                controller: 'FunctionsController',
                 access: {
                     authorizedModules: [AUTH_BOOTSTRAP.all]
                 }
