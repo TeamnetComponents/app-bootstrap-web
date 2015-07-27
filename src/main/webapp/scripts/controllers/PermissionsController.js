@@ -97,7 +97,6 @@ bootstrapControllers
                     $scope.backModule();
                 })
             } else {
-                $scope.selectedModule.type = $scope.selectedModule.type.value;
                 Permission.save($scope.selectedModule, function (value, responseHeaders) {
                  Notification.success('Module saved');
                  $scope.selectedModule = value;
