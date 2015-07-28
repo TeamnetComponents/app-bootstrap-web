@@ -162,5 +162,35 @@
             </div>
         </form>
     </div>
+</div>
 
+<div class="modal fade" id="confirmDelete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form name="form" ng-submit="deleteModule()">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            ng-click="closeConfirm()">&times;</button>
+                    <h4 class="modal-title">Module delete</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete {{selectedModule.description}} ?</p>
+                </div>
+                <div class="modal-footer">
+                    <div class="row m0">
+                        <div class="col-md-12 text-right mb15">
+                            <button class="btn btn-primary"
+                                    data-dismiss="modal">
+                                Cancel
+                            </button>
+                            <button class="btn btn-danger"
+                                    type="submit">
+                                Yes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>

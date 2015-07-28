@@ -114,13 +114,21 @@ bootstrapControllers
             Permission.delete({moduleId: $scope.selectedModule.id}, function(){
                 Notification.success('Module deleted');
                 init();
+            }, function (httpResponse) {
+                Notification.error('Forbidden operation! Module assigned to Roles or Accounts.');
             });
+            $scope.closeConfirm();
         };
 
         $scope.showConfirm = function(ev) {
-            if(confirm('Are you sure you want to delete ' + $scope.selectedModule.description + ' ?')) {
-                $scope.deleteModule();
-            }
+//            if(confirm('Are you sure you want to delete ' + $scope.selectedModule.description + ' ?')) {
+//                $scope.deleteModule();
+//            }
+            $('#confirmDelete').modal('show');
+        };
+
+        $scope.closeConfirm = function(ev) {
+            $('#confirmDelete').modal('toggle');
         };
 
         var init = function(){
