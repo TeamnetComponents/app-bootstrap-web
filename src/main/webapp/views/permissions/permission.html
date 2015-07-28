@@ -1,6 +1,6 @@
 <div>
     <div class="panel panel-default">
-        <form class="form" role="form">
+        <form  name="formCreateOrEdit" class="form" role="form">
             <div class="panel-heading">
                 <h4>Permissions</h4>
             </div>
@@ -27,9 +27,15 @@
     <label>Permission Code</label>
     <input ng-model="selectedModule.code" ng-readonly="isView">
 </md-input-container> -->
-                                        <div class="form-group">
+                                        <div class="form-group" ng-class="{'has-success':formCreateOrEdit.selectedModule_code.$dirty && formCreateOrEdit.selectedModule_code.$valid,
+                                        'has-error':formCreateOrEdit.selectedModule_code.$dirty && formCreateOrEdit.selectedModule_code.$invalid}">
                                             <label>Permission Code</label>
-                                            <input ng-model="selectedModule.code" ng-readonly="isView" class="form-control">
+                                            <input ng-model="selectedModule.code" name="selectedModule_code" ng-readonly="isView" class="form-control" required>
+
+                                            <div ng-show="formCreateOrEdit.selectedModule_code.$dirty && formCreateOrEdit.selectedModule_code.$invalid">
+                                                <p class="help-block" ng-show="formCreateOrEdit.selectedModule_code.$error.required"
+                                                   style="text-align: center;"> Acest camp este obligatoriu</p>
+                                            </div>
                                         </div>                                       
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -45,11 +51,14 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
+                                        <div class="form-group" ng-class="{'has-success':formCreateOrEdit.selectedModule_type.$dirty && formCreateOrEdit.selectedModule_type.$valid,
+                                        'has-error':formCreateOrEdit.selectedModule_type.$dirty && formCreateOrEdit.selectedModule_type.$invalid}">
                                             <label>Module code</label>
                                             <ui-select ng-model="selectedModule.type"
                                                        ng-disabled="isView"
                                                        theme="selectize"
+                                                       name="selectedModule_type"
+                                                       required
                                                     >
                                                 <ui-select-match >
                                                     {{$select.selected.description}}
@@ -58,6 +67,11 @@
                                                     <div ng-bind-html="moduleCode.description | highlight: $select.search"></div>
                                                 </ui-select-choices>
                                             </ui-select>
+
+                                            <div ng-show="formCreateOrEdit.selectedModule_type.$dirty && formCreateOrEdit.selectedModule_type.$invalid">
+                                                <p class="help-block" ng-show="formCreateOrEdit.selectedModule_type.$error.required"
+                                                   style="text-align: center;"> Acest camp este obligatoriu</p>
+                                            </div>
                                         </div>
 <!--                                         <md-select ng-model="selectedModule.type" placeholder="Module code" ng-disabled="isView">
     <md-option value="1">MENU</md-option>
@@ -73,11 +87,14 @@
         {{parentModule.description}}
     </md-option>
 </md-select> -->
-                                        <div class="form-group">
+                                        <div class="form-group" ng-class="{'has-success':formCreateOrEdit.selectedModule_parentModule.$dirty && formCreateOrEdit.selectedModule_parentModule.$valid,
+                                        'has-error':formCreateOrEdit.selectedModule_parentModule.$dirty && formCreateOrEdit.selectedModule_parentModule.$invalid}">
                                             <label>Parent module</label>
                                             <ui-select ng-model="selectedModule.parentModule"
                                                        ng-disabled="isView"
                                                        theme="selectize"
+                                                       name="selectedModule_parentModule"
+                                                       required
                                                     >
                                                 <ui-select-match>
                                                     {{$select.selected.description}}
@@ -86,6 +103,11 @@
                                                     <div ng-bind-html="parentModule.description | highlight: $select.search"></div>
                                                 </ui-select-choices>
                                             </ui-select>
+
+                                            <div ng-show="formCreateOrEdit.selectedModule_parentModule.$dirty && formCreateOrEdit.selectedModule_parentModule.$invalid">
+                                                <p class="help-block" ng-show="formCreateOrEdit.selectedModule_parentModule.$error.required"
+                                                   style="text-align: center;"> Acest camp este obligatoriu</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -118,6 +140,7 @@
                                 </button>
                                 <button class="btn btn-success"
                                            ng-show="!isView"
+                                           ng-disabled="formCreateOrEdit.$invalid"
                                            ng-click="saveModule()">
                                     Save
                                 </button>
@@ -128,7 +151,7 @@
                                 </button>
                                 <button class="btn btn-warning"
                                            ng-show="!isView"
-                                           ng-click="backModule()">
+                                           ng-click="formCreateOrEdit.$setPristine();backModule()">
                                     Back
                                 </button>
                             </div>

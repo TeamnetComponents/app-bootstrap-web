@@ -1,6 +1,6 @@
 <div>
     <div class="panel panel-default">
-        <form class="form" role="form">
+        <form name="formCreateOrEdit" class="form" role="form">
             <div class="panel-heading">
                 <h4>Account</h4>
             </div>
@@ -21,23 +21,42 @@
                     <div class="col-lg-9 col-md-9 col-sm-4">
                        <div class="row m0">
                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-group">
+                                <div class="form-group" ng-class="{'has-success':formCreateOrEdit.selectedAccount_firstName.$dirty && formCreateOrEdit.selectedAccount_firstName.$valid,
+                                        'has-error':formCreateOrEdit.selectedAccount_firstName.$dirty && formCreateOrEdit.selectedAccount_firstName.$invalid}">
                                     <label>First name</label>
-                                    <input type="text" class="form-control" ng-model="selectedAccount.firstName" ng-readonly="isView">                                        
-                                </div>                                   
+                                    <input type="text" name="selectedAccount_firstName" class="form-control" ng-model="selectedAccount.firstName" ng-readonly="isView" required>
+
+                                    <div ng-show="formCreateOrEdit.selectedAccount_firstName.$dirty && formCreateOrEdit.selectedAccount_firstName.$invalid">
+                                        <p class="help-block" ng-show="formCreateOrEdit.selectedAccount_firstName.$error.required"
+                                           style="text-align: center;"> Acest camp este obligatoriu</p>
+                                    </div>
+                                </div>
                            </div>
                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-group">
+                                <div class="form-group" ng-class="{'has-success':formCreateOrEdit.selectedAccount_lastname.$dirty && formCreateOrEdit.selectedAccount_lastname.$valid,
+                                        'has-error':formCreateOrEdit.selectedAccount_lastname.$dirty && formCreateOrEdit.selectedAccount_lastname.$invalid}">
                                     <label>Last name</label>
-                                    <input type="text" class="form-control" ng-model="selectedAccount.lastName" ng-readonly="isView">
-                                </div>                                   
+                                    <input type="text" name="selectedAccount_lastname" class="form-control" ng-model="selectedAccount.lastName" ng-readonly="isView" required>
+
+                                    <div ng-show="formCreateOrEdit.selectedAccount_lastname.$dirty && formCreateOrEdit.selectedAccount_lastname.$invalid">
+                                        <p class="help-block" ng-show="formCreateOrEdit.selectedAccount_lastname.$error.required"
+                                           style="text-align: center;"> Acest camp este obligatoriu</p>
+                                    </div>
+                                </div>
                            </div>                               
                        </div>
                        <div class="row m0">
                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-group">
+                                <div class="form-group" ng-class="{'has-success':formCreateOrEdit.selectedAccount_email.$dirty && formCreateOrEdit.selectedAccount_email.$valid,
+                                        'has-error':formCreateOrEdit.selectedAccount_email.$dirty && formCreateOrEdit.selectedAccount_email.$invalid}">
                                     <label>Email</label>
-                                    <input type="email" class="form-control" ng-model="selectedAccount.email" ng-readonly="isView">
+                                    <input type="email" name="selectedAccount_email" class="form-control" ng-model="selectedAccount.email" ng-readonly="isView" required>
+
+
+                                    <div ng-show="formCreateOrEdit.selectedAccount_email.$dirty && formCreateOrEdit.selectedAccount_email.$invalid">
+                                        <p class="help-block" ng-show="formCreateOrEdit.selectedAccount_email.$error.required"
+                                           style="text-align: center;"> Acest camp este obligatoriu</p>
+                                    </div>
                                 </div>                                   
                            </div>
                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -70,6 +89,7 @@
                                 </button>
                                 <button class="btn btn-success"
                                            ng-show="isEdit"
+                                           ng-disabled="formCreateOrEdit.$invalid"
                                            ng-click="saveAccount()">
                                     Save
                                 </button>
@@ -79,7 +99,7 @@
                                 </button>
                                 <button class="btn btn-warning"
                                            ng-show="!isView"
-                                           ng-click="backAccount()">
+                                           ng-click="formCreateOrEdit.$setPristine();backAccount()">
                                     Back
                                 </button>                                    
                             </div>                               
