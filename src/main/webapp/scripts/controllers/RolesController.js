@@ -14,7 +14,6 @@ bootstrapControllers
             $scope.modules = [];
             $scope.selectedModules = [];
             $scope.selectedModules.type = 'add';
-
             $scope.search = '';
             $scope.selectedSearch = '';
 
@@ -82,7 +81,9 @@ bootstrapControllers
                         moduleRights.push(moduleRight);
                     })
                 });
-
+                if($scope.selectedRole.active == undefined || $scope.selectedRole.active == null){
+                    $scope.selectedRole.active = false;
+                }
                 $scope.selectedRole.moduleRights = moduleRights;
                 if($scope.selectedRole.id !== undefined){
                     Role.update({roleId: $scope.selectedRole.id},$scope.selectedRole, function (value) {
@@ -103,7 +104,10 @@ bootstrapControllers
                 Role.delete({roleId: $scope.selectedRole.id}, function(){
                     Notification.success('Role deleted');
                     init();
+                }, function (httpResponse) {
+                    Notification.error('Forbidden operation!');
                 });
+                $scope.closeConfirm();
             };
 
             $scope.backRole = function(){
@@ -164,9 +168,14 @@ bootstrapControllers
             };
 
             $scope.showConfirm = function(ev) {
-                if (confirm('Are you sure you want to delete ' + $scope.selectedRole.description + '?') ) {
-                    $scope.deleteRole();
-                }
+//                if (confirm('Are you sure you want to delete ' + $scope.selectedRole.description + '?') ) {
+//                    $scope.deleteRole();
+//                }
+                $('#confirmDelete').modal('show');
+            };
+
+            $scope.closeConfirm = function(ev) {
+                $('#confirmDelete').modal('toggle');
             };
 
             var clearSelectedModuleRights = function(){
