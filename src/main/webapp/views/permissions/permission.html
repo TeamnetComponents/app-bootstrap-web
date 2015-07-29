@@ -87,14 +87,12 @@
         {{parentModule.description}}
     </md-option>
 </md-select> -->
-                                        <div class="form-group" ng-class="{'has-success':formCreateOrEdit.selectedModule_parentModule.$dirty && formCreateOrEdit.selectedModule_parentModule.$valid,
-                                        'has-error':formCreateOrEdit.selectedModule_parentModule.$dirty && formCreateOrEdit.selectedModule_parentModule.$invalid}">
+                                        <div class="form-group">
                                             <label>Parent module</label>
                                             <ui-select ng-model="selectedModule.parentModule"
                                                        ng-disabled="isView"
                                                        theme="selectize"
                                                        name="selectedModule_parentModule"
-                                                       required
                                                     >
                                                 <ui-select-match>
                                                     {{$select.selected.description}}
@@ -104,10 +102,6 @@
                                                 </ui-select-choices>
                                             </ui-select>
 
-                                            <div ng-show="formCreateOrEdit.selectedModule_parentModule.$dirty && formCreateOrEdit.selectedModule_parentModule.$invalid">
-                                                <p class="help-block" ng-show="formCreateOrEdit.selectedModule_parentModule.$error.required"
-                                                   style="text-align: center;"> Acest camp este obligatoriu</p>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>

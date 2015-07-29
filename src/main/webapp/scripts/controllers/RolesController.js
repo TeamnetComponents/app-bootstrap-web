@@ -72,6 +72,19 @@ bootstrapControllers
                 $scope.isEdit = true;
             };
 
+
+            $scope.checkIfEndDateIsAfterStartDate = false;
+            $scope.checkStartTimeAndEndTime = function(newDate) {
+                if($scope.selectedRole.validFrom != null) {
+                    if(newDate < $scope.selectedRole.validFrom) {
+                        $scope.checkIfEndDateIsAfterStartDate = true;
+                        $scope.selectedRole.validTo = null;
+                    } else {
+                        $scope.checkIfEndDateIsAfterStartDate = false;
+                    }
+                }
+            };
+
             $scope.saveRole = function() {
                 var moduleRights = [];
                 $scope.selectedModules.forEach(function(module) {
