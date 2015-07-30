@@ -35,10 +35,17 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-group">
+                                <div class="form-group" ng-class="{'has-success':formCreateOrEdit.selectedRole_desc.$dirty && formCreateOrEdit.selectedRole_desc.$valid,
+                                        'has-error':formCreateOrEdit.selectedRole_desc.$dirty && formCreateOrEdit.selectedRole_desc.$invalid}">
                                     <label><b>Role Description</b></label>
-                                    <input type="text" class="form-control" ng-model="selectedRole.description"
-                                           ng-readonly="isView">
+                                    <input type="text" name="selectedRole_desc" class="form-control" ng-model="selectedRole.description"
+                                           ng-readonly="isView" required>
+
+                                    <div ng-show="formCreateOrEdit.selectedRole_desc.$dirty && formCreateOrEdit.selectedRole_desc.$invalid">
+                                        <p class="help-block"
+                                           ng-show="formCreateOrEdit.selectedRole_desc.$error.required"
+                                           style="text-align: center;"> Acest camp este obligatoriu</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -139,11 +139,11 @@ bootstrapControllers
             //$scope.modules = angular.copy(window.localStorage.getObj('modules'));
             Permission.getAllModulesWithModuleRights({}, function(res){
                 $scope.modules = angular.copy(res);
-            });
+                if(!_.isEmpty($scope.modules)){
+                    $scope.selectModule($scope.modules[0]);
+                }
 
-            if(!_.isEmpty($scope.modules)){
-                $scope.selectModule($scope.modules[0]);
-            }
+            });
 
             Permission.getModuleRightCodes({}, function(res){
                 $scope.allModuleRights = angular.copy(res);

@@ -37,9 +37,15 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
-                                        <div class="form-group">
+                                        <div class="form-group" ng-class="{'has-success':formCreateOrEdit.selectedModule_desc.$dirty && formCreateOrEdit.selectedModule_desc.$valid,
+                                        'has-error':formCreateOrEdit.selectedModule_desc.$dirty && formCreateOrEdit.selectedModule_desc.$invalid}">
                                             <label><b>Permission Description</b></label>
-                                            <input ng-model="selectedModule.description" ng-readonly="isView" class="form-control">
+                                            <input ng-model="selectedModule.description" name="selectedModule_desc" ng-readonly="isView" class="form-control" required>
+
+                                            <div ng-show="formCreateOrEdit.selectedModule_desc.$dirty && formCreateOrEdit.selectedModule_desc.$invalid">
+                                                <p class="help-block" ng-show="formCreateOrEdit.selectedModule_desc.$error.required"
+                                                   style="text-align: center;"> Acest camp este obligatoriu</p>
+                                            </div>
                                         </div>                                        
                                     </div>
                                 </div>
