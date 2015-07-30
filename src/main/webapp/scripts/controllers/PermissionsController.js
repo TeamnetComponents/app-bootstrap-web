@@ -136,7 +136,11 @@ bootstrapControllers
             $scope.isAdd = false;
             $scope.isEdit = false;
 
-            $scope.modules = angular.copy(window.localStorage.getObj('modules'));
+            //$scope.modules = angular.copy(window.localStorage.getObj('modules'));
+            Permission.getAllModulesWithModuleRights({}, function(res){
+                $scope.modules = angular.copy(res);
+            });
+
             if(!_.isEmpty($scope.modules)){
                 $scope.selectModule($scope.modules[0]);
             }
