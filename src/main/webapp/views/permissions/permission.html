@@ -23,13 +23,10 @@
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-<!--                                         <md-input-container flex>
-    <label>Permission Code</label>
-    <input ng-model="selectedModule.code" ng-readonly="isView">
-</md-input-container> -->
+
                                         <div class="form-group" ng-class="{'has-success':formCreateOrEdit.selectedModule_code.$dirty && formCreateOrEdit.selectedModule_code.$valid,
                                         'has-error':formCreateOrEdit.selectedModule_code.$dirty && formCreateOrEdit.selectedModule_code.$invalid}">
-                                            <label>Permission Code</label>
+                                            <label><b>Permission Code</b></label>
                                             <input ng-model="selectedModule.code" name="selectedModule_code" ng-readonly="isView" class="form-control" required>
 
                                             <div ng-show="formCreateOrEdit.selectedModule_code.$dirty && formCreateOrEdit.selectedModule_code.$invalid">
@@ -39,12 +36,9 @@
                                         </div>                                       
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-<!--                                         <md-input-container flex>
-    <label>Permission Description</label>
-    <input ng-model="selectedModule.description" ng-readonly="isView">
-</md-input-container> -->
+
                                         <div class="form-group">
-                                            <label>Permission Description</label>
+                                            <label><b>Permission Description</b></label>
                                             <input ng-model="selectedModule.description" ng-readonly="isView" class="form-control">
                                         </div>                                        
                                     </div>
@@ -53,7 +47,7 @@
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="form-group" ng-class="{'has-success':formCreateOrEdit.selectedModule_type.$dirty && formCreateOrEdit.selectedModule_type.$valid,
                                         'has-error':formCreateOrEdit.selectedModule_type.$dirty && formCreateOrEdit.selectedModule_type.$invalid}">
-                                            <label>Module code</label>
+                                            <label><b>Module code</b></label>
                                             <ui-select ng-model="selectedModule.type"
                                                        ng-disabled="isView"
                                                        theme="selectize"
@@ -73,22 +67,11 @@
                                                    style="text-align: center;"> Acest camp este obligatoriu</p>
                                             </div>
                                         </div>
-<!--                                         <md-select ng-model="selectedModule.type" placeholder="Module code" ng-disabled="isView">
-    <md-option value="1">MENU</md-option>
-    <md-option value="2" ng-selected="selected">ENTITY</md-option>
-    <md-option value="3" ng-selected="selected">FIELD</md-option>
-    <md-option value="4" ng-selected="selected">OTHER</md-option>
-</md-select> -->
+
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-<!--                                         <md-select ng-model="selectedModule.parentModule" ng-disabled="isView">
-    <md-select-label>{{ selectedModule.parentModule ? selectedModule.parentModule.description : 'Parent module' }}</md-select-label>
-    <md-option ng-value="parentModule" ng-repeat="parentModule in modules track by parentModule.id">
-        {{parentModule.description}}
-    </md-option>
-</md-select> -->
                                         <div class="form-group">
-                                            <label>Parent module</label>
+                                            <label><b>Parent module</b></label>
                                             <ui-select ng-model="selectedModule.parentModule"
                                                        ng-disabled="isView"
                                                        theme="selectize"
