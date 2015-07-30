@@ -1,0 +1,114 @@
+<div ng-show="loading" class="row" style="width: 100%; height: 100%;position: absolute; z-index: 9999; background-color: rgba(248, 248, 248, 0.63)">
+    <md-progress-circular style="position: absolute;
+                                          left: 50%;
+                                          top: 50%;
+                                          z-index: 9999"
+                          class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
+</div>
+<div class="row permissions-editor" id="body">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" ng-class="{'col-anim': isAdd||isEdit}">
+        <div class="thumbnail">
+            <input type="text" class="form-control mb15" ng-model="selectedSearch" placeholder="Filter">
+            <md-content>
+                <div data-drop="true"
+                     style="min-height: 500px; max-height: 500px;  overflow-y: scroll"
+                     ng-model='selectedModules'
+                     jqyoui-droppable="{multiple:true}"
+                     add-func='addFunction'>
+                    <div ng-repeat="selectedModule in selectedModules | filter: {description: selectedSearch}">
+                        <div class="list-group"
+                             data-drag="isAdd || isEdit"
+                             ng-model='selectedModule.moduleRights'
+                             ng-show='selectedModule.moduleRights.length > 0'
+                             drag-list="true"
+                             data-jqyoui-options="{revert: 'invalid',
+                                                   helper: 'clone',
+                                                   appendTo: 'body',
+                                                   containment: 'window',
+                                                   scroll: false}"
+                             jqyoui-draggable="{index: {{$index}},
+                                                deepCopy : true,
+                                                onStart: 'startFnc',
+                                                onStop: 'stopFnc'}">
+                            <div>
+                                <div class="myClass md-whiteframe-z1 list-group-item btn-draggable categoryPermission">
+                                    {{selectedModule.description}}
+                                </div>
+                                <div class="md-whiteframe-z1 list-group-item btn-draggable accessPermission"
+                                     style=" border-radius: 0px;"
+                                     ng-repeat="selectedModuleRight in selectedModule.moduleRights"
+                                     ng-show="selectedModuleRight.moduleRightCode"
+                                     data-drag="isAdd || isEdit"
+                                     ng-model='selectedModule.moduleRights'
+                                     data-jqyoui-options="{revert: 'invalid',
+                                                           helper: 'clone',
+                                                           appendTo: 'body',
+                                                           containment: 'window',
+                                                           scroll: false}"
+                                     jqyoui-draggable="{index: {{$index}},
+                                                        deepCopy : true,
+                                                        onStart: 'startFnc',
+                                                        onStop: 'stopFnc'}">
+                                    {{selectedModuleRight.moduleRightCode}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </md-content>
+        </div>
+    </div>
+    <div ng-show="isAdd || isEdit"
+         class="col-lg-6 col-md-6 col-sm-6 col-xs-12 animate-show">
+        <div class="thumbnail">
+            <input type="text" class="form-control mb15" ng-model="search" placeholder="Filter">
+            <md-content>
+                <div  style="min-height: 500px; max-height: 500px;  overflow-y: scroll"
+                      data-drop="true"
+                      ng-model='modules'
+                      jqyoui-droppable="{multiple:true}"
+                      add-func='addFunction'
+                        >
+                    <div class="list-group" ng-repeat="module in modules | filter: {description: search}">
+                        <div class="list-group btn-draggable"
+                             data-drag="isAdd || isEdit"
+                             ng-model='module.moduleRights'
+                             ng-show='module.moduleRights.length > 0'
+                             drag-list="true"
+                             data-jqyoui-options="{revert: 'invalid',
+                                                   helper: 'clone',
+                                                   appendTo: 'body',
+                                                   containment: 'window',
+                                                   scroll: false}"
+                             jqyoui-draggable="{index: {{$index}},
+                                                deepCopy : true,
+                                                onStart: 'startFnc',
+                                                onStop: 'stopFnc'}">
+                            <div>
+                                <div class="md-whiteframe-z1 list-group-item btn-draggable  categoryPermission">
+                                    {{module.description}}
+                                </div>
+                                <div class="list-group-item btn-draggable accessPermission"
+                                     ng-repeat="moduleRight in module.moduleRights"
+                                     ng-show="moduleRight.moduleRightCode"
+                                     data-drag="isAdd || isEdit"
+                                     ng-model='module.moduleRights'
+                                     data-jqyoui-options="{revert: 'invalid',
+                                                           helper: 'clone',
+                                                           appendTo: 'body',
+                                                           containment: 'window',
+                                                           scroll: false}"
+                                     jqyoui-draggable="{index: {{$index}},
+                                                        deepCopy : true,
+                                                        onStart: 'startFnc',
+                                                        onStop: 'stopFnc'}">
+                                    {{moduleRight.moduleRightCode}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </md-content>
+        </div>
+    </div>
+</div>
