@@ -109,8 +109,9 @@
 
                               <!-- Nav tabs -->
                               <ul class="nav nav-tabs" role="tablist">
-                                <li role="presentation" class="active"><a href="#roles" aria-controls="roles" role="tab" data-toggle="tab">Roles</a></li>
-                                <li role="presentation"><a href="#permissions" aria-controls="permissions" role="tab" data-toggle="tab">Permissions</a></li>
+                                 <li role="presentation" class="active"><a href="#roles" aria-controls="roles" role="tab" data-toggle="tab">Roles</a></li>
+                                 <li role="presentation"><a href="#permissions" aria-controls="permissions" role="tab" data-toggle="tab">Permissions</a></li>
+                                 <li role="presentation"><a href="#functions"   aria-controls="functions"   role="tab" data-toggle="tab">Functions</a></li>
                               </ul>
 
                               <!-- Tab panes -->
@@ -120,6 +121,9 @@
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="permissions">
                                     <div class="col-md-12" ng-include="permissionTpl"></div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="functions">
+                                  <div class="col-md-12" ng-include="functionTpl"></div>
                                 </div>
                               </div>
 

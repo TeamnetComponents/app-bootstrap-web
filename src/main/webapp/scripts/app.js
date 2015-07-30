@@ -100,13 +100,13 @@ bootstrapApp
                     authorizedModules: [AUTH_BOOTSTRAP.all]
                 }
             })
-            //.when('/functions', {
-            //    templateUrl: 'views/functions/function.html',
-            //    controller: 'FunctionsController',
-            //    access: {
-            //        authorizedModules: [AUTH_BOOTSTRAP.all]
-            //    }
-            //})
+            .when('/functions', {
+                templateUrl: 'views/functions/function.html',
+                controller: 'FunctionsController',
+                access: {
+                    authorizedModules: [AUTH_BOOTSTRAP.all]
+                }
+            })
             .when('/test', {
                 templateUrl: 'views/test.html',
                 controller: 'TestController',

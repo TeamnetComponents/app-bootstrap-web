@@ -2,16 +2,13 @@
  * Created by mihai.vaduva on 3/17/15.
  */
 bootstrapControllers
-    .controller('AccountController',['$scope', '$rootScope', '$http', '$q', 'Notification', '$animate', 'Role', 'Permission', 'Account', function($scope, $rootScope, $http, $q, Notification, $animate, Role,Permission, Account){
-        $scope.roles = [];
+    .controller('AccountController',['$scope', '$rootScope', '$http', '$q', 'Notification', '$animate', 'FunctionMock', 'Role', 'Permission', 'Account', function($scope, $rootScope, $http, $q, Notification, $animate, FunctionMock, Role,Permission, Account){
+
         $scope.accounts = [];
+        $scope.roles = [];
+        $scope.functions = [];
         $scope.selectedAccount = {};
-
-
-        $scope.modules = window.localStorage.getObj('modules');
-
-        $scope.selectedModules = [];
-        $scope.selectedModules.type = 'add';
+        $scope.selectedAccount.functions = [];
 
         $scope.search = '';
         $scope.selectedSearch = '';
@@ -21,9 +18,15 @@ bootstrapControllers
 
         $scope.loading = false;
 
+        $scope.modules = window.localStorage.getObj('modules');
+
+        $scope.selectedModules = [];
+        $scope.selectedModules.type = 'add';
+
         var baseTemplateUrl = 'views/account/template/';
         $scope.roleTpl = baseTemplateUrl + 'roles.tpl.html';
         $scope.permissionTpl = baseTemplateUrl + 'permissions.tpl.html';
+        $scope.functionTpl = baseTemplateUrl + 'functions.tpl.html';
 
         $scope.isSelected = function(account){
             return account.id === $scope.selectedAccount.id;
@@ -76,7 +79,12 @@ bootstrapControllers
                 });
 
                 $scope.selectedAccount = res;
+
                 $scope.roles = angular.copy($scope.allRoles);
+                //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                $scope.functions = angular.copy($scope.allFunctions);
+                $scope.selectedAccount.functions = angular.copy($scope.allFunctions);
+                //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
                 $scope.selectedAccount.roles.forEach(function(item){
                     var itemModuleRights = angular.copy(item.moduleRights);
@@ -89,7 +97,18 @@ bootstrapControllers
 
                     item.moduleRights = itemModuleRights;
                 });
+                //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                $scope.selectedAccount.functions.forEach(function(item){
+                    var itemModuleRights = angular.copy(item.moduleRights);
+                    item.moduleRights = null;
+                    var idx = angularIndexOf($scope.functions, item);
+                    if(idx > -1){
+                        $scope.functions.splice(idx, 1);
+                    }
 
+                    item.moduleRights = itemModuleRights;
+                });
+                //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 getAllModuleRights().then(function(){
                     $scope.selectedAccount.moduleRights.forEach(function (item){
                         var module = $scope.findByProperty($scope.modules, 'code', item.module.code);
@@ -216,6 +235,14 @@ bootstrapControllers
                         $scope.selectAccount($scope.accounts[0]);
                     }
                 });
+                //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                FunctionMock.getAll(function(res){
+                    $scope.allFunctions = res;
+                    if(!_.isEmpty($scope.accounts)){
+                        $scope.selectAccount($scope.accounts[0]);
+                    }
+                });
+                //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             });
         };
 
