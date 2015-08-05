@@ -183,30 +183,15 @@
                                 <span>Functions</span>
                             </a>
                         </li>
-                    </ul>
-                </li>
-                <div class="separator"  ng-switch-when="true"></div>
-                <li class="dropdown" ng-if="securityEnabled && isInRoles(['ROLE_ADMIN'])">
-                    <a href="" class="dropdown-toggle with-custom-icon" data-toggle="dropdown">
-                        <i class="icon-icon6"></i>
-                        Organizations
-                        <i class="fa fa-angle-down pull-right"></i>
-                    </a>
-
-                    <ul class="dropdown-menu">
-                        <li ng-switch-when="true">
+                        <!--todo: ng-if link to rest for Ou-->
+                        <li ng-switch-when="true" ng-if="functionIsEnable">
                             <a href="#/organizationUnit/manage"><span class="glyphicon glyphicon-briefcase"></span>
-                                &nbsp;<span>Manage Organizations</span>
+                                &nbsp;<span>Organizations</span>
                             </a>
                         </li>
-                        <li  ng-switch-when="true">
+                        <li  ng-switch-when="true" ng-if="functionIsEnable">
                             <a href="#/organizationalUnit"><span class="glyphicon glyphicon-list"></span></span>
-                                &nbsp;<span>Manage Organization Units</span>
-                            </a>
-                        </li>
-                        <li  ng-switch-when="true">
-                            <a href="#/functions"><span class="glyphicon glyphicon-edit"></span></span>
-                                &nbsp;<span>Manage Functions</span>
+                                &nbsp;<span>Organization Units</span>
                             </a>
                         </li>
                     </ul>

@@ -2,7 +2,7 @@
  * Created by mihai.vaduva on 3/17/15.
  */
 bootstrapControllers
-    .controller('AccountController',['$scope', '$rootScope', '$http', '$q', 'Notification', '$animate', 'FunctionMock', 'Role', 'Permission', 'Account', function($scope, $rootScope, $http, $q, Notification, $animate, FunctionMock, Role,Permission, Account){
+    .controller('AccountController',['$scope', '$rootScope', '$http', '$q', 'Notification', '$animate', 'Function', 'Role', 'Permission', 'Account', function($scope, $rootScope, $http, $q, Notification, $animate, Function, Role,Permission, Account){
 
         $scope.accounts = [];
         $scope.roles = [];
@@ -23,10 +23,15 @@ bootstrapControllers
         $scope.selectedModules = [];
         $scope.selectedModules.type = 'add';
 
+        $scope.functionIsEnable = {};
+
         var baseTemplateUrl = 'views/account/template/';
         $scope.roleTpl = baseTemplateUrl + 'roles.tpl.html';
         $scope.permissionTpl = baseTemplateUrl + 'permissions.tpl.html';
         $scope.functionTpl = baseTemplateUrl + 'functions.tpl.html';
+
+        //TODO find the REST and the url
+        //$http.get('').success($scope.functionIsEnable = true).error($scope.functionIsEnable = false);
 
         $scope.isSelected = function(account){
             return account.id === $scope.selectedAccount.id;
@@ -236,7 +241,7 @@ bootstrapControllers
                     }
                 });
                 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                FunctionMock.getAll(function(res){
+                Function.getAll(function(res){
                     $scope.allFunctions = res;
                     if(!_.isEmpty($scope.accounts)){
                         $scope.selectAccount($scope.accounts[0]);
