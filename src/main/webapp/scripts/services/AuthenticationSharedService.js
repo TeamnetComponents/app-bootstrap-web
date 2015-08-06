@@ -15,6 +15,7 @@ bootstrapServices.factory('AuthenticationSharedService',['$rootScope', '$http', 
                     $rootScope.account = Session;
                     Permissions.refreshAdminModules();
                     authService.loginConfirmed(data);
+                    $rootScope.sendInformationAboutAccount = data;
                 });
 
 
@@ -36,6 +37,7 @@ bootstrapServices.factory('AuthenticationSharedService',['$rootScope', '$http', 
                                 $rootScope.$broadcast("event:auth-notAuthorized");
                             } else {
                                 $rootScope.$broadcast("event:auth-loginConfirmed");
+                                $rootScope.$broadcast("event:getAccountInformation", $rootScope.sendInformationAboutAccount);
                             }
                         });
                     } else {

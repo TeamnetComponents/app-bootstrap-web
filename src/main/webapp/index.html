@@ -25,7 +25,7 @@
     </script>
 </head>
 <body>
-<nav class="navbar navbar-fixed-top">
+<nav class="navbar navbar-fixed-top" ng-controller="NavController">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -176,7 +176,7 @@
                                 <span>Permissions</span>
                             </a>
                         </li>
-                        <li ng-switch-when="true">
+                        <li ng-switch-when="true" ng-if="checkIfFunctionHaveRights">
                             <a href="#/functions">
                                 <i class="fa fa-cog"></i>
                                 <!--todo: Translate-->
@@ -184,12 +184,12 @@
                             </a>
                         </li>
                         <!--todo: ng-if link to rest for Ou-->
-                        <li ng-switch-when="true" ng-if="functionIsEnable">
+                        <li ng-switch-when="true" ng-if="organizationIsEnable">
                             <a href="#/organizationUnit/manage"><span class="glyphicon glyphicon-briefcase"></span>
                                 &nbsp;<span>Organizations</span>
                             </a>
                         </li>
-                        <li  ng-switch-when="true" ng-if="functionIsEnable">
+                        <li  ng-switch-when="true" ng-if="organizationalUnitIsEnable">
                             <a href="#/organizationalUnit"><span class="glyphicon glyphicon-list"></span></span>
                                 &nbsp;<span>Organization Units</span>
                             </a>
@@ -307,8 +307,8 @@
 <script src="scripts/controllers/MessagesController.js"></script>
 <script src="scripts/controllers/RolesController.js"></script>
 <script src="scripts/controllers/PermissionsController.js"></script>
-<script src="scripts/controllers/FunctionsController.js"></script>
 <script src="scripts/controllers/AccountController.js"></script>
+<script src="scripts/controllers/NavController.js"></script>
 
 <script src="scripts/services/bootstrapServices.js"></script>
 <script src="scripts/services/Account.js"></script>
@@ -330,8 +330,6 @@
 <script src="scripts/services/Role.js"></script>
 <script src="scripts/services/Permission.js"></script>
 <script src="scripts/services/Permissions.js"></script>
-<script src="scripts/services/Function.js"></script>
-<script src="scripts/services/FunctionMock.js"></script>
 <script src="scripts/directives/bootstrapDirectives.js"></script>
 <script src="scripts/directives/activeLink.js"></script>
 <script src="scripts/directives/activeMenu.js"></script>

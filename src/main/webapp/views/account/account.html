@@ -111,7 +111,8 @@
                               <ul class="nav nav-tabs" role="tablist">
                                  <li role="presentation" class="active"><a href="#roles" aria-controls="roles" role="tab" data-toggle="tab">Roles</a></li>
                                  <li role="presentation"><a href="#permissions" aria-controls="permissions" role="tab" data-toggle="tab">Permissions</a></li>
-                                 <li role="presentation"><a href="#functions"   aria-controls="functions"   role="tab" data-toggle="tab">Functions</a></li>
+                                 <li role="presentation" ng-if="checkIfFunctionHaveRights">
+                                     <a href="#functions"   aria-controls="functions"   role="tab" data-toggle="tab">Functions</a></li>
                               </ul>
 
                               <!-- Tab panes -->

@@ -144,7 +144,7 @@
                                             <span>Permissions</span>
                                         </a>
                                     </li>
-                                    <li ng-switch-when="true">
+                                    <li ng-switch-when="true" ng-if="checkIfFunctionHaveRights">
                                         <a href="#/functions">
                                             <i class="fa fa-cog"></i>
                                             <!--todo: Translate-->
@@ -261,7 +261,6 @@
 <script src="scripts/controllers/RolesController.js"></script>
 <script src="scripts/controllers/PermissionsController.js"></script>
 <script src="scripts/controllers/AccountController.js"></script>
-<script src="scripts/controllers/FunctionsController.js"></script>
 
 <script src="scripts/services/bootstrapServices.js"></script>
 <script src="scripts/services/Account.js"></script>
@@ -281,8 +280,6 @@
 <script src="scripts/services/MessagesService.js"></script>
 <script src="scripts/services/Role.js"></script>
 <script src="scripts/services/Permission.js"></script>
-<script src="scripts/services/Function.js"></script>
-<script src="scripts/services/FunctionMock.js"></script>
 <script src="scripts/directives/bootstrapDirectives.js"></script>
 <script src="scripts/directives/activeLink.js"></script>
 <script src="scripts/directives/activeMenu.js"></script>

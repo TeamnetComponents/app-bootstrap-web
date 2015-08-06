@@ -19,19 +19,17 @@ bootstrapControllers
         $scope.loading = false;
 
         $scope.modules = window.localStorage.getObj('modules');
+        $scope.mrs = window.localStorage.getObj('moduleRights');
 
         $scope.selectedModules = [];
         $scope.selectedModules.type = 'add';
 
-        $scope.functionIsEnable = {};
+        $scope.checkIfFunctionHaveRights = false;
 
         var baseTemplateUrl = 'views/account/template/';
         $scope.roleTpl = baseTemplateUrl + 'roles.tpl.html';
         $scope.permissionTpl = baseTemplateUrl + 'permissions.tpl.html';
         $scope.functionTpl = baseTemplateUrl + 'functions.tpl.html';
-
-        //TODO find the REST and the url
-        //$http.get('').success($scope.functionIsEnable = true).error($scope.functionIsEnable = false);
 
         $scope.isSelected = function(account){
             return account.id === $scope.selectedAccount.id;
@@ -92,6 +90,11 @@ bootstrapControllers
                 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
                 $scope.selectedAccount.roles.forEach(function(item){
+                    item.moduleRights.forEach(function(moduleRight) {
+                        var module = mrs[moduleRight.id].module;
+                        $scope.checkFunctionHaveRights(moduleRight, module);
+                    });
+
                     var itemModuleRights = angular.copy(item.moduleRights);
                     item.moduleRights = null;
 
@@ -117,6 +120,8 @@ bootstrapControllers
                 getAllModuleRights().then(function(){
                     $scope.selectedAccount.moduleRights.forEach(function (item){
                         var module = $scope.findByProperty($scope.modules, 'code', item.module.code);
+                        $scope.checkFunctionHaveRights(item, module);
+
                         var idx = angularIndexOf(module.moduleRights, item);
                         if(idx > -1){
                             module.moduleRights.splice(idx, 1);
@@ -126,6 +131,14 @@ bootstrapControllers
                     $scope.loading = false;
                 });
             });
+        };
+
+        $scope.checkFunctionHaveRights = function(item, module) {
+            if(module.code == "function" && module.description == "Function Access") {
+                if(item.moduleRightCode == "READ_ACCESS") {
+                    $scope.checkIfFunctionHaveRights = true;
+                }
+            }
         };
 
         $scope.editAccount = function(){
@@ -211,6 +224,8 @@ bootstrapControllers
             $scope.selectedModules = [];
             $scope.selectedModules.type = 'add';
             $scope.selectedModuleRights = [];
+
+            $scope.checkIfFunctionHaveRights = false;
         };
 
         var getAllModuleRights = function() {
