@@ -25,7 +25,7 @@
     </script>
 </head>
 <body>
-<nav class="navbar navbar-fixed-top" ng-controller="NavController">
+<nav class="navbar navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -176,7 +176,7 @@
                                 <span>Permissions</span>
                             </a>
                         </li>
-                        <li ng-switch-when="true" ng-if="checkIfFunctionHaveRights">
+                        <li ng-switch-when="true" ng-if="checkIfAccountFunctionHaveRights">
                             <a href="#/functions">
                                 <i class="fa fa-cog"></i>
                                 <!--todo: Translate-->
@@ -308,7 +308,6 @@
 <script src="scripts/controllers/RolesController.js"></script>
 <script src="scripts/controllers/PermissionsController.js"></script>
 <script src="scripts/controllers/AccountController.js"></script>
-<script src="scripts/controllers/NavController.js"></script>
 
 <script src="scripts/services/bootstrapServices.js"></script>
 <script src="scripts/services/Account.js"></script>

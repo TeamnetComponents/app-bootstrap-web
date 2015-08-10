@@ -36,7 +36,7 @@ bootstrapServices.factory('AuthenticationSharedService',['$rootScope', '$http', 
                                 $rootScope.$broadcast("event:auth-notAuthorized");
                             } else {
                                 $rootScope.$broadcast("event:auth-loginConfirmed");
-                                $rootScope.$broadcast("event:getAccountInformation", data);
+                                $rootScope.$broadcast("event:get-account-information", data);
                             }
                         });
                     } else {
