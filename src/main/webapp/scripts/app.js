@@ -18,7 +18,7 @@ angular.element(document).ready(function () {
 });
 
 bootstrapApp
-    .config(function ($routeProvider, $httpProvider, $translateProvider, tmhDynamicLocaleProvider, httpRequestInterceptorCacheBusterProvider, AUTH_BOOTSTRAP, NotificationProvider) {
+    .config(function ($routeProvider, $httpProvider, $translateProvider, $translatePartialLoaderProvider, tmhDynamicLocaleProvider, httpRequestInterceptorCacheBusterProvider, AUTH_BOOTSTRAP, NotificationProvider) {
 
         //Cache everything except rest api requests
         httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*rest.*/], true);
@@ -212,14 +212,15 @@ bootstrapApp
             });
 
         // Initialize angular-translate
-        $translateProvider.useStaticFilesLoader({
-            prefix: 'i18n/',
-            suffix: '.json'
+        $translatePartialLoaderProvider.addPart('i18n/');
+        $translateProvider.useLoader('$translatePartialLoader', {
+            urlTemplate: '{part}{lang}.json'
         });
 
         $translateProvider.preferredLanguage('en');
 
         $translateProvider.useCookieStorage();
+        $translateProvider.useSanitizeValueStrategy('sanitize');
 
         tmhDynamicLocaleProvider.localeLocationPattern('bower_components/angular-i18n/angular-locale_{{locale}}.js');
         tmhDynamicLocaleProvider.useCookieStorage('NG_TRANSLATE_LANG_KEY');
