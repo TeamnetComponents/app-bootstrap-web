@@ -23,6 +23,27 @@ bootstrapControllers
 
             $scope.loading = false;
 
+            $scope.open_validFrom = function($event) {
+                $event.preventDefault();
+                $event.stopPropagation();
+                $scope.opened_validFrom = true;
+            };
+
+            $scope.open_validTo = function($event) {
+                $event.preventDefault();
+                $event.stopPropagation();
+                $scope.opened_validTo = true;
+            };
+
+            $scope.dateOptions = {
+                format: 'dd/MM/yyyy',
+                formatYear: 'yy',
+                startingDay: 1
+            };
+
+
+
+
             $scope.isSelected = function (role){
                 return role.id == $scope.selectedRole.id;
             };
@@ -42,8 +63,6 @@ bootstrapControllers
 
 
                     $scope.selectedRole = res;
-                    $scope.selectedRole.validFrom = new Date($scope.selectedRole.validFrom);
-                    $scope.selectedRole.validTo = new Date($scope.selectedRole.validTo);
                     getAllModuleRights().then(function(){
                         $scope.selectedRole.moduleRights.forEach(function (item){
                             var module = $scope.findByProperty($scope.modules, 'code', item.module.code);
