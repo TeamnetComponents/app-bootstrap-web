@@ -2,13 +2,11 @@
  * Created by mihai.vaduva on 3/17/15.
  */
 bootstrapControllers
-    .controller('AccountController',['$scope', '$rootScope', '$http', '$q', 'Notification', '$animate', 'Function', 'Role', 'Permission', 'Account', function($scope, $rootScope, $http, $q, Notification, $animate, Function, Role,Permission, Account){
+    .controller('AccountController',['$scope', '$rootScope', '$http', '$q', 'Notification', '$animate', 'Role', 'Permission', 'Account', function($scope, $rootScope, $http, $q, Notification, $animate, Role, Permission, Account){
 
         $scope.accounts = [];
         $scope.roles = [];
-        $scope.functions = [];
         $scope.selectedAccount = {};
-        $scope.selectedAccount.functions = [];
 
         $scope.search = '';
         $scope.selectedSearch = '';
@@ -24,12 +22,13 @@ bootstrapControllers
         $scope.selectedModules = [];
         $scope.selectedModules.type = 'add';
 
-        $scope.checkIfFunctionHaveRights = false;
+        $scope.displayFunctions = false;
+        $scope.displayOUs = false;
+
 
         var baseTemplateUrl = 'views/account/template/';
         $scope.roleTpl = baseTemplateUrl + 'roles.tpl.html';
         $scope.permissionTpl = baseTemplateUrl + 'permissions.tpl.html';
-        $scope.functionTpl = baseTemplateUrl + 'functions.tpl.html';
 
         $scope.isSelected = function(account){
             return account.id === $scope.selectedAccount.id;
@@ -84,15 +83,11 @@ bootstrapControllers
                 $scope.selectedAccount = res;
 
                 $scope.roles = angular.copy($scope.allRoles);
-                //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                $scope.functions = angular.copy($scope.allFunctions);
-                $scope.selectedAccount.functions = angular.copy($scope.allFunctions);
-                //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
                 $scope.selectedAccount.roles.forEach(function(item){
                     item.moduleRights.forEach(function(moduleRight) {
                         var module = mrs[moduleRight.id].module;
-                        $scope.checkFunctionHaveRights(moduleRight, module);
+                        $scope.checkOURights(moduleRight, module);
                     });
 
                     var itemModuleRights = angular.copy(item.moduleRights);
@@ -105,22 +100,11 @@ bootstrapControllers
 
                     item.moduleRights = itemModuleRights;
                 });
-                //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                $scope.selectedAccount.functions.forEach(function(item){
-                    var itemModuleRights = angular.copy(item.moduleRights);
-                    item.moduleRights = null;
-                    var idx = angularIndexOf($scope.functions, item);
-                    if(idx > -1){
-                        $scope.functions.splice(idx, 1);
-                    }
 
-                    item.moduleRights = itemModuleRights;
-                });
-                //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 getAllModuleRights().then(function(){
                     $scope.selectedAccount.moduleRights.forEach(function (item){
                         var module = $scope.findByProperty($scope.modules, 'code', item.module.code);
-                        $scope.checkFunctionHaveRights(item, module);
+                        $scope.checkOURights(item, module);
 
                         var idx = angularIndexOf(module.moduleRights, item);
                         if(idx > -1){
@@ -131,12 +115,18 @@ bootstrapControllers
                     $scope.loading = false;
                 });
             });
+            $scope.$broadcast('onSelectAccount');
         };
 
-        $scope.checkFunctionHaveRights = function(item, module) {
-            if(module.code == "function" && module.description == "Function Access") {
+        $scope.checkOURights = function(item, module) {
+            if(module.code == "function") {
                 if(item.moduleRightCode == "READ_ACCESS") {
-                    $scope.checkIfFunctionHaveRights = true;
+                    $scope.displayFunctions = true;
+                }
+            }
+            if(module.code == "organizationalUnit") {
+                if(item.moduleRightCode == "READ_ACCESS") {
+                    $scope.displayOUs = true;
                 }
             }
         };
@@ -157,7 +147,8 @@ bootstrapControllers
 
             $scope.selectedAccount.moduleRights = moduleRights;
 
-            Account.updateAccount($scope.selectedAccount, function() {
+            Account.updateAccount($scope.selectedAccount, function(data) {
+                $scope.$broadcast('onSaveAccount', data.id);
                 Notification.success('Account updated');
                 $scope.backAccount();
             }, function(error) {
@@ -225,7 +216,8 @@ bootstrapControllers
             $scope.selectedModules.type = 'add';
             $scope.selectedModuleRights = [];
 
-            $scope.checkIfFunctionHaveRights = false;
+            $scope.displayFunctions = false;
+            $scope.displayOUs = false;
         };
 
         var getAllModuleRights = function() {
@@ -255,14 +247,6 @@ bootstrapControllers
                         $scope.selectAccount($scope.accounts[0]);
                     }
                 });
-                //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                Function.getAll(function(res){
-                    $scope.allFunctions = res;
-                    if(!_.isEmpty($scope.accounts)){
-                        $scope.selectAccount($scope.accounts[0]);
-                    }
-                });
-                //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             });
         };
 

@@ -43,7 +43,7 @@
                                            style="text-align: center;"> Acest camp este obligatoriu</p>
                                     </div>
                                 </div>
-                           </div>                               
+                           </div>
                        </div>
                        <div class="row m0">
                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -57,7 +57,7 @@
                                         <p class="help-block" ng-show="formCreateOrEdit.selectedAccount_email.$error.required"
                                            style="text-align: center;"> Acest camp este obligatoriu</p>
                                     </div>
-                                </div>                                   
+                                </div>
                            </div>
                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="checkbox-container">
@@ -101,35 +101,46 @@
                                            ng-show="!isView"
                                            ng-click="formCreateOrEdit.$setPristine();backAccount()">
                                     Back
-                                </button>                                    
-                            </div>                               
+                                </button>
+                            </div>
                         </div>
                         <div class="row m0">
                             <div>
 
                               <!-- Nav tabs -->
                               <ul class="nav nav-tabs" role="tablist">
-                                 <li role="presentation" class="active"><a href="#roles" aria-controls="roles" role="tab" data-toggle="tab">Roles</a></li>
-                                 <li role="presentation"><a href="#permissions" aria-controls="permissions" role="tab" data-toggle="tab">Permissions</a></li>
-                                 <li role="presentation" ng-if="checkIfFunctionHaveRights">
-                                     <a href="#functions"   aria-controls="functions"   role="tab" data-toggle="tab">Functions</a></li>
+                                 <li role="presentation" class="active">
+                                     <a href="#roles" aria-controls="roles" role="tab" data-toggle="tab">Roles</a>
+                                 </li>
+                                 <li role="presentation">
+                                     <a href="#permissions" aria-controls="permissions" role="tab" data-toggle="tab">Permissions</a>
+                                 </li>
+                                 <li role="presentation" ng-if="displayFunctions">
+                                     <a href="#functions" aria-controls="functions" role="tab" data-toggle="tab">Functions</a>
+                                 </li>
+                                  <li role="presentation" ng-if="displayOUs">
+                                      <a href="#ous" aria-controls="ous" role="tab" data-toggle="tab">Organizational Units</a>
+                                  </li>
                               </ul>
 
-                              <!-- Tab panes -->
-                              <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane active" id="roles">
-                                    <div class="col-md-12" ng-include="roleTpl"></div>
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane active" id="roles">
+                                        <div class="col-md-12" ng-include="roleTpl"></div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane" id="permissions">
+                                        <div class="col-md-12" ng-include="permissionTpl"></div>
+                                    </div>
+                                    <div ng-if="displayFunctions" role="tabpanel" class="tab-pane" id="functions" ng-controller="OuAccountController">
+                                        <div class="col-md-12" ng-include="functionTpl"></div>
+                                    </div>
+                                    <div ng-if="displayOUs" role="tabpanel" class="tab-pane" id="ous" ng-controller="OuAccountController">
+                                        <div class="col-md-12" ng-include="ouTpl"></div>
+                                    </div>
                                 </div>
-                                <div role="tabpanel" class="tab-pane" id="permissions">
-                                    <div class="col-md-12" ng-include="permissionTpl"></div>
-                                </div>
-                                <div role="tabpanel" class="tab-pane" id="functions">
-                                  <div class="col-md-12" ng-include="functionTpl"></div>
-                                </div>
-                              </div>
 
-                            </div>                            
-                        </div>                            
+                            </div>
+                        </div>
                     </div>
 
                 </div>

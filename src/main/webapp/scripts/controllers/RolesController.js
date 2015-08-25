@@ -41,9 +41,6 @@ bootstrapControllers
                 startingDay: 1
             };
 
-
-
-
             $scope.isSelected = function (role){
                 return role.id == $scope.selectedRole.id;
             };
@@ -109,7 +106,6 @@ bootstrapControllers
                 $scope.selectedModules.forEach(function(module) {
                     module.moduleRights.forEach(function(moduleRight) {
                         moduleRight.module.moduleRights = undefined;
-                        //moduleRights[module.code+'-'+moduleRight.moduleRightCode] = moduleRight;
                         moduleRights.push(moduleRight);
                     })
                 });
