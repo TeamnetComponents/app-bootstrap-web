@@ -2,7 +2,7 @@
  * Created by mihai.vaduva on 3/17/15.
  */
 bootstrapControllers
-    .controller('AccountController',['$scope', '$rootScope', '$http', '$q', 'Notification', '$animate', 'Role', 'Permission', 'Account', function($scope, $rootScope, $http, $q, Notification, $animate, Role, Permission, Account){
+    .controller('AccountController', ['$scope', '$rootScope', '$http', '$q', 'Notification', '$animate', 'Role', 'Permission', 'Account', function ($scope, $rootScope, $http, $q, Notification, $animate, Role, Permission, Account) {
 
         $scope.accounts = [];
         $scope.roles = [];
@@ -22,19 +22,15 @@ bootstrapControllers
         $scope.selectedModules = [];
         $scope.selectedModules.type = 'add';
 
-        $scope.displayFunctions = false;
-        $scope.displayOUs = false;
-
-
         var baseTemplateUrl = 'views/account/template/';
         $scope.roleTpl = baseTemplateUrl + 'roles.tpl.html';
         $scope.permissionTpl = baseTemplateUrl + 'permissions.tpl.html';
 
-        $scope.isSelected = function(account){
+        $scope.isSelected = function (account) {
             return account.id === $scope.selectedAccount.id;
         };
 
-        $scope.findByProperty = function(array, key, val) {
+        $scope.findByProperty = function (array, key, val) {
             for (var i = 0; i < array.length; i++) {
                 if (array[i][key] === val) {
                     return array[i];
@@ -44,36 +40,38 @@ bootstrapControllers
             return false;
         };
 
-        $scope.pushModuleRight = function(targetList, moduleRight, module) {
-            if(!module) {
+        $scope.pushModuleRight = function (targetList, moduleRight, module) {
+            if (!module) {
                 module = moduleRight.module;
             }
 
             var selectedModule = $scope.findByProperty(targetList, 'code', module.code);
-            if(!selectedModule) {
+            if (!selectedModule) {
                 // make a copy
                 selectedModule = {};
-                for(var prop in module) {
+                for (var prop in module) {
                     selectedModule[prop] = module[prop];
                 }
 
                 targetList.push(selectedModule);
             }
 
-            if(!selectedModule.moduleRights) {
+            if (!selectedModule.moduleRights) {
                 selectedModule.moduleRights = [];
             }
 
             selectedModule.moduleRights.push(moduleRight);
         };
 
-        $scope.selectAccount = function(account) {
+        $scope.selectAccount = function (account) {
             $scope.loading = true;
-            Account.getByLogin({login: account.login}, function(res) {
+            Account.getByLogin({login: account.login}, function (res) {
+                $scope.$broadcast('onSelectAccount', res.id);
+
                 clearSelectedModuleRights();
 
                 var mrs = window.localStorage.getObj('moduleRights');
-                res.moduleRights.forEach(function(moduleRight) {
+                res.moduleRights.forEach(function (moduleRight) {
                     var module = mrs[moduleRight.id].module;
                     moduleRight.module = module;
 
@@ -84,30 +82,27 @@ bootstrapControllers
 
                 $scope.roles = angular.copy($scope.allRoles);
 
-                $scope.selectedAccount.roles.forEach(function(item){
-                    item.moduleRights.forEach(function(moduleRight) {
+                $scope.selectedAccount.roles.forEach(function (item) {
+                    item.moduleRights.forEach(function (moduleRight) {
                         var module = mrs[moduleRight.id].module;
-                        $scope.checkOURights(moduleRight, module);
                     });
 
                     var itemModuleRights = angular.copy(item.moduleRights);
                     item.moduleRights = null;
 
                     var idx = angularIndexOf($scope.roles, item);
-                    if(idx > -1){
+                    if (idx > -1) {
                         $scope.roles.splice(idx, 1);
                     }
 
                     item.moduleRights = itemModuleRights;
                 });
 
-                getAllModuleRights().then(function(){
-                    $scope.selectedAccount.moduleRights.forEach(function (item){
+                getAllModuleRights().then(function () {
+                    $scope.selectedAccount.moduleRights.forEach(function (item) {
                         var module = $scope.findByProperty($scope.modules, 'code', item.module.code);
-                        $scope.checkOURights(item, module);
-
                         var idx = angularIndexOf(module.moduleRights, item);
-                        if(idx > -1){
+                        if (idx > -1) {
                             module.moduleRights.splice(idx, 1);
                         }
                     });
@@ -115,77 +110,63 @@ bootstrapControllers
                     $scope.loading = false;
                 });
             });
-            $scope.$broadcast('onSelectAccount');
         };
 
-        $scope.checkOURights = function(item, module) {
-            if(module.code == "function") {
-                if(item.moduleRightCode == "READ_ACCESS") {
-                    $scope.displayFunctions = true;
-                }
-            }
-            if(module.code == "organizationalUnit") {
-                if(item.moduleRightCode == "READ_ACCESS") {
-                    $scope.displayOUs = true;
-                }
-            }
-        };
-
-        $scope.editAccount = function(){
+        $scope.editAccount = function () {
             $scope.isView = false;
             $scope.isEdit = true;
         };
 
-        $scope.saveAccount = function() {
+        $scope.saveAccount = function () {
             var moduleRights = {};
-            $scope.selectedModules.forEach(function(module) {
-                module.moduleRights.forEach(function(moduleRight) {
+            $scope.selectedModules.forEach(function (module) {
+                module.moduleRights.forEach(function (moduleRight) {
                     moduleRight.module.moduleRights = undefined;
-                    moduleRights[module.code+'-'+moduleRight.moduleRightCode] = moduleRight;
+                    moduleRights[module.code + '-' + moduleRight.moduleRightCode] = moduleRight;
                 })
             });
 
             $scope.selectedAccount.moduleRights = moduleRights;
 
-            Account.updateAccount($scope.selectedAccount, function(data) {
+            Account.updateAccount($scope.selectedAccount, function (data) {
                 $scope.$broadcast('onSaveAccount', data.id);
                 Notification.success('Account updated');
                 $scope.backAccount();
-            }, function(error) {
+            }, function (error) {
                 Notification.error(error.data.errMsg);
             });
         };
 
-        $scope.backAccount = function(){
+        $scope.backAccount = function () {
             $scope.isView = true;
             $scope.isEdit = false;
 
-            if($scope.selectedAccount.id != undefined){
+            if ($scope.selectedAccount.id != undefined) {
                 $scope.selectAccount($scope.selectedAccount);
-            } else if(!_.isEmpty($scope.account)){
+            } else if (!_.isEmpty($scope.account)) {
                 $scope.selectAccount($scope.accounts[0]);
             }
         };
 
-        $scope.startFnc = function(){
+        $scope.startFnc = function () {
             arguments[0].target.style.visibility = 'hidden';
         };
 
-        $scope.stopFnc = function(){
+        $scope.stopFnc = function () {
             arguments[0].target.style.visibility = '';
         };
 
-        $scope.addFunction = function(item, list){
-            if(_.isArray(item)){
-                item.forEach(function (elem){
+        $scope.addFunction = function (item, list) {
+            if (_.isArray(item)) {
+                item.forEach(function (elem) {
                     var moduleAux = undefined;
-                    list.forEach(function (module){
-                        if(angular.equals(module.code, elem.module.code )){
+                    list.forEach(function (module) {
+                        if (angular.equals(module.code, elem.module.code)) {
                             moduleAux = module;
                         }
                     });
 
-                    if(moduleAux === undefined){
+                    if (moduleAux === undefined) {
                         list.push(elem.module);
                     }
 
@@ -195,13 +176,13 @@ bootstrapControllers
 
             } else {
                 var moduleAux = undefined;
-                list.forEach(function (module){
-                    if(angular.equals(module.code, item.module.code )){
+                list.forEach(function (module) {
+                    if (angular.equals(module.code, item.module.code)) {
                         moduleAux = module;
                     }
                 });
 
-                if(moduleAux === undefined){
+                if (moduleAux === undefined) {
                     list.push(item.module);
                 }
 
@@ -211,16 +192,13 @@ bootstrapControllers
             }
         };
 
-        var clearSelectedModuleRights = function(){
+        var clearSelectedModuleRights = function () {
             $scope.selectedModules = [];
             $scope.selectedModules.type = 'add';
             $scope.selectedModuleRights = [];
-
-            $scope.displayFunctions = false;
-            $scope.displayOUs = false;
         };
 
-        var getAllModuleRights = function() {
+        var getAllModuleRights = function () {
             var deferred = $q.defer();
 
             $scope.modules = window.localStorage.getObj('modules');
@@ -230,7 +208,7 @@ bootstrapControllers
         };
 
 
-        var angularIndexOf = function(array, elem){
+        var angularIndexOf = function (array, elem) {
             for (var x = 0; x < array.length; x++) {
                 if (angular.equals(array[x], elem))
                     return x;
@@ -238,12 +216,12 @@ bootstrapControllers
             return -1;
         };
 
-        var init = function() {
-            Account.getAllAccounts({}, function(res) {
+        var init = function () {
+            Account.getAllAccounts({}, function (res) {
                 $scope.accounts = res.content;
-                Role.getAll(function(res){
+                Role.getAll(function (res) {
                     $scope.allRoles = res;
-                    if(!_.isEmpty($scope.accounts)){
+                    if (!_.isEmpty($scope.accounts)) {
                         $scope.selectAccount($scope.accounts[0]);
                     }
                 });

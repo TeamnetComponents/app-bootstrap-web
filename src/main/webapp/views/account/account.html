@@ -115,7 +115,7 @@
                                  <li role="presentation">
                                      <a href="#permissions" aria-controls="permissions" role="tab" data-toggle="tab">Permissions</a>
                                  </li>
-                                 <li role="presentation" ng-if="displayFunctions">
+                                 <li role="presentation" ng-if="displayOUs">
                                      <a href="#functions" aria-controls="functions" role="tab" data-toggle="tab">Functions</a>
                                  </li>
                                   <li role="presentation" ng-if="displayOUs">
@@ -131,7 +131,7 @@
                                     <div role="tabpanel" class="tab-pane" id="permissions">
                                         <div class="col-md-12" ng-include="permissionTpl"></div>
                                     </div>
-                                    <div ng-if="displayFunctions" role="tabpanel" class="tab-pane" id="functions" ng-controller="OuAccountController">
+                                    <div ng-if="displayOUs" role="tabpanel" class="tab-pane" id="functions" ng-controller="OuAccountController">
                                         <div class="col-md-12" ng-include="functionTpl"></div>
                                     </div>
                                     <div ng-if="displayOUs" role="tabpanel" class="tab-pane" id="ous" ng-controller="OuAccountController">
