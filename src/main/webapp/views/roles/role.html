@@ -59,10 +59,10 @@
                                     <label>Valid from</label>
 
                                     <p class="input-group">
-                                        <input type="text" class="form-control" is-open="opened_validFrom"
-                                               placeholder="Valid from" datepicker-popup="{{dateOptions.format}}"
-                                               datepicker-options="dateOptions" ng-model="selectedRole.validFrom"
-                                               required close-text="Close"/>
+                                        <input type="text" name="selectedRole_validFrom" class="form-control"
+                                               is-open="opened_validFrom" placeholder="Valid from" close-text="Close"
+                                               datepicker-popup="{{dateOptions.format}}" datepicker-options="dateOptions"
+                                               ng-model="selectedRole.validFrom" ng-required="true" />
                                     <span class="input-group-btn">
                                         <button type="button" class="btn btn-default" ng-click="open_validFrom($event)">
                                             <i class="glyphicon glyphicon-calendar"></i></button>
@@ -81,8 +81,7 @@
                                     <label><b>Valid from:</b></label>
 
                                     <div class="form-control" readonly>
-                                        {{selectedRole.validFrom |
-                                        date:"dd/MM/yyyy"}}
+                                        {{selectedRole.validFrom | date: dateOptions.format}}
                                     </div>
                                 </div>
                             </div>
@@ -94,10 +93,10 @@
                                     <label>Valid to</label>
 
                                     <p class="input-group">
-                                        <input type="text" class="form-control" is-open="opened_validTo"
-                                               placeholder="Valid to" datepicker-popup="{{dateOptions.format}}"
-                                               datepicker-options="dateOptions" ng-model="selectedRole.validTo" required
-                                               close-text="Close"/>
+                                        <input type="text" name="selectedRole_validTo" class="form-control"
+                                               is-open="opened_validTo" placeholder="Valid to" close-text="Close"
+                                               datepicker-popup="{{dateOptions.format}}" datepicker-options="dateOptions"
+                                               ng-model="selectedRole.validTo" ng-required="true" />
                                     <span class="input-group-btn">
                                         <button type="button" class="btn btn-default" ng-click="open_validTo($event)"><i
                                                 class="glyphicon glyphicon-calendar"></i></button>
@@ -116,8 +115,7 @@
                                     <label><b>Valid to:</b></label>
 
                                     <div class="form-control" readonly>
-                                        {{selectedRole.validTo |
-                                        date:"dd/MM/yyyy"}}
+                                        {{selectedRole.validTo | date: dateOptions.format}}
                                     </div>
                                 </div>
                             </div>
@@ -134,7 +132,6 @@
                                     <input id="active" type="checkbox" name="active"
                                            ng-disabled="isView"
                                            ng-model="selectedRole.active"
-                                           ng-checked="selectedRole.active"
                                            class="mr5">
                                     <label class="custom-select" for="active">Active</label>
                                 </div>

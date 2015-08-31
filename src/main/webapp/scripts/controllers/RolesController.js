@@ -60,6 +60,9 @@ bootstrapControllers
 
 
                     $scope.selectedRole = res;
+                    $scope.selectedRole.validFrom = moment($scope.selectedRole.validFrom).toDate();
+                    $scope.selectedRole.validTo = moment($scope.selectedRole.validTo).toDate();
+
                     getAllModuleRights().then(function(){
                         $scope.selectedRole.moduleRights.forEach(function (item){
                             var module = $scope.findByProperty($scope.modules, 'code', item.module.code);
