@@ -6,7 +6,7 @@
                           class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
 </div>
 <div class="row permissions-editor" id="body">
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" ng-class="{'col-anim': isEdit}">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="parentDivPerm1" ng-class="{'col-anim': isEdit}">
         <div class="thumbnail">
                 <input type="text" class="form-control mb15" ng-model="selectedSearch" placeholder="Filter">
             <md-content>
@@ -23,7 +23,7 @@
                              drag-list="true"
                              data-jqyoui-options="{revert: 'invalid',
                                                    helper: 'clone',
-                                                   appendTo: 'body',
+                                                   appendTo: '#parentDivPerm1',
                                                    containment: 'window',
                                                    scroll: false}"
                              jqyoui-draggable="{index: {{$index}},
@@ -42,7 +42,7 @@
                                      ng-model='selectedModule.moduleRights'
                                      data-jqyoui-options="{revert: 'invalid',
                                                            helper: 'clone',
-                                                           appendTo: 'body',
+                                                           appendTo: '#parentDivPerm1',
                                                            containment: 'window',
                                                            scroll: false}"
                                      jqyoui-draggable="{index: {{$index}},
@@ -59,7 +59,7 @@
         </div>
     </div>
     <div ng-show="isAdd || isEdit"
-         class="col-lg-6 col-md-6 col-sm-6 col-xs-12 animate-show">
+         class="col-lg-6 col-md-6 col-sm-6 col-xs-12 animate-show" id="parentDivPerm2">
         <div class="thumbnail">
                 <input type="text" class="form-control mb15" ng-model="search" placeholder="Filter">
             <md-content>
@@ -77,7 +77,7 @@
                              drag-list="true"
                              data-jqyoui-options="{revert: 'invalid',
                                                    helper: 'clone',
-                                                   appendTo: 'body',
+                                                   appendTo: '#parentDivPerm2',
                                                    containment: 'window',
                                                    scroll: false}"
                              jqyoui-draggable="{index: {{$index}},
@@ -95,7 +95,7 @@
                                      ng-model='module.moduleRights'
                                      data-jqyoui-options="{revert: 'invalid',
                                                            helper: 'clone',
-                                                           appendTo: 'body',
+                                                           appendTo: '#parentDivPerm2',
                                                            containment: 'window',
                                                            scroll: false}"
                                      jqyoui-draggable="{index: {{$index}},
