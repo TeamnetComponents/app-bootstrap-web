@@ -11,7 +11,7 @@ var bootstrapApp = angular.module('bootstrapApp', ['http-auth-interceptor', 'tmh
     'bootstrapControllers','bootstrapServices','bootstrapDirectives','bootstrapConstants', 'bootstrapFilters',
     'angular-component.app-grid', 'angular-components.app-menu', 'angular-components.app-menu-admin', 'angular-component.app-tabs', 'ui.tree',
     'ngDragDrop', 'ui.select', 'ngSanitize', 'ui-notification', 'angular-ui-confirm','ui.bootstrap.datetimepicker',
-    'ui.bootstrap.datepicker']);
+    'ui.bootstrap.datepicker','angular-component.app-file-uploader']);
 
 angular.element(document).ready(function () {
     angularCustomLoader.loadApp(bootstrapApp);
