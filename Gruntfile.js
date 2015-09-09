@@ -5,10 +5,10 @@ var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
 
 var contextPath = '/tdi';
 
-var MIDDLEWARE_HOST = '10.6.33.102';
-var MIDDLEWARE_PORT = 8282;
+var MIDDLEWARE_HOST = 'localhost';
+var MIDDLEWARE_PORT = 8080;
 
-var useExternalTomcat = true;
+var useExternalTomcat = false;
 
 function rewriteUrl(backend) {
     var rewrite = {};
