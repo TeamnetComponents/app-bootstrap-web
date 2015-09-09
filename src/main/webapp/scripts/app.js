@@ -2,26 +2,27 @@
 
 /* App Module */
 function changeTheme(theme) {
-    angular.element('.theme').attr("href", "styles/themes/" + theme + ".css");
+    angular.element('.theme-stylesheet').attr("href", "/bower_components/app-theme/dist/themes/" + theme + ".css");
     window.localStorage.setItem('theme', theme);
 }
 
 var bootstrapApp = angular.module('bootstrapApp', ['http-auth-interceptor', 'tmh.dynamicLocale',
-    'ngResource', 'ngRoute', 'ngCookies', 'bootstrapAppUtils', 'pascalprecht.translate',
-    'truncate', 'ngCacheBuster','bootstrapControllers','bootstrapServices','bootstrapDirectives','bootstrapConstants',
-    'angular-component.app-grid', 'angular-components.app-menu', 'angular-components.app-menu-admin', 'ui.tree', 'ngMaterial',
-    'ngDragDrop']);
+    'ngResource', 'ngRoute', 'ngCookies', 'bootstrapAppUtils', 'pascalprecht.translate', 'truncate', 'ngCacheBuster',
+    'bootstrapControllers','bootstrapServices','bootstrapDirectives','bootstrapConstants', 'bootstrapFilters',
+    'angular-component.app-grid', 'angular-components.app-menu', 'angular-components.app-menu-admin', 'angular-component.app-tabs', 'ui.tree',
+    'ngDragDrop', 'ui.select', 'ngSanitize', 'ui-notification', 'angular-ui-confirm','ui.bootstrap.datetimepicker',
+    'ui.bootstrap.datepicker','angular-component.app-file-uploader']);
 
 angular.element(document).ready(function () {
     angularCustomLoader.loadApp(bootstrapApp);
 });
 
 bootstrapApp
-    .config(function ($routeProvider, $httpProvider, $translateProvider, tmhDynamicLocaleProvider, httpRequestInterceptorCacheBusterProvider, AUTH_BOOTSTRAP) {
+    .config(function ($routeProvider, $httpProvider, $translateProvider, $translatePartialLoaderProvider, tmhDynamicLocaleProvider, httpRequestInterceptorCacheBusterProvider, AUTH_BOOTSTRAP, NotificationProvider) {
 
         //Cache everything except rest api requests
         httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*rest.*/], true);
-
+        $httpProvider.interceptors.push('authHttpResponseInterceptor');
         $routeProvider
             .when('/register', {
                 templateUrl: 'views/register.html',
@@ -211,64 +212,90 @@ bootstrapApp
             });
 
         // Initialize angular-translate
-        $translateProvider.useStaticFilesLoader({
-            prefix: 'i18n/',
-            suffix: '.json'
+        $translatePartialLoaderProvider.addPart('i18n/');
+        $translateProvider.useLoader('$translatePartialLoader', {
+            urlTemplate: '{part}{lang}.json'
         });
 
         $translateProvider.preferredLanguage('en');
 
         $translateProvider.useCookieStorage();
+        $translateProvider.useSanitizeValueStrategy('sanitize');
 
         tmhDynamicLocaleProvider.localeLocationPattern('bower_components/angular-i18n/angular-locale_{{locale}}.js');
         tmhDynamicLocaleProvider.useCookieStorage('NG_TRANSLATE_LANG_KEY');
+
+        NotificationProvider.setOptions({
+            delay: 10000,
+            startTop: 20,
+            startRight: 10,
+            verticalSpacing: 20,
+            horizontalSpacing: 20,
+            positionX: 'left',
+            positionY: 'bottom'
+        });
     })
     .run(function ($rootScope, $location, $http, AuthenticationSharedService, Session, AUTH_BOOTSTRAP) {
         $rootScope.authenticated = false;
+        if($rootScope.securityEnabled==undefined){
+            $rootScope.securityEnabled=true;
+        }
 
-        $rootScope.$on('$routeChangeStart', function (event, next) {
-            $rootScope.isAuthorized = AuthenticationSharedService.isAuthorized;
-            $rootScope.userModules = AUTH_BOOTSTRAP;
-            AuthenticationSharedService.valid(next.access.authorizedModules);
-        });
 
-        // Call when the the client is confirmed
-        $rootScope.$on('event:auth-loginConfirmed', function (data) {
-            $rootScope.authenticated = true;
-            if ($location.path() === "/login") {
-                var search = $location.search();
-                if (search.redirect !== undefined) {
-                    $location.path(search.redirect).search('redirect', null).replace();
-                } else {
-                    $location.path('/').replace();
+        if($rootScope.securityEnabled){
+            $rootScope.$on('$routeChangeStart', function (event, next) {
+                $rootScope.isAuthorized = AuthenticationSharedService.isAuthorized;
+                $rootScope.isInRoles = AuthenticationSharedService.isInRoles;
+                $rootScope.userModules = AUTH_BOOTSTRAP;
+//                if(next.access!=undefined&&next.access.authorizedModules!=undefined&&next.access.authorizedModules.length>0&&next.access.authorizedModules[0]!='*'){
+                AuthenticationSharedService.valid(next.access.authorizedModules);
+//                }
+
+            });
+
+            // Call when the the client is confirmed
+            $rootScope.$on('event:auth-loginConfirmed', function (data) {
+                $rootScope.authenticated = true;
+                if ($location.path() === "/login") {
+                    var search = $location.search();
+                    if (search.redirect !== undefined) {
+                        $location.path(search.redirect).search('redirect', null).replace();
+                    } else {
+                        $location.path('/').replace();
+                    }
                 }
-            }
-        });
+            });
 
-        // Call when the 401 response is returned by the server
-        $rootScope.$on('event:auth-loginRequired', function (rejection) {
-            Session.invalidate();
-            $rootScope.authenticated = false;
-            if ($location.path() !== "/" && $location.path() !== "" && $location.path() !== "/register" &&
-                $location.path() !== "/activate" && $location.path() !== "/login") {
-                var redirect = $location.path();
-                $location.path('/login').search('redirect', redirect).replace();
-            }
-        });
+            // Call when the 401 response is returned by the server
+            $rootScope.$on('event:auth-loginRequired', function (rejection) {
+                Session.invalidate();
+                $rootScope.authenticated = false;
+                if ($location.path() !== "/" && $location.path() !== "" && $location.path() !== "/register" &&
+                    $location.path() !== "/activate" && $location.path() !== "/login") {
+                    var redirect = $location.path();
+                    $location.path('/login').search('redirect', redirect).replace();
+                }
+            });
 
-        // Call when the 403 response is returned by the server
-        $rootScope.$on('event:auth-notAuthorized', function (rejection) {
-            $rootScope.errorMessage = 'errors.403';
-            $location.path('/error').replace();
-        });
+            // Call when the 403 response is returned by the server
+            $rootScope.$on('event:auth-notAuthorized', function (rejection) {
+                if ($location.path() !== "/" && $location.path() !== "" && $location.path() !== "/register" &&
+                    $location.path() !== "/activate" && $location.path() !== "/login") {
+                    $rootScope.errorMessage = 'errors.403';
+                    $location.path('/error').replace();
+                }
+            });
 
-        // Call when the user logs out
-        $rootScope.$on('event:auth-loginCancelled', function () {
-            $location.path('');
-        });
+            // Call when the user logs out
+            $rootScope.$on('event:auth-loginCancelled', function () {
+                $location.path('');
+            });
 
-        console.log(angular.element('.auth-data-required'));
-        angular.element('.auth-data-required').removeClass("auth-data-required");
+            console.log(angular.element('.auth-data-required'));
+            angular.element('.auth-data-required').removeClass("auth-data-required");
+        }
+
+
     })
     .run(function ($rootScope, $route) {
         // This uses the Atmoshpere framework to do a Websocket connection with the server, in order to send
@@ -323,3 +350,11 @@ bootstrapApp
         });
     }
 );
+
+Storage.prototype.setObj = function(key, obj) {
+    return this.setItem(key, JSON.stringify(obj))
+};
+
+Storage.prototype.getObj = function(key) {
+    return JSON.parse(this.getItem(key))
+};

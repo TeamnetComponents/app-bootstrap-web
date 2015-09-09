@@ -1,104 +1,152 @@
-<div class="container-fluid">
-    <div id="accountToastr" style="position: fixed;  top: 50px; right: 0px;">
-    </div>
-    <div>
-        <div class="text-center">
-            <h3 class="page-header">Account</h3>
-        </div>
-        <div class="row">
-            <div class="col-md-3" style="margin-right: 0; padding-right: 0;">
-                <div ng-show="view != 'create'"
-                     class="list-group" style="max-height: 500px; overflow: auto">
-                    <div class="md-whiteframe-z1 list-group-item"
-                         style="cursor: pointer; border-top-right-radius: 0px; border-bottom-right-radius: 0px;"
-                         ng-repeat="account in accounts"
-                         ng-click="selectAccount(account)"
-                         ng-class="{active:isSelected(account)}">
-                        {{account.login}}
-                    </div>
-                </div>
+<div>
+    <div class="panel panel-default">
+        <form name="formCreateOrEdit" class="form" role="form">
+            <div class="panel-heading">
+                <h4>Account</h4>
             </div>
-            <div class="col-md-9">
+            <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <md-input-container flex>
-                                    <label>First name</label>
-                                    <input ng-model="selectedAccount.firstName" ng-readonly="isView">
-                                </md-input-container>
-                            </div>
-                            <div class="col-md-6">
-                                <md-input-container flex>
-                                    <label>Last name</label>
-                                    <input ng-model="selectedAccount.lastName" ng-readonly="isView">
-                                </md-input-container>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <md-input-container flex>
-                                    <label>Email</label>
-                                    <input ng-model="selectedAccount.email" ng-readonly="isView">
-                                </md-input-container>
-                            </div>
-                            <div class="col-md-6" layout="column" style="height: 100px;">
-                                Activated
-                                <md-switch ng-disabled="true" class="md-primary" ng-model="selectedAccount.activated" aria-label="Activated">
-                                </md-switch>
+                    <div class="col-lg-3 col-md-3 col-sm-4">
+                        <div ng-show="view != 'create'"
+                             class="list-group" style="max-height: 500px; overflow: auto">
+                            <div class="list-group-item"
+                                 style="cursor: pointer; border-top-right-radius: 0px; border-bottom-right-radius: 0px;"
+                                 ng-repeat="account in accounts"
+                                 ng-click="selectAccount(account)"
+                                 ng-class="{active:isSelected(account)}">
+                                {{account.login}}
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12" style="margin-top: 15px;margin-bottom: 15px;">
-                        <md-divider ></md-divider>
+                    <div class="col-lg-9 col-md-9 col-sm-4">
+                       <div class="row m0">
+                           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group" ng-class="{'has-success':formCreateOrEdit.selectedAccount_firstName.$dirty && formCreateOrEdit.selectedAccount_firstName.$valid,
+                                        'has-error':formCreateOrEdit.selectedAccount_firstName.$dirty && formCreateOrEdit.selectedAccount_firstName.$invalid}">
+                                    <label><b>First name</b></label>
+                                    <input type="text" name="selectedAccount_firstName" class="form-control" ng-model="selectedAccount.firstName" ng-readonly="isView" required>
+
+                                    <div ng-show="formCreateOrEdit.selectedAccount_firstName.$dirty && formCreateOrEdit.selectedAccount_firstName.$invalid">
+                                        <p class="help-block" ng-show="formCreateOrEdit.selectedAccount_firstName.$error.required"
+                                           style="text-align: center;"> Acest camp este obligatoriu</p>
+                                    </div>
+                                </div>
+                           </div>
+                           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group" ng-class="{'has-success':formCreateOrEdit.selectedAccount_lastname.$dirty && formCreateOrEdit.selectedAccount_lastname.$valid,
+                                        'has-error':formCreateOrEdit.selectedAccount_lastname.$dirty && formCreateOrEdit.selectedAccount_lastname.$invalid}">
+                                    <label><b>Last name</b></label>
+                                    <input type="text" name="selectedAccount_lastname" class="form-control" ng-model="selectedAccount.lastName" ng-readonly="isView" required>
+
+                                    <div ng-show="formCreateOrEdit.selectedAccount_lastname.$dirty && formCreateOrEdit.selectedAccount_lastname.$invalid">
+                                        <p class="help-block" ng-show="formCreateOrEdit.selectedAccount_lastname.$error.required"
+                                           style="text-align: center;"> Acest camp este obligatoriu</p>
+                                    </div>
+                                </div>
+                           </div>
+                       </div>
+                       <div class="row m0">
+                           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group" ng-class="{'has-success':formCreateOrEdit.selectedAccount_email.$dirty && formCreateOrEdit.selectedAccount_email.$valid,
+                                        'has-error':formCreateOrEdit.selectedAccount_email.$dirty && formCreateOrEdit.selectedAccount_email.$invalid}">
+                                    <label><b>Email</b></label>
+                                    <input type="email" name="selectedAccount_email" class="form-control" ng-model="selectedAccount.email" ng-readonly="isView" required>
+
+
+                                    <div ng-show="formCreateOrEdit.selectedAccount_email.$dirty && formCreateOrEdit.selectedAccount_email.$invalid">
+                                        <p class="help-block" ng-show="formCreateOrEdit.selectedAccount_email.$error.required"
+                                           style="text-align: center;"> Acest camp este obligatoriu</p>
+                                    </div>
+                                </div>
+                           </div>
+                           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="checkbox-container">
+                                    <input id="active" type="checkbox" name="activated"
+                                           ng-disabled="isView"
+                                           ng-model="selectedAccount.activated"
+                                           ng-checked="selectedAccount.activated"
+                                           class="mr5" >
+                                    <label class="custom-select" for="active">Active</label>
+                                </div>
+                           </div>
+                       </div>
+                       <div class="row">
+                           <div class="col-lg-12">
+                               <div class="separator mt5 mb15"></div>
+                           </div>
+                       </div>
+                        <div class="row m0">
+                            <div class="col-md-12 text-right mb15">
+
+                                <button class="btn btn-primary"
+                                           ng-show="false">
+                                    Create
+                                </button>
+                                <button class="btn btn-info"
+                                           ng-show="isView"
+                                           ng-click="editAccount()">
+                                    Edit
+                                </button>
+                                <button class="btn btn-success"
+                                           ng-show="isEdit"
+                                           ng-disabled="formCreateOrEdit.$invalid"
+                                           ng-click="saveAccount()">
+                                    Save
+                                </button>
+                                <button class="btn btn-danger"
+                                           ng-show="false">
+                                    Delete
+                                </button>
+                                <button class="btn btn-warning"
+                                           ng-show="!isView"
+                                           ng-click="formCreateOrEdit.$setPristine();backAccount()">
+                                    Back
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row m0">
+                            <div>
+
+                              <!-- Nav tabs -->
+                              <ul class="nav nav-tabs" role="tablist">
+                                 <li role="presentation" class="active">
+                                     <a href="#roles" aria-controls="roles" role="tab" data-toggle="tab">Roles</a>
+                                 </li>
+                                 <li role="presentation">
+                                     <a href="#permissions" aria-controls="permissions" role="tab" data-toggle="tab">Permissions</a>
+                                 </li>
+                                 <li role="presentation" ng-if="displayOUs">
+                                     <a href="#functions" aria-controls="functions" role="tab" data-toggle="tab">Functions</a>
+                                 </li>
+                                  <li role="presentation" ng-if="displayOUs">
+                                      <a href="#ous" aria-controls="ous" role="tab" data-toggle="tab">Organizational Units</a>
+                                  </li>
+                              </ul>
+
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane active" id="roles">
+                                        <div class="col-md-12" ng-include="roleTpl"></div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane" id="permissions">
+                                        <div class="col-md-12" ng-include="permissionTpl"></div>
+                                    </div>
+                                    <div ng-if="displayOUs" role="tabpanel" class="tab-pane" id="functions" ng-controller="OuAccountController">
+                                        <div class="col-md-12" ng-include="functionTpl"></div>
+                                    </div>
+                                    <div ng-if="displayOUs" role="tabpanel" class="tab-pane" id="ous" ng-controller="OuAccountController">
+                                        <div class="col-md-12" ng-include="ouTpl"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="row" >
-                    <div class="col-md-12" ng-include="roleTpl"></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12" style="margin-top: 15px;margin-bottom: 15px;">
-                        <md-divider ></md-divider>
-                    </div>
-                </div>
-                <div class="row" >
-                    <div class="col-md-12" ng-include="permissionTpl"></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12" style="margin-top: 15px;margin-bottom: 15px;">
-                        <md-divider ></md-divider>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <md-button class="md-raised"
-                                   ng-show="false">
-                            Create
-                        </md-button>
-                        <md-button class="md-raised"
-                                   ng-show="isView"
-                                   ng-click="editAccount()">
-                            Edit
-                        </md-button>
-                        <md-button class="md-raised"
-                                   ng-show="isEdit"
-                                   ng-click="saveAccount()">
-                            Save
-                        </md-button>
-                        <md-button class="md-raised"
-                                   ng-show="false">
-                            Delete
-                        </md-button>
-                        <md-button class="md-raised"
-                                   ng-show="!isView"
-                                   ng-click="backAccount()">
-                            Back
-                        </md-button>
-                    </div>
+
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
+
+

@@ -3,9 +3,50 @@
 
 var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
 
+var contextPath = '/tdi';
+
+var MIDDLEWARE_HOST = 'localhost';
+var MIDDLEWARE_PORT = 8080;
+
+var useExternalTomcat = false;
+
+function rewriteUrl(backend) {
+    var rewrite = {};
+    if (useExternalTomcat) {
+        rewrite['^/' + backend] = contextPath + '/' + backend;
+    }
+
+    console.log('return ' + rewrite);
+
+    return rewrite;
+}
+
+function rewriteSetCookie(req, res, next) {
+
+    var isProxyRequest = req.url.lastIndexOf('/', 0) === 0;
+    if (isProxyRequest) {
+        // we intercept the writeHead function, so that we can exchange headers just before they are written
+        var oldWriteHead = res.writeHead;
+        res.writeHead = function () {
+            var cookie = res.getHeader('Set-Cookie');
+            if (cookie) {
+                res.setHeader('Set-Cookie', cookie.map(function (item) {
+                    // Replace paths in all cookies. The simple string/replace approach might be too naive in some cases, so check before you copy&paste before thinking
+                    return item.replace(/\/tdi/, '');
+                }));
+            }
+            oldWriteHead.apply(res, arguments);
+        };
+    }
+    next();
+}
+
+
+
 module.exports = function (grunt) {
     require('load-grunt-tasks')(grunt);
     require('time-grunt')(grunt);
+
 
     grunt.initConfig({
         yeoman: {
@@ -28,7 +69,12 @@ module.exports = function (grunt) {
                     'src/main/webapp/**/*.json',
                     '.tmp/styles/**/*.css',
                     '{.tmp/,}src/main/webapp/scripts/**/*.js',
-                    'src/main/webapp/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
+                    'src/main/webapp/images/**/*.{png,jpg,jpeg,gif,webp,svg}',
+
+                    '../app-scheduler-ui/src/main/webapp/scheduler/**/*.{html,json,js,css,png,jpg,jpeg,gif,webp,svg}',
+                    '../tdi-ui/src/main/webapp/**/*.{html,json,js,css,png,jpg,jpeg,gif,webp,svg}',
+                    '../tdi-csvimp-plugin-ui/src/main/webapp/csvimp-plugin/**/*.{html,json,js,css,png,jpg,jpeg,gif,webp,svg}',
+                    '../tdi-history-ui/src/main/webapp/history/**/*.{html,json,js,css,png,jpg,jpeg,gif,webp,svg}'
                 ]
             }
         },
@@ -47,79 +93,91 @@ module.exports = function (grunt) {
             proxies: [
                 {
                     context: '/data',
-                    host: 'localhost',
-                    port: 8080,
+                    host: MIDDLEWARE_HOST,
+                    port: MIDDLEWARE_PORT,
                     https: false,
-                    changeOrigin: false
+                    changeOrigin: false,
+                    rewrite: rewriteUrl('data')
                 },
                 {
                     context: '/app',
-                    host: 'localhost',
-                    port: 8080,
+                    host: MIDDLEWARE_HOST,
+                    port: MIDDLEWARE_PORT,
                     https: false,
-                    changeOrigin: false
+                    changeOrigin: false,
+                    rewrite: rewriteUrl('app')
+
                 },
+
                 {
                     context: '/metrics',
-                    host: 'localhost',
-                    port: 8080,
+                    host: MIDDLEWARE_HOST,
+                    port: MIDDLEWARE_PORT,
                     https: false,
-                    changeOrigin: false
+                    changeOrigin: false,
+                    rewrite: rewriteUrl('metrics')
                 },
                 {
                     context: '/dictionary',
-                    host: 'localhost',
-                    port: 8080,
+                    host: MIDDLEWARE_HOST,
+                    port: MIDDLEWARE_PORT,
                     https: false,
-                    changeOrigin: false
+                    changeOrigin: false,
+                    rewrite: rewriteUrl('dictionary')
                 },
                 {
                     context: '/role',
-                    host: 'localhost',
-                    port: 8080,
+                    host: MIDDLEWARE_HOST,
+                    port: MIDDLEWARE_PORT,
                     https: false,
-                    changeOrigin: false
+                    changeOrigin: false,
+                    rewrite: rewriteUrl('role')
                 },
                 {
                     context: '/dump',
-                    host: 'localhost',
-                    port: 8080,
+                    host: MIDDLEWARE_HOST,
+                    port: MIDDLEWARE_PORT,
                     https: false,
-                    changeOrigin: false
+                    changeOrigin: false,
+                    rewrite: rewriteUrl('dump')
                 },
                 {
                     context: '/health',
-                    host: 'localhost',
-                    port: 8080,
+                    host: MIDDLEWARE_HOST,
+                    port: MIDDLEWARE_PORT,
                     https: false,
-                    changeOrigin: false
+                    changeOrigin: false,
+                    rewrite: rewriteUrl('health')
                 },
                 {
                     context: '/configprops',
-                    host: 'localhost',
-                    port: 8080,
+                    host: MIDDLEWARE_HOST,
+                    port: MIDDLEWARE_PORT,
                     https: false,
-                    changeOrigin: false
+                    changeOrigin: false,
+                    rewrite: rewriteUrl('configprops')
                 },
                 {
                     context: '/beans',
-                    host: 'localhost',
-                    port: 8080,
+                    host: MIDDLEWARE_HOST,
+                    port: MIDDLEWARE_PORT,
                     https: false,
-                    changeOrigin: false
+                    changeOrigin: false,
+                    rewrite: rewriteUrl('beans')
                 },
                 {
                     context: '/api-docs',
-                    host: 'localhost',
-                    port: 8080,
+                    host: MIDDLEWARE_HOST,
+                    port: MIDDLEWARE_PORT,
                     https: false,
-                    changeOrigin: false
+                    changeOrigin: false,
+                    rewrite: rewriteUrl('api-docs')
                 }
             ],
             options: {
                 port: 9999,
                 // Change this to 'localhost' to deny access to the server from outside.
-                hostname: 'localhost',
+                hostname: '0.0.0.0',
                 livereload: 35729
             },
             livereload: {
@@ -130,11 +188,22 @@ module.exports = function (grunt) {
                         'src/main/webapp'
                     ],
                     middleware: function (connect) {
-                        return [
-                            proxySnippet,
-                            connect.static('.tmp'),
-                            connect.static('src/main/webapp')
-                        ];
+                        var overlays =[];
+                        if(useExternalTomcat){
+                            overlays=[rewriteSetCookie, proxySnippet];
+                        }else{
+                            overlays=[proxySnippet];
+                        }
+
+                        overlays.push(connect.static('.tmp'));
+                        overlays.push(connect.static('src/main/webapp/'));
+
+                        overlays.push(connect.static('../tdi-ui/src/main/webapp'));
+                        overlays.push(connect.static('../app-scheduler-ui/src/main/webapp'));
+                        overlays.push(connect.static('../tdi-csvimp-plugin-ui/src/main/webapp'));
+                        overlays.push(connect.static('../tdi-history-ui/src/main/webapp'));
+
+                        return overlays;
                     }
                 }
             },
@@ -279,22 +348,28 @@ module.exports = function (grunt) {
                  files: {
                      '<%= yeoman.webapp %>/styles/all.css': [
                          '<%= yeoman.webapp %>/styles/bootstrap.css',
-                         '<%= yeoman.webapp %>/bower_components/jquery-ui/themes/start/jquery-ui.min.css',
+                         '<%= yeoman.webapp %>/bower_components/jquery-ui/themes/base/all.css',
                          '<%= yeoman.webapp %>/bower_components/fontawesome/css/font-awesome.min.css',
                          '<%= yeoman.webapp %>/bower_components/fancybox/source/jquery.fancybox.css',
                          '<%= yeoman.webapp %>/bower_components/fullcalendar/dist/fullcalendar.css',
                          '<%= yeoman.webapp %>/bower_components/ng-xCharts/xcharts.min.css',
-                         '<%= yeoman.webapp %>/bower_components/select2/select2.css',
+                         '<%= yeoman.webapp %>/bower_components/angular-ui-select/dist/select.min.css',
+                         '<%= yeoman.webapp %>/bower_components/select2/dist/css/select2.min.css',
+                         '<%= yeoman.webapp %>/bower_components/selectize/dist/css/selectize.css',
                          '<%= yeoman.webapp %>/bower_components/Justified-Gallery/dist/css/justifiedGallery.min.css',
-                         '<%= yeoman.webapp %>/bower_components/chartist/dist/chartist.min.css',
-                         '<%= yeoman.webapp %>/bower_components/select2/select2.css',
-                         '<%= yeoman.webapp %>/bower_components/app-menu/dist/styles/main.css',
-                         '<%= yeoman.webapp %>/bower_components/angular-ui-tree/dist/angular-ui-tree.min.css',
-                         '<%= yeoman.webapp %>/bower_components/app-menu-admin/dist/styles/main.css',
-                         '<%= yeoman.webapp %>/bower_components/angular-material/angular-material.css',
-                         '<%= yeoman.webapp %>/bower_components/angular-ui-grid/ui-grid.css',
-                         '<%= yeoman.webapp %>/bower_components/app-grid/dist/styles/main.css',
-                         '<%= yeoman.webapp %>/styles/main.css'
+                         //'<%= yeoman.webapp %>/bower_components/chartist/dist/chartist.min.css',
+                         //'<%= yeoman.webapp %>/bower_components/app-menu/dist/styles/main.css',
+                         //'<%= yeoman.webapp %>/bower_components/angular-ui-tree/dist/angular-ui-tree.min.css',
+                         //'<%= yeoman.webapp %>/bower_components/app-menu-admin/dist/styles/main.css',
+                         //'<%= yeoman.webapp %>/bower_components/angular-material/angular-material.css',
+                         //'<%= yeoman.webapp %>/bower_components/angular-ui-grid/ui-grid.css',
+                         //'<%= yeoman.webapp %>/bower_components/app-grid/dist/styles/main.css',
+                         //'<%= yeoman.webapp %>/bower_components/angular-bootstrap/ui-bootstrap-csp.css',
+                         //'<%= yeoman.webapp %>/styles/main.css',
+                         //'<%= yeoman.webapp %>/styles/fonts/style.css',
+                         //'<%= yeoman.webapp %>/styles/themes/tdi/theme.css',
+                         //'<%= yeoman.webapp %>/styles/themes/tdi/tdi.css',
+                         //'<%= yeoman.webapp %>/styles/themes/tdi/components.css'
                      ]
                  }
             }

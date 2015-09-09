@@ -1,0 +1,133 @@
+/* line 9, ../../../../scss/themes/tdi/components.sass */
+.admin-menu-holder ol#tree-root {
+  list-style-type: none;
+  padding-left: 0;
+}
+/* line 12, ../../../../scss/themes/tdi/components.sass */
+.admin-menu-holder ol#tree-root button {
+  background-color: #ddd;
+  color: #333;
+}
+/* line 15, ../../../../scss/themes/tdi/components.sass */
+.admin-menu-holder ol#tree-root button:hover {
+  background-color: #c4c4c4 !important;
+}
+/* line 17, ../../../../scss/themes/tdi/components.sass */
+.admin-menu-holder .list-group-item {
+  line-height: 28px;
+  border-radius: 0;
+}
+/* line 20, ../../../../scss/themes/tdi/components.sass */
+.admin-menu-holder .list-group-item .show-on-hover {
+  display: none;
+}
+/* line 22, ../../../../scss/themes/tdi/components.sass */
+.admin-menu-holder .list-group-item:hover .show-on-hover {
+  display: block;
+}
+
+/* line 34, ../../../../scss/themes/tdi/components.sass */
+.extend_1, .angular-ui-tree-node, .angular-ui-tree-placeholder {
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  min-height: 20px;
+  line-height: 20px;
+}
+
+/* line 42, ../../../../scss/themes/tdi/components.sass */
+.angular-ui-tree-empty {
+  border: 1px dashed #bbb;
+  min-height: 100px;
+  background-color: #e5e5e5;
+  background-image: linear-gradient(45deg, #ffffff 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 75%, #ffffff 75%, #ffffff), linear-gradient(45deg, #ffffff 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 75%, #ffffff 75%, #ffffff);
+  background-size: 60px 60px;
+  background-position: 0 0, 30px 30px;
+}
+
+/* line 50, ../../../../scss/themes/tdi/components.sass */
+.angular-ui-tree-nodes {
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/* line 56, ../../../../scss/themes/tdi/components.sass */
+.angular-ui-tree-nodes .angular-ui-tree-nodes {
+  padding-left: 20px;
+}
+
+/* line 62, ../../../../scss/themes/tdi/components.sass */
+.angular-ui-tree-placeholder {
+  margin: 5px 0;
+  padding: 0;
+  min-height: 30px;
+}
+
+/* line 68, ../../../../scss/themes/tdi/components.sass */
+.angular-ui-tree-hidden {
+  display: none;
+}
+
+/* line 71, ../../../../scss/themes/tdi/components.sass */
+.angular-ui-tree-handle {
+  cursor: move;
+  text-decoration: none;
+  font-weight: 700;
+  box-sizing: border-box;
+  min-height: 20px;
+  line-height: 20px;
+}
+
+/* line 80, ../../../../scss/themes/tdi/components.sass */
+.angular-ui-tree-drag {
+  position: absolute;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.8;
+}
+
+/* line 87, ../../../../scss/themes/tdi/components.sass */
+.permissions-editor .thumbnail {
+  border-radius: 4px;
+  padding: 10px;
+  background-color: #e0e0e0;
+  border: none;
+}
+/* line 93, ../../../../scss/themes/tdi/components.sass */
+.permissions-editor .categoryPermission {
+  border: none;
+  background-color: #ed1c24;
+  color: #fff;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+/* line 99, ../../../../scss/themes/tdi/components.sass */
+.permissions-editor .categoryPermission:focus {
+  outline: none;
+}
+/* line 101, ../../../../scss/themes/tdi/components.sass */
+.permissions-editor .accessPermission {
+  border: 1px solid #cbcbcb;
+  box-shadow: none;
+}
+/* line 104, ../../../../scss/themes/tdi/components.sass */
+.permissions-editor .accessPermission.simple {
+  margin-bottom: 5px;
+}
+/* line 106, ../../../../scss/themes/tdi/components.sass */
+.permissions-editor .accessPermission:focus {
+  outline: none;
+}
+/* line 108, ../../../../scss/themes/tdi/components.sass */
+.permissions-editor md-content.md-default-theme {
+  padding: 5px;
+  border-radius: 4px;
+  display: block;
+}
+/* line 112, ../../../../scss/themes/tdi/components.sass */
+.permissions-editor md-content.md-default-theme:focus {
+  outline: none;
+}

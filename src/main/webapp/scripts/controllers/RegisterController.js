@@ -1,6 +1,9 @@
 
 
-bootstrapControllers.controller('RegisterController',['$scope', '$translate', 'Register', function ($scope, $translate, Register) {
+bootstrapControllers.controller('RegisterController',['$scope', '$translate', 'PublicRegister', '$location', 'Notification', function ($scope, $translate, PublicRegister, $location, Notification) {
+    $scope.registerAccount = {
+        gender: 'male'
+    };
     $scope.success = null;
     $scope.error = null;
     $scope.doNotMatch = null;
@@ -15,9 +18,11 @@ bootstrapControllers.controller('RegisterController',['$scope', '$translate', 'R
             $scope.error = null;
             $scope.errorUserExists = null;
             $scope.errorEmailExists = null;
-            Register.save($scope.registerAccount,
+            PublicRegister.save($scope.registerAccount,
                 function (value, responseHeaders) {
                     $scope.success = 'OK';
+                    Notification.success('<strong>Registration saved!</strong> Please check your email for confirmation.');
+                    $location.path('/');
                 },
                 function (httpResponse) {
                     if (httpResponse.status === 400 && httpResponse.data === "login already in use") {

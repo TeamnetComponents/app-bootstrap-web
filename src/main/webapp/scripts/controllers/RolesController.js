@@ -2,8 +2,8 @@
  * Created by mihai.vaduva on 1/30/15.
  */
 bootstrapControllers
-    .controller('RolesController',['$scope', '$http', '$q', '$mdDialog','$mdToast', '$animate','Role', 'Permission',
-        function($scope, $http, $q, $mdDialog, $mdToast, $animate, Role, Permission){
+    .controller('RolesController',['$scope', '$http', '$q','Notification', '$animate','Role',
+        function($scope, $http, $q, Notification, $animate, Role){
 
             var baseTemplateUrl = 'views/roles/template/';
             $scope.permissionTpl = baseTemplateUrl + 'permission.tpl.html';
@@ -14,9 +14,6 @@ bootstrapControllers
             $scope.modules = [];
             $scope.selectedModules = [];
             $scope.selectedModules.type = 'add';
-            $scope.moduleRights = [];
-            $scope.selectedModuleRights = [];
-
             $scope.search = '';
             $scope.selectedSearch = '';
 
@@ -26,6 +23,24 @@ bootstrapControllers
 
             $scope.loading = false;
 
+            $scope.open_validFrom = function($event) {
+                $event.preventDefault();
+                $event.stopPropagation();
+                $scope.opened_validFrom = true;
+            };
+
+            $scope.open_validTo = function($event) {
+                $event.preventDefault();
+                $event.stopPropagation();
+                $scope.opened_validTo = true;
+            };
+
+            $scope.dateOptions = {
+                format: 'dd/MM/yyyy',
+                formatYear: 'yy',
+                startingDay: 1
+            };
+
             $scope.isSelected = function (role){
                 return role.id == $scope.selectedRole.id;
             };
@@ -33,26 +48,30 @@ bootstrapControllers
             $scope.selectRole = function(role){
                 $scope.loading = true;
                 Role.get({roleId: role.id}, function(res){
-                    $scope.selectedRole = res;
-                    $scope.selectedRole.validFrom = new Date($scope.selectedRole.validFrom);
-                    $scope.selectedRole.validTo = new Date($scope.selectedRole.validTo);
                     clearSelectedModuleRights();
+
+                    var mrs = window.localStorage.getObj('moduleRights');
+                    res.moduleRights.forEach(function(moduleRight) {
+                        var module = mrs[moduleRight.id].module;
+                        moduleRight.module = module;
+
+                        $scope.pushModuleRight($scope.selectedModules, moduleRight);
+                    });
+
+
+                    $scope.selectedRole = res;
+                    $scope.selectedRole.validFrom = moment($scope.selectedRole.validFrom).toDate();
+                    $scope.selectedRole.validTo = moment($scope.selectedRole.validTo).toDate();
+
                     getAllModuleRights().then(function(){
                         $scope.selectedRole.moduleRights.forEach(function (item){
-                            //todo: de modificat in java sa nu am moduleRight cu module null pe role
-                            if(item.module !== null){
-                                if($scope.selectedModuleRights[item.module.code] == undefined){
-                                    $scope.selectedModules.push(item.module);
-                                    $scope.selectedModuleRights[item.module.code] = [];
-                                }
-                                $scope.selectedModuleRights[item.module.code].push(item);
-
-                                var idx = angularIndexOf($scope.moduleRights[item.module.code], item);
-                                if(idx > -1){
-                                    $scope.moduleRights[item.module.code].splice(idx, 1);
-                                }
+                            var module = $scope.findByProperty($scope.modules, 'code', item.module.code);
+                            var idx = angularIndexOf(module.moduleRights, item);
+                            if(idx > -1){
+                                module.moduleRights.splice(idx, 1);
                             }
                         });
+
                         $scope.loading = false;
                     });
                 });
@@ -72,26 +91,40 @@ bootstrapControllers
                 $scope.isEdit = true;
             };
 
-            $scope.saveRole = function(){
+
+            $scope.checkIfEndDateIsAfterStartDate = false;
+            $scope.checkStartTimeAndEndTime = function(newDate) {
+                if($scope.selectedRole.validFrom != null) {
+                    if(newDate < $scope.selectedRole.validFrom) {
+                        $scope.checkIfEndDateIsAfterStartDate = true;
+                        $scope.selectedRole.validTo = null;
+                    } else {
+                        $scope.checkIfEndDateIsAfterStartDate = false;
+                    }
+                }
+            };
+
+            $scope.saveRole = function() {
                 var moduleRights = [];
-                // todo: edit saveRole in java
-                $scope.selectedModules.forEach(function(module){
-                    $scope.selectedModuleRights[module.code].forEach(function(moduleRight){
+                $scope.selectedModules.forEach(function(module) {
+                    module.moduleRights.forEach(function(moduleRight) {
                         moduleRight.module.moduleRights = undefined;
                         moduleRights.push(moduleRight);
                     })
                 });
-
+                if($scope.selectedRole.active == undefined || $scope.selectedRole.active == null){
+                    $scope.selectedRole.active = false;
+                }
                 $scope.selectedRole.moduleRights = moduleRights;
                 if($scope.selectedRole.id !== undefined){
-                    Role.update($scope.selectedRole, function (value) {
-                        showSimpleToast('Role updated');
+                    Role.update({roleId: $scope.selectedRole.id},$scope.selectedRole, function (value) {
+                        Notification.success('Role updated');
                         $scope.selectedRole.id = value.id;
                         $scope.backRole();
                     });
                 }else{
                     Role.save($scope.selectedRole, function (value) {
-                        showSimpleToast('Role saved');
+                        Notification.success('Role saved');
                         $scope.selectedRole.id = value.id;
                         getRoles().then($scope.backRole);
                     });
@@ -100,9 +133,12 @@ bootstrapControllers
 
             $scope.deleteRole = function(){
                 Role.delete({roleId: $scope.selectedRole.id}, function(){
-                    showSimpleToast('Role deleted');
+                    Notification.success('Role deleted');
                     init();
+                }, function (httpResponse) {
+                    Notification.error('Forbidden operation!');
                 });
+                $scope.closeConfirm();
             };
 
             $scope.backRole = function(){
@@ -132,29 +168,11 @@ bootstrapControllers
                             list.push(elem.module);
                         }
 
-                        if(list.type == 'add'){
-                            if($scope.selectedModuleRights[elem.module.code] == undefined){
-                                $scope.selectedModuleRights[elem.module.code] = [];
-                            }
-                            $scope.selectedModuleRights[elem.module.code].push(elem);
-                        } else {
-                            if($scope.moduleRights[elem.module.code] == undefined){
-                                $scope.moduleRights[elem.module.code] = [];
-                            }
-                            $scope.moduleRights[elem.module.code].push(elem);
-                        }
+                        var target = list.type == 'add' ? $scope.selectedModules : $scope.modules;
+                        $scope.pushModuleRight(target, elem);
                     })
 
                 } else {
-                    if($scope.selectedModuleRights[item.module.code] == undefined){
-                        $scope.selectedModuleRights[item.module.code] = [];
-                    }
-
-                    if($scope.moduleRights[item.module.code] == undefined){
-                        $scope.moduleRights[item.module.code] = [];
-                    }
-
-
                     var moduleAux = undefined;
                     list.forEach(function (module){
                         if(angular.equals(module.code, item.module.code )){
@@ -167,15 +185,8 @@ bootstrapControllers
                     }
 
 
-                    if(list.type == 'add'){
-                        if($scope.selectedModuleRights[item.module.code].indexOf(item) < 0){
-                            $scope.selectedModuleRights[item.module.code].push(item);
-                        }
-                    } else {
-                        if($scope.moduleRights[item.module.code].indexOf(item) < 0){
-                            $scope.moduleRights[item.module.code].push(item);
-                        }
-                    }
+                    var target = list.type == 'add' ? $scope.selectedModules : $scope.modules;
+                    $scope.pushModuleRight(target, item);
                 }
             };
 
@@ -188,32 +199,19 @@ bootstrapControllers
             };
 
             $scope.showConfirm = function(ev) {
-                var confirm = $mdDialog.confirm()
-                    .title('Are you sure you want to delete ' + $scope.selectedRole.description + ' ?')
-                    .ok('Delete')
-                    .cancel('Cancel')
-                    .targetEvent(ev);
-                $mdDialog.show(confirm).then(
-                    $scope.deleteRole,
-                    function() {
-                        console.log('Canceled')
-                    });
+//                if (confirm('Are you sure you want to delete ' + $scope.selectedRole.description + '?') ) {
+//                    $scope.deleteRole();
+//                }
+                $('#confirmDelete').modal('show');
             };
 
-            var showSimpleToast = function(message) {
-                $mdToast.show(
-                    $mdToast.simple()
-                        .content(message)
-                        .position('top right')
-                        .parent(angular.element('#roleToastr'))
-                        .hideDelay(1500)
-                );
+            $scope.closeConfirm = function(ev) {
+                $('#confirmDelete').modal('toggle');
             };
 
             var clearSelectedModuleRights = function(){
                 $scope.selectedModules = [];
                 $scope.selectedModules.type = 'add';
-                $scope.selectedModuleRights = [];
             };
 
             var clearState = function(){
@@ -224,8 +222,8 @@ bootstrapControllers
 
             var getRoles = function(){
                 var deferred = $q.defer();
-                Role.get({}, function (res){
-                        $scope.roles = res.content;
+                Role.getAll({}, function (res){
+                        $scope.roles = res
                         deferred.resolve();
                     },
                     function(){
@@ -235,38 +233,48 @@ bootstrapControllers
                 return deferred.promise;
             };
 
-            var getAllModuleRights = function(){
+            var getAllModuleRights = function() {
                 var deferred = $q.defer();
-                if($scope.allModuleRights != undefined && $scope.allModules != undefined){
-                    $scope.moduleRights = angular.copy($scope.allModuleRights);
-                    $scope.modules = angular.copy($scope.allModules);
-                    deferred.resolve();
-                } else {
-                    Permission.getModuleRights({},
-                        function (res){
-                            $scope.allModuleRights = {};
-                            $scope.allModules = [];
-                            res.forEach(function (item){
-                                if(item.module !== null){
-                                    if($scope.allModuleRights[item.module.code] == undefined){
-                                        $scope.allModules.push(item.module);
-                                        $scope.allModuleRights[item.module.code] = [];
-                                    }
-                                    $scope.allModuleRights[item.module.code].push(item);
-                                }
-                            });
-                            $scope.moduleRights = angular.copy($scope.allModuleRights);
-                            $scope.modules = angular.copy($scope.allModules);
-                            deferred.resolve();
-                        },
-                        function (){
-                            console.log('Get all module rights failed');
-                            deferred.reject();
-                        }
-                    );
-                }
+
+                $scope.modules = window.localStorage.getObj('modules');
+
+                deferred.resolve();
                 return deferred.promise;
             };
+
+            $scope.findByProperty = function(array, key, val) {
+                for (var i = 0; i < array.length; i++) {
+                    if (array[i][key] === val) {
+                        return array[i];
+                    }
+                }
+
+                return false;
+            };
+
+            $scope.pushModuleRight = function(targetList, moduleRight, module) {
+                if(!module) {
+                    module = moduleRight.module;
+                }
+
+                var selectedModule = $scope.findByProperty(targetList, 'code', module.code);
+                if(!selectedModule) {
+                    // make a copy
+                    selectedModule = {};
+                    for(var prop in module) {
+                        selectedModule[prop] = module[prop];
+                    }
+
+                    targetList.push(selectedModule);
+                }
+
+                if(!selectedModule.moduleRights) {
+                    selectedModule.moduleRights = [];
+                }
+
+                selectedModule.moduleRights.push(moduleRight);
+            };
+
 
             var angularIndexOf = function(array, elem){
                 for (var x = 0; x < array.length; x++) {

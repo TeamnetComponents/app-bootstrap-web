@@ -10,7 +10,7 @@ bootstrapConstants.constant('AUTH_BOOTSTRAP', {
     'logs' : 'LOGS',
     'audits' : 'AUDITS',
     'docs' : 'DOCS',
-    'menus' : 'MENUS',
+    'menus' : 'MENU',
     'ajax' : 'AJAX',
     'messages' : 'MESSAGES',
     'roles' : 'ROLES',

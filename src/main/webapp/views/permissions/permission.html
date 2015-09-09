@@ -1,107 +1,179 @@
-<div class="container-fluid">
-    <div id="permissionToastr" style="position: fixed;  top: 50px; right: 0px;">
+<div>
+    <div class="panel panel-default">
+        <form  name="formCreateOrEdit" class="form" role="form">
+            <div class="panel-heading">
+                <h4>Permissions</h4>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-4">
+                        <div ng-show="!isAdd"
+                             class="list-group" style="max-height: 500px; overflow: auto">
+                            <div class="list-group-item"
+                                 style="cursor: pointer; border-top-right-radius: 0px; border-bottom-right-radius: 0px;"
+                                 ng-repeat="module in modules"
+                                 ng-click="selectModule(module)"
+                                 ng-class="{active:isSelected(module)}">
+                                {{module.description}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-sm-4">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+                                        <div class="form-group" ng-class="{'has-success':formCreateOrEdit.selectedModule_code.$dirty && formCreateOrEdit.selectedModule_code.$valid,
+                                        'has-error':formCreateOrEdit.selectedModule_code.$dirty && formCreateOrEdit.selectedModule_code.$invalid}">
+                                            <label><b>Permission Code</b></label>
+                                            <input ng-model="selectedModule.code" name="selectedModule_code" ng-readonly="isView" class="form-control" required>
+
+                                            <div ng-show="formCreateOrEdit.selectedModule_code.$dirty && formCreateOrEdit.selectedModule_code.$invalid">
+                                                <p class="help-block" ng-show="formCreateOrEdit.selectedModule_code.$error.required"
+                                                   style="text-align: center;"> Acest camp este obligatoriu</p>
+                                            </div>
+                                        </div>                                       
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+                                        <div class="form-group" ng-class="{'has-success':formCreateOrEdit.selectedModule_desc.$dirty && formCreateOrEdit.selectedModule_desc.$valid,
+                                        'has-error':formCreateOrEdit.selectedModule_desc.$dirty && formCreateOrEdit.selectedModule_desc.$invalid}">
+                                            <label><b>Permission Description</b></label>
+                                            <input ng-model="selectedModule.description" name="selectedModule_desc" ng-readonly="isView" class="form-control" required>
+
+                                            <div ng-show="formCreateOrEdit.selectedModule_desc.$dirty && formCreateOrEdit.selectedModule_desc.$invalid">
+                                                <p class="help-block" ng-show="formCreateOrEdit.selectedModule_desc.$error.required"
+                                                   style="text-align: center;"> Acest camp este obligatoriu</p>
+                                            </div>
+                                        </div>                                        
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group" ng-class="{'has-success':formCreateOrEdit.selectedModule_type.$dirty && formCreateOrEdit.selectedModule_type.$valid,
+                                        'has-error':formCreateOrEdit.selectedModule_type.$dirty && formCreateOrEdit.selectedModule_type.$invalid}">
+                                            <label><b>Module code</b></label>
+                                            <ui-select ng-model="selectedModule.type"
+                                                       ng-disabled="isView"
+                                                       theme="selectize"
+                                                       name="selectedModule_type"
+                                                       required
+                                                    >
+                                                <ui-select-match >
+                                                    {{$select.selected.description}}
+                                                </ui-select-match>
+                                                <ui-select-choices repeat="moduleCode.value as moduleCode in moduleCodeOptions  | filter: $select.search">
+                                                    <div ng-bind-html="moduleCode.description | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select>
+
+                                            <div ng-show="formCreateOrEdit.selectedModule_type.$dirty && formCreateOrEdit.selectedModule_type.$invalid">
+                                                <p class="help-block" ng-show="formCreateOrEdit.selectedModule_type.$error.required"
+                                                   style="text-align: center;"> Acest camp este obligatoriu</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label><b>Parent module</b></label>
+                                            <ui-select ng-model="selectedModule.parentModule"
+                                                       ng-disabled="isView"
+                                                       theme="selectize"
+                                                       name="selectedModule_parentModule"
+                                                    >
+                                                <ui-select-match>
+                                                    {{$select.selected.description}}
+                                                </ui-select-match>
+                                                <ui-select-choices repeat="parentModule in modules  | filter: $select.search">
+                                                    <div ng-bind-html="parentModule.description | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mt15 mb15">
+                                <div class="separator"></div>
+                            </div>
+                        </div>
+                        <div class="row" >
+                            <div class="col-md-12" ng-include="moduleRightsTpl"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mt15 mb15">
+                                <div class="separator"></div>
+                            </div>
+                        </div>
+                        <div class="row pull-right">
+                            <div class="col-md-12">
+                                <button class="btn btn-primary"
+                                           ng-show="isView"
+                                           ng-click="createModule()">
+                                    Create
+                                </button>
+                                <button class="btn btn-info"
+                                           ng-show="isView"
+                                           ng-click="editModule()">
+                                    Edit
+                                </button>
+                                <button class="btn btn-success"
+                                           ng-show="!isView"
+                                           ng-disabled="formCreateOrEdit.$invalid"
+                                           ng-click="saveModule()">
+                                    Save
+                                </button>
+                                <button class="btn btn-danger"
+                                           ng-show="isView || isEdit"
+                                           ng-click="showConfirm()">
+                                    Delete
+                                </button>
+                                <button class="btn btn-warning"
+                                           ng-show="!isView"
+                                           ng-click="formCreateOrEdit.$setPristine();backModule()">
+                                    Back
+                                </button>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>                                        
+                </div>
+            </div>
+        </form>
     </div>
-    <div class="row">
-        <div>
-            <div class="text-center">
-                <h3 class="page-header">Permissions</h3>
-            </div>
-            <div class="row">
-                <div class="col-md-3" style="margin-right: 0; padding-right: 0;">
-                    <div ng-show="!isAdd"
-                         class="list-group" style="max-height: 500px; overflow: auto">
-                        <div class="md-whiteframe-z1 list-group-item"
-                             style="cursor: pointer; border-top-right-radius: 0px; border-bottom-right-radius: 0px;"
-                             ng-repeat="module in modules"
-                             ng-click="selectModule(module)"
-                             ng-class="{active:isSelected(module)}">
-                            {{module.description}}
+</div>
+
+<div class="modal fade" id="confirmDelete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form name="form" ng-submit="deleteModule()">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            ng-click="closeConfirm()">&times;</button>
+                    <h4 class="modal-title">Module delete</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete {{selectedModule.description}} ?</p>
+                </div>
+                <div class="modal-footer">
+                    <div class="row m0">
+                        <div class="col-md-12 text-right mb15">
+                            <button class="btn btn-primary"
+                                    data-dismiss="modal">
+                                Cancel
+                            </button>
+                            <button class="btn btn-danger"
+                                    type="submit">
+                                Yes
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-9">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <md-input-container flex>
-                                        <label>Permission Code</label>
-                                        <input ng-model="selectedModule.code" ng-readonly="isView">
-                                    </md-input-container>
-                                </div>
-                                <div class="col-md-6">
-                                    <md-input-container flex>
-                                        <label>Permission Description</label>
-                                        <input ng-model="selectedModule.description" ng-readonly="isView">
-                                    </md-input-container>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6" layout="column" style="height: 100px;">
-
-                                    <md-select ng-model="selectedModule.type" placeholder="Module code" ng-disabled="isView">
-                                        <md-option value="1">MENU</md-option>
-                                        <md-option value="2" ng-selected="selected">ENTITY</md-option>
-                                        <md-option value="3" ng-selected="selected">FIELD</md-option>
-                                        <md-option value="4" ng-selected="selected">OTHER</md-option>
-                                    </md-select>
-                                </div>
-                                <div class="col-md-6" layout="column" style="height: 100px;">
-                                    <md-select ng-model="selectedModule.parentModule" ng-disabled="isView">
-                                        <md-select-label>{{ selectedModule.parentModule ? selectedModule.parentModule.description : 'Parent module' }}</md-select-label>
-                                        <md-option ng-value="parentModule" ng-repeat="parentModule in modules track by parentModule.id">
-                                            {{parentModule.description}}
-                                        </md-option>
-                                    </md-select>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12" style="margin-top: 15px;margin-bottom: 15px;">
-                            <md-divider ></md-divider>
-                        </div>
-                    </div>
-                    <div class="row" >
-                        <div class="col-md-12" ng-include="moduleRightsTpl"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12" style="margin-top: 15px;margin-bottom: 15px;">
-                            <md-divider ></md-divider>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <md-button class="md-raised"
-                                       ng-show="isView"
-                                       ng-click="createModule()">
-                                Create
-                            </md-button>
-                            <md-button class="md-raised"
-                                       ng-show="isView"
-                                       ng-click="editModule()">
-                                Edit
-                            </md-button>
-                            <md-button class="md-raised"
-                                       ng-show="!isView"
-                                       ng-click="saveModule()">
-                                Save
-                            </md-button>
-                            <md-button class="md-raised"
-                                       ng-show="isView || isEdit"
-                                       ng-click="showConfirm()">
-                                Delete
-                            </md-button>
-                            <md-button class="md-raised"
-                                       ng-show="!isView"
-                                       ng-click="backModule()">
-                                Back
-                            </md-button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>

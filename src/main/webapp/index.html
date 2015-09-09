@@ -7,186 +7,242 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Teamnet web bootstrap</title>
-
     <meta name="description" content="Teamnet web bootstrap">
 
-    <link href='http://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Righteous' rel="stylesheet">
-    <link href='/styles/main.css' rel='stylesheet' type='text/css'>
+    <!-- CSS Styles -->
+    <link href="/bower_components/app-theme/dist/bower_components.css" rel="stylesheet">
+    <link href="/bower_components/app-theme/dist/themes/tdi.css" rel="stylesheet" class="theme-stylesheet">
 
-    <!-- added using grunt cssmin task | to add/remove update Gruntfile.js cssmin task and run it again -->
-    <link href="/styles/all.css" rel="stylesheet">
+
+    <!-- CSS Styles -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
 
     <script>
-        var theme = window.localStorage.getItem('theme') ? window.localStorage.getItem('theme') : 'devoops_v2';
-        document.write("<link href='styles/themes/" + theme + ".css' rel='stylesheet' class='theme' />");
+        var theme = window.localStorage.getItem('theme') ? window.localStorage.getItem('theme') : 'tdi';
+        window.localStorage.setItem('theme', theme);
+
+        document.write("<link href='/bower_components/app-theme/dist/themes/" + theme + ".css' rel='stylesheet' class='theme-stylesheet' />");
     </script>
 </head>
 <body>
-<header class="navbar">
-    <div class="container-fluid expanded-panel">
-        <div class="row">
-            <div id="logo" class="col-xs-12 col-sm-2">
-                <a href="index.html">DevOOPS v2</a>
-            </div>
-            <div id="top-panel" class="col-xs-12 col-sm-10">
-                <div class="row">
-                    <div class="col-xs-8 col-sm-4">
-                        <div id="search">
-                            <input type="text" placeholder="search"/>
-                            <i class="fa fa-search"></i>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-8 top-panel-right" ng-switch="authenticated">
-                        <ul class="nav navbar-nav pull-right panel-menu">
-                            <li class="dropdown">
-                                <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-cogs"></i>
-                                    <span class="about" translate="global.menu.themes">Themes</span>
-                                    <i class="fa fa-angle-down pull-right"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="#" onclick="changeTheme('devoops_v1')">
-                                            <i class="fa fa-picture-o"></i>
-                                            <span>Devoops V1</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="changeTheme('devoops_v2')">
-                                            <i class="fa fa-picture-o"></i>
-                                            <span>Devoops V2</span></a>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="changeTheme('devoops_v3')">
-                                            <i class="fa fa-picture-o"></i>
-                                            <span>Devoops V3</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown auth-data-required" ng-switch-when="true"
-                                ng-if="isAuthorized(userModules.administration)" ng-controller="AdminController">
-
-                                <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                                    <span class="about" translate="global.menu.admin">Admin</span>
-                                    <i class="fa fa-angle-down pull-right"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#/tracker"><span class="glyphicon glyphicon-eye-open"></span>
-                                        &nbsp;<span translate="global.menu.account.tracker">User tracking</span></a></li>
-                                    <li><a href="#/metrics"><span class="glyphicon glyphicon-dashboard"></span>
-                                        &nbsp;<span translate="global.menu.account.metrics">Metrics</span></a></li>
-                                    <li><a href="#/health"><span class="glyphicon glyphicon-heart"></span>
-                                        &#xA0;<span translate="global.menu.account.health">Health</span></a></li>
-                                    <li><a href="#/configuration"><span class="glyphicon glyphicon-list-alt"></span>
-                                        &#xA0;<span translate="global.menu.account.configuration">Configuration</span></a></li>
-                                    <li><a href="#/audits"><span class="glyphicon glyphicon-bell"></span>
-                                        &nbsp;<span translate="global.menu.account.audits">Audits</span></a></li>
-                                    <li><a href="#/logs"><span class="glyphicon glyphicon-tasks"></span>
-                                        &nbsp;<span translate="global.menu.account.logs">Logs</span></a></li>
-                                    <li><a href="#/docs"><span class="glyphicon glyphicon-book"></span>
-                                        &nbsp;<span translate="global.menu.account.apidocs">API Docs</span></a></li>
-                                    <li><a href="#/menus"><span class="glyphicon glyphicon-list-alt"></span>
-                                        &nbsp;<span translate="global.menu.account.menus">Menus</span></a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-cogs"></i>
-                                    <span class="about" >Security</span>
-                                    <i class="fa fa-angle-down pull-right"></i>
-                                </a>
-
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-user"></i>
-                                            <span>Profile</span>
-                                        </a>
-                                    </li>
-                                    <li ng-switch-when="true">
-                                        <a href="#/sessions">
-                                            <i class="fa fa-picture-o"></i>
-                                            <span translate="global.menu.account.sessions">Sessions</span></a>
-                                        </a>
-                                    </li>
-                                    <li ng-switch-when="false">
-                                        <a href="#/login">
-                                            <i class="fa fa-tasks"></i>
-                                            <span translate="global.menu.account.login">Authenticate</span></a>
-                                        </a>
-                                    </li>
-                                    <li ng-switch-when="true">
-                                        <a href="#/account">
-                                            <i class="fa fa-cog"></i>
-                                            <!--todo: Translate-->
-                                            <span>Account</span>
-                                        </a>
-                                    </li>
-                                    <li ng-switch-when="true">
-                                        <a href="#/roles">
-                                            <i class="fa fa-cog"></i>
-                                            <!--todo: Translate-->
-                                            <span>Roles</span>
-                                        </a>
-                                    </li>
-                                    <li ng-switch-when="true">
-                                        <a href="#/permissions">
-                                            <i class="fa fa-cog"></i>
-                                            <!--todo: Translate-->
-                                            <span>Permissions</span>
-                                        </a>
-                                    </li>
-                                    <li ng-switch-when="true">
-                                        <a href="#/settings">
-                                            <i class="fa fa-cog"></i>
-                                            <span translate="global.menu.account.settings">Settings</span></a>
-                                        </a>
-                                    </li>
-                                    <li ng-switch-when="true">
-                                        <a href="#/resetPassword">
-                                            <i class="fa fa-cog"></i>
-                                            <!--todo: Translate-->
-                                            <span>Reset password</span>
-                                        </a>
-                                    </li>
-                                    <li ng-switch-when="true">
-                                        <a href="#/logout">
-                                            <i class="fa fa-power-off"></i>
-                                            <span translate="global.menu.account.logout">Log out</span>
-                                        </a>
-                                    </li>
-                                    <li ng-switch-when="false">
-                                        <a href="#/register">
-                                            <i class="fa fa-user"></i>
-                                            <span translate="global.menu.account.register">Register</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+<nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"></a>
         </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right" ng-switch="authenticated">
+                <form class="navbar-form navbar-left" role="search" id="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default"></button>
+                </form>
+                <div class="separator"></div>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle with-custom-icon" data-toggle="dropdown">
+                        <i class="icon-icon10"></i>&nbsp;Themes<i class="fa fa-angle-down pull-right"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#" onclick="changeTheme('tdi')">
+                                <i class="fa fa-picture-o"></i>
+                                <span>TDI</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="changeTheme('tni')">
+                                <i class="fa fa-picture-o"></i>
+                                <span>TNI (default)</span></a>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <div class="separator"></div>
+                <li><a href="#" class="with-custom-icon"><i class="icon-icon5"></i>Importuri programate</a></li>
+                <div class="separator"></div>
+                <li class="dropdown" ng-if="securityEnabled"  ng-switch-when="false">
+                    <a href="" class="dropdown-toggle with-custom-icon" data-toggle="dropdown">
+                        <i class="icon-icon4"></i>
+                        Settings
+                        <i class="fa fa-angle-down pull-right"></i>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header"  >Public account</li>
+                        <li >
+                            <a href="#/login">
+                                <i class="fa fa-tasks"></i>
+                                <span translate="global.menu.account.login">Authenticate</span></a>
+                            </a>
+                        </li>
+                        <li >
+                            <a href="#/register">
+                                <i class="fa fa-user"></i>
+                                <span translate="global.menu.account.register">Register</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown" ng-if="securityEnabled && isInRoles(['ROLE_ADMIN'])">
+                    <a href="" class="dropdown-toggle with-custom-icon" data-toggle="dropdown">
+                        <i class="icon-icon4"></i>
+                        Settings
+                        <i class="fa fa-angle-down pull-right"></i>
+                    </a>
+
+                    <ul class="dropdown-menu">
+
+                        <li class="dropdown-header" ng-switch-when="true">Administration</li>
+                        <li ng-switch-when="true">
+                            <a href="#/tracker" ><span class="glyphicon glyphicon-eye-open"></span>
+                                &nbsp;<span translate="global.menu.account.tracker">User tracking</span>
+                            </a>
+                        </li>
+                        <li  ng-switch-when="true">
+                            <a href="#/metrics"><span class="glyphicon glyphicon-dashboard"></span>
+                                &nbsp;<span translate="global.menu.account.metrics">Metrics</span>
+                            </a>
+                        </li>
+                        <li  ng-switch-when="true">
+                            <a href="#/health"><span class="glyphicon glyphicon-heart"></span>
+                                &#xA0;<span translate="global.menu.account.health">Health</span>
+                            </a>
+                        </li>
+                        <li  ng-switch-when="true">
+                            <a href="#/configuration"><span class="glyphicon glyphicon-list-alt"></span>
+                                &#xA0;<span
+                                        translate="global.menu.account.configuration">Configuration</span>
+                            </a>
+                        </li>
+                        <li  ng-switch-when="true">
+                            <a href="#/audits"><span class="glyphicon glyphicon-bell"></span>
+                                &nbsp;<span translate="global.menu.account.audits">Audits</span>
+                            </a>
+                        </li>
+                        <li  ng-switch-when="true">
+                            <a href="#/logs"><span class="glyphicon glyphicon-tasks"></span>
+                                &nbsp;<span translate="global.menu.account.logs">Logs</span>
+                            </a>
+                        </li>
+                        <li  ng-switch-when="true">
+                            <a href="#/docs"><span class="glyphicon glyphicon-book"></span>
+                                &nbsp;<span translate="global.menu.account.apidocs">API Docs</span>
+                            </a>
+                        </li>
+                        <li  ng-switch-when="true">
+                            <a href="#/menus"><span class="glyphicon glyphicon-list-alt"></span>
+                                &nbsp;<span translate="global.menu.account.menus">Menus</span>
+                            </a>
+                        </li>
+                        <li  ng-switch-when="true">
+                            <a href="#/sessions">
+                                <i class="fa fa-picture-o"></i>
+                                <span translate="global.menu.account.sessions">Sessions</span></a>
+                            </a>
+                        </li>
+                        <li  role="separator" class="divider" ng-switch-when="true"></li>
+                        <li  class="dropdown-header"  ng-switch-when="true">Security</li>
+                        <li  ng-switch-when="true">
+                            <a href="#/account">
+                                <i class="fa fa-cog"></i>
+                                <!--todo: Translate-->
+                                <span>Account</span>
+                            </a>
+                        </li>
+                        <li ng-switch-when="true">
+                            <a href="#/roles">
+                                <i class="fa fa-cog"></i>
+                                <!--todo: Translate-->
+                                <span>Roles</span>
+                            </a>
+                        </li>
+                        <li ng-switch-when="true">
+                            <a href="#/permissions">
+                                <i class="fa fa-cog"></i>
+                                <!--todo: Translate-->
+                                <span>Permissions</span>
+                            </a>
+                        </li>
+                        <li ng-switch-when="true" ng-if="checkIfAccountFunctionHaveRights">
+                            <a href="#/functions">
+                                <i class="fa fa-cog"></i>
+                                <!--todo: Translate-->
+                                <span>Functions</span>
+                            </a>
+                        </li>
+                        <!--todo: ng-if link to rest for Ou-->
+                        <li ng-switch-when="true" ng-if="organizationIsEnable">
+                            <a href="#/organizationUnit/manage"><span class="glyphicon glyphicon-briefcase"></span>
+                                &nbsp;<span>Organizations</span>
+                            </a>
+                        </li>
+                        <li  ng-switch-when="true" ng-if="organizationalUnitIsEnable">
+                            <a href="#/organizationalUnit"><span class="glyphicon glyphicon-list"></span></span>
+                                &nbsp;<span>Organization Units</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <div class="separator"  ng-switch-when="true"></div>
+                <li class="dropdown" ng-switch-when="true">
+                    <a href="#" class="dropdown-toggle with-user" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false"><img src="images/user.png">{{account.firstName}}&nbsp;{{account.lastName}} <i
+                            class="fa fa-angle-down pull-right"></i></a>
+                    <ul class="dropdown-menu" >
+                        <li>
+                            <a href="#/settings">
+                                <i class="fa fa-cog"></i>
+                                <span translate="global.menu.account.settings">Profile</span></a>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#/resetPassword">
+                                <i class="fa fa-cog"></i>
+                                <!--todo: Translate-->
+                                <span>Reset password</span>
+                            </a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li>
+                            <a href="#/logout">
+                                <i class="fa fa-power-off"></i>
+                                <span translate="global.menu.account.logout">Log out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
     </div>
-</header>
-<!--End Header-->
+    <!-- /.container-fluid -->
+</nav>
 <!--Start Container-->
 <div id="main" class="container-fluid">
     <div class="row">
-        <div id="sidebar-left" class="col-xs-2 col-sm-2" ng-if="$root.account">
-            <navigation root-data-url="data/rest/menu/0" parent-data-url="data/rest/menu/:id" user-rights="$root.account.moduleRights"></navigation>
+        <div id="sidebar-left" class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-if="authenticated">
+            <navigation root-data-url="app/rest/menu/children/0" parent-data-url="app/rest/menu/children/:id"
+                        user-rights="$root.account.moduleRights" security-enabled="securityEnabled"></navigation>
         </div>
 
         <!--Start Content-->
-        <div id="content" class="col-xs-10 col-sm-10" >
+        <div id="content"
+             class="col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
             <div class="row">
-                <div class="col-md-12 container-fluid " ng-view=""  style="margin-top: 35px">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container-fluid " ng-view="">
                 </div>
             </div>
 
@@ -208,6 +264,7 @@
 <script src="bower_components/angular-translate/angular-translate.js"></script>
 <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
 <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+<script src="bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
 <script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
 <script src="bower_components/angular-cache-buster/angular-cache-buster.js"></script>
 <script src="scripts/libs/devoops.js"></script>
@@ -221,12 +278,14 @@
 <script src="scripts/constants/AUTH_BOOTSTRAP.js"></script>
 <script src="scripts/constants/MESSAGES.js"></script>
 
-
-<script src="bower_components/select2/select2.min.js"></script>
-\
+<script src="bower_components/angular-ui-select/dist/select.js"></script>
+<script src="bower_components/select2/dist/js/select2.full.min.js"></script>
 <script src="bower_components/angular-ui-grid/ui-grid.js"></script>
-<script src="bower_components/app-grid/src/app-grid.js"></script>
+<script src="bower_components/file-saver.js/FileSaver.js"></script>
+<script src="bower_components/app-grid/dist/app-grid.js"></script>
 <script src="bower_components/app-menu/dist/app-menu.js"></script>
+
+<script src="bower_components/app-tabs/dist/app-tabs.js"></script>
 
 <script src="scripts/controllers/bootstrapControllers.js"></script>
 <script src="scripts/controllers/AuditsController.js"></script>
@@ -253,6 +312,7 @@
 
 <script src="scripts/services/bootstrapServices.js"></script>
 <script src="scripts/services/Account.js"></script>
+<script src="scripts/services/AccountMock.js"></script>
 <script src="scripts/services/Activate.js"></script>
 <script src="scripts/services/AuthenticationSharedService.js"></script>
 <script src="scripts/services/AuditsService.js"></script>
@@ -269,12 +329,21 @@
 <script src="scripts/services/MessagesService.js"></script>
 <script src="scripts/services/Role.js"></script>
 <script src="scripts/services/Permission.js"></script>
+<script src="scripts/services/Permissions.js"></script>
+<script src="scripts/services/Functionality.js"></script>
+<script src="scripts/services/FileItemService.js"></script>
 <script src="scripts/directives/bootstrapDirectives.js"></script>
 <script src="scripts/directives/activeLink.js"></script>
 <script src="scripts/directives/activeMenu.js"></script>
 
 <script src="scripts/directives/passwordStrengthBar.js"></script>
 <script src="scripts/directives/showValidation.js"></script>
+<script src="scripts/services/httpResponseInterceptor.js"></script>
+
+<script src="scripts/filters/bootstrapFilters.js"></script>
+<script src="scripts/filters/simpleDateFormatter.js"></script>
+<script src="scripts/filters/simpleDateTimeFormatter.js"></script>
+<script src="scripts/filters/yesNoBooleanFormatter.js"></script>
 
 <script src="bower_components/atmosphere/atmosphere.js"></script>
 <script src="bower_components/jquery-atmosphere/jquery.atmosphere.js"></script>
@@ -283,6 +352,7 @@
 <script src="bower_components/app-menu-admin/dist/app-menu-admin.js"></script>
 <script src="bower_components/app-menu-admin/dist/template/menuAdmin.html.js"></script>
 
+<script src="bower_components/moment/min/moment.min.js"></script>
 <script src="bower_components/underscore/underscore-min.js"></script>
 <script src="bower_components/hammerjs/hammer.js"></script>
 <script src="bower_components/angular-material/angular-material.js"></script>
@@ -290,17 +360,46 @@
 <script src="bower_components/angular-animate/angular-animate.js"></script>
 <script src="bower_components/angular-messages/angular-messages.js"></script>
 <script src="bower_components/angular-ui-grid/ui-grid.js"></script>
-<script src="bower_components/app-grid/dist/app-grid.js"></script>
 
+
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script>
-<script src="/bower_components/Justified-Gallery/dist/js/jquery.justifiedGallery.min.js"></script>
-<script src="/bower_components/tinymce/tinymce.min.js"></script>
-<script src="/bower_components/tinymce/tinymce.jquery.min.js"></script>
+<script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script>
+<script src="bower_components/Justified-Gallery/dist/js/jquery.justifiedGallery.min.js"></script>
+<script src="bower_components/tinymce/tinymce.min.js"></script>
+<script src="bower_components/tinymce/tinymce.jquery.min.js"></script>
 <script src="scripts/libs/angular-dragdrop.js"></script>
 <!--<script src="bower_components/angular-dragdrop/src/angular-dragdrop.min.js"></script>-->
 <script src="bower_components/ngDraggable/ngDraggable.js"></script>
 <script src="scripts/angular-loader.js"></script>
+<script src="bower_components/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
+<script src="bower_components/angular-ui-confirm/angular-ui-confirm.min.js"></script>
+<script type="text/javascript" src="bower_components/moment/moment.js"></script>
+<script type="text/javascript" src="bower_components/moment/locale/ro.js"></script>
+<script type="text/javascript" src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+<script src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
+<script type="text/javascript" src="bower_components/app-file-uploader/dist/app-file-uploader.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap-filestyle/src/bootstrap-filestyle.js"></script>
+
+<script src="http://code.shutterstock.com/rickshaw/vendor/d3.v3.js"></script>
+<script src="http://code.shutterstock.com/rickshaw/rickshaw.min.js"></script>
 </body>
+<style>
+    .datetimepicker {
+        width: 400px;
+    }
+    .dropdown-menu table tbody tr td{
+        padding: 3px !important;
+    }
+    .dropdown-menu table tbody tr td .btn-default{
+        background-color: #fff !important;
+        border: 1px solid #ccc !important;
+    }
+    .dropdown-menu table thead button{
+        background-color: #fff !important;
+    }
+
+</style>
 </html>

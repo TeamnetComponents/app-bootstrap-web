@@ -1,12 +1,12 @@
-<div ng-show="loading" class="row" style="width: 100%; height: 100%;position: absolute; z-index: 9999; background-color: rgba(248, 248, 248, 0.63)">
+<div ng-show="loading" class="row">
     <md-progress-circular style="position: absolute;
                                           left: 50%;
                                           top: 50%;
                                           z-index: 9999"
                           class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
 </div>
-<div class="row">
-    <div class="custom-col-md" ng-class="{'col-anim': isEdit}">
+<div class="row permissions-editor">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="parentDivRoles1" ng-class="{'col-anim': isEdit}">
         <div  class="thumbnail"
               style=" min-height: 220px; max-height: 220px; overflow-y: scroll"
               data-drop="true"
@@ -15,14 +15,14 @@
               jqyoui-droppable="{multiple:true}">
             <div  class="list-group">
                 <div ng-repeat="selectedRole in selectedAccount.roles">
-                    <div class="md-whiteframe-z1 list-group-item btn-draggable"
+                    <div class="md-whiteframe-z1 list-group-item btn-draggable accessPermission simple"
                          data-drag="!clickBool"
                          ng-model='selectedAccount.roles'
                          ng-show='selectedRole.description !== undefined'
                          ng-click="addElement(selectedAccount.moduleRights, 'remove')"
                          data-jqyoui-options="{revert: 'invalid',
                                                helper: 'clone',
-                                               appendTo: 'body',
+                                               appendTo: '#parentDivRoles1',
                                                containment: 'window',
                                                scroll: false}"
                          jqyoui-draggable="{index: {{$index}},
@@ -35,8 +35,8 @@
             </div>
         </div>
     </div>
-    <div  ng-show="isEdit" style=" margin: 0; padding: 0"
-         class="col-md-6 animate-show">
+    <div  ng-show="isEdit"
+         class="col-lg-6 col-md-6 col-sm-12 col-xs-12 animate-show" id="parentDivRoles2">
         <div  class="thumbnail"
               style=" min-height: 220px; max-height: 220px; overflow-y: scroll"
               data-drop="true"
@@ -47,13 +47,13 @@
 
             <div  class="list-group">
                 <div ng-repeat="role in roles">
-                    <div class="md-whiteframe-z1 list-group-item btn-draggable"
+                    <div class="md-whiteframe-z1 list-group-item btn-draggable accessPermission simple"
                          data-drag="!clickBool"
                          ng-model='roles'
                          ng-show='role.description !== undefined'
                          data-jqyoui-options="{revert: 'invalid',
                                                helper: 'clone',
-                                               appendTo: 'body',
+                                               appendTo: '#parentDivRoles2',
                                                containment: 'window',
                                                scroll: false}"
                          jqyoui-draggable="{index: {{$index}},

@@ -1,18 +1,18 @@
 <div ng-cloak>
     <div class="row">
 
-        <div class="col-md-12">
+        <div class=" col-lg-6 col-md-6 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-0 col-xs-offset-0">
+            <div ng-if="securityEnabled">
+                <div ng-switch="authenticated">
+                    <div class="alert alert-success" ng-switch-when="false"
+                         translate="global.messages.info.authenticated">
+                        If you want to <a href="#/login">authenticate</a>, you can try the default login="admin" and
+                        password="admin".
+                    </div>
 
-            <div ng-switch="authenticated">
-
-
-                <div class="alert alert-warning" ng-switch-when="false" translate="global.messages.info.authenticated">
-                    If you want to <a href="#/login">authenticate</a>, you can try the default login="admin" and
-                    password="admin".
-                </div>
-
-                <div class="alert alert-warning" ng-switch-when="false" translate="global.messages.info.register">
-                    Don't have an account? <a href=\"#/register\">Register</a>
+                    <div class="alert alert-info" ng-switch-when="false" translate="global.messages.info.register">
+                        Don't have an account? <a href=\"#/register\">Register</a>
+                    </div>
                 </div>
             </div>
 

@@ -1,115 +1,218 @@
-<div class="container-fluid">
-    <div id="roleToastr" style="position: fixed;  top: 50px; right: 0px;">
-    </div>
-    <div class="row">
-        <div>
-            <div class="text-center">
-                <h3 class="page-header">Roles</h3>
+<div>
+    <div class="panel panel-default">
+        <form name="formCreateOrEdit" class="form" role="form">
+            <div class="panel-heading">
+                <h4>Roles</h4>
             </div>
-            <div class="col-md-2" style="margin-right: 0; padding-right: 0;">
-                <div ng-show="!isAdd"
-                     class="list-group" class="list-group" style="max-height: 500px; overflow: auto">
-                    <div class="md-whiteframe-z1 list-group-item"
-                         style="cursor: pointer; border-top-right-radius: 0px; border-bottom-right-radius: 0px;"
-                         ng-repeat="role in roles"
-                         ng-click="selectRole(role)"
-                         ng-class="{active:isSelected(role)}">
-                        {{role.description}}
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-9">
+            <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <md-input-container  flex>
-                                    <label>Role Code</label>
-                                    <input ng-model="selectedRole.code" ng-readonly="isView">
-                                </md-input-container>
-                            </div>
-                            <div class="col-md-6">
-                                <md-input-container  flex>
-                                    <label>Role Description</label>
-                                    <input ng-model="selectedRole.description" ng-readonly="isView">
-                                </md-input-container>
+                    <div class="col-lg-3 col-md-3 col-sm-4">
+                        <div ng-show="!isAdd"
+                             class="list-group" style="max-height: 500px; overflow: auto">
+                            <div class="list-group-item"
+                                 style="cursor: pointer; border-top-right-radius: 0px; border-bottom-right-radius: 0px;"
+                                 ng-repeat="role in roles"
+                                 ng-click="selectRole(role)"
+                                 ng-class="{active:isSelected(role)}">
+                                {{role.description}}
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <md-input-container  flex>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-sm-4">
+                        <div class="row m0">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group" ng-class="{'has-success':formCreateOrEdit.selectedRole_code.$dirty && formCreateOrEdit.selectedRole_code.$valid,
+                                        'has-error':formCreateOrEdit.selectedRole_code.$dirty && formCreateOrEdit.selectedRole_code.$invalid}">
+                                    <label><b>Role Code</b></label>
+                                    <input type="text" name="selectedRole_code" class="form-control"
+                                           ng-model="selectedRole.code" ng-readonly="isView" required>
+
+                                    <div ng-show="formCreateOrEdit.selectedRole_code.$dirty && formCreateOrEdit.selectedRole_code.$invalid">
+                                        <p class="help-block"
+                                           ng-show="formCreateOrEdit.selectedRole_code.$error.required"
+                                           style="text-align: center;"> Acest camp este obligatoriu</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group" ng-class="{'has-success':formCreateOrEdit.selectedRole_desc.$dirty && formCreateOrEdit.selectedRole_desc.$valid,
+                                        'has-error':formCreateOrEdit.selectedRole_desc.$dirty && formCreateOrEdit.selectedRole_desc.$invalid}">
+                                    <label><b>Role Description</b></label>
+                                    <input type="text" name="selectedRole_desc" class="form-control"
+                                           ng-model="selectedRole.description"
+                                           ng-readonly="isView" required>
+
+                                    <div ng-show="formCreateOrEdit.selectedRole_desc.$dirty && formCreateOrEdit.selectedRole_desc.$invalid">
+                                        <p class="help-block"
+                                           ng-show="formCreateOrEdit.selectedRole_desc.$error.required"
+                                           style="text-align: center;"> Acest camp este obligatoriu</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row m0">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group"  ng-hide="isView"
+                                     ng-class="{'has-success': formCreateOrEdit.selectedRole_validFrom.$dirty && formCreateOrEdit.selectedRole_validFrom.$valid, 'has-error': formCreateOrEdit.selectedRole_validFrom.$dirty && formCreateOrEdit.selectedRole_validFrom.$invalid}">
+
                                     <label>Valid from</label>
-                                    <input type="date" ng-model="selectedRole.validFrom" ng-readonly="isView">
-                                </md-input-container>
+
+                                    <p class="input-group">
+                                        <input type="text" name="selectedRole_validFrom" class="form-control"
+                                               is-open="opened_validFrom" placeholder="Valid from" close-text="Close"
+                                               datepicker-popup="{{dateOptions.format}}" datepicker-options="dateOptions"
+                                               ng-model="selectedRole.validFrom" ng-required="true" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open_validFrom($event)">
+                                            <i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                    </p>
+
+                                    <div ng-show="formCreateOrEdit.selectedRole_validFrom.$dirty && formCreateOrEdit.selectedRole_validFrom.$invalid">
+                                        <p class="help-block"
+                                           ng-show="formCreateOrEdit.selectedRole_validFrom.$error.required">
+                                            Acest camp este obligatoriu
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="dropdown" ng-hide="!isView">
+
+                                    <label><b>Valid from:</b></label>
+
+                                    <div class="form-control" readonly>
+                                        {{selectedRole.validFrom | date: dateOptions.format}}
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <md-input-container  flex>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group" ng-hide="isView"
+                                     ng-class="{'has-success': formCreateOrEdit.selectedRole_validTo.$dirty && formCreateOrEdit.selectedRole_validTo.$valid, 'has-error': formCreateOrEdit.selectedRole_validTo.$dirty && formCreateOrEdit.selectedRole_validTo.$invalid}">
+
                                     <label>Valid to</label>
-                                    <input type="date" ng-model="selectedRole.validTo" ng-readonly="isView">
-                                </md-input-container>
+
+                                    <p class="input-group">
+                                        <input type="text" name="selectedRole_validTo" class="form-control"
+                                               is-open="opened_validTo" placeholder="Valid to" close-text="Close"
+                                               datepicker-popup="{{dateOptions.format}}" datepicker-options="dateOptions"
+                                               ng-model="selectedRole.validTo" ng-required="true" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open_validTo($event)"><i
+                                                class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                    </p>
+
+                                    <div ng-show="formCreateOrEdit.selectedRole_validTo.$dirty && formCreateOrEdit.selectedRole_validTo.$invalid">
+                                        <p class="help-block"
+                                           ng-show="formCreateOrEdit.selectedRole_validTo.$error.required">
+                                            Acest camp este obligatoriu
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="dropdown" ng-hide="!isView">
+
+                                    <label><b>Valid to:</b></label>
+
+                                    <div class="form-control" readonly>
+                                        {{selectedRole.validTo | date: dateOptions.format}}
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="row m0">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <!-- empty div fr alignment -->
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="checkbox-container">
+                                    <input id="active" type="checkbox" name="active"
+                                           ng-disabled="isView"
+                                           ng-model="selectedRole.active"
+                                           class="mr5">
+                                    <label class="custom-select" for="active">Active</label>
+                                </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <md-input-container  flex>
-                                    <label>Version</label>
-                                    <input ng-model="selectedRole.version" ng-readonly="isView">
-                                </md-input-container>
-                            </div>
-                            <div class="col-md-6">
-                                Active:
-                                <md-switch class="md-primary" aria-label="Active"
-                                           ng-model="selectedRole.active" ng-disabled="isView">
-                                </md-switch>
+
+                        <div class="row m0">
+                            <div class="col-lg-12">
+                                <div class="separator mt5 mb15"></div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                   <div class="col-md-12" style="margin-top: 15px;margin-bottom: 15px;">
-                       <md-divider ></md-divider>
-                   </div>
-                </div>
-                <div class="row">
-                    <p style="color: #858581">Module rights:</p>
-                    <div class="col-md-12" ng-include="permissionTpl"></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12" style="margin-top: 15px;margin-bottom: 15px;">
-                        <md-divider ></md-divider>
-                    </div>
-                </div>
-                <div class="row">
-                    <!--todo align-->
-                    <div class="col-md-12">
-                        <md-button class="md-raised"
-                                   ng-show="isView"
-                                   ng-click="createRole()">
-                            Create role
-                        </md-button>
-                        <md-button class="md-raised"
-                                   ng-show="isView"
-                                   ng-click="editRole()">
-                            Edit
-                        </md-button>
-                        <md-button class="md-raised"
-                                   ng-show="!isView"
-                                   ng-click="saveRole()">
-                            Save
-                        </md-button>
-                        <md-button class="md-raised"
-                                   ng-show="isView || isEdit"
-                                   ng-click="showConfirm($event)">
-                            Delete
-                        </md-button>
-                        <md-button class="md-raised"
-                                   ng-show="!isView"
-                                   ng-click="backRole()">
-                            Back
-                        </md-button>
+                        <div class="row m0">
+                            <div class="col-md-12 text-right mb15">
+
+                                <button class="btn btn-primary"
+                                        ng-show="isView"
+                                        ng-click="createRole()">
+                                    Create
+                                </button>
+                                <button class="btn btn-info"
+                                        ng-show="isView"
+                                        ng-click="editRole()">
+                                    Edit
+                                </button>
+                                <button class="btn btn-success"
+                                        ng-show="!isView"
+                                        ng-disabled="formCreateOrEdit.$invalid"
+                                        ng-click="saveRole()">
+                                    Save
+                                </button>
+                                <button class="btn btn-danger"
+                                        ng-show="isView || isEdit"
+                                        ng-click="showConfirm($event)">
+                                    Delete
+                                </button>
+                                <button class="btn btn-warning"
+                                        ng-show="!isView"
+                                        ng-click="formCreateOrEdit.$setPristine();backRole()">
+                                    Back
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row m0">
+                            <div class="col-md-12" ng-include="permissionTpl"></div>
+                        </div>
                     </div>
                 </div>
             </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmDelete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form name="form" ng-submit="deleteRole()">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            ng-click="closeConfirm()">&times;</button>
+                    <h4 class="modal-title">Role delete</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete {{selectedRole.description}} ?</p>
+                </div>
+                <div class="modal-footer">
+                    <div class="row m0">
+                        <div class="col-md-12 text-right mb15">
+                            <button class="btn btn-primary"
+                                    data-dismiss="modal"
+                                    >
+                                Cancel
+                            </button>
+                            <button class="btn btn-danger"
+                                    type="submit"
+                                    >
+                                Yes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>

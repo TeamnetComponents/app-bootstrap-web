@@ -1,0 +1,122 @@
+////////// Imports //////////
+@import "compass"
+@import "mixins"
+@import "variables"
+////////// Imports //////////
+/////////////// Bower components ////////////////
+/////////////// Menu ////////////////
+.admin-menu-holder
+	ol#tree-root
+		list-style-type: none
+		padding-left: 0
+		button				
+			background-color: #ddd
+			color: $black
+			&:hover
+				background-color: darken(#ddd, 10%)	!important
+	.list-group-item
+		line-height: 28px
+		border-radius: 0
+	.list-group-item .show-on-hover
+		display: none 
+	.list-group-item:hover .show-on-hover
+		display: block 			
+
+/////////////// Ui-tree ////////////////
+//colors
+$color_pink_swan_approx: #bbb
+$mercury: #e5e5e5
+$white: #fff
+
+//@extend-elements
+//original selectors
+//.angular-ui-tree-node, .angular-ui-tree-placeholder
+.extend_1 
+	display: block
+	position: relative
+	margin: 0
+	padding: 0
+	min-height: 20px
+	line-height: 20px
+
+.angular-ui-tree-empty 
+	border: 1px dashed $color_pink_swan_approx
+	min-height: 100px
+	background-color: $mercury
+	background-image: linear-gradient(45deg, $white 25%, transparent 25%, transparent 75%, $white 75%, $white), linear-gradient(45deg, $white 25%, transparent 25%, transparent 75%, $white 75%, $white)
+	background-size: 60px 60px
+	background-position: 0 0, 30px 30px
+
+.angular-ui-tree-nodes 
+	display: block
+	position: relative
+	margin: 0
+	padding: 0
+	list-style: none
+	.angular-ui-tree-nodes 
+		padding-left: 20px
+
+.angular-ui-tree-node 
+	@extend .extend_1
+
+.angular-ui-tree-placeholder 
+	@extend .extend_1
+	margin: 5px 0
+	padding: 0
+	min-height: 30px
+
+.angular-ui-tree-hidden 
+	display: none
+
+.angular-ui-tree-handle 
+	cursor: move
+	text-decoration: none
+	font-weight: 700
+	//If you use compass, instead of the line below you could use + box-sizing($bs)
+	box-sizing: border-box
+	min-height: 20px
+	line-height: 20px
+
+.angular-ui-tree-drag 
+	position: absolute
+	pointer-events: none
+	z-index: 999
+	opacity: .8
+/////////////// Permissions ////////////////
+.permissions-editor
+	.thumbnail
+		border-radius: $border-radius
+		padding: 10px
+		background-color: $light-grey
+		border: none
+
+	.categoryPermission
+		border: none
+		background-color: $red
+		color: $white
+		border-top-left-radius: $border-radius
+		border-top-right-radius: $border-radius
+		&:focus
+			outline: none		
+	.accessPermission
+		border: 1px solid $medium-grey
+		box-shadow: none
+		&.simple
+			margin-bottom: 5px
+		&:focus
+			outline: none	
+	md-content.md-default-theme
+		padding: 5px
+		border-radius: $border-radius
+		display: block
+		&:focus
+			outline: none
+/////////////// Grid ////////////////
+.ui-grid-render-container-body
+	background-color: $white
+.ui-grid-pager-panel
+	background-color: $white
+.ui-grid
+	border: none
+	background-color: $white
+	border-radius: $border-radius	

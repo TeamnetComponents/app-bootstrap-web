@@ -1,35 +1,13 @@
 <div class="container-fluid">
     <div id="page-login" class="row">
         <div class="col-xs-12 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-            <div class="text-right" translate="global.messages.info.authenticated">
+            <div class="alert alert-info" translate="global.messages.info.authenticated">
                 <a href="#/login">authenticate</a>
             </div>
-            <div class="box">
-                <div class="box-content">
-                    <div class="text-center">
-                        <h3 class="page-header" translate="register.title">Registration</h3>
-                    </div>
-                    <div class="alert alert-success" ng-show="success" translate="register.messages.success">
-                        <strong>Registration saved!</strong> Please check your email for confirmation.
-                    </div>
-
-                    <div class="alert alert-danger" ng-show="error" translate="register.messages.error.fail">
-                        <strong>Registration failed!</strong> Please check your input and try again.
-                    </div>
-
-                    <div class="alert alert-danger" ng-show="errorUserExists"
-                         translate="register.messages.error.userexists">
-                        <strong>Login name already registered!</strong> Please choose another one.
-                    </div>
-
-                    <div class="alert alert-danger" ng-show="errorEmailExists"
-                         translate="register.messages.error.emailexists">
-                        <strong>E-mail is already in use!</strong> Please choose another one.
-                    </div>
-
-                    <div class="alert alert-danger" ng-show="doNotMatch" translate="global.messages.error.dontmatch">
-                        The password and its confirmation do not match!
-                    </div>
+            <div class="panel panel-default">
+                <!--<form class="form" role="form">-->
+                <div class="panel-heading"><h3 class="page-header" translate="register.title">Registration</h3></div>
+                <div class="panel-body">
                     <form ng-show="!success" name="form" role="form" novalidate ng-submit="register()" show-validation>
 
                         <div class="form-group">
@@ -121,7 +99,6 @@
                                     Your password cannot be longer than 50 characters
                                 </p>
                             </div>
-                            <password-strength-bar password-to-check="registerAccount.password"></password-strength-bar>
                         </div>
                         <div class="form-group">
                             <label translate="global.form.confirmpassword">New password confirmation</label>
@@ -149,37 +126,41 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="row form-group">
+                        <div class="form-group">
                             <label translate="global.form.gender">Gender</label>
-
-                            <div class="col-sm-4">
-                                <div class="radio">
-                                    <label>
-                                        <input ng-model="registerAccount.gender" type="radio" name="gender" checked value="MALE" required> Male
-                                        <i class="fa fa-circle-o"></i>
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input ng-model="registerAccount.gender" type="radio" name="gender" value="FEMALE" required> Female
-                                        <i class="fa fa-circle-o"></i>
-                                    </label>
-                                </div>
-                                <div ng-show="form.confirmPassword.$dirty && form.confirmPassword.$invalid">
-                                    <p class="help-block"
-                                       ng-show="form.gender.$error.required"
-                                       translate="global.messages.validate.gender.required">
-                                        Your gender is required
-                                    </p>
-                                </div>
+                            <div class="radio-container">
+                                <input ng-model="registerAccount.gender" id="male" type="radio" name="gender"
+                                       value="male" required>
+                                <label class="custom-select" for="male">Male</label>
+                                <input ng-model="registerAccount.gender" id="female" type="radio" name="gender"
+                                       value="female" required>
+                                <label class="custom-select" for="female">Female</label>
                             </div>
                         </div>
                         <div class="text-center">
-                            <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary"
+                            <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary btn-block"
                                     translate="register.form.button">Register
                             </button>
                         </div>
                     </form>
+                </div>
+
+                <div class="alert alert-danger" ng-show="error" translate="register.messages.error.fail">
+                    <strong>Registration failed!</strong> Please check your input and try again.
+                </div>
+
+                <div class="alert alert-danger" ng-show="errorUserExists"
+                     translate="register.messages.error.userexists">
+                    <strong>Login name already registered!</strong> Please choose another one.
+                </div>
+
+                <div class="alert alert-danger" ng-show="errorEmailExists"
+                     translate="register.messages.error.emailexists">
+                    <strong>E-mail is already in use!</strong> Please choose another one.
+                </div>
+
+                <div class="alert alert-danger" ng-show="doNotMatch" translate="global.messages.error.dontmatch">
+                    The password and its confirmation do not match!
                 </div>
             </div>
         </div>

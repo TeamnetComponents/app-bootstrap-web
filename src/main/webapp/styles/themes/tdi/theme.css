@@ -1,0 +1,1221 @@
+@charset "UTF-8";
+/* line 1, ../../../../scss/themes/tdi/_classes.sass */
+.p0 {
+  padding: 0 !important;
+}
+
+/* line 3, ../../../../scss/themes/tdi/_classes.sass */
+.p15 {
+  padding: 15px;
+}
+
+/* line 5, ../../../../scss/themes/tdi/_classes.sass */
+.pl0 {
+  padding-left: 0 !important;
+}
+
+/* line 7, ../../../../scss/themes/tdi/_classes.sass */
+.pr0 {
+  padding-right: 0 !important;
+}
+
+/* line 9, ../../../../scss/themes/tdi/_classes.sass */
+.m0 {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* line 12, ../../../../scss/themes/tdi/_classes.sass */
+.m15 {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+/* line 15, ../../../../scss/themes/tdi/_classes.sass */
+.mb0 {
+  margin-bottom: 0 !important;
+}
+
+/* line 17, ../../../../scss/themes/tdi/_classes.sass */
+.mt0 {
+  margin-top: 0;
+}
+
+/* line 19, ../../../../scss/themes/tdi/_classes.sass */
+.mr5 {
+  margin-right: 5px;
+}
+
+/* line 21, ../../../../scss/themes/tdi/_classes.sass */
+.mr15 {
+  margin-right: 15px;
+}
+
+/* line 23, ../../../../scss/themes/tdi/_classes.sass */
+.mt5 {
+  margin-top: 5px;
+}
+
+/* line 25, ../../../../scss/themes/tdi/_classes.sass */
+.mt10 {
+  margin-top: 10px;
+}
+
+/* line 27, ../../../../scss/themes/tdi/_classes.sass */
+.mb15 {
+  margin-bottom: 15px;
+}
+
+/* line 29, ../../../../scss/themes/tdi/_classes.sass */
+.cc {
+  float: none;
+  margin: 0 auto;
+}
+
+/* line 32, ../../../../scss/themes/tdi/_classes.sass */
+.equal, .equal > div[class*='col-'] {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex: 1 0 auto;
+}
+
+/* line 39, ../../../../scss/themes/tdi/_classes.sass */
+.dblock {
+  display: block;
+}
+
+/* line 42, ../../../../scss/themes/tdi/_classes.sass */
+.fix-5 {
+  clear: both;
+  height: 5px;
+  width: 5px;
+}
+
+/* line 46, ../../../../scss/themes/tdi/_classes.sass */
+.fix-10 {
+  clear: both;
+  height: 10px;
+  width: 10px;
+}
+
+/* line 50, ../../../../scss/themes/tdi/_classes.sass */
+.fix-15 {
+  clear: both;
+  height: 15px;
+  width: 15px;
+}
+
+/* line 54, ../../../../scss/themes/tdi/_classes.sass */
+.fix-20 {
+  clear: both;
+  height: 20px;
+  width: 20px;
+}
+
+/* line 58, ../../../../scss/themes/tdi/_classes.sass */
+.fix-25 {
+  clear: both;
+  height: 25px;
+  width: 25px;
+}
+
+/* line 62, ../../../../scss/themes/tdi/_classes.sass */
+.fix-30 {
+  clear: both;
+  height: 30px;
+  width: 30px;
+}
+
+/* line 67, ../../../../scss/themes/tdi/_classes.sass */
+.tar {
+  text-align: right;
+}
+
+/* line 69, ../../../../scss/themes/tdi/_classes.sass */
+.tal {
+  text-align: left;
+}
+
+/* line 71, ../../../../scss/themes/tdi/_classes.sass */
+.tac {
+  text-align: center;
+}
+
+/* line 8, ../../../../scss/themes/tdi/theme.sass */
+html, body {
+  height: 100%;
+}
+
+/* line 10, ../../../../scss/themes/tdi/theme.sass */
+body {
+  font-family: "Open Sans", sans-serif !important;
+  color: #333 !important;
+  font-size: 12px;
+  overflow-x: hidden !important;
+}
+
+/* line 15, ../../../../scss/themes/tdi/theme.sass */
+a:focus {
+  outline: none;
+}
+
+/* line 17, ../../../../scss/themes/tdi/theme.sass */
+a {
+  transition: all 0.3s ease-in;
+}
+
+/* line 19, ../../../../scss/themes/tdi/theme.sass */
+h1, h2, h3, h4, h5, h6 {
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+/* line 22, ../../../../scss/themes/tdi/theme.sass */
+h1 {
+  font-size: 18px;
+}
+
+/* line 24, ../../../../scss/themes/tdi/theme.sass */
+h2 {
+  font-size: 16px;
+}
+
+/* line 26, ../../../../scss/themes/tdi/theme.sass */
+h3 {
+  font-size: 14px;
+}
+
+/* line 28, ../../../../scss/themes/tdi/theme.sass */
+h4, h5, h6 {
+  font-size: 12px;
+}
+
+/* line 31, ../../../../scss/themes/tdi/theme.sass */
+nav.navbar {
+  border: none;
+  border-radius: 0;
+  margin-bottom: 0;
+  background-color: #fff;
+  border-bottom: 1px solid #ed1c24;
+}
+/* line 37, ../../../../scss/themes/tdi/theme.sass */
+nav.navbar a.navbar-brand {
+  width: 120px;
+  height: 25px;
+  padding: 0;
+  margin: 12px 15px 12px 0 !important;
+  background-image: url("../img/logo.png");
+}
+/* line 43, ../../../../scss/themes/tdi/theme.sass */
+nav.navbar .separator {
+  width: 1px;
+  height: 50px;
+  background-color: #e0e0e0;
+  float: left;
+}
+/* line 48, ../../../../scss/themes/tdi/theme.sass */
+nav.navbar .navbar-form {
+  position: relative;
+  margin: 11px 10px;
+  border: 0;
+  padding: 0;
+}
+/* line 53, ../../../../scss/themes/tdi/theme.sass */
+nav.navbar .navbar-form input.form-control {
+  border-radius: 4px;
+  border: none;
+  box-shadow: none;
+  background-color: #e0e0e0;
+  height: 28px;
+  font-size: 12px;
+  width: 180px;
+  color: #333;
+}
+/* line 17, ../../../../scss/themes/tdi/_mixins.sass */
+nav.navbar .navbar-form input.form-control::-webkit-input-placeholder {
+  color: #333;
+}
+/* line 20, ../../../../scss/themes/tdi/_mixins.sass */
+nav.navbar .navbar-form input.form-control::-moz-placeholder {
+  color: #333;
+}
+/* line 23, ../../../../scss/themes/tdi/_mixins.sass */
+nav.navbar .navbar-form input.form-control:-moz-placeholder {
+  color: #333;
+}
+/* line 26, ../../../../scss/themes/tdi/_mixins.sass */
+nav.navbar .navbar-form input.form-control:-ms-input-placeholder {
+  color: #333;
+}
+/* line 63, ../../../../scss/themes/tdi/theme.sass */
+nav.navbar .navbar-form button {
+  border: none;
+  margin-right: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 5px 6px;
+  line-height: 1;
+  background-color: transparent;
+  transition: all 0.3s ease-in;
+}
+/* line 2, ../../../../scss/themes/tdi/_mixins.sass */
+nav.navbar .navbar-form button:before {
+  font-family: "icomoon";
+  content: "";
+  display: inline-block;
+  speak: none;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/* line 74, ../../../../scss/themes/tdi/theme.sass */
+nav.navbar .navbar-form button:hover {
+  color: #ed1c24;
+}
+/* line 76, ../../../../scss/themes/tdi/theme.sass */
+nav.navbar .navbar-form button:focus {
+  outline: none;
+}
+/* line 79, ../../../../scss/themes/tdi/theme.sass */
+nav.navbar ul.navbar-nav a {
+  font-size: 12px;
+  color: #333;
+}
+/* line 82, ../../../../scss/themes/tdi/theme.sass */
+nav.navbar ul.navbar-nav a:hover, nav.navbar ul.navbar-nav a:active {
+  background-color: #f1eeee;
+}
+/* line 84, ../../../../scss/themes/tdi/theme.sass */
+nav.navbar ul.navbar-nav a:hover [class^="icon-"], nav.navbar ul.navbar-nav a:hover [class*=" icon-"], nav.navbar ul.navbar-nav a:active [class^="icon-"], nav.navbar ul.navbar-nav a:active [class*=" icon-"] {
+  color: #ed1c24;
+}
+/* line 86, ../../../../scss/themes/tdi/theme.sass */
+nav.navbar ul.navbar-nav a.with-custom-icon {
+  padding-left: 50px;
+}
+/* line 88, ../../../../scss/themes/tdi/theme.sass */
+nav.navbar ul.navbar-nav a [class^="icon-"], nav.navbar ul.navbar-nav a [class*=" icon-"] {
+  font-size: 26px;
+  position: absolute;
+  left: 15px;
+  top: 12px;
+  color: #727171;
+  transition: all 0.3s ease-in;
+}
+/* line 95, ../../../../scss/themes/tdi/theme.sass */
+nav.navbar ul.navbar-nav a.with-user {
+  padding-left: 60px;
+}
+/* line 97, ../../../../scss/themes/tdi/theme.sass */
+nav.navbar ul.navbar-nav a.with-user img {
+  border-radius: 50%;
+  position: absolute;
+  left: 15px;
+  top: 11px;
+}
+/* line 102, ../../../../scss/themes/tdi/theme.sass */
+nav.navbar ul.navbar-nav li.active a {
+  background-color: #ed1c24;
+  color: #fff;
+}
+/* line 105, ../../../../scss/themes/tdi/theme.sass */
+nav.navbar ul.navbar-nav li.active a [class^="icon-"], nav.navbar ul.navbar-nav li.active a [class*=" icon-"] {
+  color: #fff;
+}
+/* line 107, ../../../../scss/themes/tdi/theme.sass */
+nav.navbar ul.navbar-nav a.dropdown-toggle i.fa-angle-down {
+  margin-top: 4px;
+  margin-left: 7px;
+  color: #333;
+}
+/* line 111, ../../../../scss/themes/tdi/theme.sass */
+nav.navbar ul.dropdown-menu {
+  box-shadow: none;
+  border-color: #e0e0e0;
+  border-top: 1px solid transparent;
+}
+/* line 115, ../../../../scss/themes/tdi/theme.sass */
+nav.navbar ul.dropdown-menu a {
+  padding: 5px 15px;
+}
+/* line 117, ../../../../scss/themes/tdi/theme.sass */
+nav.navbar ul.dropdown-menu .divider {
+  margin: 3px 0;
+}
+/* line 119, ../../../../scss/themes/tdi/theme.sass */
+nav.navbar .dropdown-header {
+  font-weight: 600;
+  color: #ed1c24;
+  padding: 5px 15px;
+  padding-bottom: 2px;
+}
+
+/* line 125, ../../../../scss/themes/tdi/theme.sass */
+#sidebar-left {
+  height: 100%;
+  position: fixed;
+  background-color: #e0e0e0;
+  padding: 0;
+  z-index: 1;
+}
+/* line 131, ../../../../scss/themes/tdi/theme.sass */
+#sidebar-left ul.main-menu {
+  margin-top: 15px;
+}
+/* line 133, ../../../../scss/themes/tdi/theme.sass */
+#sidebar-left ul.main-menu li {
+  min-height: 25px;
+  margin-bottom: 15px;
+  display: inline-block;
+  width: 100%;
+}
+/* line 138, ../../../../scss/themes/tdi/theme.sass */
+#sidebar-left ul.main-menu li a {
+  height: 25px;
+  width: 100%;
+  display: block;
+  line-height: 25px;
+  font-size: 12px;
+  color: #333;
+  font-weight: 600;
+  position: relative;
+  padding: 0;
+  padding-left: 55px;
+  cursor: pointer;
+}
+/* line 150, ../../../../scss/themes/tdi/theme.sass */
+#sidebar-left ul.main-menu li a i.fa {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 15px;
+  height: 25px;
+  width: 25px;
+  background-color: #727171;
+  border-radius: 4px;
+  color: #e0e0e0;
+  font-weight: 300;
+  transition: all 0.3s ease-in;
+}
+/* line 163, ../../../../scss/themes/tdi/theme.sass */
+#sidebar-left ul.main-menu li a i.fa:before {
+  font-size: 16px;
+}
+/* line 165, ../../../../scss/themes/tdi/theme.sass */
+#sidebar-left ul.main-menu li a:focus {
+  background-color: transparent;
+  text-decoration: none;
+}
+/* line 168, ../../../../scss/themes/tdi/theme.sass */
+#sidebar-left ul.main-menu li a:hover {
+  background-color: transparent;
+  text-decoration: none;
+}
+/* line 171, ../../../../scss/themes/tdi/theme.sass */
+#sidebar-left ul.main-menu li a:hover i.fa {
+  background-color: #ed1c24;
+}
+/* line 173, ../../../../scss/themes/tdi/theme.sass */
+#sidebar-left ul.main-menu li .dropdown-menu {
+  display: block;
+  position: relative;
+  box-shadow: none;
+  border: 0;
+  left: auto;
+  top: auto;
+  width: 100%;
+  min-width: 0;
+  border-radius: 0;
+  margin-top: 15px;
+  background-color: #727171;
+  background-image: url("../img/dots.png");
+  background-repeat: repeat-y;
+  background-size: auto;
+  background-position: 25px 1px;
+}
+/* line 189, ../../../../scss/themes/tdi/theme.sass */
+#sidebar-left ul.main-menu li .dropdown-menu ul.main-menu {
+  margin-top: 5px;
+}
+/* line 191, ../../../../scss/themes/tdi/theme.sass */
+#sidebar-left ul.main-menu li .dropdown-menu li {
+  margin-bottom: 5px;
+}
+/* line 193, ../../../../scss/themes/tdi/theme.sass */
+#sidebar-left ul.main-menu li .dropdown-menu a {
+  color: #fff;
+  position: relative;
+}
+/* line 196, ../../../../scss/themes/tdi/theme.sass */
+#sidebar-left ul.main-menu li .dropdown-menu a:after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background-color: #ed1c24;
+  border-radius: 50%;
+  position: absolute;
+  left: 24px;
+  top: 10px;
+}
+/* line 205, ../../../../scss/themes/tdi/theme.sass */
+#sidebar-left ul.main-menu li .dropdown-menu a:before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background-color: #cbcbcb;
+  border-radius: 50%;
+  position: absolute;
+  left: 22px;
+  top: 8px;
+  transition: all 0.3s ease-in;
+}
+/* line 215, ../../../../scss/themes/tdi/theme.sass */
+#sidebar-left ul.main-menu li .dropdown-menu a:hover {
+  text-decoration: none;
+}
+/* line 217, ../../../../scss/themes/tdi/theme.sass */
+#sidebar-left ul.main-menu li .dropdown-menu a:hover:before {
+  background-color: #ed1c24;
+}
+/* line 219, ../../../../scss/themes/tdi/theme.sass */
+#sidebar-left ul.main-menu li .dropdown-menu a i {
+  display: none;
+}
+
+/* line 221, ../../../../scss/themes/tdi/theme.sass */
+.separator {
+  width: 100%;
+  height: 1px;
+  background-color: #cbcbcb;
+}
+
+/* line 226, ../../../../scss/themes/tdi/theme.sass */
+#main {
+  padding-top: 50px;
+}
+
+/* line 228, ../../../../scss/themes/tdi/theme.sass */
+#content {
+  padding-top: 15px;
+}
+/* line 230, ../../../../scss/themes/tdi/theme.sass */
+#content #page-login {
+  margin-left: -16.66667%;
+}
+/* line 233, ../../../../scss/themes/tdi/theme.sass */
+#content #page-configuration #prefix-width {
+  width: 300px;
+}
+/* line 235, ../../../../scss/themes/tdi/theme.sass */
+#content #page-configuration #prop-width {
+  width: 700px;
+}
+/* line 237, ../../../../scss/themes/tdi/theme.sass */
+#content #page-configuration .fixwidth {
+  max-width: 700px;
+}
+/* line 239, ../../../../scss/themes/tdi/theme.sass */
+#content #page-configuration .custom-row {
+  display: block;
+  line-height: 1.8;
+  margin-bottom: 5px;
+}
+/* line 243, ../../../../scss/themes/tdi/theme.sass */
+#content #page-configuration .custom-row .label {
+  max-width: 350px;
+  word-wrap: break-word;
+  white-space: normal;
+  text-align: left;
+  font-size: 12px;
+  line-height: 1.2;
+  font-weight: 400;
+}
+/* line 251, ../../../../scss/themes/tdi/theme.sass */
+#content #page-configuration .custom-row:last-child {
+  margin-bottom: 0;
+}
+
+/* line 256, ../../../../scss/themes/tdi/theme.sass */
+.form-group {
+  position: relative;
+}
+/* line 258, ../../../../scss/themes/tdi/theme.sass */
+.form-group label {
+  font-size: 12px;
+  font-weight: 400;
+  padding-left: 8px;
+  margin-bottom: 8px;
+}
+/* line 263, ../../../../scss/themes/tdi/theme.sass */
+.form-group .form-control {
+  font-size: 12px;
+  color: #898989;
+  padding: 8px 9px;
+  border: 1px solid #f1eeee;
+  background-color: #fff;
+  box-shadow: none;
+  border-radius: 4px;
+}
+/* line 17, ../../../../scss/themes/tdi/_mixins.sass */
+.form-group .form-control::-webkit-input-placeholder {
+  color: #999999;
+}
+/* line 20, ../../../../scss/themes/tdi/_mixins.sass */
+.form-group .form-control::-moz-placeholder {
+  color: #999999;
+}
+/* line 23, ../../../../scss/themes/tdi/_mixins.sass */
+.form-group .form-control:-moz-placeholder {
+  color: #999999;
+}
+/* line 26, ../../../../scss/themes/tdi/_mixins.sass */
+.form-group .form-control:-ms-input-placeholder {
+  color: #999999;
+}
+/* line 273, ../../../../scss/themes/tdi/theme.sass */
+.form-group.has-success .form-control {
+  box-shadow: none;
+  animation: success-border 2.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+/* line 278, ../../../../scss/themes/tdi/theme.sass */
+.form-group.has-success:before {
+  content: "";
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: absolute;
+  right: 10px;
+  top: 34px;
+  font-size: 18px;
+  color: #2ecc71;
+  animation: success-icon 2.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+/* line 296, ../../../../scss/themes/tdi/theme.sass */
+.form-group.has-error .form-control {
+  box-shadow: none;
+  animation: error-border 2.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+/* line 301, ../../../../scss/themes/tdi/theme.sass */
+.form-group.has-error:before {
+  content: "";
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: absolute;
+  right: 10px;
+  top: 34px;
+  font-size: 18px;
+  color: #d64541;
+  animation: error-icon 2.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+/* line 318, ../../../../scss/themes/tdi/theme.sass */
+textarea {
+  resize: none;
+}
+
+/* line 320, ../../../../scss/themes/tdi/theme.sass */
+.full-width {
+  width: 100%;
+}
+
+/* line 322, ../../../../scss/themes/tdi/theme.sass */
+i.css-icon {
+  position: absolute;
+  right: 15px;
+  top: 32px;
+  font-size: 20px;
+  color: #898989;
+}
+
+/* line 328, ../../../../scss/themes/tdi/theme.sass */
+.inline-selects {
+  display: block;
+  margin-top: 7px;
+  padding-left: 20px;
+}
+/* line 332, ../../../../scss/themes/tdi/theme.sass */
+.inline-selects .radio-inline, .inline-selects .checkbox-inline {
+  margin-right: 15px;
+  line-height: 20px;
+}
+
+/* line 335, ../../../../scss/themes/tdi/theme.sass */
+.form-control {
+  font-size: 12px;
+  color: #898989;
+  padding: 8px 9px;
+  border: 1px solid #f1eeee;
+  background-color: #fff;
+  box-shadow: none;
+  border-radius: 4px;
+  transition: border 0.3s ease-in;
+}
+/* line 17, ../../../../scss/themes/tdi/_mixins.sass */
+.form-control::-webkit-input-placeholder {
+  color: #999999;
+}
+/* line 20, ../../../../scss/themes/tdi/_mixins.sass */
+.form-control::-moz-placeholder {
+  color: #999999;
+}
+/* line 23, ../../../../scss/themes/tdi/_mixins.sass */
+.form-control:-moz-placeholder {
+  color: #999999;
+}
+/* line 26, ../../../../scss/themes/tdi/_mixins.sass */
+.form-control:-ms-input-placeholder {
+  color: #999999;
+}
+
+/* line 345, ../../../../scss/themes/tdi/theme.sass */
+.form-control:active, .form-control:focus {
+  outline: none;
+  box-shadow: none;
+  border: 1px solid #cbcbcb;
+}
+
+/* line 349, ../../../../scss/themes/tdi/theme.sass */
+.input-group-addon {
+  font-size: 12px;
+  color: #fff;
+  padding: 8px 9px;
+  border: 1px solid #ed1c24;
+  background-color: #ed1c24;
+}
+
+/* line 356, ../../../../scss/themes/tdi/theme.sass */
+table {
+  background-color: #fff;
+  border-radius: 4px;
+  margin-bottom: 0;
+}
+/* line 360, ../../../../scss/themes/tdi/theme.sass */
+table thead th {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  border-bottom: 1px solid #cbcbcb !important;
+  padding: 15px !important;
+  line-height: 1 !important;
+}
+/* line 368, ../../../../scss/themes/tdi/theme.sass */
+table tbody tr td {
+  padding: 15px !important;
+  line-height: 1 !important;
+  font-size: 12px;
+}
+/* line 372, ../../../../scss/themes/tdi/theme.sass */
+table .progress {
+  margin-bottom: 0;
+}
+
+/* line 375, ../../../../scss/themes/tdi/theme.sass */
+.panel {
+  background-color: #f4f4f4;
+  border-radius: 4px;
+  border: none;
+  box-shadow: none;
+}
+/* line 380, ../../../../scss/themes/tdi/theme.sass */
+.panel .panel-heading {
+  background-color: #e0e0e0;
+  padding: 15px 20px;
+  border-bottom: 3px solid #cbcbcb;
+}
+/* line 384, ../../../../scss/themes/tdi/theme.sass */
+.panel .panel-heading h1, .panel .panel-heading h2, .panel .panel-heading h3, .panel .panel-heading h4, .panel .panel-heading h5, .panel .panel-heading h6 {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+/* line 388, ../../../../scss/themes/tdi/theme.sass */
+.panel table {
+  background-color: #fff;
+  border-radius: 4px;
+  margin-bottom: 0;
+}
+/* line 392, ../../../../scss/themes/tdi/theme.sass */
+.panel table thead th {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  border-bottom: 1px solid #cbcbcb !important;
+  padding: 15px !important;
+  line-height: 1 !important;
+}
+/* line 400, ../../../../scss/themes/tdi/theme.sass */
+.panel table tbody tr td {
+  padding: 15px !important;
+  line-height: 1 !important;
+  font-size: 12px;
+}
+
+/* line 404, ../../../../scss/themes/tdi/theme.sass */
+.page-title {
+  font-size: 16px;
+  margin: 20px 20px 25px 20px;
+}
+
+/* line 407, ../../../../scss/themes/tdi/theme.sass */
+.semititle {
+  border-bottom: 1px solid #cbcbcb;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+/* line 412, ../../../../scss/themes/tdi/theme.sass */
+.alert {
+  border-radius: 4px;
+  border-style: solid;
+  border-top-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 3px;
+}
+/* line 419, ../../../../scss/themes/tdi/theme.sass */
+.alert.alert-success {
+  border-color: #2ecc71;
+  background-color: #e6f9ee;
+  color: #1b7943;
+}
+/* line 423, ../../../../scss/themes/tdi/theme.sass */
+.alert.alert-success a {
+  color: #124f2c;
+  font-weight: 600;
+}
+/* line 426, ../../../../scss/themes/tdi/theme.sass */
+.alert.alert-warning {
+  border-color: #f0a32a;
+  background-color: #fdf5e9;
+  color: #a86b0c;
+}
+/* line 430, ../../../../scss/themes/tdi/theme.sass */
+.alert.alert-warning a {
+  color: #794d08;
+  font-weight: 600;
+}
+/* line 433, ../../../../scss/themes/tdi/theme.sass */
+.alert.alert-info {
+  border-color: #4cc3c2;
+  background-color: #e5f6f6;
+  color: #2a7f7e;
+}
+/* line 437, ../../../../scss/themes/tdi/theme.sass */
+.alert.alert-info a {
+  color: #1e5858;
+  font-weight: 600;
+}
+/* line 440, ../../../../scss/themes/tdi/theme.sass */
+.alert.alert-danger {
+  border-color: #d64541;
+  background-color: #fae9e9;
+  color: #92221f;
+}
+/* line 444, ../../../../scss/themes/tdi/theme.sass */
+.alert.alert-danger a {
+  color: #681916;
+  font-weight: 600;
+}
+
+/* line 448, ../../../../scss/themes/tdi/theme.sass */
+.btn {
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 800;
+  padding: 10px 15px;
+  line-height: 1;
+}
+
+/* line 457, ../../../../scss/themes/tdi/theme.sass */
+.btn-default {
+  background-color: #ddd;
+  color: #333;
+}
+/* line 460, ../../../../scss/themes/tdi/theme.sass */
+.btn-default:hover {
+  background-color: #c4c4c4;
+}
+
+/* line 462, ../../../../scss/themes/tdi/theme.sass */
+.btn-primary {
+  background-color: #5986E7;
+  color: #fff;
+}
+/* line 465, ../../../../scss/themes/tdi/theme.sass */
+.btn-primary:hover {
+  background-color: #2c66e1;
+}
+
+/* line 467, ../../../../scss/themes/tdi/theme.sass */
+.btn-danger {
+  background-color: #d64541;
+  color: #fff;
+}
+/* line 470, ../../../../scss/themes/tdi/theme.sass */
+.btn-danger:hover {
+  background-color: #bc2c28;
+}
+
+/* line 472, ../../../../scss/themes/tdi/theme.sass */
+.btn-info {
+  background-color: #4cc3c2;
+  color: #fff;
+}
+/* line 475, ../../../../scss/themes/tdi/theme.sass */
+.btn-info:hover {
+  background-color: #37a5a4;
+}
+
+/* line 477, ../../../../scss/themes/tdi/theme.sass */
+.btn-success {
+  background-color: #2ecc71;
+  color: #fff;
+}
+/* line 480, ../../../../scss/themes/tdi/theme.sass */
+.btn-success:hover {
+  background-color: #25a25a;
+}
+
+/* line 482, ../../../../scss/themes/tdi/theme.sass */
+.btn-warning {
+  background-color: #f0a32a;
+  color: #fff;
+}
+/* line 485, ../../../../scss/themes/tdi/theme.sass */
+.btn-warning:hover {
+  background-color: #d88a0f;
+}
+
+/* line 487, ../../../../scss/themes/tdi/theme.sass */
+.btn-xs {
+  padding: 5px;
+  font-weight: 600;
+  border-radius: 4px;
+  line-height: 1;
+  font-size: 10px;
+}
+
+/* line 494, ../../../../scss/themes/tdi/theme.sass */
+.progress {
+  background-color: #e2e1e2;
+  box-shadow: none;
+}
+
+/* line 497, ../../../../scss/themes/tdi/theme.sass */
+.progress-bar-success {
+  background-color: #2ecc71;
+}
+
+/* line 499, ../../../../scss/themes/tdi/theme.sass */
+.progress-bar-warning {
+  background-color: #f0a32a;
+}
+
+/* line 501, ../../../../scss/themes/tdi/theme.sass */
+.progress-bar-info {
+  background-color: #4cc3c2;
+}
+
+/* line 503, ../../../../scss/themes/tdi/theme.sass */
+.progress-bar-danger {
+  background-color: #d64541;
+}
+
+/* line 505, ../../../../scss/themes/tdi/theme.sass */
+.progress-bar {
+  box-shadow: none;
+  font-weight: 600;
+}
+
+/* line 509, ../../../../scss/themes/tdi/theme.sass */
+.modal-backdrop {
+  position: fixed;
+}
+
+/* line 511, ../../../../scss/themes/tdi/theme.sass */
+.modal-backdrop.in {
+  height: 100%;
+  opacity: 0.65;
+}
+
+/* line 514, ../../../../scss/themes/tdi/theme.sass */
+.modal-header {
+  background-color: #e0e0e0;
+  padding: 15px 20px;
+  border-bottom: 3px solid #cbcbcb;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  position: relative;
+}
+/* line 521, ../../../../scss/themes/tdi/theme.sass */
+.modal-header h1, .modal-header h2, .modal-header h3, .modal-header h4, .modal-header h5, .modal-header h6 {
+  margin: 0;
+  padding: 0;
+  border: none;
+  padding-left: 36px;
+}
+/* line 526, ../../../../scss/themes/tdi/theme.sass */
+.modal-header h1 i, .modal-header h2 i, .modal-header h3 i, .modal-header h4 i, .modal-header h5 i, .modal-header h6 i {
+  font-size: 28px;
+  position: absolute;
+  left: 20px;
+  top: 10px;
+  color: #727171;
+}
+/* line 532, ../../../../scss/themes/tdi/theme.sass */
+.modal-header span.light {
+  font-weight: 600;
+}
+
+/* line 534, ../../../../scss/themes/tdi/theme.sass */
+.modal-body {
+  background-color: #f4f4f4;
+}
+
+/* line 536, ../../../../scss/themes/tdi/theme.sass */
+.modal-footer {
+  background-color: #f4f4f4;
+  border-top: 1px solid #cbcbcb;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+/* line 545, ../../../../scss/themes/tdi/theme.sass */
+.nav-tabs li.active a {
+  color: #ed1c24 !important;
+}
+/* line 547, ../../../../scss/themes/tdi/theme.sass */
+.nav-tabs li.active a:hover {
+  color: #ed1c24 !important;
+}
+/* line 549, ../../../../scss/themes/tdi/theme.sass */
+.nav-tabs li a {
+  background-color: #e0e0e0;
+  color: #727171;
+  font-weight: 600;
+}
+/* line 553, ../../../../scss/themes/tdi/theme.sass */
+.nav-tabs li a:hover {
+  color: #ed1c24;
+}
+
+/* line 557, ../../../../scss/themes/tdi/theme.sass */
+.tab-content .tab-pane {
+  padding: 15px 0;
+  background-color: #fff;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border: 1px solid #ddd;
+  border-top: none;
+}
+/* line 564, ../../../../scss/themes/tdi/theme.sass */
+.tab-content > .active {
+  display: inline-block;
+  width: 100%;
+}
+
+/* line 567, ../../../../scss/themes/tdi/theme.sass */
+.list-group-item {
+  outline: none;
+}
+/* line 569, ../../../../scss/themes/tdi/theme.sass */
+.list-group-item:focus, .list-group-item:active {
+  outline: none;
+}
+
+/* line 571, ../../../../scss/themes/tdi/theme.sass */
+.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
+  background-color: #ed1c24;
+  border-color: #ed1c24;
+  outline: none;
+}
+
+@-moz-keyframes success-border {
+  0% {
+    border: 1px solid #f1eeee;
+  }
+  20% {
+    border: 1px solid #2ecc71;
+  }
+  80% {
+    border: 1px solid #2ecc71;
+  }
+  100% {
+    border: 1px solid #f1eeee;
+  }
+}
+@-webkit-keyframes success-border {
+  0% {
+    border: 1px solid #f1eeee;
+  }
+  20% {
+    border: 1px solid #2ecc71;
+  }
+  80% {
+    border: 1px solid #2ecc71;
+  }
+  100% {
+    border: 1px solid #f1eeee;
+  }
+}
+@keyframes success-border {
+  0% {
+    border: 1px solid #f1eeee;
+  }
+  20% {
+    border: 1px solid #2ecc71;
+  }
+  80% {
+    border: 1px solid #2ecc71;
+  }
+  100% {
+    border: 1px solid #f1eeee;
+  }
+}
+@-moz-keyframes success-icon {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes success-icon {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes success-icon {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-moz-keyframes error-border {
+  0% {
+    border: 1px solid #f1eeee;
+  }
+  20% {
+    border: 1px solid #d64541;
+  }
+  100% {
+    border: 1px solid #d64541;
+  }
+}
+@-webkit-keyframes error-border {
+  0% {
+    border: 1px solid #f1eeee;
+  }
+  20% {
+    border: 1px solid #d64541;
+  }
+  100% {
+    border: 1px solid #d64541;
+  }
+}
+@keyframes error-border {
+  0% {
+    border: 1px solid #f1eeee;
+  }
+  20% {
+    border: 1px solid #d64541;
+  }
+  100% {
+    border: 1px solid #d64541;
+  }
+}
+@-moz-keyframes error-icon {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes error-icon {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes error-icon {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}

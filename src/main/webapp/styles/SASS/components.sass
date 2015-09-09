@@ -1,0 +1,248 @@
+////////// Imports //////////
+@import "compass"
+@import "mixins"
+@import "variables"
+////////// Imports //////////
+/////////////// Bower components ////////////////
+/////////////// Menu ////////////////
+.admin-menu-holder
+	ol#tree-root
+		list-style-type: none
+		padding-left: 0
+		button				
+			background-color: #ddd
+			color: $black
+			position: relative
+			outline: none
+			border: 0
+			padding: $border-radius
+			text-align: center
+			cursor: pointer
+			transition: all 0.3s ease-in
+			width: 30px
+			height: 30px
+			line-height: 24px
+			&:hover
+				background-color: darken(#ddd, 10%)	!important
+			.glyphicon
+				top: 1px	
+	.list-group-item
+		line-height: 36px
+		border-radius: 0
+		height: 56px
+		transition: background-color 0.3s ease-in
+		&:hover
+			background-color: lighten($light-grey, 8%)
+	.list-group-item .show-on-hover
+		display: none 
+	.list-group-item:hover .show-on-hover
+		display: block 			
+
+/////////////// Ui-tree ////////////////
+//colors
+$color_pink_swan_approx: #bbb
+$mercury: #e5e5e5
+$white: #fff
+
+//@extend-elements
+//original selectors
+//.angular-ui-tree-node, .angular-ui-tree-placeholder
+.extend_1 
+	display: block
+	position: relative
+	margin: 0
+	padding: 0
+	min-height: 20px
+	line-height: 20px
+
+.angular-ui-tree-empty 
+	border: 1px dashed $color_pink_swan_approx
+	min-height: 100px
+	background-color: $mercury
+	background-image: linear-gradient(45deg, $white 25%, transparent 25%, transparent 75%, $white 75%, $white), linear-gradient(45deg, $white 25%, transparent 25%, transparent 75%, $white 75%, $white)
+	background-size: 60px 60px
+	background-position: 0 0, 30px 30px
+
+.angular-ui-tree-nodes 
+	display: block
+	position: relative
+	margin: 0
+	padding: 0
+	list-style: none
+	.angular-ui-tree-nodes 
+		padding-left: 20px
+
+.angular-ui-tree-node 
+	@extend .extend_1
+
+.angular-ui-tree-placeholder 
+	@extend .extend_1
+	margin: 5px 0
+	padding: 0
+	min-height: 30px
+
+.angular-ui-tree-hidden 
+	display: none
+
+.angular-ui-tree-handle 
+	cursor: move
+	text-decoration: none
+	font-weight: 700
+	//If you use compass, instead of the line below you could use + box-sizing($bs)
+	box-sizing: border-box
+	min-height: 20px
+	line-height: 20px
+
+.angular-ui-tree-drag 
+	position: absolute
+	pointer-events: none
+	z-index: 999
+	opacity: .8
+/////////////// Permissions ////////////////
+.permissions-editor
+	.thumbnail
+		border-radius: $border-radius
+		padding: 10px
+		background-color: $light-grey
+		border: none
+
+	.categoryPermission
+		border: none
+		background-color: $red
+		color: $white
+		border-top-left-radius: $border-radius
+		border-top-right-radius: $border-radius
+		&:focus
+			outline: none		
+	.accessPermission
+		border: 1px solid $medium-grey
+		box-shadow: none
+		&.simple
+			margin-bottom: 5px
+		&:focus
+			outline: none	
+	md-content.md-default-theme
+		padding: 5px
+		border-radius: $border-radius
+		display: block
+		&:focus
+			outline: none
+/////////////// Grid ////////////////
+.ui-grid-render-container-body
+	background-color: $white
+.ui-grid-pager-panel
+	background-color: $white
+.ui-grid
+	border: none
+	background-color: $white
+	border-radius: $border-radius
+.ui-grid-cell
+	border-right: 1px solid transparent
+.ui-grid-header .ui-grid-vertical-bar
+	background-color: #ececec !important
+.ui-grid-top-panel
+	background-color: $white
+	background: $white
+.ui-grid-header
+	border-bottom: 1px solid #cbcbcb
+.ui-grid-header-cell
+	height: 42px !important					
+.ui-grid-header-cell .ui-grid-cell-contents
+	font-weight: 800
+	font-size: 12px
+	color: $black
+	text-transform: uppercase
+	padding: 13px 5px
+.ui-grid-header-cell .ui-grid-cell-contents .ui-grid-icon-up-dir
+	color: $medium-grey 	
+.ui-grid-header-cell .ui-grid-cell-contents .ui-grid-icon-down-dir
+	color: $medium-grey 	
+.ui-grid-header-cell .ui-grid-column-menu-button
+	top: 9px
+.ui-grid-canvas	.ui-grid-row
+	height: 42px !important	
+.ui-grid-canvas	.ui-grid-row .ui-grid-cell
+	height: 42px !important
+.ui-grid-canvas	.ui-grid-row .ui-grid-cell-contents
+	padding: 13px 5px
+.ui-grid-row-selected > div.ui-grid-cell
+	background-color: $red !important
+	color: $white
+.ui-grid-menu .ui-grid-menu-inner
+	background-color: $dark-grey
+	box-shadow: none
+	border: none				
+	border-bottom-left-radius: $border-radius
+	border-bottom-right-radius: $border-radius
+	color: $white
+.ui-grid-menu .ui-grid-menu-inner ul li:not(:last-child)
+	border-bottom: 1px solid #5E5E5E
+.ui-grid-menu .ui-grid-menu-inner ul li
+	transition: all 0.2s ease-in	
+.ui-grid-menu .ui-grid-menu-inner ul li:hover
+	box-shadow: none
+	background-color: $red
+.ui-grid-menu .ui-grid-menu-inner ul li.ui-grid-menu-item-active
+	box-shadow: none
+	background-color: $red
+.ui-grid-menu .ui-grid-menu-inner ul li:last-child:hover
+	border-bottom-left-radius: $border-radius
+	border-bottom-right-radius: $border-radius
+.ui-grid-pager-panel
+	padding: 5px 0
+.ui-grid-pager-control button
+	border: none
+	background-color: #E7E7E7
+	border-radius: $border-radius
+	transition: all 0.3s ease-in
+	cursor: pointer
+	margin-right: 5px
+.ui-grid-pager-control button:hover
+	background-color: $red
+.ui-grid-pager-control button .first-triangle
+	margin-left: 4px
+.ui-grid-pager-control button .first-triangle
+	border-color: transparent #A1A1A1 transparent transparent			
+.ui-grid-pager-control button:hover .first-triangle	
+	border-color: transparent $white transparent transparent
+.ui-grid-pager-control button .first-triangle .first-bar
+	border-color: #A1A1A1
+.ui-grid-pager-control button:hover .first-triangle .first-bar
+	border-color: $white		
+.ui-grid-pager-control .first-triangle.prev-triangle
+	margin-left: 2px	
+.ui-grid-pager-control button:hover .first-triangle
+	border-color: transparent $white transparent transparent
+.ui-grid-pager-control button .last-triangle
+	border-color: transparent transparent transparent #A1A1A1
+.ui-grid-pager-control button:hover .last-triangle
+	border-color: transparent transparent transparent $white
+.ui-grid-pager-control button .last-triangle
+	margin-left: 1px
+.ui-grid-pager-control button .last-triangle .last-bar
+	border-color: #A1A1A1	
+.ui-grid-pager-control button .last-triangle.next-triangle
+	margin-left: 3px	
+.ui-grid-pager-control button:hover .last-triangle .last-bar
+	border-color: $white	
+.ui-grid-pager-control input
+	text-align: center
+	width: 40px
+	border-radius: $border-radius
+	border: $input-border
+.ui-grid-pager-control .ui-grid-pager-max-pages-number
+	margin-top: -15px
+	display: inline-block
+	vertical-align: middle
+	margin-right: 5px
+.ui-grid-pager-row-count-picker select
+	text-align: center
+	width: 50px
+	border-radius: $border-radius
+	border: $input-border
+.ui-grid-pager-count
+	font-size: 12px
+	font-weight: 600
+	color: $dark-grey		
+
+
