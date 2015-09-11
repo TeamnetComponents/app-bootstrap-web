@@ -239,6 +239,7 @@ bootstrapApp
 
         $rootScope.dateOptions = {
             format: 'dd/MM/yyyy',
+            dateTimeFormat: 'dd/MM/yyyy HH:mm',
             formatYear: 'yy',
             startingDay: 1
         };
