@@ -26,7 +26,7 @@
 
     <scm>
         <url>http://git-components.teamnet.ro/summary/components%2Fjava%2Fapp-bootstrap-web.git</url>
-        <connection>scm:git:ssh://oana.mihai@git-components.teamnet.ro:29418/components/java/app-bootstrap-web.git</connection>
+        <connection>scm:git:http://component-publisher@git-components.teamnet.ro/r/components/java/app-bootstrap-web.git</connection>
         <tag>HEAD</tag>
     </scm>
 
