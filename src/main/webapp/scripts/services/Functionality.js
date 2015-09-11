@@ -36,7 +36,7 @@ bootstrapServices.factory('Functionality', ['FileItem','AppGridMetadataBuilder',
                         this.metadataBuilder.addColumnFilter(col,type);
                     },
                     formatColumn:function(col,formatType){
-
+                        this.metadataBuilder.formatCells(col, formatType);
                     },
                     build:function(){
                         this.columnMetadata=this.metadataBuilder.getColumnMetadata();
@@ -166,7 +166,7 @@ bootstrapServices.factory('Functionality', ['FileItem','AppGridMetadataBuilder',
                             $('#delete_' + entity + '_Confirmation').modal('show');
                         }
                     },
-                    showEdit: function () {
+                    showEdit: function (callBack) {
                         this.clear();
                         scope[entity]
                             .components = {
@@ -184,9 +184,9 @@ bootstrapServices.factory('Functionality', ['FileItem','AppGridMetadataBuilder',
                             delete: false,
                             view: false
                         };
-                        this.selectRow();
+                        this.selectRow(callBack);
                     },
-                    showView: function (callback) {
+                    showView: function (callBack) {
                         this.clear();
                         scope[entity]
                             .components = {
@@ -204,12 +204,16 @@ bootstrapServices.factory('Functionality', ['FileItem','AppGridMetadataBuilder',
                             delete: false,
                             view: false
                         };
+                        this.selectRow(callBack);
                     },
-                    selectRow: function () {
+                    selectRow: function (callBack) {
                         if ((!_.isEmpty(this.selected()))) {
                             var id = parseInt(this.selected()[0].id);
                             Service.get({id: id}, function (data) {
                                 scope[entity].data = data;
+                                if (callBack !== undefined && callBack !== null && typeof(callBack) === 'function') {
+                                    callBack();
+                                }
                                 if (scope[entity].data.fileMaster != undefined && scope[entity].data.fileMaster.id != undefined) {
                                     FileItem.get({fileMasterId: scope[entity].data.fileMaster.id}, function (fileItemData) {
                                         scope[entity].data.fileMaster.fileItem = fileItemData;

@@ -236,6 +236,13 @@ bootstrapApp
         });
     })
     .run(function ($rootScope, $location, $http, AuthenticationSharedService, Session, AUTH_BOOTSTRAP) {
+
+        $rootScope.dateOptions = {
+            format: 'dd/MM/yyyy',
+            formatYear: 'yy',
+            startingDay: 1
+        };
+
         $rootScope.authenticated = false;
         if($rootScope.securityEnabled==undefined){
             $rootScope.securityEnabled=true;
