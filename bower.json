@@ -46,7 +46,7 @@
     "moment": "^2.10.3",
     "app-menu": "0.0.2",
     "app-menu-admin": "0.0.2",
-    "app-grid": "2.1.0",
+    "app-grid": "2.2.0",
     "app-theme": "latest",
     "app-tabs": "latest",
     "angular-bootstrap": "^0.13.4",

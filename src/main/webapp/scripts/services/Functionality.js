@@ -35,6 +35,9 @@ bootstrapServices.factory('Functionality', ['FileItem','AppGridMetadataBuilder',
                     addColumnFilter:function(col,type){
                         this.metadataBuilder.addColumnFilter(col,type);
                     },
+                    addSearchToColumn: function (columnName, searchValueType, filterOptions, defaultValue) {
+                        this.metadataBuilder.addSearchToColumn(columnName, searchValueType, filterOptions, defaultValue);
+                    },
                     formatColumn:function(col,formatType){
                         this.metadataBuilder.formatCells(col, formatType);
                     },
