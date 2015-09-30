@@ -103,6 +103,7 @@ bootstrapControllers
                  Permission.getAllModulesWithModuleRights({}, function(res){
                  $scope.modules = angular.copy(res);
                  $scope.selectedModule = value;
+                 Permissions.refreshAdminModules();
                  $scope.backModule();
                  });
                  });
@@ -114,6 +115,7 @@ bootstrapControllers
             Permission.delete({moduleId: $scope.selectedModule.id}, function(){
                 Notification.success('Module deleted');
                 init();
+                Permissions.refreshAdminModules();
             }, function (httpResponse) {
                 Notification.error('Forbidden operation! Module assigned to Roles or Accounts.');
             });
