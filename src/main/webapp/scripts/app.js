@@ -268,7 +268,10 @@ bootstrapApp
                     var search = $location.search();
                     if (search.redirect !== undefined) {
                         $location.path(search.redirect).search('redirect', null).replace();
-                    } else {
+                    } else if (search.forward !== undefined) {
+                        $window.location.href = search.forward;
+                    }
+                    else {
                         $location.path('/').replace();
                     }
                 }
