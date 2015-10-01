@@ -237,7 +237,8 @@ bootstrapApp
             positionY: 'bottom'
         });
     })
-    .run(function ($rootScope, $location, $http, AuthenticationSharedService, Session, AUTH_BOOTSTRAP) {
+    .run(['$rootScope', '$location', '$window', '$http', 'AuthenticationSharedService', 'Session', 'AUTH_BOOTSTRAP',
+        function ($rootScope, $location, $window, $http, AuthenticationSharedService, Session, AUTH_BOOTSTRAP) {
         if ($rootScope.dateOptions === undefined) {
             $rootScope.dateOptions = {
                 format: 'dd/MM/yyyy',
@@ -325,8 +326,8 @@ bootstrapApp
         }
 
 
-    })
-    .run(function ($rootScope, $route) {
+    }])
+    .run(['$rootScope', '$route', function ($rootScope, $route) {
         // This uses the Atmoshpere framework to do a Websocket connection with the server, in order to send
         // user activities each time a route changes.
         // The user activities can then be monitored by an administrator, see the views/tracker.html Angular view.
@@ -381,7 +382,7 @@ bootstrapApp
             $rootScope.websocketRequest.sendMessage();
         });
     }
-);
+]);
 
 Storage.prototype.setObj = function (key, obj) {
     return this.setItem(key, JSON.stringify(obj))
