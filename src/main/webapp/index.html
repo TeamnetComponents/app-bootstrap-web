@@ -15,7 +15,8 @@
 
 
     <!-- CSS Styles -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext'
+          rel='stylesheet' type='text/css'>
 
     <script>
         var theme = window.localStorage.getItem('theme') ? window.localStorage.getItem('theme') : 'tdi';
@@ -42,14 +43,17 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right" ng-switch="authenticated">
-                <form class="navbar-form navbar-left" role="search" id="search">
+                <!-- Search box -->
+                <form ng-if="showSearch" class="navbar-form navbar-left" role="search" id="search">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Search">
                     </div>
                     <button type="submit" class="btn btn-default"></button>
                 </form>
-                <div class="separator"></div>
-                <li class="dropdown" ng-if="securityEnabled"  ng-switch-when="true">
+                <div ng-if="showSearch" class="separator"></div>
+
+                <!-- Theme dropdown-->
+                <li ng-if="showThemes" class="dropdown" ng-switch-when="true">
                     <a href="#" class="dropdown-toggle with-custom-icon" data-toggle="dropdown">
                         <i class="icon-icon10"></i>&nbsp;Themes<i class="fa fa-angle-down pull-right"></i>
                     </a>
@@ -68,12 +72,16 @@
                         </li>
                     </ul>
                 </li>
+                <div ng-if="showThemes" class="separator"></div>
 
+                <!-- Imports url -->
+                <li ng-if="showImports">
+                    <a href="#" class="with-custom-icon"><i class="icon-icon5"></i>Importuri programate</a>
+                </li>
+                <div ng-if="showImports" class="separator"></div>
 
-                <div class="separator"></div>
-                <li><a href="#" class="with-custom-icon"><i class="icon-icon5"></i>Importuri programate</a></li>
-                <div class="separator"></div>
-                <li class="dropdown" ng-if="securityEnabled"  ng-switch-when="false">
+                <!-- Settings dropdown -->
+                <li ng-if="securityEnabled" class="dropdown" ng-switch-when="false">
                     <a href="" class="dropdown-toggle with-custom-icon" data-toggle="dropdown">
                         <i class="icon-icon4"></i>
                         Settings
@@ -81,14 +89,14 @@
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li class="dropdown-header"  >Public account</li>
-                        <li >
+                        <li class="dropdown-header">Public account</li>
+                        <li>
                             <a href="#/login">
                                 <i class="fa fa-tasks"></i>
                                 <span translate="global.menu.account.login">Authenticate</span></a>
                             </a>
                         </li>
-                        <li >
+                        <li>
                             <a href="#/register">
                                 <i class="fa fa-user"></i>
                                 <span translate="global.menu.account.register">Register</span>
@@ -96,6 +104,7 @@
                         </li>
                     </ul>
                 </li>
+
                 <li class="dropdown" ng-if="securityEnabled && isInRoles(['ROLE_ADMIN'])">
                     <a href="" class="dropdown-toggle with-custom-icon" data-toggle="dropdown">
                         <i class="icon-icon4"></i>
@@ -107,55 +116,55 @@
 
                         <li class="dropdown-header" ng-switch-when="true">Administration</li>
                         <li ng-switch-when="true">
-                            <a href="#/tracker" ><span class="glyphicon glyphicon-eye-open"></span>
+                            <a href="#/tracker"><span class="glyphicon glyphicon-eye-open"></span>
                                 &nbsp;<span translate="global.menu.account.tracker">User tracking</span>
                             </a>
                         </li>
-                        <li  ng-switch-when="true">
+                        <li ng-switch-when="true">
                             <a href="#/metrics"><span class="glyphicon glyphicon-dashboard"></span>
                                 &nbsp;<span translate="global.menu.account.metrics">Metrics</span>
                             </a>
                         </li>
-                        <li  ng-switch-when="true">
+                        <li ng-switch-when="true">
                             <a href="#/health"><span class="glyphicon glyphicon-heart"></span>
                                 &#xA0;<span translate="global.menu.account.health">Health</span>
                             </a>
                         </li>
-                        <li  ng-switch-when="true">
+                        <li ng-switch-when="true">
                             <a href="#/configuration"><span class="glyphicon glyphicon-list-alt"></span>
                                 &#xA0;<span
                                         translate="global.menu.account.configuration">Configuration</span>
                             </a>
                         </li>
-                        <li  ng-switch-when="true">
+                        <li ng-switch-when="true">
                             <a href="#/audits"><span class="glyphicon glyphicon-bell"></span>
                                 &nbsp;<span translate="global.menu.account.audits">Audits</span>
                             </a>
                         </li>
-                        <li  ng-switch-when="true">
+                        <li ng-switch-when="true">
                             <a href="#/logs"><span class="glyphicon glyphicon-tasks"></span>
                                 &nbsp;<span translate="global.menu.account.logs">Logs</span>
                             </a>
                         </li>
-                        <li  ng-switch-when="true">
+                        <li ng-switch-when="true">
                             <a href="#/docs"><span class="glyphicon glyphicon-book"></span>
                                 &nbsp;<span translate="global.menu.account.apidocs">API Docs</span>
                             </a>
                         </li>
-                        <li  ng-switch-when="true">
+                        <li ng-switch-when="true">
                             <a href="#/menus"><span class="glyphicon glyphicon-list-alt"></span>
                                 &nbsp;<span translate="global.menu.account.menus">Menus</span>
                             </a>
                         </li>
-                        <li  ng-switch-when="true">
+                        <li ng-switch-when="true">
                             <a href="#/sessions">
                                 <i class="fa fa-picture-o"></i>
                                 <span translate="global.menu.account.sessions">Sessions</span></a>
                             </a>
                         </li>
-                        <li  role="separator" class="divider" ng-switch-when="true"></li>
-                        <li  class="dropdown-header"  ng-switch-when="true">Security</li>
-                        <li  ng-switch-when="true">
+                        <li role="separator" class="divider" ng-switch-when="true"></li>
+                        <li class="dropdown-header" ng-switch-when="true">Security</li>
+                        <li ng-switch-when="true">
                             <a href="#/account">
                                 <i class="fa fa-cog"></i>
                                 <!--todo: Translate-->
@@ -189,19 +198,22 @@
                                 &nbsp;<span>Organizations</span>
                             </a>
                         </li>
-                        <li  ng-switch-when="true" ng-if="organizationalUnitIsEnable">
+                        <li ng-switch-when="true" ng-if="organizationalUnitIsEnable">
                             <a href="#/organizationalUnit"><span class="glyphicon glyphicon-list"></span></span>
                                 &nbsp;<span>Organization Units</span>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <div class="separator"  ng-switch-when="true"></div>
+
+                <div class="separator" ng-switch-when="true"></div>
                 <li class="dropdown" ng-switch-when="true">
                     <a href="#" class="dropdown-toggle with-user" data-toggle="dropdown" role="button"
-                       aria-haspopup="true" aria-expanded="false"><img src="images/user.png">{{account.firstName}}&nbsp;{{account.lastName}} <i
-                            class="fa fa-angle-down pull-right"></i></a>
-                    <ul class="dropdown-menu" >
+                       aria-haspopup="true" aria-expanded="false">
+                        <img src="images/user.png">{{account.firstName}}&nbsp;{{account.lastName}}
+                        <i class="fa fa-angle-down pull-right"></i>
+                    </a>
+                    <ul class="dropdown-menu">
                         <li>
                             <a href="#/settings">
                                 <i class="fa fa-cog"></i>
@@ -231,8 +243,8 @@
     <!-- /.container-fluid -->
 </nav>
 <!--Start Container-->
-<div id="main" class="container-fluid">
-    <div class="row">
+<div id="main" class="container-fluid" ng-switch="displayLeftSidebar">
+    <div class="row" ng-switch-when="true">
         <div id="sidebar-left" class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-if="authenticated">
             <navigation root-data-url="app/rest/menu/children/0" parent-data-url="app/rest/menu/children/:id"
                         user-rights="$root.account.moduleRights" security-enabled="securityEnabled"></navigation>
@@ -241,6 +253,18 @@
         <!--Start Content-->
         <div id="content"
              class="col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container-fluid " ng-view="">
+                </div>
+            </div>
+
+        </div>
+        <!--End Content-->
+    </div>
+    <div class="row" ng-switch-when="false">
+        <!--Start Content-->
+        <div id="content"
+             class="col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container-fluid " ng-view="">
                 </div>
@@ -355,7 +379,6 @@
 <script src="bower_components/moment/min/moment.min.js"></script>
 <script src="bower_components/underscore/underscore-min.js"></script>
 <script src="bower_components/hammerjs/hammer.js"></script>
-<script src="bower_components/angular-material/angular-material.js"></script>
 <script src="bower_components/angular-aria/angular-aria.js"></script>
 <script src="bower_components/angular-animate/angular-animate.js"></script>
 <script src="bower_components/angular-messages/angular-messages.js"></script>
@@ -378,8 +401,8 @@
 <script src="bower_components/angular-ui-confirm/angular-ui-confirm.min.js"></script>
 <script type="text/javascript" src="bower_components/moment/moment.js"></script>
 <script type="text/javascript" src="bower_components/moment/locale/ro.js"></script>
-<script type="text/javascript" src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
-<script src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
+<script type="text/javascript"
+        src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
 <script type="text/javascript" src="bower_components/app-file-uploader/dist/app-file-uploader.js"></script>
 <script type="text/javascript" src="bower_components/bootstrap-filestyle/src/bootstrap-filestyle.js"></script>
 
@@ -390,14 +413,17 @@
     .datetimepicker {
         width: 400px;
     }
-    .dropdown-menu table tbody tr td{
+
+    .dropdown-menu table tbody tr td {
         padding: 3px !important;
     }
-    .dropdown-menu table tbody tr td .btn-default{
+
+    .dropdown-menu table tbody tr td .btn-default {
         background-color: #fff !important;
         border: 1px solid #ccc !important;
     }
-    .dropdown-menu table thead button{
+
+    .dropdown-menu table thead button {
         background-color: #fff !important;
     }
 

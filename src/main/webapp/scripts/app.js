@@ -8,10 +8,10 @@ function changeTheme(theme) {
 
 var bootstrapApp = angular.module('bootstrapApp', ['http-auth-interceptor', 'tmh.dynamicLocale',
     'ngResource', 'ngRoute', 'ngCookies', 'bootstrapAppUtils', 'pascalprecht.translate', 'truncate', 'ngCacheBuster',
-    'bootstrapControllers','bootstrapServices','bootstrapDirectives','bootstrapConstants', 'bootstrapFilters',
+    'bootstrapControllers', 'bootstrapServices', 'bootstrapDirectives', 'bootstrapConstants', 'bootstrapFilters',
     'angular-component.app-grid', 'angular-components.app-menu', 'angular-components.app-menu-admin', 'angular-component.app-tabs', 'ui.tree',
-    'ngDragDrop', 'ui.select', 'ngSanitize', 'ui-notification', 'angular-ui-confirm','ui.bootstrap.datetimepicker',
-    'ui.bootstrap.datepicker','angular-component.app-file-uploader']);
+    'ngDragDrop', 'ui.select', 'ngSanitize', 'ui-notification', 'angular-ui-confirm', 'ui.bootstrap.datetimepicker',
+    'ui.bootstrap.datepicker', 'angular-component.app-file-uploader']);
 
 angular.element(document).ready(function () {
     angularCustomLoader.loadApp(bootstrapApp);
@@ -191,7 +191,9 @@ bootstrapApp
                 }
             })
             .when('/ajax/:templateName', {
-                templateUrl: function(params) { return 'ajax/'+params.templateName; },
+                templateUrl: function (params) {
+                    return 'ajax/' + params.templateName;
+                },
                 access: {
                     authorizedModules: [AUTH_BOOTSTRAP.ajax]
                 }
@@ -236,21 +238,37 @@ bootstrapApp
         });
     })
     .run(function ($rootScope, $location, $http, AuthenticationSharedService, Session, AUTH_BOOTSTRAP) {
-
-        $rootScope.dateOptions = {
-            format: 'dd/MM/yyyy',
-            dateTimeFormat: 'dd/MM/yyyy HH:mm',
-            formatYear: 'yy',
-            startingDay: 1
-        };
+        if ($rootScope.dateOptions === undefined) {
+            $rootScope.dateOptions = {
+                format: 'dd/MM/yyyy',
+                dateTimeFormat: 'dd/MM/yyyy HH:mm',
+                formatYear: 'yy',
+                startingDay: 1
+            };
+        }
 
         $rootScope.authenticated = false;
-        if($rootScope.securityEnabled==undefined){
-            $rootScope.securityEnabled=true;
+
+        if ($rootScope.displayLeftSidebar === undefined) {
+            $rootScope.displayLeftSidebar = true;
+        }
+
+        if ($rootScope.showSearch === undefined) {
+            $rootScope.showSearch = false;
+        }
+        if ($rootScope.showThemes === undefined) {
+            $rootScope.showThemes = false;
+        }
+        if ($rootScope.showImports === undefined) {
+            $rootScope.showImports = false;
+        }
+
+        if ($rootScope.securityEnabled === undefined) {
+            $rootScope.securityEnabled = true;
         }
 
 
-        if($rootScope.securityEnabled){
+        if ($rootScope.securityEnabled) {
             $rootScope.$on('$routeChangeStart', function (event, next) {
                 $rootScope.isAuthorized = AuthenticationSharedService.isAuthorized;
                 $rootScope.isInRoles = AuthenticationSharedService.isInRoles;
@@ -317,13 +335,15 @@ bootstrapApp
         $rootScope.websocketSubSocket;
         $rootScope.websocketTransport = 'websocket';
 
-        $rootScope.websocketRequest = { url: 'websocket/activity',
+        $rootScope.websocketRequest = {
+            url: 'websocket/activity',
             contentType: "application/json",
             transport: $rootScope.websocketTransport,
             trackMessageLength: true,
             reconnectInterval: 5000,
             enableXDR: true,
-            timeout: 60000 };
+            timeout: 60000
+        };
 
         $rootScope.websocketRequest.onOpen = function (response) {
             $rootScope.websocketTransport = response.transport;
@@ -348,7 +368,8 @@ bootstrapApp
                 if ($rootScope.account != null) {
                     $rootScope.websocketSubSocket.push(atmosphere.util.stringifyJSON({
                             userLogin: $rootScope.account.login,
-                            page: $route.current.templateUrl})
+                            page: $route.current.templateUrl
+                        })
                     );
                 }
             }
@@ -362,10 +383,10 @@ bootstrapApp
     }
 );
 
-Storage.prototype.setObj = function(key, obj) {
+Storage.prototype.setObj = function (key, obj) {
     return this.setItem(key, JSON.stringify(obj))
 };
 
-Storage.prototype.getObj = function(key) {
+Storage.prototype.getObj = function (key) {
     return JSON.parse(this.getItem(key))
 };
