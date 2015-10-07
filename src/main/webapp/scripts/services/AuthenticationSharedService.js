@@ -2,8 +2,11 @@ bootstrapServices.factory('AuthenticationSharedService',['$rootScope', '$http', 
     function ($rootScope, $http, authService, Session, Account, Permissions) {
     return {
         login: function (param) {
-            var data ="j_username=" + encodeURIComponent(param.username) +"&j_password=" +
-                encodeURIComponent(param.password) +"&_spring_security_remember_me=" + param.rememberMe +"&submit=Login";
+            var data ="j_username=" + encodeURIComponent(param.username)
+                +"&j_password=" + encodeURIComponent(param.password)
+                +"&_spring_security_remember_me=" + param.rememberMe
+                +"&extra_details=" + encodeURIComponent(param.extraDetails)
+                +"&submit=Login";
             $http.post('app/authentication', data, {
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded"

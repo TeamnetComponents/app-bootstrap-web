@@ -268,6 +268,9 @@ bootstrapApp
             $rootScope.securityEnabled = true;
         }
 
+        if ($rootScope.extendLoginForm == undefined){
+            $rootScope.extendLoginForm = false;
+        }
 
         if ($rootScope.securityEnabled) {
             $rootScope.$on('$routeChangeStart', function (event, next) {

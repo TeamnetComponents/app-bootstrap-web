@@ -17,15 +17,19 @@
                                    placeholder="{{'login.form.password.placeholder' | translate}}"
                                    ng-model="password">
                         </div>
-                        <div class="form-group">
-                            <div class="checkbox-container">
-                                <input id="rememberMe" type="checkbox" name="remember" name="rememberMe"
-                                       ng-model="rememberMe" checked>
-                                <label class="custom-select" for="rememberMe">
-                                    {{"login.form.rememberme" | translate}}
-                                </label>
-                            </div>
+                        <div ng-if="extendLoginForm" ng-controller="LoginExtensionController">
+                            <div ng-include="loginExtensionTpl"></div>
                         </div>
+                        <!-- remember me option is disabled because it's not yet compatible with the other extensions -->
+                        <!--<div class="form-group">-->
+                            <!--<div class="checkbox-container">-->
+                                <!--<input id="rememberMe" type="checkbox" name="remember" name="rememberMe"-->
+                                       <!--ng-model="rememberMe" checked>-->
+                                <!--<label class="custom-select" for="rememberMe">-->
+                                    <!--{{"login.form.rememberme" | translate}}-->
+                                <!--</label>-->
+                            <!--</div>-->
+                        <!--</div>-->
                         <div class="text-center">
                             <button type="submit" class="btn btn-success btn-block" ng-click="login()"
                                     translate="login.form.button">Authenticate
