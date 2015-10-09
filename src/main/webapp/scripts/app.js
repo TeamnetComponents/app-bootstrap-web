@@ -250,6 +250,10 @@ bootstrapApp
 
         $rootScope.authenticated = false;
 
+        if ($rootScope.displayTopNavbar === undefined) {
+            $rootScope.displayTopNavbar = true;
+        }
+
         if ($rootScope.displayLeftSidebar === undefined) {
             $rootScope.displayLeftSidebar = true;
         }
@@ -272,6 +276,10 @@ bootstrapApp
             $rootScope.extendLoginForm = false;
         }
 
+        if ($rootScope.multiStepLogin == undefined){
+            $rootScope.multiStepLogin = false;
+        }
+
         if ($rootScope.securityEnabled) {
             $rootScope.$on('$routeChangeStart', function (event, next) {
                 $rootScope.isAuthorized = AuthenticationSharedService.isAuthorized;
@@ -283,20 +291,35 @@ bootstrapApp
 
             });
 
-            // Call when the the client is confirmed
+            var redirectAfterAuthentication = function(pathParameters) {
+                if (pathParameters.redirect !== undefined) {
+                    $location.path(pathParameters.redirect).search('redirect', null).replace();
+                } else if (pathParameters.forward !== undefined) {
+                    $window.location.href = pathParameters.forward;
+                }
+                else {
+                    $location.path('/').replace();
+                }
+            };
+
+            // Call when the authentication of the client is confirmed
             $rootScope.$on('event:auth-loginConfirmed', function (data) {
                 $rootScope.authenticated = true;
-                if ($location.path() === "/login") {
-                    var search = $location.search();
-                    if (search.redirect !== undefined) {
-                        $location.path(search.redirect).search('redirect', null).replace();
-                    } else if (search.forward !== undefined) {
-                        $window.location.href = search.forward;
-                    }
-                    else {
-                        $location.path('/').replace();
-                    }
+                if ($location.path() !== "/login") {
+                    return;
                 }
+                var pathParameters = $location.search();
+                if ($rootScope.multiStepLogin) {
+                    $rootScope.$broadcast('event:auth-login-step1', data, pathParameters);
+                }
+                else {
+                    $rootScope.$broadcast('event:auth-loginComplete', pathParameters);
+                }
+            });
+
+            // Call when the authentication flow is complete
+            $rootScope.$on('event:auth-loginComplete', function (event, pathParameters) {
+                redirectAfterAuthentication(pathParameters);
             });
 
             // Call when the 401 response is returned by the server

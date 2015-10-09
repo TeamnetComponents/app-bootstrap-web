@@ -26,7 +26,7 @@
     </script>
 </head>
 <body>
-<nav class="navbar navbar-fixed-top">
+<nav ng-if="displayTopNavbar" class="navbar navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -89,7 +89,7 @@
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li class="dropdown-header">Public account</li>
+                        <li class="dropdown-header" translate="global.menu.account.publicAccount">Public account</li>
                         <li>
                             <a href="#/login">
                                 <i class="fa fa-tasks"></i>
@@ -167,40 +167,36 @@
                         <li ng-switch-when="true">
                             <a href="#/account">
                                 <i class="fa fa-cog"></i>
-                                <!--todo: Translate-->
-                                <span>Account</span>
+                                <span translate="global.menu.account.main">Account</span>
                             </a>
                         </li>
                         <li ng-switch-when="true">
                             <a href="#/roles">
                                 <i class="fa fa-cog"></i>
-                                <!--todo: Translate-->
-                                <span>Roles</span>
+                                <span translate="global.menu.account.roles">Roles</span>
                             </a>
                         </li>
                         <li ng-switch-when="true">
                             <a href="#/permissions">
                                 <i class="fa fa-cog"></i>
-                                <!--todo: Translate-->
-                                <span>Permissions</span>
+                                <span translate="global.menu.account.permissions">Permissions</span>
                             </a>
                         </li>
                         <li ng-switch-when="true" ng-if="checkIfAccountFunctionHaveRights">
                             <a href="#/functions">
                                 <i class="fa fa-cog"></i>
-                                <!--todo: Translate-->
-                                <span>Functions</span>
+                                <span translate="global.menu.account.functions">Functions</span>
                             </a>
                         </li>
                         <!--todo: ng-if link to rest for Ou-->
                         <li ng-switch-when="true" ng-if="organizationIsEnable">
                             <a href="#/organizationUnit/manage"><span class="glyphicon glyphicon-briefcase"></span>
-                                &nbsp;<span>Organizations</span>
+                                &nbsp;<span translate="global.menu.account.organizations">Organizations</span>
                             </a>
                         </li>
                         <li ng-switch-when="true" ng-if="organizationalUnitIsEnable">
                             <a href="#/organizationalUnit"><span class="glyphicon glyphicon-list"></span></span>
-                                &nbsp;<span>Organization Units</span>
+                                &nbsp;<span translate="global.menu.account.ous">Organization Units</span>
                             </a>
                         </li>
                     </ul>
@@ -223,8 +219,7 @@
                         <li>
                             <a href="#/resetPassword">
                                 <i class="fa fa-cog"></i>
-                                <!--todo: Translate-->
-                                <span>Reset password</span>
+                                <span translate="global.menu.account.resetPassword">Reset password</span>
                             </a>
                         </li>
                         <li role="separator" class="divider"></li>

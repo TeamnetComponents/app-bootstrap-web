@@ -11,8 +11,10 @@
             },
             "account": {
                 "main": "Account",
+                "publicAccount": "Public account",
                 "settings": "Settings",
                 "password": "Password",
+                "resetPassword": "Reset password",
                 "sessions": "Sessions",
                 "tracker": "User tracker",
                 "metrics": "Metrics",
@@ -24,7 +26,12 @@
                 "logout": "Log out",
                 "apidocs": "API",
                 "menus": "Menus",
-                "register": "Register"
+                "register": "Register",
+                "roles": "Roles",
+                "permissions": "Permissions",
+                "functions": "Functions",
+                "organizations": "Organizations",
+                "ous": "Organizational units"
             },
             "admin": "Administration",
             "language": "Language",
@@ -127,7 +134,8 @@
             "password": "Password",
             "password.placeholder": "Your password",
             "rememberme": "Automatic Login",
-            "button": "Authenticate"
+            "button": "Authenticate",
+            "button.next.step": "Proceed"
         },
         "messages": {
             "error": {

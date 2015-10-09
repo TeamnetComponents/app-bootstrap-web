@@ -30,9 +30,12 @@
                                 <!--</label>-->
                             <!--</div>-->
                         <!--</div>-->
-                        <div class="text-center">
+                        <div class="text-center" ng-switch="multiStepLogin">
                             <button type="submit" class="btn btn-success btn-block" ng-click="login()"
-                                    translate="login.form.button">Authenticate
+                                    translate="login.form.button" ng-switch-when="false">Authenticate
+                            </button>
+                            <button type="submit" class="btn btn-success btn-block" ng-click="login()"
+                                    translate="login.form.button.next.step" ng-switch-when="true">Proceed
                             </button>
                         </div>
                     </div>

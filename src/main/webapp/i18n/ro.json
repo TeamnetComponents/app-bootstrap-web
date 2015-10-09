@@ -1,77 +1,84 @@
 {
     "global": {
         "title": "renns",
-        "browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
+        "browsehappy": "Folositi un browser <strong>foarte vechi</strong>! Va rugam sa <a href=\"http://browsehappy.com/?locale=en\">actualizati browser-ul</a> pentru o mai buna functionare a aplicatiei.",
         "menu": {
-            "home": "Home",
-            "menu": "Menu",
-            "welcome": "Welcome",
+            "home": "Acasa",
+            "menu": "Meniu",
+            "welcome": "Bun venit",
             "entities": {
-                "main": "Entities"
+                "main": "Entitati"
             },
             "account": {
-                "main": "Account",
-                "settings": "Settings",
-                "password": "Password",
-                "sessions": "Sessions",
+                "main": "Conturi",
+                "publicAccount": "Cont",
+                "settings": "Setari",
+                "password": "Parola",
+                "resetPassword": "Schimbare parola",
+                "sessions": "Sesiuni",
                 "tracker": "User tracker",
                 "metrics": "Metrics",
                 "health": "Health",
                 "configuration": "Configuration",
                 "logs": "Logs",
                 "audits": "Audits",
-                "login": "Authenticate",
-                "logout": "Log out",
+                "login": "Autentificare",
+                "logout": "Deconectare",
                 "apidocs": "API",
-                "menus": "Menus",
-                "register": "Register"
+                "menus": "Meniuri",
+                "register": "Inregistrare",
+                "roles": "Roluri",
+                "permissions": "Permisiuni",
+                "functions": "Functii",
+                "organizations": "Organizatii",
+                "ous": "Unitati organizationale"
             },
-            "admin": "Administration",
-            "language": "Language",
-            "themes": "Themes"
+            "admin": "Administrare",
+            "language": "Limba",
+            "themes": "Teme"
         },
         "form": {
-            "username": "Login",
-            "username.placeholder": "Your login",
-            "newpassword": "New password",
-            "newpassword.placeholder": "New password",
-            "confirmpassword": "New password confirmation",
-            "confirmpassword.placeholder": "Confirm the new password",
+            "username": "Utilizator",
+            "username.placeholder": "Numele de utilizator",
+            "newpassword": "Parola noua",
+            "newpassword.placeholder": "Parola noua",
+            "confirmpassword": "Confirmati parola noua",
+            "confirmpassword.placeholder": "Confirmati parola noua",
             "email": "E-mail",
-            "email.placeholder": "Your e-mail",
-            "gender":"Gender",
-            "male":"Male",
-            "female":"Female"
+            "email.placeholder": "Adresa de e-mail",
+            "gender":"Sex",
+            "male":"Masculin",
+            "female":"Feminin"
 
         },
         "messages": {
             "info": {
-                "authenticated": "If you have an account you can <a href=\"#/login\">authenticate</a>,",
-                "register": "You don't have an account yet? <a href=\"#/register\">Register a new account</a>"
+                "authenticated": "Daca aveti un cont va puteti <a href=\"#/login\">autentifica</a>.",
+                "register": "Nu aveti un cont? <a href=\"#/register\">Inregistrati-va aici.</a>"
             },
             "error": {
-                "dontmatch" : "The password and its confirmation do not match!"
+                "dontmatch" : "Parola si confirmarea nu coincid!"
             },
             "validate": {
                 "newpassword": {
-                    "required": "Your password is required.",
-                    "minlength": "Your password is required to be at least 5 characters",
-                    "maxlength": "Your password cannot be longer than 50 characters",
-                    "strength": "Password strength:"
+                    "required": "Trebuie sa introduceti parola.",
+                    "minlength": "Parola trebuie sa aiba cel putin 5 caractere",
+                    "maxlength": "Parola nu trebuie sa depaseasca 50 de caractere",
+                    "strength": "Eficacitatea parolei:"
                 },
                 "confirmpassword": {
-                    "required": "Your confirmation password is required.",
-                    "minlength": "Your confirmation password is required to be at least 5 characters",
-                    "maxlength": "Your confirmation password cannot be longer than 50 characters"
+                    "required": "Trebuie sa confirmati parola.",
+                    "minlength": "Parola trebuie sa aiba cel putin 5 caractere",
+                    "maxlength": "Parola nu trebuie sa depaseasca 50 de caractere"
                 },
                 "email": {
-                    "required": "Your e-mail is required.",
-                    "invalid": "Your e-mail is invalid.",
-                    "minlength": "Your e-mail is required to be at least 5 characters",
-                    "maxlength": "Your e-mail cannot be longer than 50 characters"
+                    "required": "Trebuie sa introduceti o adresa de e-mail.",
+                    "invalid": "Adresa de e-mail nu este valida.",
+                    "minlength": "Adresa de e-mail trebuie sa aiba cel putin 5 caractere",
+                    "maxlength": "Adresa de e-mail nu trebuie sa depaseasca 50 de caractere"
                 },
                 "gender":{
-                    "required":"Your gender is required"
+                    "required":"Trebuie selectat sexul"
                 }
             }
         }
@@ -93,85 +100,86 @@
         "github": "Github"
     },
     "activate": {
-        "title": "Activation",
+        "title": "Activare",
         "messages": {
-            "success": "<strong>Your user has been activated.</strong> Please <a href=\"#/login\">authenticate</a>.",
-            "error": "<strong>Your user could not be activated.</strong> Please use the registration form to sign up."
+            "success": "<strong>Utilizatorul a fost activat.</strong> Va rugam se va <a href=\"#/login\">autentificati</a>.",
+            "error": "<strong>Utilizatorul nu a putut fi activat.</strong> Va rugam inregistrati-va."
         }
     },
     "register": {
-        "title": "Registration",
+        "title": "Intregistrare",
         "form": {
-            "button": "Register"
+            "button": "Intregistrare"
         },
         "messages": {
             "validate": {
                 "login": {
-                    "required": "Your login is required.",
-                    "minlength": "Your login is required to be at least 1 character",
-                    "maxlength": "Your login cannot be longer than 50 characters",
-                    "pattern": "Your login can only contain lower-case letters and digits"
+                    "required": "Trebuie sa introduceti utilizatorul.",
+                    "minlength": "Numele de utilizator trebuie sa aiba cel putin 1 caracter",
+                    "maxlength": "Numele de utilizator nu trebuie sa depaseasca 50 de caractere",
+                    "pattern": "Numele de utilizator poate contine doar litere mici si cifre"
                 }
             },
-            "success": "<strong>Registration saved!</strong> Please check your email for confirmation.",
+            "success": "<strong>Inregistrarea a fost salvata!</strong> Va rugam verificati-va adresa de email pentru confirmare.",
             "error": {
-                "fail": "<strong>Registration failed!</strong> Please try again later.",
-                "userexists": "<strong>Login name already registered!</strong> Please choose another one.",
-                "emailexists": "<strong>E-mail is already in use!</strong> Please choose another one."
+                "fail": "<strong>Inregistrarea a esuat!</strong> Reveniti mai tarziu.",
+                "userexists": "<strong>Exista deja acest nume de utilizator in sistem!</strong> Va rugam sa alegeti altul.",
+                "emailexists": "<strong>Exista deja aceasta adresa de e-mail in sistem!</strong>  Va rugam introduceti alta."
             }
         }
     },
     "login": {
-        "title": "Authentication",
+        "title": "Autentificare",
         "form": {
-            "password": "Password",
-            "password.placeholder": "Your password",
-            "rememberme": "Automatic Login",
-            "button": "Authenticate"
+            "password": "Parola",
+            "password.placeholder": "Parola",
+            "rememberme": "Tine-ma minte",
+            "button": "Autentificare",
+            "button.next.step": "Continua"
         },
         "messages": {
             "error": {
-                "authentication": "<strong>Authentication failed!</strong> Please check your credentials and try again."
+                "authentication": "<strong>Autentificarea a esuat!</strong> Verificati corectitudinea datelor introduse si reincercati."
             }
         }
     },
     "settings": {
-        "title": "User settings for [<b>{{username}}</b>]",
+        "title": "Setarile contului [<b>{{username}}</b>]",
         "form": {
-            "firstname": "First Name",
-            "firstname.placeholder": "Your first name",
-            "lastname": "Last Name",
-            "lastname.placeholder": "Your last name",
-            "button": "Save"
+            "firstname": "Prenume",
+            "firstname.placeholder": "Prenume",
+            "lastname": "Nume",
+            "lastname.placeholder": "Nume",
+            "button": "Salveaza"
         },
         "messages": {
             "error": {
-                "fail": "<strong>An error has occurred!</strong> Settings could not be saved.",
-                "emailexists": "<strong>E-mail is already in use!</strong> Please choose another one."
+                "fail": "<strong>A intervenit o eroare!</strong> Salvarea setarilor a esuat.",
+                "emailexists": "<strong>Exista deja aceasta adresa de e-mail in sistem!</strong>  Va rugam introduceti alta."
             },
-            "success": "<strong>Settings saved!</strong>",
+            "success": "<strong>Setarile au fost salvate!</strong>",
             "validate": {
                 "firstname": {
-                    "required": "Your first name is required.",
-                    "minlength": "Your first name is required to be at least 1 character",
-                    "maxlength": "Your first name cannot be longer than 50 characters"
+                    "required": "Trebuie sa introduceti prenumele.",
+                    "minlength": "Prenumele trebuie sa aiba cel putin 1 caracter",
+                    "maxlength": "Prenumele nu trebuie sa depaseasca 50 de caractere"
                 },
                 "lastname": {
-                    "required": "Your last name is required.",
-                    "minlength": "Your last name is required to be at least 1 character",
-                    "maxlength": "Your last name cannot be longer than 50 characters"
+                    "required": "Trebuie sa introduceti numele.",
+                    "minlength": "Numele trebuie sa aiba cel putin 1 caracter",
+                    "maxlength": "Numele nu trebuie sa depaseasca 50 de caractere"
                 }
             }
         }
     },
     "password": {
-        "title": "Password for [<b>{{username}}</b>]",
+        "title": "Parola pentru [<b>{{username}}</b>]",
         "form": {
-            "button": "Save"
+            "button": "Salveaza"
         },
         "messages": {
-            "error":  "<strong>An error has occurred!</strong> The password could not be changed.",
-            "success": "<strong>Password changed!</strong>"
+            "error":  "<strong>A intervenit o eroare!</strong>. Schimbarea parolei a esuat.",
+            "success": "<strong>Parola a fost schimbata!</strong>"
         }
     },
     "sessions": {
@@ -353,8 +361,8 @@
 
     },
     "errors": {
-        "title": "Error page!",
-        "403": "You are not authorized to access the page."
+        "title": "Parina de eroare!",
+        "403": "Nu aveti dreptul sa accesati aceasta pagina."
     },
     "footer": "This is your footer",
     "message": {
