@@ -11,10 +11,12 @@
             },
             "account": {
                 "main": "Conturi",
-                "publicAccount": "Cont",
+                "publicAccount": "Profil public",
                 "settings": "Setari",
                 "password": "Parola",
                 "resetPassword": "Schimbare parola",
+                "administration": "Administrare",
+                "security": "Securitate",
                 "sessions": "Sesiuni",
                 "tracker": "User tracker",
                 "metrics": "Metrics",
@@ -48,8 +50,17 @@
             "email.placeholder": "Adresa de e-mail",
             "gender":"Sex",
             "male":"Masculin",
-            "female":"Feminin"
+            "female":"Feminin",
+            "active": "Activat"
 
+        },
+        "button": {
+            "save": "Salveaza",
+            "create": "Adauga",
+            "delete": "Sterge",
+            "edit": "Modifica",
+            "view": "Vizualizeaza",
+            "back": "Inapoi"
         },
         "messages": {
             "info": {

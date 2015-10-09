@@ -108,13 +108,13 @@
                 <li class="dropdown" ng-if="securityEnabled && isInRoles(['ROLE_ADMIN'])">
                     <a href="" class="dropdown-toggle with-custom-icon" data-toggle="dropdown">
                         <i class="icon-icon4"></i>
-                        Settings
+                        <span translate="global.menu.account.settings">Settings</span>
                         <i class="fa fa-angle-down pull-right"></i>
                     </a>
 
                     <ul class="dropdown-menu">
 
-                        <li class="dropdown-header" ng-switch-when="true">Administration</li>
+                        <li class="dropdown-header" ng-switch-when="true" translate="global.menu.account.administration">Administration</li>
                         <li ng-switch-when="true">
                             <a href="#/tracker"><span class="glyphicon glyphicon-eye-open"></span>
                                 &nbsp;<span translate="global.menu.account.tracker">User tracking</span>
@@ -163,7 +163,7 @@
                             </a>
                         </li>
                         <li role="separator" class="divider" ng-switch-when="true"></li>
-                        <li class="dropdown-header" ng-switch-when="true">Security</li>
+                        <li class="dropdown-header" ng-switch-when="true" translate="global.menu.account.security">Security</li>
                         <li ng-switch-when="true">
                             <a href="#/account">
                                 <i class="fa fa-cog"></i>
@@ -213,7 +213,7 @@
                         <li>
                             <a href="#/settings">
                                 <i class="fa fa-cog"></i>
-                                <span translate="global.menu.account.settings">Profile</span></a>
+                                <span translate="global.menu.account.settings">Settings</span></a>
                             </a>
                         </li>
                         <li>

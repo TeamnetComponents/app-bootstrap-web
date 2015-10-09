@@ -2,7 +2,7 @@
     <div class="panel panel-default">
         <form name="formCreateOrEdit" class="form" role="form">
             <div class="panel-heading">
-                <h4>Account</h4>
+                <h4 translate="global.menu.account.main">Account</h4>
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -23,7 +23,7 @@
                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group" ng-class="{'has-success':formCreateOrEdit.selectedAccount_firstName.$dirty && formCreateOrEdit.selectedAccount_firstName.$valid,
                                         'has-error':formCreateOrEdit.selectedAccount_firstName.$dirty && formCreateOrEdit.selectedAccount_firstName.$invalid}">
-                                    <label><b>First name</b></label>
+                                    <label translate="settings.form.firstname"><b>First name</b></label>
                                     <input type="text" name="selectedAccount_firstName" class="form-control" ng-model="selectedAccount.firstName" ng-readonly="isView" required>
 
                                     <div ng-show="formCreateOrEdit.selectedAccount_firstName.$dirty && formCreateOrEdit.selectedAccount_firstName.$invalid">
@@ -35,7 +35,7 @@
                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group" ng-class="{'has-success':formCreateOrEdit.selectedAccount_lastname.$dirty && formCreateOrEdit.selectedAccount_lastname.$valid,
                                         'has-error':formCreateOrEdit.selectedAccount_lastname.$dirty && formCreateOrEdit.selectedAccount_lastname.$invalid}">
-                                    <label><b>Last name</b></label>
+                                    <label translate="settings.form.lastname"><b>Last name</b></label>
                                     <input type="text" name="selectedAccount_lastname" class="form-control" ng-model="selectedAccount.lastName" ng-readonly="isView" required>
 
                                     <div ng-show="formCreateOrEdit.selectedAccount_lastname.$dirty && formCreateOrEdit.selectedAccount_lastname.$invalid">
@@ -49,7 +49,7 @@
                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group" ng-class="{'has-success':formCreateOrEdit.selectedAccount_email.$dirty && formCreateOrEdit.selectedAccount_email.$valid,
                                         'has-error':formCreateOrEdit.selectedAccount_email.$dirty && formCreateOrEdit.selectedAccount_email.$invalid}">
-                                    <label><b>Email</b></label>
+                                    <label translate="global.form.email"><b>Email</b></label>
                                     <input type="email" name="selectedAccount_email" class="form-control" ng-model="selectedAccount.email" ng-readonly="isView" required>
 
 
@@ -66,7 +66,7 @@
                                            ng-model="selectedAccount.activated"
                                            ng-checked="selectedAccount.activated"
                                            class="mr5" >
-                                    <label class="custom-select" for="active">Active</label>
+                                    <label translate="global.form.active" class="custom-select" for="active">Active</label>
                                 </div>
                            </div>
                        </div>
@@ -80,27 +80,27 @@
 
                                 <button class="btn btn-primary"
                                            ng-show="false">
-                                    Create
+                                    <span translate="global.button.create">Create</span>
                                 </button>
                                 <button class="btn btn-info"
                                            ng-show="isView"
                                            ng-click="editAccount()">
-                                    Edit
+                                    <span translate="global.button.edit">Edit</span>
                                 </button>
                                 <button class="btn btn-success"
                                            ng-show="isEdit"
                                            ng-disabled="formCreateOrEdit.$invalid"
                                            ng-click="saveAccount()">
-                                    Save
+                                    <span translate="global.button.save">Save</span>
                                 </button>
                                 <button class="btn btn-danger"
                                            ng-show="false">
-                                    Delete
+                                    <span translate="global.button.delete">Delete</span>
                                 </button>
                                 <button class="btn btn-warning"
                                            ng-show="!isView"
                                            ng-click="formCreateOrEdit.$setPristine();backAccount()">
-                                    Back
+                                    <span translate="global.button.back">Back</span>
                                 </button>
                             </div>
                         </div>
