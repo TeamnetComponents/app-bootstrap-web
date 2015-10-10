@@ -239,120 +239,122 @@ bootstrapApp
     })
     .run(['$rootScope', '$location', '$window', '$http', 'AuthenticationSharedService', 'Session', 'AUTH_BOOTSTRAP',
         function ($rootScope, $location, $window, $http, AuthenticationSharedService, Session, AUTH_BOOTSTRAP) {
-        if ($rootScope.dateOptions === undefined) {
-            $rootScope.dateOptions = {
-                format: 'dd/MM/yyyy',
-                dateTimeFormat: 'dd/MM/yyyy HH:mm',
-                formatYear: 'yy',
-                startingDay: 1
-            };
-        }
+            if ($rootScope.dateOptions === undefined) {
+                $rootScope.dateOptions = {
+                    format: 'dd/MM/yyyy',
+                    dateTimeFormat: 'dd/MM/yyyy HH:mm',
+                    formatYear: 'yy',
+                    startingDay: 1
+                };
+            }
 
-        $rootScope.authenticated = false;
+            $rootScope.authenticated = false;
 
-        if ($rootScope.displayTopNavbar === undefined) {
-            $rootScope.displayTopNavbar = true;
-        }
+            if ($rootScope.displayTopNavbar === undefined) {
+                $rootScope.displayTopNavbar = true;
+            }
 
-        if ($rootScope.displayLeftSidebar === undefined) {
-            $rootScope.displayLeftSidebar = true;
-        }
+            if ($rootScope.displayLeftSidebar === undefined) {
+                $rootScope.displayLeftSidebar = true;
+            }
 
-        if ($rootScope.showSearch === undefined) {
-            $rootScope.showSearch = false;
-        }
-        if ($rootScope.showThemes === undefined) {
-            $rootScope.showThemes = false;
-        }
-        if ($rootScope.showImports === undefined) {
-            $rootScope.showImports = false;
-        }
+            if ($rootScope.showSearch === undefined) {
+                $rootScope.showSearch = false;
+            }
+            if ($rootScope.showThemes === undefined) {
+                $rootScope.showThemes = false;
+            }
+            if ($rootScope.showImports === undefined) {
+                $rootScope.showImports = false;
+            }
 
-        if ($rootScope.securityEnabled === undefined) {
-            $rootScope.securityEnabled = true;
-        }
+            if ($rootScope.securityEnabled === undefined) {
+                $rootScope.securityEnabled = true;
+            }
 
-        if ($rootScope.extendLoginForm == undefined){
-            $rootScope.extendLoginForm = false;
-        }
+            if ($rootScope.extendLoginForm == undefined) {
+                $rootScope.extendLoginForm = false;
+            }
 
-        if ($rootScope.multiStepLogin == undefined){
-            $rootScope.multiStepLogin = false;
-        }
+            if ($rootScope.multiStepLogin == undefined) {
+                $rootScope.multiStepLogin = false;
+            }
 
-        if ($rootScope.securityEnabled) {
-            $rootScope.$on('$routeChangeStart', function (event, next) {
-                $rootScope.isAuthorized = AuthenticationSharedService.isAuthorized;
-                $rootScope.isInRoles = AuthenticationSharedService.isInRoles;
-                $rootScope.userModules = AUTH_BOOTSTRAP;
+            if ($rootScope.securityEnabled) {
+                $rootScope.$on('$routeChangeStart', function (event, next) {
+                    $rootScope.isAuthorized = AuthenticationSharedService.isAuthorized;
+                    $rootScope.isInRoles = AuthenticationSharedService.isInRoles;
+                    $rootScope.userModules = AUTH_BOOTSTRAP;
 //                if(next.access!=undefined&&next.access.authorizedModules!=undefined&&next.access.authorizedModules.length>0&&next.access.authorizedModules[0]!='*'){
-                AuthenticationSharedService.valid(next.access.authorizedModules);
+                    AuthenticationSharedService.valid(next.access.authorizedModules);
 //                }
 
-            });
+                });
 
-            var redirectAfterAuthentication = function(pathParameters) {
-                if (pathParameters.redirect !== undefined) {
-                    $location.path(pathParameters.redirect).search('redirect', null).replace();
-                } else if (pathParameters.forward !== undefined) {
-                    $window.location.href = pathParameters.forward;
-                }
-                else {
-                    $location.path('/').replace();
-                }
-            };
+                var redirectAfterAuthentication = function (pathParameters) {
+                    var pathParams = pathParameters === undefined ? $location.search() : pathParameters;
 
-            // Call when the authentication of the client is confirmed
-            $rootScope.$on('event:auth-loginConfirmed', function (data) {
-                $rootScope.authenticated = true;
-                if ($location.path() !== "/login") {
-                    return;
-                }
-                var pathParameters = $location.search();
-                if ($rootScope.multiStepLogin) {
-                    $rootScope.$broadcast('event:auth-login-step1', data, pathParameters);
-                }
-                else {
-                    $rootScope.$broadcast('event:auth-loginComplete', pathParameters);
-                }
-            });
+                    if (pathParams.redirect !== undefined) {
+                        $location.path(pathParams.redirect).search('redirect', null).replace();
+                    } else if (pathParams.forward !== undefined) {
+                        $window.location.href = pathParams.forward;
+                    }
+                    else {
+                        $location.path('/').replace();
+                    }
+                };
 
-            // Call when the authentication flow is complete
-            $rootScope.$on('event:auth-loginComplete', function (event, pathParameters) {
-                redirectAfterAuthentication(pathParameters);
-            });
+                // Call when the authentication of the client is confirmed
+                $rootScope.$on('event:auth-loginConfirmed', function () {
+                    $rootScope.authenticated = true;
+                    if ($location.path() !== "/login") {
+                        return;
+                    }
+                    var pathParameters = $location.search();
+                    if ($rootScope.multiStepLogin) {
+                        $rootScope.$broadcast('event:auth-login-step1', pathParameters);
+                    }
+                    else {
+                        $rootScope.$broadcast('event:auth-loginComplete', pathParameters);
+                    }
+                });
 
-            // Call when the 401 response is returned by the server
-            $rootScope.$on('event:auth-loginRequired', function (rejection) {
-                Session.invalidate();
-                $rootScope.authenticated = false;
-                if ($location.path() !== "/" && $location.path() !== "" && $location.path() !== "/register" &&
-                    $location.path() !== "/activate" && $location.path() !== "/login") {
-                    var redirect = $location.path();
-                    $location.path('/login').search('redirect', redirect).replace();
-                }
-            });
+                // Call when the authentication flow is complete
+                $rootScope.$on('event:auth-loginComplete', function (event, pathParameters) {
+                    redirectAfterAuthentication(pathParameters);
+                });
 
-            // Call when the 403 response is returned by the server
-            $rootScope.$on('event:auth-notAuthorized', function (rejection) {
-                if ($location.path() !== "/" && $location.path() !== "" && $location.path() !== "/register" &&
-                    $location.path() !== "/activate" && $location.path() !== "/login") {
-                    $rootScope.errorMessage = 'errors.403';
-                    $location.path('/error').replace();
-                }
-            });
+                // Call when the 401 response is returned by the server
+                $rootScope.$on('event:auth-loginRequired', function (rejection) {
+                    Session.invalidate();
+                    $rootScope.authenticated = false;
+                    if ($location.path() !== "/" && $location.path() !== "" && $location.path() !== "/register" &&
+                        $location.path() !== "/activate" && $location.path() !== "/login") {
+                        var redirect = $location.path();
+                        $location.path('/login').search('redirect', redirect).replace();
+                    }
+                });
 
-            // Call when the user logs out
-            $rootScope.$on('event:auth-loginCancelled', function () {
-                $location.path('');
-            });
+                // Call when the 403 response is returned by the server
+                $rootScope.$on('event:auth-notAuthorized', function (rejection) {
+                    if ($location.path() !== "/" && $location.path() !== "" && $location.path() !== "/register" &&
+                        $location.path() !== "/activate" && $location.path() !== "/login") {
+                        $rootScope.errorMessage = 'errors.403';
+                        $location.path('/error').replace();
+                    }
+                });
 
-            console.log(angular.element('.auth-data-required'));
-            angular.element('.auth-data-required').removeClass("auth-data-required");
-        }
+                // Call when the user logs out
+                $rootScope.$on('event:auth-loginCancelled', function () {
+                    $location.path('');
+                });
+
+                console.log(angular.element('.auth-data-required'));
+                angular.element('.auth-data-required').removeClass("auth-data-required");
+            }
 
 
-    }])
+        }])
     .run(['$rootScope', '$route', function ($rootScope, $route) {
         // This uses the Atmoshpere framework to do a Websocket connection with the server, in order to send
         // user activities each time a route changes.
@@ -408,7 +410,7 @@ bootstrapApp
             $rootScope.websocketRequest.sendMessage();
         });
     }
-]);
+    ]);
 
 Storage.prototype.setObj = function (key, obj) {
     return this.setItem(key, JSON.stringify(obj))

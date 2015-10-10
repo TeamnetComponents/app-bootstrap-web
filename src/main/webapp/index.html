@@ -114,7 +114,9 @@
 
                     <ul class="dropdown-menu">
 
-                        <li class="dropdown-header" ng-switch-when="true" translate="global.menu.account.administration">Administration</li>
+                        <li class="dropdown-header" ng-switch-when="true"
+                            translate="global.menu.account.administration">Administration
+                        </li>
                         <li ng-switch-when="true">
                             <a href="#/tracker"><span class="glyphicon glyphicon-eye-open"></span>
                                 &nbsp;<span translate="global.menu.account.tracker">User tracking</span>
@@ -163,7 +165,9 @@
                             </a>
                         </li>
                         <li role="separator" class="divider" ng-switch-when="true"></li>
-                        <li class="dropdown-header" ng-switch-when="true" translate="global.menu.account.security">Security</li>
+                        <li class="dropdown-header" ng-switch-when="true" translate="global.menu.account.security">
+                            Security
+                        </li>
                         <li ng-switch-when="true">
                             <a href="#/account">
                                 <i class="fa fa-cog"></i>
@@ -220,6 +224,12 @@
                             <a href="#/resetPassword">
                                 <i class="fa fa-cog"></i>
                                 <span translate="global.menu.account.resetPassword">Reset password</span>
+                            </a>
+                        </li>
+                        <li ng-if="ouEnabled">
+                            <a href="#/ouLoginSwitcher">
+                                <i class="fa fa-cog"></i>
+                                <span translate="login.ou.switch.title">Organization switcher</span>
                             </a>
                         </li>
                         <li role="separator" class="divider"></li>
