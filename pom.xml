@@ -4,11 +4,11 @@
     <parent>
         <groupId>ro.teamnet.bootstrap</groupId>
         <artifactId>bootstrap-dependencies</artifactId>
-        <version>0.2.11</version>
+        <version>0.2.12-SNAPSHOT</version>
         <relativePath />
     </parent>
     <artifactId>app-bootstrap-web</artifactId>
-    <version>0.2.11</version>
+    <version>0.2.12-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <distributionManagement>
@@ -27,7 +27,7 @@
     <scm>
         <url>http://git-components.teamnet.ro/summary/components%2Fjava%2Fapp-bootstrap-web.git</url>
         <connection>scm:git:http://component-publisher@git-components.teamnet.ro/r/components/java/app-bootstrap-web.git</connection>
-        <tag>v0.2.11</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <build>
