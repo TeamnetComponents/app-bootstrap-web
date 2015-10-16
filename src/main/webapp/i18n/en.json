@@ -33,7 +33,8 @@
                 "permissions": "Permissions",
                 "functions": "Functions",
                 "organizations": "Organizations",
-                "ous": "Organizational units"
+                "ous": "Organizational units",
+                "accountFunctions": "Account functions"
             },
             "admin": "Administration",
             "language": "Language",

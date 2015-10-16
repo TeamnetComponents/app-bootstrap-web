@@ -9,9 +9,10 @@
                     <div class="col-lg-3 col-md-3 col-sm-4">
                         <div ng-show="view != 'create'"
                              class="list-group" style="max-height: 500px; overflow: auto">
+                            <input type="text" class="form-control mb15" ng-model="accBootSearch" placeholder="Filter">
                             <div class="list-group-item"
                                  style="cursor: pointer; border-top-right-radius: 0px; border-bottom-right-radius: 0px;"
-                                 ng-repeat="account in accounts"
+                                 ng-repeat="account in accounts | filter: {login: accBootSearch}"
                                  ng-click="selectAccount(account)"
                                  ng-class="{active:isSelected(account)}">
                                 {{account.login}}

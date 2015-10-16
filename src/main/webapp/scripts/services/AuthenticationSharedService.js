@@ -31,6 +31,7 @@ bootstrapServices.factory('AuthenticationSharedService',['$rootScope', '$http', 
                     ignoreAuthModule: 'ignoreAuthModule'
                 }).success(function (data, status, headers, config) {
                     if (!Session.login) {
+                        $rootScope.hasSettingsAccess = false;
                         Account.get(function (data) {
                             Session.create(data.login, data.firstName, data.lastName, data.email, data.roles, data.gender, data.moduleRights);
                             $rootScope.account = Session;
@@ -40,6 +41,10 @@ bootstrapServices.factory('AuthenticationSharedService',['$rootScope', '$http', 
                             } else {
                                 $rootScope.$broadcast("event:auth-loginConfirmed");
                                 $rootScope.$broadcast("event:get-account-information", data);
+
+                                if (data.moduleRights.SETTINGS_READ_ACCESS != null) {
+                                    $rootScope.hasSettingsAccess = true;
+                                }
                             }
                         });
                     } else {

@@ -217,8 +217,8 @@ bootstrapControllers
         };
 
         var init = function () {
-            Account.getAllAccounts({}, function (res) {
-                $scope.accounts = res.content;
+            Account.getAllAccounts(function (res) {
+                $scope.accounts = res;
                 Role.getAll(function (res) {
                     $scope.allRoles = res;
                     if (!_.isEmpty($scope.accounts)) {

@@ -105,7 +105,7 @@
                     </ul>
                 </li>
 
-                <li class="dropdown" ng-if="securityEnabled && isInRoles(['ROLE_ADMIN'])">
+                <li class="dropdown" ng-show="securityEnabled && hasSettingsAccess">
                     <a href="" class="dropdown-toggle with-custom-icon" data-toggle="dropdown">
                         <i class="icon-icon4"></i>
                         <span translate="global.menu.account.settings">Settings</span>
@@ -186,13 +186,19 @@
                                 <span translate="global.menu.account.permissions">Permissions</span>
                             </a>
                         </li>
+                        <!--todo: ng-if link to rest for Ou-->
                         <li ng-switch-when="true" ng-if="checkIfAccountFunctionHaveRights">
                             <a href="#/functions">
                                 <i class="fa fa-cog"></i>
                                 <span translate="global.menu.account.functions">Functions</span>
                             </a>
                         </li>
-                        <!--todo: ng-if link to rest for Ou-->
+                        <li ng-switch-when="true" ng-if="checkIfAccountFunctionHaveRights">
+                            <a href="#/manageAccounts">
+                                <i class="fa fa-cog"></i>
+                                <span translate="global.menu.account.accountFunctions">Accounts functions</span>
+                            </a>
+                        </li>
                         <li ng-switch-when="true" ng-if="organizationIsEnable">
                             <a href="#/organizationUnit/manage"><span class="glyphicon glyphicon-briefcase"></span>
                                 &nbsp;<span translate="global.menu.account.organizations">Organizations</span>
@@ -200,7 +206,7 @@
                         </li>
                         <li ng-switch-when="true" ng-if="organizationalUnitIsEnable">
                             <a href="#/organizationalUnit"><span class="glyphicon glyphicon-list"></span></span>
-                                &nbsp;<span translate="global.menu.account.ous">Organization Units</span>
+                                &nbsp;<span translate="global.menu.account.ous">Organizational Units</span>
                             </a>
                         </li>
                     </ul>

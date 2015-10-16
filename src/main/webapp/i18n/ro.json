@@ -33,7 +33,8 @@
                 "permissions": "Permisiuni",
                 "functions": "Functii",
                 "organizations": "Organizatii",
-                "ous": "Unitati organizationale"
+                "ous": "Unitati organizationale",
+                "accountFunctions": "Functii conturi"
             },
             "admin": "Administrare",
             "language": "Limba",

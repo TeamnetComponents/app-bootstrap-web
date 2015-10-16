@@ -7,7 +7,8 @@ bootstrapServices.factory('Account',['$resource', function ($resource) {
         },
         'getAllAccounts': {
             url: 'app/rest/adminAccount/allAccount',
-            method: 'GET'
+            method: 'GET',
+            isArray: true
         },
         'updateAccount': {
             url: 'app/rest/adminAccount/updateAccount',
