@@ -1,5 +1,5 @@
-bootstrapServices.factory('AuthenticationSharedService',['$rootScope', '$http', 'authService', 'Session', 'Account', 'Permissions',
-    function ($rootScope, $http, authService, Session, Account, Permissions) {
+bootstrapServices.factory('AuthenticationSharedService',['$rootScope', '$http', '$location', 'authService', 'Session', 'Account', 'Permissions',
+    function ($rootScope, $http, $location, authService, Session, Account, Permissions) {
     return {
         login: function (param) {
             var data ="j_username=" + encodeURIComponent(param.username)
@@ -112,6 +112,9 @@ bootstrapServices.factory('AuthenticationSharedService',['$rootScope', '$http', 
                 $http.get('app/logout');
                 Session.invalidate();
                 authService.loginCancelled();
+
+                var pathParameters = $location.search();
+                $rootScope.$broadcast("event:auth-logoutDone", pathParameters);
             }
         };
     }]);

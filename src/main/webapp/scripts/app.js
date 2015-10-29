@@ -324,6 +324,11 @@ bootstrapApp
                     redirectAfterAuthentication(pathParameters);
                 });
 
+                // Call on logout
+                $rootScope.$on('event:auth-logoutDone', function (event, pathParameters) {
+                    redirectAfterAuthentication(pathParameters);
+                });
+
                 // Call when the 401 response is returned by the server
                 $rootScope.$on('event:auth-loginRequired', function (rejection) {
                     Session.invalidate();
