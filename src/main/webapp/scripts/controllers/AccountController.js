@@ -2,7 +2,7 @@
  * Created by mihai.vaduva on 3/17/15.
  */
 bootstrapControllers
-    .controller('AccountController', ['$scope', '$rootScope', '$http', '$q', 'Notification', '$animate', 'Role', 'Permission', 'Account', function ($scope, $rootScope, $http, $q, Notification, $animate, Role, Permission, Account) {
+    .controller('AccountController', ['$scope', '$rootScope', '$http', '$q', 'Notification', '$animate', 'utils', 'Role', 'Permission', 'Account', function ($scope, $rootScope, $http, $q, Notification, $animate, utils, Role, Permission, Account) {
 
         $scope.accounts = [];
         $scope.roles = [];
@@ -218,7 +218,9 @@ bootstrapControllers
 
         var init = function () {
             Account.getAllAccounts(function (res) {
-                $scope.accounts = res;
+                $scope.accounts = res.sort(function (acc1, acc2) {
+                    return utils.alphanumericSortingFn(acc1.login, acc2.login);
+                });
                 Role.getAll(function (res) {
                     $scope.allRoles = res;
                     if (!_.isEmpty($scope.accounts)) {
