@@ -38,6 +38,13 @@
                                     translate="login.form.button.next.step" ng-switch-when="true">Proceed
                             </button>
                         </div>
+                        <div ng-if="authenticationError">
+                            <h4>
+                                <span class="label label-danger"
+                                      translate="global.messages.info.authenticationError">Incorrect login!
+                                </span>
+                            </h4>
+                        </div>
                     </div>
                 </form>
             </div>

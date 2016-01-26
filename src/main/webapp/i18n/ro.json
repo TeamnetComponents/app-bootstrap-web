@@ -66,7 +66,8 @@
         "messages": {
             "info": {
                 "authenticated": "Daca aveti un cont va puteti <a href=\"#/login\">autentifica</a>.",
-                "register": "Nu aveti un cont? <a href=\"#/register\">Inregistrati-va aici.</a>"
+                "register": "Nu aveti un cont? <a href=\"#/register\">Inregistrati-va aici.</a>",
+                "authenticationError": "Date incorecte!"
             },
             "error": {
                 "dontmatch" : "Parola si confirmarea nu coincid!"

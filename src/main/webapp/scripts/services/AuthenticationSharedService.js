@@ -1,7 +1,8 @@
 bootstrapServices.factory('AuthenticationSharedService',['$rootScope', '$http', '$location', 'authService', 'Session', 'Account', 'Permissions',
     function ($rootScope, $http, $location, authService, Session, Account, Permissions) {
     return {
-        login: function (param) {
+        login: function (param, successCb, failureCb) {
+            $rootScope.authenticationError = false;
             var data ="j_username=" + encodeURIComponent(param.username)
                 +"&j_password=" + encodeURIComponent(param.password)
                 +"&_spring_security_remember_me=" + param.rememberMe
@@ -13,17 +14,18 @@ bootstrapServices.factory('AuthenticationSharedService',['$rootScope', '$http', 
                 },
                 ignoreAuthModule: 'ignoreAuthModule'
             }).success(function (data, status, headers, config) {
+                $rootScope.authenticationError = false;
                 Account.get(function(data) {
                     Session.create(data.login, data.firstName, data.lastName, data.email, data.roles,data.gender, data.moduleRights);
                     $rootScope.account = Session;
                     Permissions.refreshAdminModules();
                     authService.loginConfirmed(data);
+                    if (successCb) successCb();
                 });
-
-
             }).error(function (data, status, headers, config) {
                 $rootScope.authenticationError = true;
                 Session.invalidate();
+                if (failureCb) failureCb();
             });
         },
         valid: function (authorizationData) {
