@@ -164,6 +164,12 @@
                                 <span translate="global.menu.account.sessions">Sessions</span></a>
                             </a>
                         </li>
+                        <li ng-switch-when="true" ng-if="databaseSynchronizationAllowed">
+                            <a href="#/syncDb">
+                                <i class="fa fa-cog"></i>
+                                <span translate="global.menu.account.dbSync">Synchronize DB</span>
+                            </a>
+                        </li>
                         <li role="separator" class="divider" ng-switch-when="true"></li>
                         <li class="dropdown-header" ng-switch-when="true" translate="global.menu.account.security">
                             Security

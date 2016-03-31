@@ -34,7 +34,8 @@
                 "functions": "Functions",
                 "organizations": "Organizations",
                 "ous": "Organizational units",
-                "accountFunctions": "Account functions"
+                "accountFunctions": "Account functions",
+                "dbSync": "Synchronize DB"
             },
             "admin": "Administration",
             "language": "Language",

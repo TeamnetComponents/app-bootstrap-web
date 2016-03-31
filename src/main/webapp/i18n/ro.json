@@ -34,7 +34,8 @@
                 "functions": "Functii",
                 "organizations": "Organizatii",
                 "ous": "Unitati organizationale",
-                "accountFunctions": "Functii conturi"
+                "accountFunctions": "Functii conturi",
+                "dbSync": "Sincronizare DB"
             },
             "admin": "Administrare",
             "language": "Limba",
