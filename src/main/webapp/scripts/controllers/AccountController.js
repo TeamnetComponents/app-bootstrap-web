@@ -71,12 +71,13 @@ bootstrapControllers
                 clearSelectedModuleRights();
 
                 var mrs = window.localStorage.getObj('moduleRights');
-                res.moduleRights.forEach(function (moduleRight) {
-                    var module = mrs[moduleRight.id].module;
-                    moduleRight.module = module;
+                if(res.moduleRights)
+                    res.moduleRights.forEach(function (moduleRight) {
+                        var module = mrs[moduleRight.id].module;
+                        moduleRight.module = module;
 
-                    $scope.pushModuleRight($scope.selectedModules, moduleRight);
-                });
+                        $scope.pushModuleRight($scope.selectedModules, moduleRight);
+                    });
 
                 $scope.selectedAccount = res;
 
