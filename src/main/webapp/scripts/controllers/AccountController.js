@@ -136,6 +136,22 @@ bootstrapControllers
             }, function (error) {
                 Notification.error(error.data.errMsg);
             });
+
+            $scope.saveNewPassword();
+        };
+
+        $scope.saveNewPassword = function () {
+            console.log($scope.selectedAccount);
+            if ($scope.selectedAccount.newPassword) {
+                Account.changePassword({
+                    login: $scope.selectedAccount.login,
+                    password: $scope.selectedAccount.newPassword
+                }, function (data) {
+                    Notification.success('New password saved');
+                }, function (error) {
+                    Notification.error(error.data.errMsg);
+                });
+            }
         };
 
         $scope.backAccount = function () {

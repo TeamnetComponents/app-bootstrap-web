@@ -10,6 +10,10 @@ bootstrapServices.factory('Account',['$resource', function ($resource) {
             method: 'GET',
             isArray: true
         },
+        'changePassword': {
+            url: 'app/rest/adminAccount/changePassword',
+            method: 'POST'
+        },
         'updateAccount': {
             url: 'app/rest/adminAccount/updateAccount',
             method: 'POST'

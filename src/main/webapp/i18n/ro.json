@@ -50,6 +50,7 @@
             "confirmpassword.placeholder": "Confirmati parola noua",
             "email": "E-mail",
             "email.placeholder": "Adresa de e-mail",
+            "newPassword": "Parola",
             "gender":"Sex",
             "male":"Masculin",
             "female":"Feminin",
