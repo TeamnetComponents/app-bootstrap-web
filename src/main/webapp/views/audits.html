@@ -7,9 +7,9 @@
                 <h4 translate="audits.filter.title">{{'audits.filter.title' | translate}}</h4>
                 <p class="input-group mt10 mb0">
                     <span class="input-group-addon" translate="audits.filter.from">{{'audits.filter.from' | translate}}</span>
-                    <input type="date" class="input-sm form-control" name="start" ng-model="fromDate" ng-change="onChangeDate()" required/>
+                    <input type="date" class="input-sm form-control" name="start" ng-model="fromDateObj" ng-change="onChangeDate()" required/>
                     <span class="input-group-addon" translate="audits.filter.to">{{'audits.filter.to' | translate}}</span>
-                    <input type="date" class="input-sm form-control" name="end" ng-model="toDate" ng-change="onChangeDate()" required/>
+                    <input type="date" class="input-sm form-control" name="end" ng-model="toDateObj" ng-change="onChangeDate()" required/>
                 </p>
             </div>
             <div class="panel-body">
