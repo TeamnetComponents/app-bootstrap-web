@@ -25,10 +25,10 @@ bootstrapControllers.controller('RegisterController',['$scope', '$translate', 'P
                     $location.path('/');
                 },
                 function (httpResponse) {
-                    if (httpResponse.status === 400 && httpResponse.data === "login already in use") {
+                    if (httpResponse.status === 409 && httpResponse.data.message === "login") {
                         $scope.error = null;
                         $scope.errorUserExists = "ERROR";
-                    } else if (httpResponse.status === 400 && httpResponse.data === "e-mail address already in use") {
+                    } else if (httpResponse.status === 409 && httpResponse.data.message === "email") {
                         $scope.error = null;
                         $scope.errorEmailExists = "ERROR";
                     } else {
